@@ -1,0 +1,14 @@
+{
+    "name": {
+        "en": "Hero section",
+        "ar": "Hero Section"
+    },
+    "description": {
+        "en": "",
+        "ar": ""
+    },
+    "author_email": "tarek.ly.77@gmail.com",
+    "support_url": "",
+    "repository": "https://github.com/alfakhry/tw-hero-section",
+    "components": []
+}
