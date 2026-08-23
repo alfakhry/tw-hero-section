@@ -1,0 +1,223 @@
+{
+  "id": "4ac38a9b-486a-4e99-a3db-f643fd57096d",
+  "components": [
+    {
+      "title": "Hero",
+      "icon": "sicon-layout-grid",
+      "name": "hero",
+      "key": "eda04480-1d3b-4947-97f1-effb02e79186",
+      "image": "https://cdn.salla.network/images/themes/default/placeholder.jpg",
+      "fields": [
+        {
+          "id": "bg_color",
+          "type": "string",
+          "format": "color",
+          "label": "لون خلفية القسم",
+          "value": "#ffffff"
+        },
+        {
+          "id": "gallery",
+          "type": "collection",
+          "format": "collection",
+          "label": "معرض صور المنتج",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 8,
+          "fields": [
+            {
+              "id": "image",
+              "type": "string",
+              "format": "image",
+              "label": "صورة",
+              "required": true
+            }
+          ],
+          "value": [
+            {
+              "image": "https://cdn.salla.sa/form-builder/EMl1Ae8o35qzaG0HvVqz0IpeqcK9uyHliKksscja.jpg"
+            },
+            {
+              "image": "https://cdn.salla.sa/form-builder/EMl1Ae8o35qzaG0HvVqz0IpeqcK9uyHliKksscja.jpg"
+            },
+            {
+              "image": "https://cdn.salla.sa/form-builder/EMl1Ae8o35qzaG0HvVqz0IpeqcK9uyHliKksscja.jpg"
+            }
+          ]
+        },
+        {
+          "id": "rating_value",
+          "type": "string",
+          "format": "text",
+          "label": "قيمة التقييم (من 5)",
+          "value": "4.8"
+        },
+        {
+          "id": "rating_count",
+          "type": "string",
+          "format": "text",
+          "label": "عدد العملاء المقيّمين",
+          "value": "5000"
+        },
+        {
+          "id": "stars_color",
+          "type": "string",
+          "format": "color",
+          "label": "لون النجوم",
+          "value": "#f5a623"
+        },
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": "العنوان الرئيسي",
+          "required": true,
+          "value": "عطر فاخر يدوم طويلاً — رائحة تبقى معك طوال اليوم"
+        },
+        {
+          "id": "subtitle",
+          "type": "string",
+          "format": "textarea",
+          "label": "العنوان الفرعي / الوصف",
+          "value": "تركيبة شرقية أصيلة بخلاصة العود والمسك، مصممة لتترك أثراً لا يُنسى."
+        },
+        {
+          "id": "points",
+          "type": "collection",
+          "format": "collection",
+          "label": "النقاط المميّزة",
+          "minLength": 0,
+          "maxLength": 6,
+          "fields": [
+            {
+              "id": "icon",
+              "type": "string",
+              "format": "text",
+              "label": "الأيقونة",
+              "value": "✓"
+            },
+            {
+              "id": "text",
+              "type": "string",
+              "format": "text",
+              "label": "النص",
+              "required": true
+            }
+          ],
+          "value": [
+            {
+              "icon": "✓",
+              "text": "منتج رائع لا يفوتك "
+            }
+          ]
+        },
+        {
+          "id": "price_after",
+          "type": "string",
+          "format": "text",
+          "label": "السعر بعد الخصم",
+          "value": "149"
+        },
+        {
+          "id": "price_before",
+          "type": "string",
+          "format": "text",
+          "label": "السعر قبل الخصم",
+          "value": "249"
+        },
+        {
+          "id": "savings_label",
+          "type": "string",
+          "format": "text",
+          "label": "نص التوفير",
+          "value": "وفّر 100"
+        },
+        {
+          "id": "cta_text",
+          "type": "string",
+          "format": "text",
+          "label": "نص زر الشراء",
+          "value": "أضِف إلى السلة"
+        },
+        {
+          "id": "cta_color",
+          "type": "string",
+          "format": "color",
+          "label": "لون زر الشراء",
+          "value": "#1a8917"
+        },
+        {
+          "id": "stock_label",
+          "type": "string",
+          "format": "text",
+          "label": "نص حالة المخزون",
+          "value": "الكمية محدودة"
+        },
+        {
+          "id": "pay_tabby",
+          "type": "boolean",
+          "format": "switch",
+          "label": "إظهار تابي",
+          "selected": true
+        },
+        {
+          "id": "pay_tamara",
+          "type": "boolean",
+          "format": "switch",
+          "label": "إظهار تمارا",
+          "selected": true
+        },
+        {
+          "id": "pay_mada",
+          "type": "boolean",
+          "format": "switch",
+          "label": "إظهار مدى",
+          "selected": true
+        },
+        {
+          "id": "pay_applepay",
+          "type": "boolean",
+          "format": "switch",
+          "label": "إظهار Apple Pay",
+          "selected": true
+        },
+        {
+          "id": "pay_googlepay",
+          "type": "boolean",
+          "format": "switch",
+          "label": "إظهار Google Pay",
+          "selected": true
+        },
+        {
+          "id": "trust",
+          "type": "collection",
+          "format": "collection",
+          "label": "أيقونات الثقة",
+          "minLength": 0,
+          "maxLength": 4,
+          "fields": [
+            {
+              "id": "icon",
+              "type": "string",
+              "format": "text",
+              "label": "الأيقونة",
+              "value": "🚚"
+            },
+            {
+              "id": "text",
+              "type": "string",
+              "format": "text",
+              "label": "النص",
+              "required": true
+            }
+          ],
+          "value": [
+            {
+              "icon": "🚚",
+              "text": "شحن مجاني "
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

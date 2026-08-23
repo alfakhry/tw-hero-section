@@ -1,14 +1,44 @@
 {
-    "name": {
-        "en": "Hero section",
-        "ar": "Hero Section"
-    },
-    "description": {
-        "en": "",
-        "ar": ""
-    },
+    "name": { "en": "Hero section", "ar": "Hero Section" },
+    "description": { "en": "", "ar": "" },
     "author_email": "tarek.ly.77@gmail.com",
     "support_url": "",
     "repository": "https://github.com/alfakhry/tw-hero-section",
-    "components": []
+    "components": [
+        {
+            "title": "Hero",
+            "icon": "sicon-layout-grid",
+            "name": "hero",
+            "key": "eda04480-1d3b-4947-97f1-effb02e79186",
+            "image": "https://cdn.salla.network/images/themes/default/placeholder.jpg",
+            "fields": [
+                { "id": "bg_color", "type": "string", "format": "color", "label": "لون خلفية القسم", "value": "#ffffff" },
+                { "id": "gallery", "type": "collection", "format": "collection", "label": "معرض صور المنتج", "required": true, "minLength": 1, "maxLength": 8, "value": [ { "image": "https://placehold.co/600x600/f1f1f1/999?text=1" }, { "image": "https://placehold.co/600x600/eaeaea/999?text=2" }, { "image": "https://placehold.co/600x600/f1f1f1/999?text=3" }, { "image": "https://placehold.co/600x600/eaeaea/999?text=4" } ], "fields": [ { "id": "image", "type": "string", "format": "image", "label": "صورة", "required": true } ] },
+                { "id": "rating_value", "type": "string", "format": "text", "label": "قيمة التقييم (من 5)", "value": "4.8" },
+                { "id": "rating_count", "type": "string", "format": "text", "label": "عدد العملاء المقيّمين", "value": "5000" },
+                { "id": "stars_color", "type": "string", "format": "color", "label": "لون النجوم", "value": "#f5a623" },
+                { "id": "title", "type": "string", "format": "text", "label": "العنوان الرئيسي", "required": true, "value": "عطر فاخر يدوم طويلاً — رائحة تبقى معك طوال اليوم" },
+                { "id": "subtitle", "type": "string", "format": "textarea", "label": "العنوان الفرعي / الوصف", "value": "تركيبة شرقية أصيلة بخلاصة العود والمسك، مصممة لتترك أثراً لا يُنسى." },
+                { "id": "points", "type": "collection", "format": "collection", "label": "النقاط المميّزة (علامة ✓ ثابتة)", "minLength": 0, "maxLength": 6, "value": [ { "text": "ثبات يدوم حتى 12 ساعة" }, { "text": "مكوّنات طبيعية 100%" }, { "text": "شحن مجاني لجميع مدن المملكة" } ], "fields": [ { "id": "text", "type": "string", "format": "text", "label": "النص", "required": true } ] },
+                { "id": "price_after", "type": "string", "format": "text", "label": "السعر بعد الخصم", "value": "149" },
+                { "id": "price_before", "type": "string", "format": "text", "label": "السعر قبل الخصم", "value": "249" },
+                { "id": "savings_label", "type": "string", "format": "text", "label": "نص التوفير (يظهر بالأخضر)", "value": "وفّرت 100" },
+                { "id": "cta_text", "type": "string", "format": "text", "label": "نص زر الشراء", "value": "اشترِ الآن" },
+                { "id": "cta_color", "type": "string", "format": "color", "label": "لون زر الشراء", "value": "#1a8917" },
+                { "id": "cta_action", "type": "string", "format": "text", "label": "سلوك الزر (اكتب: landing / cart / link)", "value": "landing" },
+                { "id": "cta_link", "type": "string", "format": "url", "label": "رابط مخصص (عند اختيار link)", "value": "" },
+                { "id": "stock_label", "type": "string", "format": "text", "label": "نص حالة المخزون (يظهر بالأحمر)", "value": "الكمية محدودة" },
+                { "id": "pay_tabby", "type": "boolean", "format": "switch", "label": "إظهار تابي", "selected": true },
+                { "id": "pay_tamara", "type": "boolean", "format": "switch", "label": "إظهار تمارا", "selected": true },
+                { "id": "pay_mada", "type": "boolean", "format": "switch", "label": "إظهار مدى", "selected": true },
+                { "id": "pay_stcpay", "type": "boolean", "format": "switch", "label": "إظهار STC Pay", "selected": true },
+                { "id": "pay_applepay", "type": "boolean", "format": "switch", "label": "إظهار Apple Pay", "selected": true },
+                { "id": "pay_googlepay", "type": "boolean", "format": "switch", "label": "إظهار Google Pay", "selected": false },
+                { "id": "pay_mastercard", "type": "boolean", "format": "switch", "label": "إظهار Mastercard", "selected": false },
+                { "id": "trust", "type": "collection", "format": "collection", "label": "بطاقة الثقة", "minLength": 0, "maxLength": 5, "value": [ { "icon": "شحن", "text": "شحن سريع خلال يومين" }, { "icon": "ضمان", "text": "ضمان ذهبي — رضاك أولويتنا" }, { "icon": "دعم", "text": "دعم فني على مدار الساعة" }, { "icon": "استرجاع", "text": "استرجاع مجاني خلال 14 يوم" } ], "fields": [ { "id": "icon", "type": "string", "format": "text", "label": "الأيقونة (اكتب: شحن / ضمان / دعم / استرجاع / امان / تقييم / هدية / عطر / جودة — أو إيموجي)", "value": "شحن" }, { "id": "text", "type": "string", "format": "text", "label": "النص", "required": true } ] },
+                { "id": "reviews", "type": "collection", "format": "collection", "label": "آراء العملاء", "minLength": 0, "maxLength": 6, "value": [ { "avatar": "", "name": "محمد العتيبي", "text": "رائحة فخمة وثباتها ممتاز، وصلني بسرعة. أنصح فيه بشدة." } ], "fields": [ { "id": "avatar", "type": "string", "format": "image", "label": "صورة العميل" }, { "id": "name", "type": "string", "format": "text", "label": "الاسم", "required": true }, { "id": "text", "type": "string", "format": "textarea", "label": "نص التقييم", "required": true } ] },
+                { "id": "faq", "type": "collection", "format": "collection", "label": "الأسئلة الشائعة", "minLength": 0, "maxLength": 8, "value": [ { "q": "كم يدوم ثبات العطر؟", "a": "يدوم حتى 12 ساعة حسب نوع البشرة والاستخدام." }, { "q": "كم تستغرق مدة الشحن؟", "a": "من يوم إلى يومين عمل داخل المملكة، مع إمكانية التتبّع." }, { "q": "هل يمكن الإرجاع؟", "a": "نعم، إرجاع مجاني خلال 14 يوم إذا لم يُفتح المنتج." } ], "fields": [ { "id": "q", "type": "string", "format": "text", "label": "السؤال", "required": true }, { "id": "a", "type": "string", "format": "textarea", "label": "الإجابة", "required": true } ] }
+            ]
+        }
+    ]
 }
