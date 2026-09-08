@@ -1,14 +1,14 @@
 {
     "name": {
-        "en": "Hero section",
-        "ar": "Hero Section"
+        "ar": "Hero Section",
+        "en": "Hero section"
     },
     "description": {
-        "en": "",
-        "ar": ""
+        "ar": null,
+        "en": null
     },
     "author_email": "tarek.ly.77@gmail.com",
-    "support_url": "",
+    "support_url": "https://cart.oarood.com/",
     "repository": "https://github.com/alfakhry/tw-hero-section",
     "components": [
         {
