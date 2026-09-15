@@ -74,12 +74,12 @@ export default class Hero extends LitElement {
       cta_link: cfg.cta_link || "",
       stock_label: cfg.stock_label || "الكمية محدودة",
       pay_tabby: cfg.pay_tabby ?? true,
-      pay_tamara: cfg.pay_tamara ?? true,
+      pay_tamara: cfg.pay_tamara ?? false,
       pay_mada: cfg.pay_mada ?? true,
       pay_stcpay: cfg.pay_stcpay ?? true,
       pay_applepay: cfg.pay_applepay ?? true,
       pay_googlepay: cfg.pay_googlepay ?? false,
-      pay_mastercard: cfg.pay_mastercard ?? false,
+      pay_mastercard: cfg.pay_mastercard ?? true,
       trust:
         Array.isArray(cfg.trust) && cfg.trust.length
           ? cfg.trust
@@ -114,7 +114,7 @@ export default class Hero extends LitElement {
     /* منطقة المنتج: عمودان */
     .wrap { padding: 0 1rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
 
-    .gallery { position: sticky; top: 1rem; }
+    .gallery { position: sticky; top: 1rem; padding-top: 0.35rem; }
     .main-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 14px; background: #f3f4f6; display: block; }
     .thumbs { display: flex; gap: 0.5rem; margin-top: 0.75rem; overflow-x: auto; padding-bottom: 4px; }
     .thumb { width: 72px; height: 72px; flex: 0 0 auto; object-fit: cover; border-radius: 10px; cursor: pointer; border: 2px solid transparent; transition: border-color .15s, opacity .15s; opacity: 0.7; }
@@ -172,7 +172,7 @@ export default class Hero extends LitElement {
 
     @media (max-width: 820px) {
       .wrap { grid-template-columns: 1fr; gap: 1.1rem; padding: 0 0 1.25rem; margin-top: 0; }
-      .gallery { margin-top: 0; }
+      .gallery { margin-top: 0; padding-top: 0; }
       .gallery { position: static; }
       .info { padding: 0 1rem; }
       .main-img { border-radius: 0; aspect-ratio: 4 / 5; }
