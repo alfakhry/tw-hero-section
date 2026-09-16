@@ -1,14 +1,14 @@
 {
     "name": {
-        "en": "Hero section",
-        "ar": "Hero Section"
+        "ar": "قسم المنتج البطل",
+        "en": "Hero section"
     },
     "description": {
-        "ar": "قسم منتج متكامل يجمع الصور والتقييم والمزايا والسعر والدفع والضمانات والأسئلة في مكان واحد — يمنح الزائر كل ما يحتاجه لاتخاذ القرار في ثوانٍ، فيقلّل التردد ويرفع معدل التحويل.",
-        "en": "A complete product section combining gallery, rating, benefits, pricing, payments, guarantees and FAQ in one place — giving visitors everything they need to decide in seconds, reducing hesitation and lifting conversion."
+        "ar": null,
+        "en": null
     },
     "author_email": "tarek.ly.77@gmail.com",
-    "support_url": "https://cart.oarood.com",
+    "support_url": "https://cart.oarood.com/",
     "repository": "https://github.com/alfakhry/tw-hero-section",
     "components": [
         {
