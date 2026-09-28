@@ -492,5 +492,15 @@
                 }
             ]
         }
+    ],
+    "templates": [
+        {
+            "id": "4ac38a9b-486a-4e99-a3db-f643fd57096d",
+            "path": "templates.hero",
+            "category_id": 665151403,
+            "primary_color": "#1a8917",
+            "thumbnail": "https://cdn.portal.files.salla.network/uploads/SS3rr4qYJTYbgd9hTY1y6tqIHxwAfQ2lcSWmCUro.jpg",
+            "is_default": true
+        }
     ]
 }
