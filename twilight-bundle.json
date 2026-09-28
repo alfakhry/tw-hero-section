@@ -344,6 +344,153 @@
                     ]
                 }
             ]
+        },
+        {
+            "title": "مميزات المتجر",
+            "icon": "sicon-award-ribbon",
+            "name": "store-features",
+            "key": "7c4e1a92-6b3d-4f18-9e55-2a8d0c6f41b7",
+            "image": "https://cdn.salla.network/images/themes/bundles/trust/features.jpg",
+            "fields": [
+                {
+                    "id": "bg_color",
+                    "type": "string",
+                    "format": "color",
+                    "label": "لون خلفية القسم",
+                    "value": "#f4f4f5"
+                },
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "عنوان القسم",
+                    "value": "مميزات المتجر"
+                },
+                {
+                    "id": "subtitle",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "وصف القسم",
+                    "value": "نلتزم بخدمة واضحة من لحظة الطلب حتى الاستلام."
+                },
+                {
+                    "id": "features",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "مميزات المتجر",
+                    "minLength": 1,
+                    "maxLength": 6,
+                    "value": [
+                        {
+                            "is_icon": true,
+                            "icon": "sicon-shipping-fast",
+                            "icon_color": "#059669",
+                            "image": "",
+                            "title": "شحن سريع",
+                            "text": "توصيل خلال يومين لجميع مدن المملكة، مع إمكانية تتبّع الطلب."
+                        },
+                        {
+                            "is_icon": true,
+                            "icon": "sicon-shield-check",
+                            "icon_color": "#1d4ed8",
+                            "image": "",
+                            "title": "دفع آمن",
+                            "text": "تابي ومدى و STC Pay وبطاقات بنكية، لإتمام الطلب براحة."
+                        },
+                        {
+                            "is_icon": true,
+                            "icon": "sicon-headset",
+                            "icon_color": "#7c3aed",
+                            "image": "",
+                            "title": "دعم متواصل",
+                            "text": "فريق جاهز للرد على استفساراتك قبل الشراء وبعده."
+                        },
+                        {
+                            "is_icon": true,
+                            "icon": "sicon-refund",
+                            "icon_color": "#d97706",
+                            "image": "",
+                            "title": "استرجاع سهل",
+                            "text": "إرجاع مجاني خلال 14 يوم إذا لم يُفتح المنتج."
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "id": "is_icon",
+                            "type": "boolean",
+                            "format": "switch",
+                            "label": "استخدام أيقونة بدل الصورة",
+                            "selected": true,
+                            "value": true
+                        },
+                        {
+                            "id": "image",
+                            "type": "string",
+                            "format": "image",
+                            "label": "صورة الميزة",
+                            "description": "المقاس المناسب للصورة هو 250×250 بكسل",
+                            "required": false,
+                            "conditions": [
+                                {
+                                    "id": "is_icon",
+                                    "value": false,
+                                    "operation": "=",
+                                    "value_index": ".",
+                                    "collection_id": "features"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "icon",
+                            "type": "string",
+                            "format": "icon",
+                            "label": "الأيقونة",
+                            "value": "sicon-shipping-fast",
+                            "required": false,
+                            "conditions": [
+                                {
+                                    "id": "is_icon",
+                                    "value": true,
+                                    "operation": "=",
+                                    "value_index": ".",
+                                    "collection_id": "features"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "icon_color",
+                            "type": "string",
+                            "format": "color",
+                            "label": "لون الأيقونة",
+                            "value": "#059669",
+                            "required": false,
+                            "conditions": [
+                                {
+                                    "id": "is_icon",
+                                    "value": true,
+                                    "operation": "=",
+                                    "value_index": ".",
+                                    "collection_id": "features"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "title",
+                            "type": "string",
+                            "format": "text",
+                            "label": "العنوان",
+                            "required": true
+                        },
+                        {
+                            "id": "text",
+                            "type": "string",
+                            "format": "textarea",
+                            "label": "الوصف",
+                            "required": true
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
