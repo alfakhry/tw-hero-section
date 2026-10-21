@@ -1,7 +1,7 @@
 {
     "name": "tw-hero-section",
-    "version": "1.0.0",
-    "description": "",
+    "version": "0.4.0",
+    "description": "Salla landing page component bundle and templates",
     "type": "module",
     "scripts": {
         "dev": "vite",

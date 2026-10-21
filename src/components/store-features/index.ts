@@ -1,4 +1,5 @@
 import { css, html, LitElement } from "lit";
+import { direction, ensureSallaIcons, locale } from "../../shared/utils";
 
 const SALLA_ICONS_HREF = "https://cdn.salla.network/fonts/sallaicons.css?v=2.0.5";
 
@@ -64,12 +65,18 @@ export default class StoreFeatures extends LitElement {
 
   config?: Record<string, any>;
 
+  connectedCallback() {
+    super.connectedCallback();
+    ensureSallaIcons();
+  }
+
   private get c() {
     const cfg = this.config || {};
     const features = Array.isArray(cfg.features) && cfg.features.length ? cfg.features : DEFAULT_FEATURES;
     return {
       bg_color: this.safeColor(cfg.bg_color, "#f4f4f5"),
-      title: cfg.title == null ? "مميزات المتجر" : this.asText(cfg.title),
+      // "heading" replaced "title", which clashed with the features[].title field in the editor.
+      title: (cfg.heading ?? cfg.title) == null ? "مميزات المتجر" : this.asText(cfg.heading ?? cfg.title),
       subtitle:
         cfg.subtitle == null
           ? "نلتزم بخدمة واضحة من لحظة الطلب حتى الاستلام."
@@ -81,8 +88,7 @@ export default class StoreFeatures extends LitElement {
   static styles = css`
     :host {
       display: block;
-      direction: rtl;
-      font-family: "IBM Plex Sans Arabic", "Tajawal", system-ui, sans-serif;
+      font-family: inherit;
       color: #1f2937;
     }
     * { box-sizing: border-box; }
@@ -153,8 +159,7 @@ export default class StoreFeatures extends LitElement {
     if (!value) return "";
     if (typeof value === "string") return value;
     if (typeof value === "object") {
-      const lang =
-        (window as Window & { Salla?: { lang?: { getLocale?: () => string } } }).Salla?.lang?.getLocale?.() || "ar";
+      const lang = locale();
       const obj = value as Record<string, string>;
       return obj[lang] || obj.ar || obj.en || "";
     }
@@ -226,7 +231,7 @@ export default class StoreFeatures extends LitElement {
     if (!c.features.length) return html``;
 
     return html`
-      <section class="section" style="background:${c.bg_color}" aria-label="${c.title}">
+      <section class="section" dir="${direction()}" style="background:${c.bg_color}" aria-label="${c.title}">
         <div class="container">
           ${c.title || c.subtitle
             ? html`
