@@ -6,7 +6,7 @@
       "icon": "sicon-layout-grid",
       "name": "hero",
       "key": "eda04480-1d3b-4947-97f1-effb02e79186",
-      "image": "https://cdn.salla.network/images/placeholder.png",
+      "image": "https://cdn.portal.files.salla.network/uploads/VCPnIbfh8Xa8EpjTiPuemvK87R0ieHx1zH6kmSHz.jpg",
       "fields": [
         {
           "id": "bg_color",
@@ -549,7 +549,7 @@
       "icon": "sicon-list-numbered",
       "name": "lp-transformation",
       "key": "f703ee21-576c-5bef-a58f-667a70fd0511",
-      "image": "https://cdn.salla.network/images/placeholder.png",
+      "image": "https://cdn.portal.files.salla.network/uploads/vD5ANgJn07xZyepFb5jNt1u6UXHZBhmYYLPbZ37D.jpg",
       "fields": [
         {
           "id": "bg_color",
@@ -679,7 +679,7 @@
       "icon": "sicon-award-ribbon",
       "name": "lp-features",
       "key": "40c78229-27e3-5824-9ccc-498f7ca420e8",
-      "image": "https://cdn.salla.network/images/placeholder.png",
+      "image": "https://cdn.portal.files.salla.network/uploads/BX1ATIaBTAeEGnutNOY4Li8Bz24Qv3qmyQQVu0fC.jpg",
       "fields": [
         {
           "id": "bg_color",
@@ -1259,7 +1259,7 @@
       "icon": "sicon-star2",
       "name": "lp-benefits",
       "key": "8fa21100-7eae-55fa-813b-dc8b47af3bb1",
-      "image": "https://cdn.salla.network/images/placeholder.png",
+      "image": "https://cdn.portal.files.salla.network/uploads/2uKqAx40yboN1i2kFmHLcZYVH2Cp16Gz12GgGbhe.jpg",
       "fields": [
         {
           "id": "bg_color",
@@ -1411,7 +1411,7 @@
       "icon": "sicon-chat-conversation",
       "name": "lp-social-proof",
       "key": "6d0e256d-b339-599a-8a37-90f3b71b7d97",
-      "image": "https://cdn.salla.network/images/placeholder.png",
+      "image": "https://cdn.portal.files.salla.network/uploads/EeZ8nhGvWqtGk73F4leFdjMudS0ku2is6yMerIIq.jpg",
       "fields": [
         {
           "id": "bg_color",
@@ -2036,7 +2036,7 @@
       "icon": "sicon-megaphone",
       "name": "lp-final-cta",
       "key": "e615fad1-589d-5b41-95bd-38e24440b461",
-      "image": "https://cdn.salla.network/images/placeholder.png",
+      "image": "https://cdn.portal.files.salla.network/uploads/rOsT6uSHxbDJxUc0yUuEddm8Ymfun22GRE4fdalv.jpg",
       "fields": [
         {
           "id": "bg_color",
