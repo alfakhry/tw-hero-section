@@ -1,331 +1,736 @@
-import { css, html, LitElement } from "lit";
+import { css, html, LitElement, nothing, render, type TemplateResult } from "lit";
 import { PAYMENTS } from "../../shared/payments";
-import { stars } from "../../shared/cta";
-import { PLACEHOLDER_IMAGE, color, contrastText, direction, ensureSallaIcons, SALLA_ICONS_CSS, isOn, item, list, number, option, safeUrl, t, text } from "../../shared/utils";
+import { chevron, chevronNext, stars } from "../../shared/cta";
+import { TRUST_ICONS, personIcon } from "../../shared/icons";
+import {
+  PLACEHOLDER_IMAGE,
+  SALLA_ICONS_CSS,
+  color,
+  contrastText,
+  direction,
+  ensureSallaIcons,
+  hexToRgba,
+  isOn,
+  item,
+  list,
+  number,
+  option,
+  safeUrl,
+  t,
+  text,
+} from "../../shared/utils";
 
-
-const TRUST_ICONS: Record<string, () => any> = {
-  شحن: () => html`<svg viewBox="0 0 24 24" fill="none"><path d="M3 6h11v9H3zM14 9h4l3 3v3h-7z" stroke="currentColor" stroke-width="1.6"/><circle cx="7" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/></svg>`,
-  توصيل: () => TRUST_ICONS["شحن"](),
-  استرجاع: () => html`<svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 1 2.3 5.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M4 18v-4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-  ضمان: () => html`<svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-  امان: () => html`<svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6"/></svg>`,
-  دعم: () => html`<svg viewBox="0 0 24 24" fill="none"><path d="M5 13v-1a7 7 0 0 1 14 0v1" stroke="currentColor" stroke-width="1.6"/><rect x="3.5" y="13" width="3.5" height="6" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="17" y="13" width="3.5" height="6" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>`,
-  تقييم: () => html`<svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.6 5.6 6 .6-4.5 4 1.3 6-5.4-3.2L6.6 19l1.3-6-4.5-4 6-.6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
+type Dict = Record<string, any>;
+type Tier = { title: string; subtitle: string; qty: number; price: string; compare: string; badge: string };
+type Product = {
+  id: string;
+  name: string;
+  price: number;
+  regular: number;
+  images: string[];
+  available: boolean;
+  hasOptions: boolean;
+  options: unknown;
+  currency: string;
 };
 
-const personIcon = () => html`<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8.5" r="4"/><path d="M4 20c0-4.2 3.6-6.5 8-6.5s8 2.3 8 6.5z"/></svg>`;
+const PAYMENT_LIST: [string, string][] = [
+  ["mada", "mada"],
+  ["applepay", "Apple Pay"],
+  ["stcpay", "STC Pay"],
+  ["tabby", "Tabby"],
+  ["tamara", "Tamara"],
+  ["mastercard", "Mastercard"],
+  ["googlepay", "Google Pay"],
+];
 
+/** Styles for the purchase form rendered in the light DOM, so Salla's own web components inherit the theme. */
+const LIGHT_CSS = `
+.wahaj-buy .wahaj-form fieldset{border:0;margin:0;padding:0;min-width:0}
+.wahaj-buy{display:flex;flex-direction:column;gap:14px;font-family:inherit}
+.wahaj-buy .wahaj-label{font-weight:700;font-size:15px;color:#111827;margin:0}
+.wahaj-buy .wahaj-tiers{display:grid;grid-template-columns:repeat(var(--wahaj-cols,3),minmax(0,1fr));gap:10px;margin:0;padding:0;border:0}
+.wahaj-buy .wahaj-tier{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:64px;padding:12px 8px;border:2px solid #e5e7eb;border-radius:10px;background:#f3f4f6;cursor:pointer;text-align:center;font:inherit;color:#111827;transition:border-color .15s,background .15s}
+.wahaj-buy .wahaj-tier:hover{border-color:#d1d5db}
+.wahaj-buy .wahaj-tier[aria-checked="true"]{border-color:var(--wahaj-accent);background:var(--wahaj-accent-soft)}
+.wahaj-buy .wahaj-tier:focus-visible{outline:3px solid var(--wahaj-accent);outline-offset:2px}
+.wahaj-buy .wahaj-tier strong{font-size:15px}
+.wahaj-buy .wahaj-tier small{font-size:12px;color:#6b7280}
+.wahaj-buy .wahaj-tier .wahaj-tier-price{font-weight:700;font-size:14px;display:inline-flex;flex-wrap:wrap;justify-content:center;gap:0 6px;align-items:baseline;white-space:nowrap}
+.wahaj-buy .wahaj-tier s{color:#9ca3af;font-size:12px;font-weight:500}
+.wahaj-buy .wahaj-badge{position:absolute;top:-10px;inset-inline-end:8px;background:var(--wahaj-accent);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.wahaj-buy .wahaj-row{display:flex;gap:12px;align-items:stretch}
+.wahaj-buy .wahaj-qty{flex:0 0 96px;min-height:54px;border:0;border-radius:10px;background:#f3f4f6;padding:0 12px;font:inherit;font-size:16px;color:#111827;cursor:pointer}
+.wahaj-buy .wahaj-cta{flex:1 1 auto;min-height:54px;border:0;border-radius:10px;font:inherit;font-size:18px;font-weight:700;cursor:pointer;transition:filter .15s,transform .15s}
+.wahaj-buy .wahaj-cta:hover{filter:brightness(.94)}
+.wahaj-buy .wahaj-cta:active{transform:translateY(1px)}
+.wahaj-buy .wahaj-cta:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+.wahaj-buy .wahaj-cta[disabled]{opacity:.6;cursor:not-allowed}
+.wahaj-buy salla-product-options,.wahaj-buy salla-quick-order,.wahaj-buy salla-offer{display:block}
+.wahaj-buy #bundle-pro-widget:empty{display:none}
+@media (max-width:820px){.wahaj-buy .wahaj-cta{font-size:17px}}
+@media (prefers-reduced-motion:reduce){.wahaj-buy .wahaj-cta,.wahaj-buy .wahaj-tier{transition:none}}
+`;
+
+function ensureLightStyles() {
+  if (document.getElementById("wahaj-hero-light")) return;
+  const style = document.createElement("style");
+  style.id = "wahaj-hero-light";
+  style.textContent = LIGHT_CSS;
+  document.head.appendChild(style);
+}
+
+/** True when the merchant's "عروض المنتجات والباقات" storefront widget is on the page. */
+function bundlesAppInstalled(): boolean {
+  const w = window as Dict;
+  return Boolean(
+    w.__BUNDLE_PRO_LOADER_SRC__ || w.__BUNDLE_PRO__ || document.querySelector('script[src*="/widget/storefront"]')
+  );
+}
+
+function num(v: unknown): number {
+  if (v && typeof v === "object") v = (v as Dict).amount ?? (v as Dict).value;
+  const n = Number.parseFloat(String(v ?? ""));
+  return Number.isFinite(n) ? n : 0;
+}
+
+function formatAmount(n: number): string {
+  return Number.isInteger(n) ? String(n) : n.toFixed(2);
+}
+
+/**
+ * Main purchase section (Hero).
+ * Manual mode: every text and price comes from the editor.
+ * Product mode: the merchant picks a store product; price, stock, images and options load live,
+ * and the purchase form is rendered with Salla's own components (and the merchant's bundles app, when installed).
+ */
 export default class Hero extends LitElement {
   static properties = {
     config: { type: Object },
-    activeImage: { type: Number, state: true },
-    openFaq: { type: Number, state: true },
+    activeImage: { state: true },
+    activeTab: { state: true },
+    activeTier: { state: true },
+    topIndex: { state: true },
+    product: { state: true },
   };
 
-  config?: Record<string, any>;
+  config?: Dict;
   activeImage!: number;
-  openFaq!: number;
+  activeTab!: number;
+  activeTier!: number;
+  topIndex!: number;
+  product!: Product | null;
+  private loadedId = "";
+  private lightRoot: HTMLDivElement | null = null;
+  private topTimer = 0;
 
   constructor() {
     super();
     this.activeImage = 0;
-    this.openFaq = -1;
+    this.activeTab = 0;
+    this.activeTier = -1;
+    this.topIndex = 0;
+    this.product = null;
   }
 
   connectedCallback() {
     super.connectedCallback();
     ensureSallaIcons();
+    this.topTimer = window.setInterval(() => {
+      const n = list(this.config?.top_bar).length;
+      if (n > 1 && window.matchMedia?.("(max-width: 820px)").matches) this.topIndex = (this.topIndex + 1) % n;
+    }, 4000);
   }
 
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.clearInterval(this.topTimer);
+  }
+
+  /* ----------------------------------------------------------------- data */
+
   private get c() {
-    const cfg = (this.config || {}) as Record<string, any>;
-    // Text fields may be plain strings or {ar, en} objects (multilanguage fields).
-    const s = (v: unknown, fallback: string) => text(v).trim() || fallback;
+    const cfg = this.config || {};
+    const s = (v: unknown, fallback: string) => (v === undefined || v === null ? fallback : text(v).trim());
     const rows = (v: unknown, name: string, keys: string[]) =>
       list(v).map((r) => Object.fromEntries(keys.map((k) => [k, k === "icon" ? item(r, name, k) : text(item(r, name, k))])));
+    const productId = option(cfg.product, "").trim();
+    const tiers: Tier[] = list(cfg.tiers)
+      .map((r) => ({
+        title: text(item(r, "tiers", "title")).trim(),
+        subtitle: text(item(r, "tiers", "subtitle")).trim(),
+        qty: Math.max(1, Math.round(number(item(r, "tiers", "qty"), 1, 1, 99))),
+        price: text(item(r, "tiers", "price")).trim(),
+        compare: text(item(r, "tiers", "compare")).trim(),
+        badge: text(item(r, "tiers", "badge")).trim(),
+      }))
+      .filter((r) => r.title);
     return {
-      bg_color: color(cfg.bg_color, "#ffffff"),
-      gallery:
-        list(cfg.gallery).length
-          ? rows(cfg.gallery, "gallery", ["image"])
-          : [{ image: PLACEHOLDER_IMAGE }],
-      rating_value: cfg.rating_value || "4.8",
-      rating_count: cfg.rating_count || "5000",
-      stars_color: color(cfg.stars_color, "#f5a623"),
-      title: s(cfg.title, "عطر فاخر يدوم طويلاً — رائحة تبقى معك طوال اليوم"),
-      subtitle: s(cfg.subtitle, "تركيبة شرقية أصيلة بخلاصة العود والمسك، مصممة لتترك أثراً لا يُنسى."),
-      points:
-        list(cfg.points).length
-          ? rows(cfg.points, "points", ["text"])
-          : [{ text: "ثبات يدوم حتى 12 ساعة" }, { text: "مكوّنات طبيعية 100%" }, { text: "شحن مجاني لجميع مدن المملكة" }],
-      price_after: cfg.price_after || "149",
-      price_before: cfg.price_before || "249",
-      savings_label: s(cfg.savings_label, ""),
-      cta_text: s(cfg.cta_text, "اشترِ الآن"),
-      cta_color: color(cfg.cta_color, "#1a8917"),
-      show_trust: isOn(cfg.show_trust, true),
-      show_review: isOn(cfg.show_review, true),
-      show_faq: isOn(cfg.show_faq, true),
-      cta_action: option(cfg.cta_action, "landing"),
-      cta_link: safeUrl(cfg.cta_link),
-      stock_label: s(cfg.stock_label, ""),
-      pay_tabby: cfg.pay_tabby ?? true,
-      pay_tamara: cfg.pay_tamara ?? false,
-      pay_mada: cfg.pay_mada ?? true,
-      pay_stcpay: cfg.pay_stcpay ?? true,
-      pay_applepay: cfg.pay_applepay ?? true,
-      pay_googlepay: cfg.pay_googlepay ?? false,
-      pay_mastercard: cfg.pay_mastercard ?? true,
-      trust:
-        list(cfg.trust).length
-          ? rows(cfg.trust, "trust", ["icon", "text"])
-          : [
-              { icon: "شحن", text: "شحن سريع خلال يومين" },
-              { icon: "ضمان", text: "ضمان ذهبي — رضاك أولويتنا" },
-              { icon: "دعم", text: "دعم فني على مدار الساعة" },
-              { icon: "استرجاع", text: "استرجاع مجاني خلال 14 يوم" },
-            ],
-      reviews:
-        list(cfg.reviews).length
-          ? rows(cfg.reviews, "reviews", ["avatar", "name", "text"])
-          : [{ avatar: "", name: "محمد العتيبي", text: "رائحة فخمة وثباتها ممتاز، وصلني بسرعة. أنصح فيه بشدة." }],
-      faq:
-        list(cfg.faq).length
-          ? rows(cfg.faq, "faq", ["q", "a"])
-          : [
-              { q: "كم يدوم ثبات العطر؟", a: "يدوم حتى 12 ساعة حسب نوع البشرة والاستخدام." },
-              { q: "كم تستغرق مدة الشحن؟", a: "من يوم إلى يومين عمل داخل المملكة، مع إمكانية التتبّع." },
-              { q: "هل يمكن الإرجاع؟", a: "نعم، إرجاع مجاني خلال 14 يوم إذا لم يُفتح المنتج." },
-            ],
+      productId: /^\d+$/.test(productId) ? productId : "",
+      bg: color(cfg.bg_color, "#ffffff"),
+      accent: color(cfg.accent_color, "#1a8917"),
+      showTopBar: isOn(cfg.show_top_bar, true),
+      topBar: rows(cfg.top_bar, "top_bar", ["icon", "text"]).filter((r) => r.text),
+      gallery: rows(cfg.gallery, "gallery", ["image"]).map((r) => safeUrl(r.image)).filter(Boolean),
+      ratingValue: number(cfg.rating_value, 4.8, 0, 5),
+      ratingCount: s(cfg.rating_count, "5000"),
+      starsColor: color(cfg.stars_color, "#f5a623"),
+      title: s(cfg.headline ?? cfg.title, "عطر فاخر يدوم طويلاً — رائحة تبقى معك طوال اليوم"),
+      subtitle: s(cfg.subheadline ?? cfg.subtitle, ""),
+      priceFrom: isOn(cfg.price_from, false),
+      priceAfter: s(cfg.price_after, "149"),
+      priceBefore: s(cfg.price_before, "249"),
+      savings: s(cfg.savings_label, ""),
+      stock: s(cfg.stock_label, "الكمية محدودة"),
+      points: rows(cfg.points, "points", ["text"]).map((r) => r.text as string).filter(Boolean),
+      offersMode: option(cfg.offers_mode, "auto"),
+      offersTitle: s(cfg.offers_title, "اختر العرض المناسب"),
+      tiers,
+      defaultTier: Math.max(0, Math.round(number(cfg.default_tier, 2, 1, 6)) - 1),
+      showQty: isOn(cfg.show_qty, true),
+      ctaText: s(cfg.cta_text, "اشترِ الآن"),
+      ctaColor: color(cfg.cta_color, "#1a8917"),
+      ctaAction: option(cfg.cta_action, "buy_now"),
+      ctaLink: safeUrl(cfg.cta_link),
+      showQuickOrder: isOn(cfg.show_quick_order, true),
+      showSallaOffers: isOn(cfg.show_salla_offers, true),
+      secureLabel: s(cfg.secure_label, t("secureCheckout")),
+      payments: PAYMENT_LIST.filter(([k]) => isOn(cfg[`pay_${k}`], ["mada", "applepay", "stcpay", "tabby", "mastercard"].includes(k))),
+      showTrust: isOn(cfg.show_trust, true),
+      trust: rows(cfg.trust, "trust", ["icon", "text"]).filter((r) => r.text),
+      showReview: isOn(cfg.show_review, true),
+      review: rows(cfg.reviews, "reviews", ["avatar", "name", "text"]).find((r) => r.text) as Dict | undefined,
+      showTabs: isOn(cfg.show_tabs, true),
+      tabs: rows(cfg.tabs, "tabs", ["title", "content"]).filter((r) => r.title && r.content) as Dict[],
+      showLogos: isOn(cfg.show_logos, true),
+      logosTitle: s(cfg.logos_title, t("recommendedBy")),
+      logos: rows(cfg.logos, "logos", ["name", "image"]).filter((r) => r.name || r.image) as Dict[],
     };
   }
+
+  private async loadProduct(id: string) {
+    this.loadedId = id;
+    const salla = (window as Dict).salla;
+    if (!salla?.product?.getDetails) return;
+    try {
+      await salla.onReady?.();
+      const res = await salla.product.getDetails(id, ["images", "options"]);
+      const p = (res?.data ?? res) as Dict;
+      if (!p || this.loadedId !== id) return;
+      const price = num(p.sale_price) || num(p.price);
+      const regular = num(p.regular_price) || num(p.price);
+      const images = (Array.isArray(p.images) ? p.images : [])
+        .map((img: Dict) => safeUrl(img?.url ?? img?.image?.url ?? img))
+        .filter(Boolean);
+      const mainImage = safeUrl(p.image?.url ?? p.thumbnail);
+      this.product = {
+        id,
+        name: text(p.name),
+        price,
+        regular: regular > price ? regular : 0,
+        images: images.length ? images : mainImage ? [mainImage] : [],
+        available: p.is_available !== false && p.status !== "out" && p.status !== "out-and-notify",
+        hasOptions: Array.isArray(p.options) && p.options.length > 0,
+        options: p.options,
+        // Amounts come back in the visitor's selected currency.
+        currency: text(salla.config?.get?.("user.currency_code") || p.currency || "SAR"),
+      };
+    } catch {
+      // Product not found or API unavailable: stay on the merchant's manual values.
+      this.product = null;
+    }
+  }
+
+  protected willUpdate() {
+    const id = this.c.productId;
+    if (id && id !== this.loadedId) this.loadProduct(id);
+    if (!id && this.loadedId) {
+      this.loadedId = "";
+      this.product = null;
+    }
+  }
+
+  /* -------------------------------------------------------------- actions */
+
+  /** Quantity tiers are skipped when the bundles app renders its own offers. */
+  private useTiers(): boolean {
+    const c = this.c;
+    if (c.offersMode === "none" || c.offersMode === "app") return false;
+    if (c.offersMode === "auto" && c.productId && bundlesAppInstalled()) return false;
+    return c.tiers.length > 0;
+  }
+
+  private tierIndex(): number {
+    const c = this.c;
+    if (!this.useTiers()) return -1;
+    return this.activeTier >= 0 ? Math.min(this.activeTier, c.tiers.length - 1) : Math.min(c.defaultTier, c.tiers.length - 1);
+  }
+
+  private selectedQuantity(form: HTMLFormElement): number {
+    const i = this.tierIndex();
+    if (i >= 0) return this.c.tiers[i].qty;
+    const select = form.querySelector<HTMLSelectElement>(".wahaj-qty");
+    return select ? Number(select.value) || 1 : 1;
+  }
+
+  private async submit(e: Event) {
+    e.preventDefault();
+    const c = this.c;
+    const salla = (window as Dict).salla;
+    const form = e.target as HTMLFormElement;
+    if (!c.productId || !salla?.cart?.addItem) {
+      if (c.ctaLink) window.location.href = c.ctaLink;
+      return;
+    }
+    const options: Record<string, string> = {};
+    new FormData(form).forEach((value, key) => {
+      const m = key.match(/^options\[(\d+)\]$/);
+      if (m && typeof value === "string" && value) options[m[1]] = value;
+    });
+    const button = form.querySelector<HTMLButtonElement>(".wahaj-cta");
+    button?.setAttribute("disabled", "");
+    try {
+      await salla.cart.addItem({ id: c.productId, quantity: this.selectedQuantity(form), options });
+      if (c.ctaAction === "buy_now") window.location.href = salla.url?.get?.("cart") || "/cart";
+      else if (c.ctaAction === "link" && c.ctaLink) window.location.href = c.ctaLink;
+    } catch {
+      // Salla shows its own error message (for example when a required option is missing).
+    } finally {
+      button?.removeAttribute("disabled");
+    }
+  }
+
+  /** Manual mode button: use the page's own purchase control, else follow the merchant link. */
+  private manualCta() {
+    const c = this.c;
+    if (c.ctaAction === "link" && c.ctaLink) {
+      window.location.href = c.ctaLink;
+      return;
+    }
+    const el = ["salla-quick-buy button", "[data-buy-now]", "salla-add-product-button button", ".btn-add-to-cart"]
+      .map((sel) => document.querySelector(sel))
+      .find(Boolean) as HTMLElement | undefined;
+    if (el) el.click();
+    else if (c.ctaLink) window.location.href = c.ctaLink;
+  }
+
+  /* ------------------------------------------------------- light DOM part */
+
+  protected updated() {
+    const c = this.c;
+    if (!c.productId) {
+      this.lightRoot?.remove();
+      this.lightRoot = null;
+      return;
+    }
+    ensureLightStyles();
+    if (!this.lightRoot) {
+      this.lightRoot = document.createElement("div");
+      this.lightRoot.slot = "buy";
+      this.appendChild(this.lightRoot);
+    }
+    render(this.lightTemplate(), this.lightRoot);
+    this.mountBundlesApp();
+  }
+
+  /**
+   * Hands the product to the bundles app ("عروض المنتجات والباقات").
+   * The app reads window.__BUNDLE_PRO_PRODUCT_ID__ and mounts into #bundle-pro-widget. When its script
+   * already ran, it can re-mount through window.BundlePro.mount (if exposed) or the "wahaj:product" event.
+   */
+  private mountBundlesApp() {
+    const c = this.c;
+    if (!c.productId || c.offersMode === "none" || this.useTiers() || !bundlesAppInstalled()) return;
+    const mount = this.lightRoot?.querySelector<HTMLElement>("#bundle-pro-widget");
+    if (!mount || mount.dataset.wahajMounted === c.productId) return;
+    mount.dataset.wahajMounted = c.productId;
+    const w = window as Dict;
+    w.__BUNDLE_PRO_PRODUCT_ID__ = c.productId;
+    if (typeof w.BundlePro?.mount === "function") w.BundlePro.mount(mount, c.productId);
+    document.dispatchEvent(new CustomEvent("wahaj:product", { detail: { productId: c.productId, element: mount } }));
+  }
+
+  private lightTemplate(): TemplateResult {
+    const c = this.c;
+    const p = this.product;
+    // With a linked product the badge only shows when the product really has a discount.
+    const savings = p
+      ? p.regular
+        ? c.savings || html`${t("save")} ${this.money(Math.round((p.regular - p.price) * 100) / 100)}`
+        : ""
+      : c.savings;
+    const outOfStock = p ? !p.available : false;
+    const tierIndex = this.tierIndex();
+    const tiers = tierIndex >= 0 ? c.tiers : [];
+    const appOffers = c.offersMode !== "none" && !this.useTiers() && bundlesAppInstalled();
+    return html`
+      <div
+        class="wahaj-buy"
+        dir="${direction()}"
+        style="--wahaj-accent:${c.accent};--wahaj-accent-soft:${hexToRgba(c.accent, 0.1)};--wahaj-cols:${Math.min(Math.max(tiers.length, 1), 3)}"
+      >
+        ${appOffers ? html`<div id="bundle-pro-widget" class="bp-widget-mount"></div>` : nothing}
+        ${tiers.length
+          ? html`<p class="wahaj-label" id="wahaj-tiers-label">${c.offersTitle}</p>
+              <div class="wahaj-tiers" role="radiogroup" aria-labelledby="wahaj-tiers-label">
+                ${tiers.map(
+                  (tier, i) => html`<button type="button" class="wahaj-tier" role="radio" aria-checked="${i === tierIndex}" @click=${() => (this.activeTier = i)}>
+                    ${tier.badge ? html`<span class="wahaj-badge">${tier.badge}</span>` : nothing}
+                    <strong>${tier.title}</strong>
+                    ${tier.price ? html`<span class="wahaj-tier-price">${tier.price}${tier.compare ? html`<s>${tier.compare}</s>` : nothing}</span>` : nothing}
+                    ${tier.subtitle ? html`<small>${tier.subtitle}</small>` : nothing}
+                  </button>`
+                )}
+              </div>`
+          : nothing}
+        <form class="wahaj-form product-form" @submit=${(e: Event) => this.submit(e)}>
+          <input type="hidden" name="id" .value=${c.productId} />
+          ${p?.hasOptions
+            ? html`<salla-product-options product-id="${c.productId}" options="${JSON.stringify(p.options)}"></salla-product-options>`
+            : nothing}
+          <div class="wahaj-row">
+            ${c.showQty && !tiers.length
+              ? html`<select class="wahaj-qty" name="quantity" aria-label="${t("quantity")}">
+                  ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => html`<option value="${n}">${n}</option>`)}
+                </select>`
+              : nothing}
+            <button class="wahaj-cta" type="submit" style="background:${c.ctaColor};color:${contrastText(c.ctaColor)}" ?disabled=${outOfStock}>
+              ${outOfStock ? t("outOfStock") : c.ctaText}
+            </button>
+          </div>
+        </form>
+        ${c.showQuickOrder && !outOfStock ? html`<salla-quick-order product-id="${c.productId}"></salla-quick-order>` : nothing}
+        ${c.showSallaOffers ? html`<salla-offer product-id="${c.productId}"></salla-offer>` : nothing}
+      </div>
+    `;
+  }
+
+  /* ------------------------------------------------------------- styles */
 
   static styles = css`
     :host { display: block; font-family: inherit; color: #1f2937; }
     * { box-sizing: border-box; }
-    .sar { font-style: normal; margin-inline-start: 2px; font-size: 0.85em; }
+    img { display: block; max-width: 100%; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+    .container { max-width: 1240px; margin-inline: auto; padding-inline: 1rem; }
 
-    .container { max-width: 1140px; margin: 0 auto; }
+    /* Top bar */
+    .top { border-bottom: 1px solid #eceef1; background: #fff; }
+    .top-bar-inner { display: block; }
+    .top-list { display: flex; justify-content: space-between; gap: 1rem; margin: 0; padding: 0.9rem 0; list-style: none; }
+    .top-item { display: flex; align-items: center; gap: 0.55rem; font-size: 0.92rem; font-weight: 600; color: #111827; }
+    .top-item .ic { width: 22px; height: 22px; flex: 0 0 auto; color: #111827; }
+    .top-item .ic svg { width: 100%; height: 100%; }
+    .top-nav { display: none; }
 
-    /* منطقة المنتج: عمودان */
-    .wrap { padding: 1.5rem 1rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
-
-    .gallery { position: sticky; top: 1rem; padding-top: 0.35rem; }
-    .main-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 14px; background: #f3f4f6; display: block; }
-    .thumbs { display: flex; gap: 0.5rem; margin-top: 0.75rem; overflow-x: auto; padding-bottom: 4px; }
-    .thumb-btn { padding: 0; border: 0; background: none; flex: 0 0 auto; cursor: pointer; border-radius: 10px; }
+    /* Product area */
+    .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4rem; padding-block: 2rem 3rem; align-items: start; }
+    .gallery { position: sticky; top: 1rem; }
+    .main-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: #f3f4f6; border-radius: 4px; }
+    .thumbs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.9rem; margin-top: 1.25rem; }
+    .thumb-btn { padding: 0; border: 2px solid transparent; background: #f3f4f6; border-radius: 6px; cursor: pointer; overflow: hidden; aspect-ratio: 1.15 / 1; }
+    .thumb-btn[aria-pressed="true"] { border-color: #111827; }
     .thumb-btn:focus-visible { outline: 2px solid #111827; outline-offset: 2px; }
-    .thumb { width: 72px; height: 72px; flex: 0 0 auto; object-fit: cover; border-radius: 10px; cursor: pointer; border: 2px solid transparent; transition: border-color .15s, opacity .15s; opacity: 0.7; }
-    .thumb:hover { opacity: 1; }
-    .thumb.active { border-color: #111827; opacity: 1; }
+    .thumb-btn img { width: 100%; height: 100%; object-fit: cover; }
 
-    .info { min-width: 0; }
-    .rating { display: flex; align-items: center; gap: 0.4rem; font-size: 0.95rem; margin-bottom: 0.75rem; }
+    .info { min-width: 0; display: flex; flex-direction: column; gap: 1.15rem; }
+    .rating { display: flex; align-items: center; flex-wrap: wrap; gap: 0.45rem; font-size: 0.92rem; color: #4b5563; }
     .stars { display: inline-flex; gap: 2px; }
     .stars svg { width: 18px; height: 18px; display: block; }
-    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
-    .rating-num { font-weight: 700; }
-    .rating-count { color: #6b7280; }
+    .rating strong { color: #111827; }
+    h1.title { margin: 0; font-size: 2.35rem; line-height: 1.25; font-weight: 700; color: #111827; letter-spacing: -0.01em; }
+    .subtitle { margin: -0.4rem 0 0; color: #4b5563; font-size: 1.02rem; line-height: 1.7; }
 
-    h1.title { font-size: 1.9rem; line-height: 1.35; font-weight: 700; margin: 0 0 0.6rem; }
-    .subtitle { font-size: 1.05rem; color: #4b5563; line-height: 1.7; margin: 0 0 1.25rem; }
+    .price-row { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem 1rem; }
+    .price { font-size: 1.45rem; font-weight: 700; color: #111827; }
+    .price .from { font-weight: 500; color: #4b5563; font-size: 1.05rem; margin-inline-end: 0.35rem; }
+    .price-before { color: #9ca3af; text-decoration: line-through; font-size: 1.05rem; }
+    .savings { background: var(--accent-soft); color: var(--accent); font-size: 0.85rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 6px; }
+    .stock { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: #4b5563; }
+    .stock .dot { width: 12px; height: 12px; border-radius: 50%; background: #f59e0b; box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18); }
+    .stock.out .dot { background: #dc2626; box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15); }
+    .sar { font-style: normal; font-size: 0.85em; margin-inline-start: 2px; }
 
-    .points { list-style: none; padding: 0; margin: 0 0 1.5rem; }
-    .points li { display: flex; align-items: center; gap: 0.6rem; padding: 0.35rem 0; font-size: 1rem; }
-    .points .pt-icon { width: 24px; height: 24px; flex: 0 0 auto; display: grid; place-items: center; background: #ecfdf5; color: #059669; border-radius: 50%; font-size: 0.8rem; }
+    .points { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+    .points li { display: flex; align-items: flex-start; gap: 0.7rem; line-height: 1.55; color: #374151; }
+    .points .tick { width: 22px; height: 22px; flex: 0 0 auto; border-radius: 50%; background: #6b7280; color: #fff; display: grid; place-items: center; font-size: 0.72rem; margin-top: 1px; }
 
-    .price-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.4rem; flex-wrap: wrap; }
-    .price-after { font-size: 2rem; font-weight: 800; color: #111827; }
-    .price-before { font-size: 1.15rem; color: #9ca3af; text-decoration: line-through; }
-    .savings { background: #dcfce7; color: #166534; font-size: 0.85rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 6px; }
+    /* Offers + button (manual mode) */
+    .label { font-weight: 700; color: #111827; margin: 0.2rem 0 -0.4rem; }
+    .tiers { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 0.65rem; }
+    .tier { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 64px; padding: 0.75rem 0.5rem; border: 2px solid #e5e7eb; border-radius: 10px; background: #f3f4f6; cursor: pointer; text-align: center; font: inherit; color: #111827; }
+    .tier[aria-checked="true"] { border-color: var(--accent); background: var(--accent-soft); }
+    .tier:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .tier strong { font-size: 0.95rem; }
+    .tier small { font-size: 0.75rem; color: #6b7280; }
+    .tier .tp { font-weight: 700; font-size: 0.9rem; display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 0 6px; align-items: baseline; white-space: nowrap; }
+    .tier s { color: #9ca3af; font-size: 0.75rem; font-weight: 500; }
+    .tier .badge { position: absolute; top: -10px; inset-inline-end: 8px; background: var(--accent); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
 
-    .stock { display: flex; align-items: center; gap: 0.45rem; color: #dc2626; font-weight: 600; font-size: 0.95rem; margin: 0 0 1.25rem; }
-    .stock .dot { width: 9px; height: 9px; border-radius: 50%; background: #059669; display: inline-block; }
-
-    .cta { width: 100%; border: none; font-size: 1.15rem; font-weight: 700; font-family: inherit; padding: 1rem; border-radius: 12px; cursor: pointer; transition: filter .15s; }
+    .buy-row { display: flex; gap: 0.75rem; }
+    .qty { flex: 0 0 96px; min-height: 54px; border: 0; border-radius: 10px; background: #f3f4f6; padding: 0 0.75rem; font: inherit; font-size: 1rem; }
+    .cta { flex: 1 1 auto; min-height: 54px; border: 0; border-radius: 10px; font: inherit; font-size: 1.15rem; font-weight: 700; cursor: pointer; transition: filter 0.15s; }
     .cta:hover { filter: brightness(0.94); }
     .cta:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
 
-    .pay { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1.1rem 0 1.5rem; }
-    .pay-label { color: #6b7280; font-size: 0.85rem; margin-inline-end: 0.25rem; }
-    .pay-logo { height: 30px; width: auto; display: block; }
+    .pay { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+    .pay ul { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
+    .pay img { height: 28px; width: auto; }
+    .pay .secure { color: #4b5563; font-size: 0.92rem; margin-inline-start: 0.5rem; }
 
-    .trust-card { background: #f4f4f5; border-radius: 16px; padding: 1.1rem 1.25rem; display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 1.5rem; }
-    .trust-row { display: flex; align-items: center; gap: 0.75rem; font-size: 0.98rem; color: #374151; }
-    .trust-row .t-ic { width: 26px; height: 26px; flex: 0 0 auto; color: #4b5563; }
-    .trust-row .t-ic svg { width: 100%; height: 100%; }
-    .trust-row .t-emoji { font-size: 1.25rem; width: 26px; text-align: center; }
+    .trust-card { background: #ececec; border-radius: 6px; padding: 1.25rem 1.4rem; display: grid; gap: 1rem; }
+    .trust-row { display: flex; align-items: center; gap: 0.8rem; color: #374151; font-size: 0.98rem; }
+    .trust-row .ic { width: 22px; height: 22px; flex: 0 0 auto; color: #6b7280; }
+    .trust-row .ic svg { width: 100%; height: 100%; }
 
-    .review { display: flex; gap: 0.9rem; align-items: center; background: #fafafa; border: 1px solid #f0f0f0; border-radius: 14px; padding: 1rem 1.25rem; }
-    .review .avatar-ic { width: 52px; height: 52px; border-radius: 50%; background: #e5e7eb; color: #9ca3af; flex: 0 0 auto; display: grid; place-items: center; overflow: hidden; }
-    .review .avatar-ic svg { width: 62%; height: 62%; }
-    .review .avatar-img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; }
-    .review .rtext { color: #374151; line-height: 1.6; margin-bottom: 0.3rem; }
-    .review .rname { font-weight: 700; margin-bottom: 0.15rem; }
-    .review .rstars svg { width: 15px; height: 15px; }
+    .review { display: flex; gap: 1.25rem; align-items: center; }
+    .review .avatar { width: 92px; height: 92px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; background: #bcb6b6; color: #fff; display: grid; place-items: center; overflow: hidden; }
+    .review .avatar svg { width: 55%; height: 55%; }
+    .review .rtext { margin: 0 0 0.5rem; color: #374151; line-height: 1.65; }
+    .review .rname { font-weight: 700; margin-bottom: 0.25rem; }
 
-    /* الأسئلة: داخل عمود المعلومات — أشرطة كاملة العرض (مطابق للريفرنس) */
-    .faq-list { margin-top: 1.5rem; }
-    .faq-item { border: 1px solid #eee; border-radius: 12px; overflow: hidden; margin-bottom: 0.6rem; }
-    .faq-q { width: 100%; background: none; border: 0; font: inherit; color: inherit; text-align: start; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; padding: 0.9rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.98rem; }
-    .faq-sign { font-size: 1.3rem; color: #059669; line-height: 1; flex: 0 0 auto; }
-    .faq-a { padding: 0 1rem 0.9rem; color: #4b5563; line-height: 1.7; font-size: 0.93rem; }
+    .tabs-head { display: flex; border-bottom: 2px solid #e5e7eb; overflow-x: auto; scrollbar-width: none; }
+    .tab { padding: 0.7rem 1.2rem; border: 0; background: none; font: inherit; font-weight: 600; color: #6b7280; cursor: pointer; white-space: nowrap; margin-bottom: -2px; border-bottom: 2px solid transparent; }
+    .tab[aria-selected="true"] { color: #111827; background: #e5e7eb; border-bottom-color: #111827; }
+    .tab:focus-visible { outline: 2px solid #111827; outline-offset: -2px; }
+    .tab-panel { padding: 1rem 0.2rem 0; color: #4b5563; line-height: 1.85; white-space: pre-line; }
+    .acc { display: none; }
+    .acc-item + .acc-item { margin-top: 0.6rem; }
+    .acc-q { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; padding: 0.8rem 1rem; background: #e5e7eb; border: 0; border-radius: 4px; font: inherit; font-weight: 600; color: #111827; text-align: start; cursor: pointer; }
+    .acc-a { padding: 0.8rem 0.25rem 0.2rem; color: #4b5563; line-height: 1.8; white-space: pre-line; }
 
+    /* Logos strip */
+    .logos { background: #f2f2f2; }
+    .logos-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem 2.5rem; flex-wrap: wrap; padding-block: 1.6rem; }
+    .logos-title { color: #4b5563; font-size: 0.92rem; }
+    .logo { color: #6b7280; font-size: 1.15rem; font-weight: 600; }
+    .logo img { max-height: 34px; width: auto; filter: grayscale(1); opacity: 0.75; }
+
+    @media (max-width: 1024px) {
+      .wrap { gap: 2.5rem; }
+      h1.title { font-size: 2rem; }
+    }
     @media (max-width: 820px) {
-      .wrap { grid-template-columns: 1fr; gap: 1.1rem; padding: 0 0 1.25rem; margin-top: 0; }
-      .gallery { margin-top: 0; padding-top: 0; }
+      .top-bar-inner { display: flex; align-items: center; justify-content: space-between; }
+      .top-list { justify-content: center; padding: 0.7rem 0; }
+      .top-list .top-item { display: none; }
+      .top-list .top-item.on { display: flex; }
+      .top-nav { display: grid; place-items: center; width: 32px; height: 32px; border: 0; background: none; cursor: pointer; color: #111827; }
+      .top-nav svg { width: 18px; height: 18px; }
+      .wrap { grid-template-columns: 1fr; gap: 1.5rem; padding-block: 1rem 2rem; }
       .gallery { position: static; }
-      .info { padding: 0 1rem; }
-      .main-img { border-radius: 0; aspect-ratio: 4 / 5; }
-      .thumbs { padding: 0 1rem 4px; }
-      h1.title { font-size: 1.5rem; }
-      .price-after { font-size: 1.7rem; }
+      .thumbs { gap: 0.55rem; }
+      h1.title { font-size: 1.7rem; }
+      .review .avatar { width: 72px; height: 72px; }
+      .tabs { display: none; }
+      .acc { display: block; }
+      .logos-inner { justify-content: center; text-align: center; }
+      .logos-title { width: 100%; }
     }
   `;
 
-  private setImage(i: number) { this.activeImage = i; }
-  private toggleFaq(i: number) { this.openFaq = this.openFaq === i ? -1 : i; }
+  /* ------------------------------------------------------------ rendering */
 
-  private handleCta() {
-    const c = this.c;
-    const action = (c.cta_action || "landing").trim();
-
-    if (action === "link") {
-      if (c.cta_link) window.location.href = c.cta_link;
-      return;
-    }
-
-    // Buy / add to cart: use the purchase control the page already renders.
-    const selectors =
-      action === "cart"
-        ? [".btn-add-to-cart", "salla-add-product-button button", 'form[action*="cart"] button[type="submit"]']
-        : [
-            "salla-quick-buy button",
-            "[data-buy-now]",
-            "button.s-button-primary",
-            "salla-add-product-button button",
-            ".btn-add-to-cart",
-            'form[action*="cart"] button[type="submit"]',
-          ];
-    const el = selectors.map((sel) => document.querySelector(sel)).find(Boolean) as HTMLElement | undefined;
-    if (el) {
-      el.click();
-      return;
-    }
-    // No purchase control on this page: fall back to the merchant's link, if any.
-    if (c.cta_link) window.location.href = c.cta_link;
+  private icon(key: unknown) {
+    const k = option(key, "").trim();
+    return TRUST_ICONS[k] ? TRUST_ICONS[k]() : TRUST_ICONS["ضمان"]();
   }
 
-  private renderTrustIcon(icon: unknown) {
-    const key = option(icon, "").trim();
-    if (TRUST_ICONS[key]) return html`<span class="t-ic">${TRUST_ICONS[key]()}</span>`;
-    return html`<span class="t-emoji">${key || "✓"}</span>`;
+  private money(value: string | number) {
+    const currency = this.product?.currency || "SAR";
+    const amount = typeof value === "number" ? formatAmount(value) : value;
+    return currency.toUpperCase() === "SAR"
+      ? html`${amount}<i class="sar sicon-sar" aria-hidden="true"></i><span class="sr-only">SAR</span>`
+      : html`${amount} ${currency}`;
+  }
+
+  private renderTopBar(c: Dict, rtl: boolean) {
+    if (!c.showTopBar || !c.topBar.length) return nothing;
+    const n = c.topBar.length;
+    const idx = this.topIndex % n;
+    const go = (d: number) => (this.topIndex = (idx + d + n) % n);
+    return html`<div class="top">
+      <div class="container top-bar-inner">
+        <button class="top-nav" type="button" aria-label="${t("previous")}" @click=${() => go(-1)}>${rtl ? chevronNext : chevron}</button>
+        <ul class="top-list">
+          ${c.topBar.map(
+            (r: Dict, i: number) => html`<li class="top-item ${i === idx ? "on" : ""}"><span class="ic" aria-hidden="true">${this.icon(r.icon)}</span>${r.text}</li>`
+          )}
+        </ul>
+        <button class="top-nav" type="button" aria-label="${t("next")}" @click=${() => go(1)}>${rtl ? chevron : chevronNext}</button>
+      </div>
+    </div>`;
+  }
+
+  private renderManualBuy(c: Dict) {
+    const tierIndex = this.tierIndex();
+    const tiers: Tier[] = tierIndex >= 0 ? c.tiers : [];
+    return html`
+      ${tiers.length
+        ? html`<p class="label" id="tiers-label">${c.offersTitle}</p>
+            <div class="tiers" role="radiogroup" aria-labelledby="tiers-label" style="--cols:${Math.min(tiers.length, 3)}">
+              ${tiers.map(
+                (tier, i) => html`<button type="button" class="tier" role="radio" aria-checked="${i === tierIndex}" @click=${() => (this.activeTier = i)}>
+                  ${tier.badge ? html`<span class="badge">${tier.badge}</span>` : nothing}
+                  <strong>${tier.title}</strong>
+                  ${tier.price ? html`<span class="tp">${tier.price}${tier.compare ? html`<s>${tier.compare}</s>` : nothing}</span>` : nothing}
+                  ${tier.subtitle ? html`<small>${tier.subtitle}</small>` : nothing}
+                </button>`
+              )}
+            </div>`
+        : nothing}
+      <div class="buy-row">
+        ${c.showQty && !tiers.length
+          ? html`<select class="qty" aria-label="${t("quantity")}">${[1, 2, 3, 4, 5].map((n) => html`<option>${n}</option>`)}</select>`
+          : nothing}
+        <button class="cta" type="button" style="background:${c.ctaColor};color:${contrastText(c.ctaColor)}" @click=${() => this.manualCta()}>${c.ctaText}</button>
+      </div>
+    `;
+  }
+
+  private renderTabs(c: Dict) {
+    if (!c.showTabs || !c.tabs.length) return nothing;
+    const tabIndex = Math.min(Math.max(this.activeTab, 0), c.tabs.length - 1);
+    return html`<div class="tabs">
+        <div class="tabs-head" role="tablist">
+          ${c.tabs.map(
+            (tab: Dict, i: number) => html`<button
+              class="tab"
+              role="tab"
+              type="button"
+              id="tab-${i}"
+              aria-controls="panel-${i}"
+              aria-selected="${i === tabIndex}"
+              tabindex="${i === tabIndex ? 0 : -1}"
+              @click=${() => (this.activeTab = i)}
+            >${tab.title}</button>`
+          )}
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-${tabIndex}" aria-labelledby="tab-${tabIndex}">${c.tabs[tabIndex]?.content}</div>
+      </div>
+      <div class="acc">
+        ${c.tabs.map(
+          (tab: Dict, i: number) => html`<div class="acc-item">
+            <button class="acc-q" type="button" aria-expanded="${i === this.activeTab}" @click=${() => (this.activeTab = this.activeTab === i ? -1 : i)}>
+              <span>${tab.title}</span><span aria-hidden="true">${i === this.activeTab ? "−" : "+"}</span>
+            </button>
+            ${i === this.activeTab ? html`<div class="acc-a">${tab.content}</div>` : nothing}
+          </div>`
+        )}
+      </div>`;
   }
 
   render() {
     const c = this.c;
-    const safeIndex = Math.min(this.activeImage, c.gallery.length - 1);
-    const sar = html`<i class="sar sicon-sar" aria-hidden="true"></i>`;
-    const review = c.reviews[0];
-    const payMap: [boolean, string, string][] = [
-      [c.pay_tabby, PAYMENTS.tabby, "Tabby"],
-      [c.pay_tamara, PAYMENTS.tamara, "Tamara"],
-      [c.pay_mada, PAYMENTS.mada, "mada"],
-      [c.pay_stcpay, PAYMENTS.stcpay, "STC Pay"],
-      [c.pay_applepay, PAYMENTS.applepay, "Apple Pay"],
-      [c.pay_googlepay, PAYMENTS.googlepay, "Google Pay"],
-      [c.pay_mastercard, PAYMENTS.mastercard, "Mastercard"],
-    ];
+    const p = this.product;
+    const dir = direction();
+    const rtl = dir === "rtl";
+    // A linked product shows its own photos; the manual gallery is the fallback.
+    const gallery = p?.images.length ? p.images : c.gallery.length ? c.gallery : [PLACEHOLDER_IMAGE];
+    const active = Math.min(this.activeImage, gallery.length - 1);
+    const price = p && p.price ? this.money(p.price) : c.priceAfter ? this.money(c.priceAfter) : null;
+    const before = p ? (p.regular ? this.money(p.regular) : null) : c.priceBefore ? this.money(c.priceBefore) : null;
+    // With a linked product the badge only shows when the product really has a discount.
+    const savings = p
+      ? p.regular
+        ? c.savings || html`${t("save")} ${this.money(Math.round((p.regular - p.price) * 100) / 100)}`
+        : ""
+      : c.savings;
+    const outOfStock = p ? !p.available : false;
+    const avatar = c.review ? safeUrl(c.review.avatar) : "";
 
     return html`
       <link rel="stylesheet" href="${SALLA_ICONS_CSS}" />
-      <section dir="${direction()}" style="background:${c.bg_color}">
+      <section dir="${dir}" style="background:${c.bg};--accent:${c.accent};--accent-soft:${hexToRgba(c.accent, 0.1)}" aria-label="${c.title}">
+        ${this.renderTopBar(c, rtl)}
         <div class="container">
-
-          <!-- منطقة المنتج: عمودان متوازيان -->
           <div class="wrap">
             <div class="gallery">
-              <img class="main-img" src="${c.gallery[safeIndex]?.image || PLACEHOLDER_IMAGE}" alt="${c.title}" />
-              <div class="thumbs">
-                ${c.gallery.map(
-                  (g: any, i: number) => html`
-                    <button class="thumb-btn" type="button" aria-label="${t("image", { n: i + 1 })}" aria-pressed="${i === safeIndex}" @click=${() => this.setImage(i)}>
-                      <img class="thumb ${i === safeIndex ? "active" : ""}" src="${g.image}" alt="" loading="lazy" />
-                    </button>
-                  `
-                )}
-              </div>
+              <img class="main-img" src="${gallery[active]}" alt="${c.title}" />
+              ${gallery.length > 1
+                ? html`<div class="thumbs">
+                    ${gallery.slice(0, 6).map(
+                      (src, i) => html`<button class="thumb-btn" type="button" aria-label="${t("image", { n: i + 1 })}" aria-pressed="${i === active}" @click=${() => (this.activeImage = i)}>
+                        <img src="${src}" alt="" loading="lazy" decoding="async" />
+                      </button>`
+                    )}
+                  </div>`
+                : nothing}
             </div>
 
             <div class="info">
               <div class="rating">
-                ${stars(number(c.rating_value, 5, 0, 5), c.stars_color)}
-                <span class="sr-only">${t("rating", { value: c.rating_value })}</span>
-                <span class="rating-num" aria-hidden="true">${c.rating_value}/5</span>
-                <span class="rating-count">· ${t("ratedBy", { count: c.rating_count })}</span>
+                ${stars(c.ratingValue, c.starsColor)}
+                <span class="sr-only">${t("rating", { value: c.ratingValue })}</span>
+                <strong aria-hidden="true">${c.ratingValue}/5</strong>
+                ${c.ratingCount ? html`<span>· ${t("ratedBy", { count: c.ratingCount })}</span>` : nothing}
               </div>
 
               <h1 class="title">${c.title}</h1>
-              <p class="subtitle">${c.subtitle}</p>
-
-              <ul class="points">
-                ${c.points.map((p: any) => html`<li><span class="pt-icon">✓</span><span>${p.text}</span></li>`)}
-              </ul>
+              ${c.subtitle ? html`<p class="subtitle">${c.subtitle}</p>` : nothing}
 
               <div class="price-row">
-                <span class="price-after">${c.price_after} ${sar}</span>
-                ${c.price_before ? html`<span class="price-before">${c.price_before} ${sar}</span>` : ""}
-                ${c.savings_label ? html`<span class="savings">${c.savings_label} ${sar}</span>` : ""}
+                ${price ? html`<span class="price">${c.priceFrom ? html`<span class="from">${t("startingFrom")}</span>` : nothing}${price}</span>` : nothing}
+                ${before ? html`<span class="price-before">${before}</span>` : nothing}
+                ${savings ? html`<span class="savings">${savings}</span>` : nothing}
+                ${outOfStock
+                  ? html`<span class="stock out"><span class="dot"></span>${t("outOfStock")}</span>`
+                  : c.stock
+                    ? html`<span class="stock"><span class="dot"></span>${c.stock}</span>`
+                    : nothing}
               </div>
 
-              ${c.stock_label ? html`<div class="stock"><span class="dot"></span>${c.stock_label}</div>` : ""}
+              ${c.points.length
+                ? html`<ul class="points">${c.points.map((pt: string) => html`<li><span class="tick" aria-hidden="true">✓</span><span>${pt}</span></li>`)}</ul>`
+                : nothing}
 
-              <button class="cta" type="button" style="background:${c.cta_color};color:${contrastText(c.cta_color)}" @click=${() => this.handleCta()}>${c.cta_text}</button>
+              ${c.productId ? html`<slot name="buy"></slot>` : this.renderManualBuy(c)}
 
-              <div class="pay">
-                <span class="pay-label">${t("securePayment")}</span>
-                ${payMap.map(([on, src, alt]) => (on ? html`<img class="pay-logo" src="${src}" alt="${alt}" loading="lazy" />` : ""))}
-              </div>
+              ${c.payments.length
+                ? html`<div class="pay">
+                    <ul aria-label="${t("securePayment")}">
+                      ${c.payments.map(([k, label]: [string, string]) => html`<li><img src="${PAYMENTS[k]}" alt="${label}" loading="lazy" decoding="async" /></li>`)}
+                    </ul>
+                    ${c.secureLabel ? html`<span class="secure">${c.secureLabel}</span>` : nothing}
+                  </div>`
+                : nothing}
 
-              ${c.show_trust && c.trust.length
+              ${c.showTrust && c.trust.length
                 ? html`<div class="trust-card">
-                    ${c.trust.map((row: any) => html`<div class="trust-row">${this.renderTrustIcon(row.icon)}<span>${row.text}</span></div>`)}
+                    ${c.trust.map((r: Dict) => html`<div class="trust-row"><span class="ic" aria-hidden="true">${this.icon(r.icon)}</span><span>${r.text}</span></div>`)}
                   </div>`
-                : ""}
+                : nothing}
 
-              ${c.show_review && review
-                ? html`
-                  <div class="review">
-                    ${review.avatar
-                      ? html`<img class="avatar-img" src="${review.avatar}" alt="${review.name}" />`
-                      : html`<span class="avatar-ic">${personIcon()}</span>`}
-                    <div class="rbody">
-                      <div class="rtext">${review.text}</div>
-                      <div class="rname">${review.name}</div>
-                      <div class="rstars">${stars(5, c.stars_color)}</div>
+              ${c.showReview && c.review
+                ? html`<div class="review">
+                    ${avatar
+                      ? html`<img class="avatar" src="${avatar}" alt="${c.review.name}" loading="lazy" />`
+                      : html`<span class="avatar" aria-hidden="true">${personIcon()}</span>`}
+                    <div>
+                      <p class="rtext">${c.review.text}</p>
+                      ${c.review.name ? html`<div class="rname">${c.review.name}</div>` : nothing}
+                      ${stars(5, c.starsColor)}
                     </div>
                   </div>`
-                : ""}
+                : nothing}
 
-              ${c.show_faq && c.faq.length
-                ? html`<div class="faq-list">
-                ${c.faq.map(
-                  (item: any, i: number) => html`
-                    <div class="faq-item">
-                      <button class="faq-q" type="button" aria-expanded="${this.openFaq === i}" @click=${() => this.toggleFaq(i)}>
-                        <span>${item.q}</span>
-                        <span class="faq-sign" aria-hidden="true">${this.openFaq === i ? "−" : "+"}</span>
-                      </button>
-                      ${this.openFaq === i ? html`<div class="faq-a">${item.a}</div>` : ""}
-                    </div>
-                  `
-                )}
-              </div>`
-                : ""}
+              ${this.renderTabs(c)}
             </div>
           </div>
         </div>
+
+        ${c.showLogos && c.logos.length
+          ? html`<div class="logos">
+              <div class="container logos-inner">
+                ${c.logosTitle ? html`<span class="logos-title">${c.logosTitle}</span>` : nothing}
+                ${c.logos.map((l: Dict) =>
+                  safeUrl(l.image)
+                    ? html`<span class="logo"><img src="${safeUrl(l.image)}" alt="${l.name || ""}" loading="lazy" /></span>`
+                    : html`<span class="logo">${l.name}</span>`
+                )}
+              </div>
+            </div>`
+          : nothing}
       </section>
     `;
   }

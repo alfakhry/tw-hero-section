@@ -1,5 +1,5 @@
-import { html as a, LitElement as E, css as A } from "lit";
-const d = {
+import { html as i, LitElement as N, render as O, nothing as c, css as W } from "lit";
+const Y = {
   tabby: "data:image/svg+xml,%3Csvg width=%2270%22 height=%2248%22 viewBox=%220 0 70 48%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Crect x=%220.5%22 y=%220.5%22 width=%2269%22 height=%2247%22 rx=%225.5%22 fill=%22white%22 stroke=%22%23D9D9D9%22/%3E%3Cpath d=%22M54.2996 35H15.7004C11.9815 35 9 32.0493 9 28.4395V20.5605C9 16.9193 12.0136 14 15.7004 14H54.2996C58.0185 14 61 16.9507 61 20.5605V28.4395C61 32.0493 58.0185 35 54.2996 35Z%22 fill=%22%235AFEAE%22/%3E%3Cpath d=%22M51.6387 20.7489L48.9778 30.6995V30.7309H51.0616L53.7225 20.7803H51.6387V20.7489ZM18.746 26.3991C18.4254 26.556 18.1048 26.6188 17.7521 26.6188C17.0148 26.6188 16.598 26.4933 16.5339 25.8968V25.8655C16.5339 25.8341 16.5339 25.8341 16.5339 25.8027V24.0762V23.8879V22.6637V22.1614V21.9731V20.8116L14.6744 21.0314C15.9248 20.7803 16.6301 19.8386 16.6301 18.8655V18.269H14.5462V21.0628L14.418 21.0942V26.2421C14.4821 27.6861 15.4759 28.565 17.0468 28.565C17.6239 28.565 18.233 28.4394 18.7139 28.2197L18.746 26.3991Z%22 fill=%22%23292929%22/%3E%3Cpath d=%22M19.0667 20.3722L13.2319 21.2511V22.6951L19.0667 21.8161V20.3722ZM19.0667 22.5067L13.2319 23.3856V24.7668L19.0667 23.8879C19.0667 23.8879 19.0667 22.5067 19.0667 22.5067ZM25.6068 23.1659C25.5106 21.565 24.4847 20.5919 22.8176 20.5919C21.8559 20.5919 21.0544 20.9686 20.5094 21.6592C19.9644 22.3498 19.6758 23.3543 19.6758 24.5785C19.6758 25.8027 19.9644 26.8072 20.5094 27.4977C21.0544 28.1883 21.8559 28.5336 22.8176 28.5336C24.4847 28.5336 25.5106 27.5919 25.6068 25.9596V28.3767H27.6906V20.7803L25.6068 21.0942V23.1659ZM25.735 24.5785C25.735 25.991 24.9656 26.9327 23.7794 26.9327C22.5612 26.9327 21.8238 26.0538 21.8238 24.5785C21.8238 23.1031 22.5612 22.2242 23.7794 22.2242C24.3565 22.2242 24.8694 22.4439 25.2221 22.8834C25.5427 23.2915 25.735 23.8879 25.735 24.5785ZM33.7498 20.5919C32.0827 20.5919 31.0568 21.5336 30.9607 23.1659V18.5516L28.8768 18.8655V28.3767H30.9607V25.9596C31.0568 27.5919 32.0827 28.5336 33.7498 28.5336C35.7054 28.5336 36.8916 27.0583 36.8916 24.5785C36.8916 22.0986 35.7054 20.5919 33.7498 20.5919ZM32.8201 26.9327C31.6339 26.9327 30.8645 26.0224 30.8645 24.5785C30.8645 23.8879 31.0568 23.2915 31.3774 22.8834C31.7301 22.4439 32.211 22.2242 32.8201 22.2242C34.0383 22.2242 34.7757 23.1031 34.7757 24.5785C34.7757 26.0538 34.0383 26.9327 32.8201 26.9327ZM42.534 20.5919C40.867 20.5919 39.8411 21.5336 39.7449 23.1659V18.5516L37.661 18.8655V28.3767H39.7449V25.9596C39.8411 27.5919 40.867 28.5336 42.534 28.5336C44.4896 28.5336 45.6758 27.0583 45.6758 24.5785C45.6758 22.0986 44.4896 20.5919 42.534 20.5919ZM41.6043 26.9327C40.4181 26.9327 39.6487 26.0224 39.6487 24.5785C39.6487 23.8879 39.8411 23.2915 40.1616 22.8834C40.5143 22.4439 40.9952 22.2242 41.6043 22.2242C42.8226 22.2242 43.5599 23.1031 43.5599 24.5785C43.5599 26.0538 42.8226 26.9327 41.6043 26.9327ZM45.6758 20.7489H47.8879L49.6832 28.3767H47.6956C47.6956 28.3767 45.6758 20.7489 45.6758 20.7489ZM55.4218 21.5336V20.9372H55.1653V20.8117H55.8386V20.9372H55.5821V21.5336H55.4218ZM55.8706 21.5336V20.7803H56.1271L56.2554 21.1256C56.2874 21.2197 56.3195 21.2511 56.3195 21.2825C56.3195 21.2511 56.3515 21.2197 56.3836 21.1256L56.5118 20.7803H56.7683V21.5336H56.608V20.9372L56.3836 21.5336H56.2233L56.0309 20.9372V21.5336H55.8706Z%22 fill=%22%23292929%22/%3E%3C/svg%3E",
   mada: "data:image/svg+xml,%3Csvg width=%2270%22 height=%2248%22 viewBox=%220 0 70 48%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Crect x=%220.5%22 y=%220.5%22 width=%2269%22 height=%2247%22 rx=%225.5%22 fill=%22white%22 stroke=%22%23D9D9D9%22/%3E%3Cg clip-path=%22url(%23clip0_552_209)%22%3E%3Cpath d=%22M31.1505 26.1096H10V34.9842H31.1505V26.1096Z%22 fill=%22%2384B740%22/%3E%3Cpath d=%22M31.1505 14H10V22.8825H31.1505V14Z%22 fill=%22%23259BD6%22/%3E%3Cpath d=%22M52.3007 33.1808L52.2065 33.2045C51.88 33.2836 51.7606 33.3153 51.522 33.3153C50.9694 33.3153 50.3163 32.9593 50.3163 31.2825C50.3163 30.4203 50.4293 29.2734 51.4592 29.2734H51.4655C51.6413 29.2893 51.8423 29.313 52.2191 29.4554L52.3007 29.487V33.1808ZM52.4703 24.8203L52.3007 24.8599V27.9605L52.15 27.9051L52.106 27.8893C51.9365 27.826 51.5471 27.6836 51.1703 27.6836C49.1106 27.6836 48.6772 29.6452 48.6772 31.2904C48.6772 33.5446 49.682 34.8418 51.4341 34.8418C52.1751 34.8418 52.7215 34.7469 53.2741 34.5175C53.7827 34.3119 53.9649 34.0192 53.9649 33.3944V24.496C53.475 24.6068 52.9664 24.7175 52.4703 24.8203Z%22 fill=%22%2327292D%22/%3E%3Cpath d=%22M58.4236 33.2362L58.3357 33.2678L58.0217 33.3706C57.7265 33.4656 57.4628 33.5209 57.2618 33.5209C56.7783 33.5209 56.4894 33.2204 56.4894 32.7062C56.4894 32.374 56.6087 31.8124 57.4 31.8124H58.4236V33.2362ZM57.7014 27.6441C57.0671 27.6441 56.414 27.7865 55.604 28.1028L55.0764 28.3006L55.2523 29.8034L55.7672 29.5899C56.3073 29.3684 56.9792 29.226 57.4816 29.226C57.7077 29.226 58.3985 29.226 58.3985 30.1673V30.5786H57.4377C55.6856 30.5786 54.8755 31.2825 54.8755 32.7932C54.8755 34.0825 55.6228 34.8576 56.8788 34.8576C57.2681 34.8576 57.8082 34.7627 58.2729 34.6204L58.298 34.6125L58.3231 34.6204L58.4801 34.652C58.9699 34.7627 59.4786 34.8735 59.9747 34.9921V30.0565C59.9747 28.4588 59.2086 27.6441 57.7014 27.6441Z%22 fill=%22%2327292D%22/%3E%3Cpath d=%22M46.2219 33.2362L46.134 33.2678L45.82 33.3706C45.5249 33.4656 45.2674 33.5209 45.0602 33.5209C44.5766 33.5209 44.2877 33.2204 44.2877 32.7062C44.2877 32.374 44.4071 31.8125 45.192 31.8125H46.2157L46.2219 33.2362ZM45.506 27.6441C44.8655 27.6441 44.2187 27.7865 43.4086 28.1028L42.8811 28.3006L43.0569 29.8034L43.5718 29.5899C44.1119 29.3684 44.7839 29.226 45.2862 29.226C45.5123 29.226 46.2031 29.226 46.2031 30.1673V30.5786H45.2423C43.4902 30.5786 42.6738 31.2825 42.6738 32.7932C42.6738 34.0825 43.4211 34.8576 44.6834 34.8576C45.0727 34.8576 45.6128 34.7627 46.0775 34.6204L46.1026 34.6125L46.1277 34.6204L46.2785 34.652C46.7746 34.7627 47.2769 34.8735 47.7731 35V30.0644C47.7793 28.4509 47.0132 27.6441 45.506 27.6441Z%22 fill=%22%2327292D%22/%3E%3Cpath d=%22M39.6092 27.6599C38.8117 27.6599 38.1523 27.9921 37.9074 28.1345L37.8446 28.174L37.7881 28.1187C37.449 27.8102 36.9529 27.652 36.2621 27.652C35.6529 27.652 35.0815 27.7627 34.4598 27.9921C33.926 28.1978 33.7188 28.522 33.7188 29.1311V34.7706H35.3892V29.5582L35.4708 29.5266C35.8099 29.3842 36.0109 29.3605 36.2056 29.3605C36.6891 29.3605 36.934 29.6848 36.934 30.3175V34.7785H38.5793V30.2305C38.5793 29.9616 38.5354 29.8034 38.5291 29.7718L38.4726 29.6373L38.5856 29.574C38.8368 29.4317 39.1131 29.3605 39.402 29.3605C39.7348 29.3605 40.1305 29.5266 40.1305 30.3175V34.7785H41.7695V30.1119C41.7695 28.4588 41.0661 27.6599 39.6092 27.6599Z%22 fill=%22%2327292D%22/%3E%3Cpath d=%22M57.1929 19.7898C56.948 19.7898 56.5398 19.7582 56.2195 19.6791L56.1253 19.6554V16.6102C56.1253 16.3571 56.0876 16.1989 56.0813 16.1752L56.0311 16.0486L56.1379 15.9932C56.163 15.9774 56.1881 15.9695 56.2195 15.9537L56.2383 15.9379C56.276 15.922 56.3137 15.9062 56.3514 15.8904C56.3702 15.8825 56.3828 15.8746 56.3953 15.8746C56.7659 15.748 57.105 15.7639 57.2557 15.748H57.262C58.2856 15.748 58.4049 16.8949 58.4049 17.7571C58.3986 19.4339 57.7392 19.7898 57.1929 19.7898ZM57.1866 14C57.174 14 57.1552 14 57.1426 14C56.1818 14 55.1959 14.3322 54.8442 14.9808C54.6558 15.2972 54.5491 15.6927 54.5428 16.1593V19.2995C54.5428 19.5684 54.4988 19.6712 54.4926 19.6949L54.436 19.8294H51.4029V17.6463H51.3966C51.3589 15.3446 50.2788 14.0791 48.7151 14.0791H48.533H47.1891C47.1263 14.6407 47.0761 15.0362 47.0133 15.5978H48.533C49.3305 15.5978 49.7513 16.452 49.7513 17.765V19.9639L49.6445 19.8927C49.6257 19.8848 49.4938 19.8294 49.2866 19.8294H46.6616C46.6114 20.2486 46.5486 20.7944 46.4795 21.3401H54.5491C54.8254 21.2689 55.1457 21.2057 55.422 21.1503C55.8302 21.4034 56.59 21.5379 57.1112 21.5379C58.8633 21.5379 60 20.0588 60 17.7808C59.9937 15.5266 58.8947 14.0475 57.1866 14Z%22 fill=%22%2327292D%22/%3E%3Cpath d=%22M43.038 22.2656H43.1134C44.8654 22.2656 45.6818 21.5379 45.6818 19.7424C45.6818 18.4531 44.9345 17.4249 43.6786 17.4249H42.0646C41.5811 17.4249 41.2922 17.0769 41.2922 16.4915C41.2922 16.0961 41.4115 15.6057 42.2028 15.6057H45.7321C45.8074 15.0283 45.8451 14.6644 45.9142 14.087H42.2468C40.5386 14.087 39.6783 14.9887 39.6783 16.4915C39.6783 17.9785 40.4256 18.7537 41.6816 18.7537H43.2955C43.779 18.7537 44.0679 19.2362 44.0679 19.7424C44.0679 20.0746 43.9486 20.7627 43.1636 20.7627H42.8936L37.7253 20.7469H36.7833C35.9858 20.7469 35.4269 20.1774 35.4269 18.8565V17.9469C35.4269 16.5706 35.8602 15.7164 36.7833 15.7164H38.3156C38.3847 15.1311 38.4286 14.7593 38.4914 14.2057H36.5824H36.4002C34.8366 14.2057 33.7564 15.5266 33.7188 17.8283V17.9153V18.8565C33.7564 21.1582 34.8366 22.2576 36.4002 22.2576H36.5824H37.9262L40.727 22.2656H42.3975H43.038Z%22 fill=%22%2327292D%22/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id=%22clip0_552_209%22%3E%3Crect width=%2250%22 height=%2221%22 fill=%22white%22 transform=%22translate(10 14)%22/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E",
   mastercard: "data:image/svg+xml,%3Csvg width=%2270%22 height=%2248%22 viewBox=%220 0 70 48%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Crect x=%220.5%22 y=%220.5%22 width=%2269%22 height=%2247%22 rx=%225.5%22 fill=%22white%22 stroke=%22%23D9D9D9%22/%3E%3Cpath fill-rule=%22evenodd%22 clip-rule=%22evenodd%22 d=%22M35.5 34.3139C33.1169 36.3704 30.0255 37.6119 26.6475 37.6119C19.1102 37.6119 13 31.4308 13 23.806C13 16.1811 19.1102 10 26.6475 10C30.0255 10 33.1169 11.2415 35.5 13.2981C37.8831 11.2415 40.9745 10 44.3525 10C51.8898 10 58 16.1811 58 23.806C58 31.4308 51.8898 37.6119 44.3525 37.6119C40.9745 37.6119 37.8831 36.3704 35.5 34.3139Z%22 fill=%22%23ED0006%22/%3E%3Cpath fill-rule=%22evenodd%22 clip-rule=%22evenodd%22 d=%22M35.5 34.3139C38.4344 31.7816 40.2951 28.0136 40.2951 23.806C40.2951 19.5983 38.4344 15.8303 35.5 13.2981C37.8831 11.2415 40.9745 10 44.3524 10C51.8898 10 58 16.1811 58 23.806C58 31.4308 51.8898 37.6119 44.3524 37.6119C40.9745 37.6119 37.8831 36.3704 35.5 34.3139Z%22 fill=%22%23F9A000%22/%3E%3Cpath fill-rule=%22evenodd%22 clip-rule=%22evenodd%22 d=%22M35.5 13.2981C38.4344 15.8304 40.2951 19.5984 40.2951 23.806C40.2951 28.0136 38.4344 31.7816 35.5 34.3138C32.5657 31.7816 30.705 28.0136 30.705 23.806C30.705 19.5984 32.5657 15.8304 35.5 13.2981Z%22 fill=%22%23FF5E00%22/%3E%3C/svg%3E",
@@ -8,17 +8,17 @@ const d = {
   stcpay: "data:image/svg+xml,%3Csvg width=%2270%22 height=%2248%22 viewBox=%220 0 70 48%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Crect x=%220.5%22 y=%220.5%22 width=%2269%22 height=%2247%22 rx=%225.5%22 fill=%22white%22 stroke=%22%23D9D9D9%22/%3E%3Cg clip-path=%22url(%23clip0_552_251)%22%3E%3Cpath d=%22M14.0646 34.9923C15.4384 35.0605 16.7784 34.4021 17.8051 33.1545C18.1381 32.7075 18.4013 32.1731 18.5787 31.5834C18.7561 30.9938 18.8441 30.3612 18.8375 29.7239C18.8416 29.1295 18.7591 28.54 18.5946 27.9896C18.4303 27.4392 18.1873 26.9388 17.8799 26.5178C17.1524 25.5827 16.2342 24.9704 15.2466 24.7616L13.3988 24.2716C12.6507 24.0673 12.2019 23.5466 12.2019 22.8319C12.2019 21.8823 12.8751 21.2289 13.9524 21.2289C14.5536 21.197 15.1398 21.4906 15.5832 22.0457C15.8322 22.4161 15.9893 22.8841 16.0321 23.3833L18.6953 22.5664C18.6104 21.5308 18.2608 20.5692 17.7079 19.8505C16.692 18.5696 15.3498 17.8808 13.9674 17.931C12.679 17.8757 11.4221 18.4803 10.4438 19.6259C10.0871 20.0759 9.80308 20.6225 9.60986 21.2308C9.41665 21.8391 9.3185 22.4957 9.32168 23.1586C9.30837 23.7125 9.37778 24.2642 9.52568 24.7803C9.67358 25.2964 9.89689 25.766 10.182 26.1605C10.8832 27.0471 11.7507 27.6514 12.6881 27.9064L14.506 28.4986C15.4187 28.7845 15.8226 29.244 15.8226 30.0608C15.8226 31.0818 15.1568 31.6638 14.0571 31.6638C13.7179 31.6863 13.3789 31.6137 13.0611 31.4504C12.7433 31.2871 12.4534 31.0366 12.2093 30.7142C11.9177 30.3134 11.7469 29.7778 11.7306 29.2133L9 30.0302C9.08356 31.1264 9.44939 32.1467 10.0324 32.9095C10.5693 33.5995 11.2021 34.1357 11.8933 34.4864C12.5846 34.8371 13.3203 34.9953 14.0571 34.9515L14.0646 34.9923ZM34.2558 34.9515C35.0037 34.9799 35.7484 34.8059 36.4468 34.4396C37.1453 34.0734 37.7838 33.5221 38.3254 32.8176C39.0182 31.9187 39.5175 30.7782 39.7692 29.5197L36.9639 28.2434C36.8329 28.8941 36.5742 29.4836 36.2158 29.9485C35.6886 30.626 34.9871 30.9929 34.2632 30.9695C33.8687 30.9753 33.4772 30.8746 33.1113 30.6731C32.7454 30.4715 32.4123 30.1733 32.1312 29.7953C31.5419 28.8737 31.234 27.6787 31.2709 26.4566C31.2302 25.2189 31.5472 24.0091 32.1536 23.0872C32.7195 22.3426 33.4773 21.9318 34.2632 21.9436C34.6131 21.9287 34.9614 22.0115 35.2869 22.1871C35.6124 22.3627 35.9081 22.6273 36.1559 22.9646C36.5058 23.4507 36.7627 24.0469 36.904 24.7004L39.7543 23.3935C39.5159 22.1772 39.0552 21.0635 38.4152 20.1568C37.8561 19.4323 37.1973 18.8661 36.477 18.4911C35.7566 18.116 34.989 17.9395 34.2184 17.9718C33.4171 17.9588 32.6219 18.1623 31.8785 18.5706C31.1351 18.9789 30.4582 19.5839 29.8869 20.3508C28.7488 22.0162 28.1196 24.2118 28.128 26.4891C28.1363 28.7665 28.7815 30.9534 29.9317 32.6032C31.0909 34.1425 32.646 35.0003 34.2632 34.9923L34.2558 34.9515ZM24.5903 34.9923C25.488 35.0422 26.3724 34.683 27.104 33.9713V30.4794C26.6332 30.9196 26.0735 31.1481 25.503 31.1329C25.288 31.1869 25.0665 31.1684 24.858 31.0788C24.6494 30.9891 24.4601 30.8311 24.3066 30.6186C24.1531 30.406 24.0401 30.1455 23.9774 29.8595C23.9147 29.5737 23.9043 29.2712 23.947 28.9785V14H20.7975V18.4211H27.1189V22.5971H20.7975V30.02C20.7544 31.3292 21.0903 32.6091 21.7326 33.5834C22.1186 34.0675 22.5715 34.4416 23.0648 34.6835C23.5581 34.9255 24.0818 35.0305 24.6053 34.9923%22 fill=%22%234F008C%22/%3E%3Cpath d=%22M42.8462 29.4998V18.4243H44.2088V19.3002C44.4248 18.9399 44.6986 18.6532 45.0088 18.4628C45.3189 18.2724 45.657 18.1834 45.9964 18.2027C47.5641 18.2027 48.6923 19.9245 48.6923 22.3913C48.6923 24.8582 47.6008 26.6303 45.9964 26.6303C45.6558 26.6472 45.317 26.5551 45.0067 26.3611C44.6965 26.1671 44.4233 25.8767 44.2088 25.5126V29.5401L42.8462 29.4998ZM44.2088 21.4448V23.4586C44.3369 23.8802 44.5525 24.2407 44.8287 24.495C45.1049 24.7492 45.4295 24.8861 45.762 24.8884C46.6704 24.8884 47.2711 23.952 47.2711 22.4417C47.2711 20.9314 46.6704 20.0151 45.762 20.0151C45.429 20.0085 45.1024 20.1406 44.8252 20.394C44.548 20.6474 44.3331 21.0103 44.2088 21.4348%22 fill=%22%2303BB86%22/%3E%3Cpath d=%22M49.617 23.7541C49.596 23.1503 49.7628 22.5603 50.0813 22.1122C50.3999 21.6642 50.8444 21.3943 51.3182 21.3612L53.7618 20.9673V20.5734C53.7728 20.4796 53.7669 20.3838 53.7444 20.2934C53.7218 20.203 53.6833 20.1204 53.6318 20.052C53.5802 19.9835 53.5171 19.931 53.4471 19.8985C53.3772 19.8659 53.3023 19.8543 53.2282 19.8644H50.1351V18.2001H53.2282C54.4655 18.2001 55.1537 18.9682 55.1537 20.3469V25.9698H53.7618V24.985C53.5275 25.3779 53.2208 25.6913 52.8687 25.8974C52.5167 26.1035 52.1303 26.196 51.7436 26.1667C51.475 26.2026 51.2035 26.1662 50.9467 26.0598C50.6899 25.9533 50.4535 25.7794 50.253 25.549C50.0524 25.3187 49.8922 25.0373 49.7826 24.7229C49.6731 24.4086 49.6166 24.0685 49.617 23.7246V23.7541ZM52.0992 24.7093C52.4451 24.7187 52.7858 24.6012 53.0807 24.3707C53.3755 24.1402 53.6119 23.8065 53.7618 23.4094V22.4247L51.8982 22.7595C51.3801 22.8481 51.1249 23.1928 51.1249 23.7443C51.1249 24.2957 51.4884 24.729 52.1302 24.729%22 fill=%22%2303BB86%22/%3E%3Cpath d=%22M56.3119 27.7828H57.2241C57.3654 27.8044 57.5069 27.7429 57.62 27.6106C57.7332 27.4783 57.8098 27.2851 57.8345 27.0695L58.0021 26.3563L56.0771 18.2001H57.3783L58.5721 23.8753L59.719 18.2001H61.0002L58.8875 27.5657C58.5993 28.8578 58.2167 29.5401 57.2912 29.5401H56.3119V27.7828Z%22 fill=%22%2303BB86%22/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id=%22clip0_552_251%22%3E%3Crect width=%2252%22 height=%2221%22 fill=%22white%22 transform=%22translate(9 14)%22/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E",
   tamara: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAABQCAMAAAAdiXgJAAABgFBMVEWfZpafZbWtkrX/nm6aXLmk2fXgZbjia8f+n3cdHCCvhXuiye+mzPHUZLv+oHiOdnGWW7eutPinqsT/AADSZb3TZbz/nnRELDhWUVp0dIT/AP/1eOr/qqp/P79VVaqoy+7dacDQnZn///88Qkt/f39/f/9/v795ipx/v/9///+/P7+cYsT/VVX//wABAAHt2e765LT02M/24cuvZrruyNH1x7PQ5fv417XPd7rutrLMabvT2Pax1vj5p47pqbHpt8/q4vvTl8S3dbyxyezPhbvQusvOyufcpMjHicL7tZfxzOMAAADQw9nll7e55Prkq8sXFBfYlbniiLj9nXmbXbn+ons4MjTasrujXrmdYblkVVlqWGO9gsDZqLL9noO6vNeriY9vR2NLREm5wN0uKCy4fcDol8VcWWTYZ8JSOUaUk6jlisQ5PEVsanXie73iccL9wJ2iY8Ozd5PUfsQqHCNEODpIQT6BYViQaHWtVq2IWHCYipaxlZL/f3p/cmmdpsGv/sLkAAAAgHRSTlP3Gf8YmBgV8I///1acWtL/VAf/AZ3WS////wEVAwQDzXr/Af8CAgT/BAIEDQMB///8///+//7//f7+/v/+/v7//////v/+/////P8A//3/////+/39/f/++v3////+/f3////+//////v///////b/+P//////////A////wT//zWSKQsAAAlNSURBVHja1dyJV9s4AgZwAwXK9L6P6e4ce8/hjMlF4hzGBCcbJ5NkCJmGAIE0G6CUTum2u0Ch86+vfMiWbcmWHJN2v/favvBKnF8+SZad98KpRu5dqOrMw6tXb67njfwTzZs3SStpV366jDgPYR88Y6dgpQ7zi53Xr18vwWSz2Qf3b3w5p6rf3TO5nPGPhrbJeSf5DYH80yUnSO51u+BafoPJzn8N4F+i7Bn14up6fl0Pnp6caN2kspO+ZSPoJUeyeuZ/2/96Sp2z2RfqzM31dR91MvkpB3kyyd41hp3N7s/Pz6lTkH2hPlxfX1tzqD9TNm3bJSwbNL5/Q3cD9jNEjWcn/dif4yAvkdjZfeA+1dg/qDMA7S4bZWf+39glMhu458C6xv14Aeb1WOz058Yu+bGz+w/mTp9yz9SrunrNqUbYGSd7Au40y4rGys7O31Cfcfdm1tYgO49jZybOTo/HLgWwwTC/x8Gy18hl+7EFPYtGPgm7jrBLVnzY2fn7KgfLXiOXTWYLMIt2olbjp7bFboBYZY+0BA1yMLtPuYdYdR5VZ0hrmiDg3OPqqco22Y3WycbGSUmHt+q/cAePDnaXDgPY2f0bnD3GcewMhp30onHusPo0C/ukyWvpaerR23f6A/7sMIh9n7sJ2XkMO0NmC54skjOG2m9qFzd4MwejVn0JPuB3D5eC2HBq55nYAi6LAYmaXXxrQfmzUX1oP+IO/dkPTPZ2HsfOkAa5IIRyU+DTaYYVDYEujJD3gD8IYGcN9jaW7eZaIWnp3H72dJplaiNQvnSGPHhXomFvE8r+5r9GbjnVCZf6/OOtjx/Bn/NFgR6OtafZ2DtNW/p2F2E3lyjY21g26PoL81mGDnTCzYZjrbMosLnd9DQju9h6Z7MZ2s4C9vY2lq09N2S/d6rd7I753/6zKLC7EXqQGrNbqT+C0hbD3AZsH7XVdseBDmCHcBv0dAh2oTCAZzDHSl4JxTbXbw87QcMOCRcE1jFu7NN6+mQu1esy9XnbZLvVBQI7gWULHnYYuPF7zGUX6o0TbS6PWvYubTdol2awPWrI3oHsBIr2uDFsZrj9i6zsVuPtWQuoW6VR6exg+GhXdqux7DypbBc7EcyWhLBu1/jBqkmfDbTAJVhLS6k0Gh0eHlZKVGxP11h2gpXNAsfs+OjZhlln4y+3adgFPDuRILsheyAJodyEra5AHuOueysh2GQ1yk6EYgvjoEHAgSjUgWUHso2nomCj9hiZLYylFvSjmGh9vBXtNBoN510lH3kA26nOJEjsGIgEEswOggtCIFuXg78yW0haSHBWWZZp2QWXmsw+6oEc9Y4SFGwhArWQON/oNHm2cP+mYVuzJZAt1OAz12JudgxNEFwQ6NjCTodnD5kdz8Y5FxpRk9lNOraVUGi77AHPR8eOgxjsQgGrpmPHKNj6SsCIttiZIT8m24U22AWSmoqtmWx2jBzJCK3ZUidDqnHseNxiF8Zix6jZnhlPxxbe81Gx40g4orpYvBw2rdw41hd8ROx4nMR2oourBHbMzT6AN2Fo2TRy82DNiNhxItuJdrJrPmwJrrSdGFNoyv5gKQbnW1vfbNg3CXtIdnGR0YU8TmK7qwZB2Xr0l1LzsB/DO42x6NzumX2i7UwT1ivi+S1jg2pmZGZ5uQKDqOOecFum+lcrqzAethZFcbFF6Yh3Dvoo4K4xviHoA9BeZXmuEbxFNRKPY9naHheDRtlVG41hWyNxWopFBTfK3rK6ta5C4PmsV9xqlMvLWHeJgv0rAY1hKwqOHZuGL67HzibAzTF+DqePpU6cwLlusJeD6pZlAhtvxrAVL1vUXri1R28qsYjccDMOzxH2JecteCu8uFXW2Mvh2CSzxv6AsBUrIsoWtbqtK4XHYerGwclt9+y2DTaE49myLxuDrq1WLbaCqF1sEOmJtb4eSVIUbrgx8p/bkL1MZstE9irODNS1VYWSHevbm4TBqsQqJ1x46XdT4JEOEq6pDVZyS63DS4S7DVi1xiaoAfslZIuKH1uU0EvDwYdVeN0RLsjbYT/xhvYmJBKcdZiWg72MZctkNlENpnMgWzTZd537woXO4z1Hephs0MS+vzDkWq2dA/vDvWLZwV7GsGVGNjxJ07JFaY+fcHYaZLZDTc+uBbAVD1sUh5NVG2Wj7IqbLfuwn3NEdK0m4tgilh2rLUxS3dRntpNdcbBlPzWGbW9DsWzNiGtbUjoTZE8bZTvZlfBsdO+teNkG0WIrNluMiUeTm9imuuxQo2yZiY2ivWwo7Ft7URGN1N9rTgL9vlUsY8a47Q5iP3eynWiEPRQRtZKCP14QnZEkZXpw2fIhVwRqPLsC2f5la+z+at/IixdONHDefWXkCBnkir1qvxI9kSSx//LJ3mA4XGhGn3fvezvGzYWyL1v2LxuE61tqkBUQx7kKNmwP55Q4sDfgooiT61st10/x+9IqDP6zxaIzZfiZH5FdcZct49WQbaFhFMXFV+7+rmX6iX2GvpsSiYnFAjefPiG+AY0GBVumYb/AoF12zbHimWUdHzW54IDgmnd27suu0LPxZCtwIfN8EjUdxJYcn4fQXpgFuBE1gS37snV1m+uv+KJXciDAkLOWdZg9f3UqlQozvLF9B7MrrOxgtAkXndvPV/5kPRGxGcY4cE8HjvE2YNOg9aQcu7A/+WjthGRXx2BPB5bdbj/nuK8o1TkRuYfCH6VSflyCm1btcnvY5THYbZD4Fe46HVqr27rYGPRTweKQ7nHZm77stp7jK9w1WnUu9bIzHA5f7f3thVl1iiIh2dWw7M1NP3XXYLdvc3co0Zo7ZVJzlGaP+xOzobo9xanXc5RqZJpTo0Ozqz7nr3JIdrcLx7jKqbPM6tzPqdSlub3sIgN7c3PzXyR21y5b5e546g5EawnppmdXo2Z3kbJPub/8Y5ap65/NhHNHySaoCeyuxea+//NTTv1WvZZjRjPBmeqOkh3HsqfUP2pfSTGLuqnRId307CqJHTDGEbdLbbBvG19Joap/B+4cu/pS3NVx2JtENlR3gfoP8Otm7kA3m5oeHopdjZ59zE3pavPLhf6qzl4HsBVWdfTuy2Hr6u5x+8qUNsLtr5K6oxpwVjWtOyq27/lrk8TuduPHx8ddgAarGcpWv50F8GvXv2JVs7vp2VUsuxyG3eWu3Abo06cm938Wk18zXm8wMQAAAABJRU5ErkJggg=="
 };
-function x() {
-  var r, i, o, l, c, s, n, p, y;
-  const e = window, t = ((o = (i = (r = e.salla) == null ? void 0 : r.lang) == null ? void 0 : i.getLocale) == null ? void 0 : o.call(i)) || ((s = (c = (l = e.Salla) == null ? void 0 : l.lang) == null ? void 0 : c.getLocale) == null ? void 0 : s.call(c)) || ((y = (p = (n = e.salla) == null ? void 0 : n.config) == null ? void 0 : p.get) == null ? void 0 : y.call(p, "user.language_code"));
+function E() {
+  var e, a, n, s, o, l, p, d, h;
+  const r = window, t = ((n = (a = (e = r.salla) == null ? void 0 : e.lang) == null ? void 0 : a.getLocale) == null ? void 0 : n.call(a)) || ((l = (o = (s = r.Salla) == null ? void 0 : s.lang) == null ? void 0 : o.getLocale) == null ? void 0 : l.call(o)) || ((h = (d = (p = r.salla) == null ? void 0 : p.config) == null ? void 0 : d.get) == null ? void 0 : h.call(d, "user.language_code"));
   return String(t || document.documentElement.lang || "ar").slice(0, 2).toLowerCase();
 }
-function M() {
+function B() {
   var t;
-  const e = (document.documentElement.getAttribute("dir") || ((t = document.body) == null ? void 0 : t.getAttribute("dir")) || "").toLowerCase();
-  return e === "rtl" || e === "ltr" ? e : ["ar", "he", "fa", "ur"].includes(x()) ? "rtl" : "ltr";
+  const r = (document.documentElement.getAttribute("dir") || ((t = document.body) == null ? void 0 : t.getAttribute("dir")) || "").toLowerCase();
+  return r === "rtl" || r === "ltr" ? r : ["ar", "he", "fa", "ur"].includes(E()) ? "rtl" : "ltr";
 }
-const m = {
+const H = {
   ar: {
     previous: "السابق",
     next: "التالي",
@@ -30,7 +30,19 @@ const m = {
     verified: "مشتري موثّق",
     close: "إغلاق",
     image: "عرض الصورة {n}",
-    ratedBy: "تقييم من قبل {count} عميل"
+    ratedBy: "تقييم من قبل {count} عميل",
+    yes: "متوفر",
+    no: "غير متوفر",
+    partial: "جزئياً",
+    feature: "الميزة",
+    quantity: "الكمية",
+    startingFrom: "يبدأ من",
+    secureCheckout: "دفع آمن ومضمون",
+    recommendedBy: "موصى به من:",
+    added: "تمت إضافة المنتج إلى السلة",
+    outOfStock: "نفدت الكمية",
+    choose: "اختر",
+    save: "وفّر"
   },
   en: {
     previous: "Previous",
@@ -43,376 +55,677 @@ const m = {
     verified: "Verified buyer",
     close: "Close",
     image: "Show image {n}",
-    ratedBy: "rated by {count} customers"
+    ratedBy: "rated by {count} customers",
+    yes: "Included",
+    no: "Not included",
+    partial: "Partly",
+    feature: "Feature",
+    quantity: "Quantity",
+    startingFrom: "Starting from",
+    secureCheckout: "Secure checkout",
+    recommendedBy: "As recommended by:",
+    added: "Added to cart",
+    outOfStock: "Out of stock",
+    choose: "Choose",
+    save: "Save"
   }
 };
-function f(e, t = {}) {
-  let i = (m[x()] || m.en)[e] ?? m.en[e] ?? e;
-  return Object.entries(t).forEach(([o, l]) => i = i.replace(`{${o}}`, String(l))), i;
+function f(r, t = {}) {
+  let a = (H[E()] || H.en)[r] ?? H.en[r] ?? r;
+  return Object.entries(t).forEach(([n, s]) => a = a.replace(`{${n}}`, String(s))), a;
 }
-function g(e) {
-  if (e == null) return "";
-  if (typeof e == "string") return e;
-  if (typeof e == "number") return String(e);
-  if (typeof e == "object") {
-    const t = e;
-    return t[x()] || t.ar || t.en || Object.values(t).find((r) => typeof r == "string" && r) || "";
+function g(r) {
+  if (r == null) return "";
+  if (typeof r == "string") return r;
+  if (typeof r == "number") return String(r);
+  if (typeof r == "object") {
+    const t = r;
+    return t[E()] || t.ar || t.en || Object.values(t).find((e) => typeof e == "string" && e) || "";
   }
   return "";
 }
-function v(e, t) {
-  return e == null || e === "" ? t : Array.isArray(e) ? e.length > 0 : !(e === !1 || e === 0 || e === "0" || e === "false");
+function m(r, t) {
+  return r == null || r === "" ? t : Array.isArray(r) ? r.length > 0 : !(r === !1 || r === 0 || r === "0" || r === "false");
 }
-function b(e, t) {
-  const r = g(e).trim();
-  return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(r) ? r : t;
+function y(r, t) {
+  const e = g(r).trim();
+  return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(e) ? e : t;
 }
-function q(e, t, r = -1 / 0, i = 1 / 0) {
-  const o = Number.parseFloat(g(e));
-  return Number.isFinite(o) ? Math.min(i, Math.max(r, o)) : t;
+function M(r, t, e = -1 / 0, a = 1 / 0) {
+  const n = Number.parseFloat(g(r));
+  return Number.isFinite(n) ? Math.min(a, Math.max(e, n)) : t;
 }
-function L(e, t) {
-  const r = Array.isArray(e) ? e[0] : e;
-  if (r && typeof r == "object") {
-    const i = r.value ?? r.key;
-    return i ? String(i) : t;
+function k(r, t) {
+  const e = Array.isArray(r) ? r[0] : r;
+  if (e && typeof e == "object") {
+    const a = e.value ?? e.key;
+    return a ? String(a) : t;
   }
-  return r ? String(r) : t;
+  return e ? String(e) : t;
 }
-function C(e) {
-  return Array.isArray(e) ? e.filter((t) => t && typeof t == "object") : [];
+function A(r) {
+  return Array.isArray(r) ? r.filter((t) => t && typeof t == "object") : [];
 }
-function H(e, t, r) {
-  if (e[r] !== void 0 && e[r] !== "") return e[r];
-  const i = e[`${t}.${r}`];
-  return i !== void 0 ? i : e[r];
+function b(r, t, e) {
+  if (r[e] !== void 0 && r[e] !== "") return r[e];
+  const a = r[`${t}.${e}`];
+  return a !== void 0 ? a : r[e];
 }
-function z(e) {
-  const t = g(e).trim();
+function x(r) {
+  const t = g(r).trim();
   if (!t) return "";
   if (t.startsWith("#") || t.startsWith("/")) return t;
   try {
-    const r = new URL(t);
-    return r.protocol === "https:" || r.protocol === "http:" ? r.href : "";
+    const e = new URL(t);
+    return e.protocol === "https:" || e.protocol === "http:" ? e.href : "";
   } catch {
     return "";
   }
 }
-function P(e) {
-  let t = e.replace("#", "");
-  t.length === 3 && (t = t.split("").map((s) => s + s).join(""));
-  const r = Number.parseInt(t, 16), [i, o, l] = [r >> 16 & 255, r >> 8 & 255, r & 255].map((s) => {
-    const n = s / 255;
-    return n <= 0.03928 ? n / 12.92 : ((n + 0.055) / 1.055) ** 2.4;
-  });
-  return 0.2126 * i + 0.7152 * o + 0.0722 * l > 0.45 ? "#111827" : "#ffffff";
+function z(r, t) {
+  let e = r.replace("#", "");
+  e.length === 3 && (e = e.split("").map((n) => n + n).join(""));
+  const a = Number.parseInt(e, 16);
+  return `rgba(${a >> 16 & 255},${a >> 8 & 255},${a & 255},${t})`;
 }
-const k = "https://cdn.salla.network/fonts/sallaicons.css?v=2.0.5";
-function D() {
+function I(r) {
+  let t = r.replace("#", "");
+  t.length === 3 && (t = t.split("").map((l) => l + l).join(""));
+  const e = Number.parseInt(t, 16), [a, n, s] = [e >> 16 & 255, e >> 8 & 255, e & 255].map((l) => {
+    const p = l / 255;
+    return p <= 0.03928 ? p / 12.92 : ((p + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * a + 0.7152 * n + 0.0722 * s > 0.45 ? "#111827" : "#ffffff";
+}
+const q = "https://cdn.salla.network/fonts/sallaicons.css?v=2.0.5";
+function _() {
   if (Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some(
-    (r) => r.href.includes("sallaicons")
+    (e) => e.href.includes("sallaicons")
   )) return;
   const t = document.createElement("link");
-  t.rel = "stylesheet", t.href = k, document.head.appendChild(t);
+  t.rel = "stylesheet", t.href = q, document.head.appendChild(t);
 }
-const V = "https://cdn.salla.network/images/placeholder.png";
-function Z(e, t) {
-  const r = `lp-star-${t.replace("#", "")}`;
-  return a`<span class="stars" aria-hidden="true">
-    ${[0, 1, 2, 3, 4].map((i) => {
-    const o = Math.round(Math.max(0, Math.min(1, e - i)) * 100);
-    return a`<svg viewBox="0 0 20 20">
+const G = "https://cdn.salla.network/images/placeholder.png";
+function S(r, t) {
+  const e = `lp-star-${t.replace("#", "")}`;
+  return i`<span class="stars" aria-hidden="true">
+    ${[0, 1, 2, 3, 4].map((a) => {
+    const n = Math.round(Math.max(0, Math.min(1, r - a)) * 100);
+    return i`<svg viewBox="0 0 20 20">
         <defs>
-          <linearGradient id="${r}-${o}">
-            <stop offset="${o}%" stop-color="${t}"></stop>
-            <stop offset="${o}%" stop-color="#d1d5db"></stop>
+          <linearGradient id="${e}-${n}">
+            <stop offset="${n}%" stop-color="${t}"></stop>
+            <stop offset="${n}%" stop-color="#d1d5db"></stop>
           </linearGradient>
         </defs>
         <path
-          fill="url(#${r}-${o})"
+          fill="url(#${e}-${n})"
           d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"
         ></path>
       </svg>`;
   })}
   </span>`;
 }
-a`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+const P = i`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
   <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-</svg>`;
-a`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+</svg>`, D = i`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
   <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-</svg>`;
-const w = {
-  شحن: () => a`<svg viewBox="0 0 24 24" fill="none"><path d="M3 6h11v9H3zM14 9h4l3 3v3h-7z" stroke="currentColor" stroke-width="1.6"/><circle cx="7" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/></svg>`,
-  توصيل: () => w.شحن(),
-  استرجاع: () => a`<svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 1 2.3 5.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M4 18v-4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-  ضمان: () => a`<svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-  امان: () => a`<svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6"/></svg>`,
-  دعم: () => a`<svg viewBox="0 0 24 24" fill="none"><path d="M5 13v-1a7 7 0 0 1 14 0v1" stroke="currentColor" stroke-width="1.6"/><rect x="3.5" y="13" width="3.5" height="6" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="17" y="13" width="3.5" height="6" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>`,
-  تقييم: () => a`<svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.6 5.6 6 .6-4.5 4 1.3 6-5.4-3.2L6.6 19l1.3-6-4.5-4 6-.6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>`
-}, B = () => a`<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8.5" r="4"/><path d="M4 20c0-4.2 3.6-6.5 8-6.5s8 2.3 8 6.5z"/></svg>`, h = class h extends E {
+</svg>`, $ = {
+  شحن: () => i`<svg viewBox="0 0 24 24" fill="none"><path d="M3 6h11v9H3zM14 9h4l3 3v3h-7z" stroke="currentColor" stroke-width="1.6"/><circle cx="7" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/></svg>`,
+  توصيل: () => $.شحن(),
+  استرجاع: () => i`<svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 1 2.3 5.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M4 18v-4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  ضمان: () => i`<svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  امان: () => i`<svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6"/></svg>`,
+  دعم: () => i`<svg viewBox="0 0 24 24" fill="none"><path d="M5 13v-1a7 7 0 0 1 14 0v1" stroke="currentColor" stroke-width="1.6"/><rect x="3.5" y="13" width="3.5" height="6" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="17" y="13" width="3.5" height="6" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>`,
+  هدية: () => i`<svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="8" width="17" height="12.5" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 12h17M12 8v12.5M12 8c-1.8-3.2-5.5-3.4-5.5-1 0 1.6 3 1 5.5 1zm0 0c1.8-3.2 5.5-3.4 5.5-1 0 1.6-3 1-5.5 1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>`,
+  وقت: () => i`<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>`,
+  تقييم: () => i`<svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.6 5.6 6 .6-4.5 4 1.3 6-5.4-3.2L6.6 19l1.3-6-4.5-4 6-.6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>`
+}, R = () => i`<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8.5" r="4"/><path d="M4 20c0-4.2 3.6-6.5 8-6.5s8 2.3 8 6.5z"/></svg>`, F = [
+  ["mada", "mada"],
+  ["applepay", "Apple Pay"],
+  ["stcpay", "STC Pay"],
+  ["tabby", "Tabby"],
+  ["tamara", "Tamara"],
+  ["mastercard", "Mastercard"],
+  ["googlepay", "Google Pay"]
+], X = `
+.wahaj-buy .wahaj-form fieldset{border:0;margin:0;padding:0;min-width:0}
+.wahaj-buy{display:flex;flex-direction:column;gap:14px;font-family:inherit}
+.wahaj-buy .wahaj-label{font-weight:700;font-size:15px;color:#111827;margin:0}
+.wahaj-buy .wahaj-tiers{display:grid;grid-template-columns:repeat(var(--wahaj-cols,3),minmax(0,1fr));gap:10px;margin:0;padding:0;border:0}
+.wahaj-buy .wahaj-tier{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:64px;padding:12px 8px;border:2px solid #e5e7eb;border-radius:10px;background:#f3f4f6;cursor:pointer;text-align:center;font:inherit;color:#111827;transition:border-color .15s,background .15s}
+.wahaj-buy .wahaj-tier:hover{border-color:#d1d5db}
+.wahaj-buy .wahaj-tier[aria-checked="true"]{border-color:var(--wahaj-accent);background:var(--wahaj-accent-soft)}
+.wahaj-buy .wahaj-tier:focus-visible{outline:3px solid var(--wahaj-accent);outline-offset:2px}
+.wahaj-buy .wahaj-tier strong{font-size:15px}
+.wahaj-buy .wahaj-tier small{font-size:12px;color:#6b7280}
+.wahaj-buy .wahaj-tier .wahaj-tier-price{font-weight:700;font-size:14px;display:inline-flex;flex-wrap:wrap;justify-content:center;gap:0 6px;align-items:baseline;white-space:nowrap}
+.wahaj-buy .wahaj-tier s{color:#9ca3af;font-size:12px;font-weight:500}
+.wahaj-buy .wahaj-badge{position:absolute;top:-10px;inset-inline-end:8px;background:var(--wahaj-accent);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.wahaj-buy .wahaj-row{display:flex;gap:12px;align-items:stretch}
+.wahaj-buy .wahaj-qty{flex:0 0 96px;min-height:54px;border:0;border-radius:10px;background:#f3f4f6;padding:0 12px;font:inherit;font-size:16px;color:#111827;cursor:pointer}
+.wahaj-buy .wahaj-cta{flex:1 1 auto;min-height:54px;border:0;border-radius:10px;font:inherit;font-size:18px;font-weight:700;cursor:pointer;transition:filter .15s,transform .15s}
+.wahaj-buy .wahaj-cta:hover{filter:brightness(.94)}
+.wahaj-buy .wahaj-cta:active{transform:translateY(1px)}
+.wahaj-buy .wahaj-cta:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+.wahaj-buy .wahaj-cta[disabled]{opacity:.6;cursor:not-allowed}
+.wahaj-buy salla-product-options,.wahaj-buy salla-quick-order,.wahaj-buy salla-offer{display:block}
+.wahaj-buy #bundle-pro-widget:empty{display:none}
+@media (max-width:820px){.wahaj-buy .wahaj-cta{font-size:17px}}
+@media (prefers-reduced-motion:reduce){.wahaj-buy .wahaj-cta,.wahaj-buy .wahaj-tier{transition:none}}
+`;
+function U() {
+  if (document.getElementById("wahaj-hero-light")) return;
+  const r = document.createElement("style");
+  r.id = "wahaj-hero-light", r.textContent = X, document.head.appendChild(r);
+}
+function Z() {
+  const r = window;
+  return !!(r.__BUNDLE_PRO_LOADER_SRC__ || r.__BUNDLE_PRO__ || document.querySelector('script[src*="/widget/storefront"]'));
+}
+function L(r) {
+  r && typeof r == "object" && (r = r.amount ?? r.value);
+  const t = Number.parseFloat(String(r ?? ""));
+  return Number.isFinite(t) ? t : 0;
+}
+function Q(r) {
+  return Number.isInteger(r) ? String(r) : r.toFixed(2);
+}
+const V = class V extends N {
   constructor() {
-    super(), this.activeImage = 0, this.openFaq = -1;
+    super(), this.loadedId = "", this.lightRoot = null, this.topTimer = 0, this.activeImage = 0, this.activeTab = 0, this.activeTier = -1, this.topIndex = 0, this.product = null;
   }
   connectedCallback() {
-    super.connectedCallback(), D();
+    super.connectedCallback(), _(), this.topTimer = window.setInterval(() => {
+      var e, a;
+      const t = A((e = this.config) == null ? void 0 : e.top_bar).length;
+      t > 1 && ((a = window.matchMedia) != null && a.call(window, "(max-width: 820px)").matches) && (this.topIndex = (this.topIndex + 1) % t);
+    }, 4e3);
   }
+  disconnectedCallback() {
+    super.disconnectedCallback(), window.clearInterval(this.topTimer);
+  }
+  /* ----------------------------------------------------------------- data */
   get c() {
-    const t = this.config || {}, r = (o, l) => g(o).trim() || l, i = (o, l, c) => C(o).map((s) => Object.fromEntries(c.map((n) => [n, n === "icon" ? H(s, l, n) : g(H(s, l, n))])));
+    const t = this.config || {}, e = (o, l) => o == null ? l : g(o).trim(), a = (o, l, p) => A(o).map((d) => Object.fromEntries(p.map((h) => [h, h === "icon" ? b(d, l, h) : g(b(d, l, h))]))), n = k(t.product, "").trim(), s = A(t.tiers).map((o) => ({
+      title: g(b(o, "tiers", "title")).trim(),
+      subtitle: g(b(o, "tiers", "subtitle")).trim(),
+      qty: Math.max(1, Math.round(M(b(o, "tiers", "qty"), 1, 1, 99))),
+      price: g(b(o, "tiers", "price")).trim(),
+      compare: g(b(o, "tiers", "compare")).trim(),
+      badge: g(b(o, "tiers", "badge")).trim()
+    })).filter((o) => o.title);
     return {
-      bg_color: b(t.bg_color, "#ffffff"),
-      gallery: C(t.gallery).length ? i(t.gallery, "gallery", ["image"]) : [{ image: V }],
-      rating_value: t.rating_value || "4.8",
-      rating_count: t.rating_count || "5000",
-      stars_color: b(t.stars_color, "#f5a623"),
-      title: r(t.title, "عطر فاخر يدوم طويلاً — رائحة تبقى معك طوال اليوم"),
-      subtitle: r(t.subtitle, "تركيبة شرقية أصيلة بخلاصة العود والمسك، مصممة لتترك أثراً لا يُنسى."),
-      points: C(t.points).length ? i(t.points, "points", ["text"]) : [{ text: "ثبات يدوم حتى 12 ساعة" }, { text: "مكوّنات طبيعية 100%" }, { text: "شحن مجاني لجميع مدن المملكة" }],
-      price_after: t.price_after || "149",
-      price_before: t.price_before || "249",
-      savings_label: r(t.savings_label, ""),
-      cta_text: r(t.cta_text, "اشترِ الآن"),
-      cta_color: b(t.cta_color, "#1a8917"),
-      show_trust: v(t.show_trust, !0),
-      show_review: v(t.show_review, !0),
-      show_faq: v(t.show_faq, !0),
-      cta_action: L(t.cta_action, "landing"),
-      cta_link: z(t.cta_link),
-      stock_label: r(t.stock_label, ""),
-      pay_tabby: t.pay_tabby ?? !0,
-      pay_tamara: t.pay_tamara ?? !1,
-      pay_mada: t.pay_mada ?? !0,
-      pay_stcpay: t.pay_stcpay ?? !0,
-      pay_applepay: t.pay_applepay ?? !0,
-      pay_googlepay: t.pay_googlepay ?? !1,
-      pay_mastercard: t.pay_mastercard ?? !0,
-      trust: C(t.trust).length ? i(t.trust, "trust", ["icon", "text"]) : [
-        { icon: "شحن", text: "شحن سريع خلال يومين" },
-        { icon: "ضمان", text: "ضمان ذهبي — رضاك أولويتنا" },
-        { icon: "دعم", text: "دعم فني على مدار الساعة" },
-        { icon: "استرجاع", text: "استرجاع مجاني خلال 14 يوم" }
-      ],
-      reviews: C(t.reviews).length ? i(t.reviews, "reviews", ["avatar", "name", "text"]) : [{ avatar: "", name: "محمد العتيبي", text: "رائحة فخمة وثباتها ممتاز، وصلني بسرعة. أنصح فيه بشدة." }],
-      faq: C(t.faq).length ? i(t.faq, "faq", ["q", "a"]) : [
-        { q: "كم يدوم ثبات العطر؟", a: "يدوم حتى 12 ساعة حسب نوع البشرة والاستخدام." },
-        { q: "كم تستغرق مدة الشحن؟", a: "من يوم إلى يومين عمل داخل المملكة، مع إمكانية التتبّع." },
-        { q: "هل يمكن الإرجاع؟", a: "نعم، إرجاع مجاني خلال 14 يوم إذا لم يُفتح المنتج." }
-      ]
+      productId: /^\d+$/.test(n) ? n : "",
+      bg: y(t.bg_color, "#ffffff"),
+      accent: y(t.accent_color, "#1a8917"),
+      showTopBar: m(t.show_top_bar, !0),
+      topBar: a(t.top_bar, "top_bar", ["icon", "text"]).filter((o) => o.text),
+      gallery: a(t.gallery, "gallery", ["image"]).map((o) => x(o.image)).filter(Boolean),
+      ratingValue: M(t.rating_value, 4.8, 0, 5),
+      ratingCount: e(t.rating_count, "5000"),
+      starsColor: y(t.stars_color, "#f5a623"),
+      title: e(t.headline ?? t.title, "عطر فاخر يدوم طويلاً — رائحة تبقى معك طوال اليوم"),
+      subtitle: e(t.subheadline ?? t.subtitle, ""),
+      priceFrom: m(t.price_from, !1),
+      priceAfter: e(t.price_after, "149"),
+      priceBefore: e(t.price_before, "249"),
+      savings: e(t.savings_label, ""),
+      stock: e(t.stock_label, "الكمية محدودة"),
+      points: a(t.points, "points", ["text"]).map((o) => o.text).filter(Boolean),
+      offersMode: k(t.offers_mode, "auto"),
+      offersTitle: e(t.offers_title, "اختر العرض المناسب"),
+      tiers: s,
+      defaultTier: Math.max(0, Math.round(M(t.default_tier, 2, 1, 6)) - 1),
+      showQty: m(t.show_qty, !0),
+      ctaText: e(t.cta_text, "اشترِ الآن"),
+      ctaColor: y(t.cta_color, "#1a8917"),
+      ctaAction: k(t.cta_action, "buy_now"),
+      ctaLink: x(t.cta_link),
+      showQuickOrder: m(t.show_quick_order, !0),
+      showSallaOffers: m(t.show_salla_offers, !0),
+      secureLabel: e(t.secure_label, f("secureCheckout")),
+      payments: F.filter(([o]) => m(t[`pay_${o}`], ["mada", "applepay", "stcpay", "tabby", "mastercard"].includes(o))),
+      showTrust: m(t.show_trust, !0),
+      trust: a(t.trust, "trust", ["icon", "text"]).filter((o) => o.text),
+      showReview: m(t.show_review, !0),
+      review: a(t.reviews, "reviews", ["avatar", "name", "text"]).find((o) => o.text),
+      showTabs: m(t.show_tabs, !0),
+      tabs: a(t.tabs, "tabs", ["title", "content"]).filter((o) => o.title && o.content),
+      showLogos: m(t.show_logos, !0),
+      logosTitle: e(t.logos_title, f("recommendedBy")),
+      logos: a(t.logos, "logos", ["name", "image"]).filter((o) => o.name || o.image)
     };
   }
-  setImage(t) {
-    this.activeImage = t;
+  async loadProduct(t) {
+    var a, n, s, o, l;
+    this.loadedId = t;
+    const e = window.salla;
+    if ((a = e == null ? void 0 : e.product) != null && a.getDetails)
+      try {
+        await ((n = e.onReady) == null ? void 0 : n.call(e));
+        const p = await e.product.getDetails(t, ["images", "options"]), d = (p == null ? void 0 : p.data) ?? p;
+        if (!d || this.loadedId !== t) return;
+        const h = L(d.sale_price) || L(d.price), w = L(d.regular_price) || L(d.price), u = (Array.isArray(d.images) ? d.images : []).map((v) => {
+          var T;
+          return x((v == null ? void 0 : v.url) ?? ((T = v == null ? void 0 : v.image) == null ? void 0 : T.url) ?? v);
+        }).filter(Boolean), C = x(((s = d.image) == null ? void 0 : s.url) ?? d.thumbnail);
+        this.product = {
+          id: t,
+          name: g(d.name),
+          price: h,
+          regular: w > h ? w : 0,
+          images: u.length ? u : C ? [C] : [],
+          available: d.is_available !== !1 && d.status !== "out" && d.status !== "out-and-notify",
+          hasOptions: Array.isArray(d.options) && d.options.length > 0,
+          options: d.options,
+          // Amounts come back in the visitor's selected currency.
+          currency: g(((l = (o = e.config) == null ? void 0 : o.get) == null ? void 0 : l.call(o, "user.currency_code")) || d.currency || "SAR")
+        };
+      } catch {
+        this.product = null;
+      }
   }
-  toggleFaq(t) {
-    this.openFaq = this.openFaq === t ? -1 : t;
+  willUpdate() {
+    const t = this.c.productId;
+    t && t !== this.loadedId && this.loadProduct(t), !t && this.loadedId && (this.loadedId = "", this.product = null);
   }
-  handleCta() {
-    const t = this.c, r = (t.cta_action || "landing").trim();
-    if (r === "link") {
-      t.cta_link && (window.location.href = t.cta_link);
+  /* -------------------------------------------------------------- actions */
+  /** Quantity tiers are skipped when the bundles app renders its own offers. */
+  useTiers() {
+    const t = this.c;
+    return t.offersMode === "none" || t.offersMode === "app" || t.offersMode === "auto" && t.productId && Z() ? !1 : t.tiers.length > 0;
+  }
+  tierIndex() {
+    const t = this.c;
+    return this.useTiers() ? this.activeTier >= 0 ? Math.min(this.activeTier, t.tiers.length - 1) : Math.min(t.defaultTier, t.tiers.length - 1) : -1;
+  }
+  selectedQuantity(t) {
+    const e = this.tierIndex();
+    if (e >= 0) return this.c.tiers[e].qty;
+    const a = t.querySelector(".wahaj-qty");
+    return a && Number(a.value) || 1;
+  }
+  async submit(t) {
+    var l, p, d;
+    t.preventDefault();
+    const e = this.c, a = window.salla, n = t.target;
+    if (!e.productId || !((l = a == null ? void 0 : a.cart) != null && l.addItem)) {
+      e.ctaLink && (window.location.href = e.ctaLink);
       return;
     }
-    const o = (r === "cart" ? [".btn-add-to-cart", "salla-add-product-button button", 'form[action*="cart"] button[type="submit"]'] : [
-      "salla-quick-buy button",
-      "[data-buy-now]",
-      "button.s-button-primary",
-      "salla-add-product-button button",
-      ".btn-add-to-cart",
-      'form[action*="cart"] button[type="submit"]'
-    ]).map((l) => document.querySelector(l)).find(Boolean);
-    if (o) {
-      o.click();
+    const s = {};
+    new FormData(n).forEach((h, w) => {
+      const u = w.match(/^options\[(\d+)\]$/);
+      u && typeof h == "string" && h && (s[u[1]] = h);
+    });
+    const o = n.querySelector(".wahaj-cta");
+    o == null || o.setAttribute("disabled", "");
+    try {
+      await a.cart.addItem({ id: e.productId, quantity: this.selectedQuantity(n), options: s }), e.ctaAction === "buy_now" ? window.location.href = ((d = (p = a.url) == null ? void 0 : p.get) == null ? void 0 : d.call(p, "cart")) || "/cart" : e.ctaAction === "link" && e.ctaLink && (window.location.href = e.ctaLink);
+    } catch {
+    } finally {
+      o == null || o.removeAttribute("disabled");
+    }
+  }
+  /** Manual mode button: use the page's own purchase control, else follow the merchant link. */
+  manualCta() {
+    const t = this.c;
+    if (t.ctaAction === "link" && t.ctaLink) {
+      window.location.href = t.ctaLink;
       return;
     }
-    t.cta_link && (window.location.href = t.cta_link);
+    const e = ["salla-quick-buy button", "[data-buy-now]", "salla-add-product-button button", ".btn-add-to-cart"].map((a) => document.querySelector(a)).find(Boolean);
+    e ? e.click() : t.ctaLink && (window.location.href = t.ctaLink);
   }
-  renderTrustIcon(t) {
-    const r = L(t, "").trim();
-    return w[r] ? a`<span class="t-ic">${w[r]()}</span>` : a`<span class="t-emoji">${r || "✓"}</span>`;
+  /* ------------------------------------------------------- light DOM part */
+  updated() {
+    var e;
+    if (!this.c.productId) {
+      (e = this.lightRoot) == null || e.remove(), this.lightRoot = null;
+      return;
+    }
+    U(), this.lightRoot || (this.lightRoot = document.createElement("div"), this.lightRoot.slot = "buy", this.appendChild(this.lightRoot)), O(this.lightTemplate(), this.lightRoot), this.mountBundlesApp();
+  }
+  /**
+   * Hands the product to the bundles app ("عروض المنتجات والباقات").
+   * The app reads window.__BUNDLE_PRO_PRODUCT_ID__ and mounts into #bundle-pro-widget. When its script
+   * already ran, it can re-mount through window.BundlePro.mount (if exposed) or the "wahaj:product" event.
+   */
+  mountBundlesApp() {
+    var n, s;
+    const t = this.c;
+    if (!t.productId || t.offersMode === "none" || this.useTiers() || !Z()) return;
+    const e = (n = this.lightRoot) == null ? void 0 : n.querySelector("#bundle-pro-widget");
+    if (!e || e.dataset.wahajMounted === t.productId) return;
+    e.dataset.wahajMounted = t.productId;
+    const a = window;
+    a.__BUNDLE_PRO_PRODUCT_ID__ = t.productId, typeof ((s = a.BundlePro) == null ? void 0 : s.mount) == "function" && a.BundlePro.mount(e, t.productId), document.dispatchEvent(new CustomEvent("wahaj:product", { detail: { productId: t.productId, element: e } }));
+  }
+  lightTemplate() {
+    const t = this.c, e = this.product;
+    e ? e.regular && (t.savings || i`${f("save")} ${this.money(Math.round((e.regular - e.price) * 100) / 100)}`) : t.savings;
+    const a = e ? !e.available : !1, n = this.tierIndex(), s = n >= 0 ? t.tiers : [], o = t.offersMode !== "none" && !this.useTiers() && Z();
+    return i`
+      <div
+        class="wahaj-buy"
+        dir="${B()}"
+        style="--wahaj-accent:${t.accent};--wahaj-accent-soft:${z(t.accent, 0.1)};--wahaj-cols:${Math.min(Math.max(s.length, 1), 3)}"
+      >
+        ${o ? i`<div id="bundle-pro-widget" class="bp-widget-mount"></div>` : c}
+        ${s.length ? i`<p class="wahaj-label" id="wahaj-tiers-label">${t.offersTitle}</p>
+              <div class="wahaj-tiers" role="radiogroup" aria-labelledby="wahaj-tiers-label">
+                ${s.map(
+      (l, p) => i`<button type="button" class="wahaj-tier" role="radio" aria-checked="${p === n}" @click=${() => this.activeTier = p}>
+                    ${l.badge ? i`<span class="wahaj-badge">${l.badge}</span>` : c}
+                    <strong>${l.title}</strong>
+                    ${l.price ? i`<span class="wahaj-tier-price">${l.price}${l.compare ? i`<s>${l.compare}</s>` : c}</span>` : c}
+                    ${l.subtitle ? i`<small>${l.subtitle}</small>` : c}
+                  </button>`
+    )}
+              </div>` : c}
+        <form class="wahaj-form product-form" @submit=${(l) => this.submit(l)}>
+          <input type="hidden" name="id" .value=${t.productId} />
+          ${e != null && e.hasOptions ? i`<salla-product-options product-id="${t.productId}" options="${JSON.stringify(e.options)}"></salla-product-options>` : c}
+          <div class="wahaj-row">
+            ${t.showQty && !s.length ? i`<select class="wahaj-qty" name="quantity" aria-label="${f("quantity")}">
+                  ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((l) => i`<option value="${l}">${l}</option>`)}
+                </select>` : c}
+            <button class="wahaj-cta" type="submit" style="background:${t.ctaColor};color:${I(t.ctaColor)}" ?disabled=${a}>
+              ${a ? f("outOfStock") : t.ctaText}
+            </button>
+          </div>
+        </form>
+        ${t.showQuickOrder && !a ? i`<salla-quick-order product-id="${t.productId}"></salla-quick-order>` : c}
+        ${t.showSallaOffers ? i`<salla-offer product-id="${t.productId}"></salla-offer>` : c}
+      </div>
+    `;
+  }
+  /* ------------------------------------------------------------ rendering */
+  icon(t) {
+    const e = k(t, "").trim();
+    return $[e] ? $[e]() : $.ضمان();
+  }
+  money(t) {
+    var n;
+    const e = ((n = this.product) == null ? void 0 : n.currency) || "SAR", a = typeof t == "number" ? Q(t) : t;
+    return e.toUpperCase() === "SAR" ? i`${a}<i class="sar sicon-sar" aria-hidden="true"></i><span class="sr-only">SAR</span>` : i`${a} ${e}`;
+  }
+  renderTopBar(t, e) {
+    if (!t.showTopBar || !t.topBar.length) return c;
+    const a = t.topBar.length, n = this.topIndex % a, s = (o) => this.topIndex = (n + o + a) % a;
+    return i`<div class="top">
+      <div class="container top-bar-inner">
+        <button class="top-nav" type="button" aria-label="${f("previous")}" @click=${() => s(-1)}>${e ? D : P}</button>
+        <ul class="top-list">
+          ${t.topBar.map(
+      (o, l) => i`<li class="top-item ${l === n ? "on" : ""}"><span class="ic" aria-hidden="true">${this.icon(o.icon)}</span>${o.text}</li>`
+    )}
+        </ul>
+        <button class="top-nav" type="button" aria-label="${f("next")}" @click=${() => s(1)}>${e ? P : D}</button>
+      </div>
+    </div>`;
+  }
+  renderManualBuy(t) {
+    const e = this.tierIndex(), a = e >= 0 ? t.tiers : [];
+    return i`
+      ${a.length ? i`<p class="label" id="tiers-label">${t.offersTitle}</p>
+            <div class="tiers" role="radiogroup" aria-labelledby="tiers-label" style="--cols:${Math.min(a.length, 3)}">
+              ${a.map(
+      (n, s) => i`<button type="button" class="tier" role="radio" aria-checked="${s === e}" @click=${() => this.activeTier = s}>
+                  ${n.badge ? i`<span class="badge">${n.badge}</span>` : c}
+                  <strong>${n.title}</strong>
+                  ${n.price ? i`<span class="tp">${n.price}${n.compare ? i`<s>${n.compare}</s>` : c}</span>` : c}
+                  ${n.subtitle ? i`<small>${n.subtitle}</small>` : c}
+                </button>`
+    )}
+            </div>` : c}
+      <div class="buy-row">
+        ${t.showQty && !a.length ? i`<select class="qty" aria-label="${f("quantity")}">${[1, 2, 3, 4, 5].map((n) => i`<option>${n}</option>`)}</select>` : c}
+        <button class="cta" type="button" style="background:${t.ctaColor};color:${I(t.ctaColor)}" @click=${() => this.manualCta()}>${t.ctaText}</button>
+      </div>
+    `;
+  }
+  renderTabs(t) {
+    var a;
+    if (!t.showTabs || !t.tabs.length) return c;
+    const e = Math.min(Math.max(this.activeTab, 0), t.tabs.length - 1);
+    return i`<div class="tabs">
+        <div class="tabs-head" role="tablist">
+          ${t.tabs.map(
+      (n, s) => i`<button
+              class="tab"
+              role="tab"
+              type="button"
+              id="tab-${s}"
+              aria-controls="panel-${s}"
+              aria-selected="${s === e}"
+              tabindex="${s === e ? 0 : -1}"
+              @click=${() => this.activeTab = s}
+            >${n.title}</button>`
+    )}
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-${e}" aria-labelledby="tab-${e}">${(a = t.tabs[e]) == null ? void 0 : a.content}</div>
+      </div>
+      <div class="acc">
+        ${t.tabs.map(
+      (n, s) => i`<div class="acc-item">
+            <button class="acc-q" type="button" aria-expanded="${s === this.activeTab}" @click=${() => this.activeTab = this.activeTab === s ? -1 : s}>
+              <span>${n.title}</span><span aria-hidden="true">${s === this.activeTab ? "−" : "+"}</span>
+            </button>
+            ${s === this.activeTab ? i`<div class="acc-a">${n.content}</div>` : c}
+          </div>`
+    )}
+      </div>`;
   }
   render() {
-    var c;
-    const t = this.c, r = Math.min(this.activeImage, t.gallery.length - 1), i = a`<i class="sar sicon-sar" aria-hidden="true"></i>`, o = t.reviews[0], l = [
-      [t.pay_tabby, d.tabby, "Tabby"],
-      [t.pay_tamara, d.tamara, "Tamara"],
-      [t.pay_mada, d.mada, "mada"],
-      [t.pay_stcpay, d.stcpay, "STC Pay"],
-      [t.pay_applepay, d.applepay, "Apple Pay"],
-      [t.pay_googlepay, d.googlepay, "Google Pay"],
-      [t.pay_mastercard, d.mastercard, "Mastercard"]
-    ];
-    return a`
-      <link rel="stylesheet" href="${k}" />
-      <section dir="${M()}" style="background:${t.bg_color}">
+    const t = this.c, e = this.product, a = B(), n = a === "rtl", s = e != null && e.images.length ? e.images : t.gallery.length ? t.gallery : [G], o = Math.min(this.activeImage, s.length - 1), l = e && e.price ? this.money(e.price) : t.priceAfter ? this.money(t.priceAfter) : null, p = e ? e.regular ? this.money(e.regular) : null : t.priceBefore ? this.money(t.priceBefore) : null, d = e ? e.regular ? t.savings || i`${f("save")} ${this.money(Math.round((e.regular - e.price) * 100) / 100)}` : "" : t.savings, h = e ? !e.available : !1, w = t.review ? x(t.review.avatar) : "";
+    return i`
+      <link rel="stylesheet" href="${q}" />
+      <section dir="${a}" style="background:${t.bg};--accent:${t.accent};--accent-soft:${z(t.accent, 0.1)}" aria-label="${t.title}">
+        ${this.renderTopBar(t, n)}
         <div class="container">
-
-          <!-- منطقة المنتج: عمودان متوازيان -->
           <div class="wrap">
             <div class="gallery">
-              <img class="main-img" src="${((c = t.gallery[r]) == null ? void 0 : c.image) || V}" alt="${t.title}" />
-              <div class="thumbs">
-                ${t.gallery.map(
-      (s, n) => a`
-                    <button class="thumb-btn" type="button" aria-label="${f("image", { n: n + 1 })}" aria-pressed="${n === r}" @click=${() => this.setImage(n)}>
-                      <img class="thumb ${n === r ? "active" : ""}" src="${s.image}" alt="" loading="lazy" />
-                    </button>
-                  `
+              <img class="main-img" src="${s[o]}" alt="${t.title}" />
+              ${s.length > 1 ? i`<div class="thumbs">
+                    ${s.slice(0, 6).map(
+      (u, C) => i`<button class="thumb-btn" type="button" aria-label="${f("image", { n: C + 1 })}" aria-pressed="${C === o}" @click=${() => this.activeImage = C}>
+                        <img src="${u}" alt="" loading="lazy" decoding="async" />
+                      </button>`
     )}
-              </div>
+                  </div>` : c}
             </div>
 
             <div class="info">
               <div class="rating">
-                ${Z(q(t.rating_value, 5, 0, 5), t.stars_color)}
-                <span class="sr-only">${f("rating", { value: t.rating_value })}</span>
-                <span class="rating-num" aria-hidden="true">${t.rating_value}/5</span>
-                <span class="rating-count">· ${f("ratedBy", { count: t.rating_count })}</span>
+                ${S(t.ratingValue, t.starsColor)}
+                <span class="sr-only">${f("rating", { value: t.ratingValue })}</span>
+                <strong aria-hidden="true">${t.ratingValue}/5</strong>
+                ${t.ratingCount ? i`<span>· ${f("ratedBy", { count: t.ratingCount })}</span>` : c}
               </div>
 
               <h1 class="title">${t.title}</h1>
-              <p class="subtitle">${t.subtitle}</p>
-
-              <ul class="points">
-                ${t.points.map((s) => a`<li><span class="pt-icon">✓</span><span>${s.text}</span></li>`)}
-              </ul>
+              ${t.subtitle ? i`<p class="subtitle">${t.subtitle}</p>` : c}
 
               <div class="price-row">
-                <span class="price-after">${t.price_after} ${i}</span>
-                ${t.price_before ? a`<span class="price-before">${t.price_before} ${i}</span>` : ""}
-                ${t.savings_label ? a`<span class="savings">${t.savings_label} ${i}</span>` : ""}
+                ${l ? i`<span class="price">${t.priceFrom ? i`<span class="from">${f("startingFrom")}</span>` : c}${l}</span>` : c}
+                ${p ? i`<span class="price-before">${p}</span>` : c}
+                ${d ? i`<span class="savings">${d}</span>` : c}
+                ${h ? i`<span class="stock out"><span class="dot"></span>${f("outOfStock")}</span>` : t.stock ? i`<span class="stock"><span class="dot"></span>${t.stock}</span>` : c}
               </div>
 
-              ${t.stock_label ? a`<div class="stock"><span class="dot"></span>${t.stock_label}</div>` : ""}
+              ${t.points.length ? i`<ul class="points">${t.points.map((u) => i`<li><span class="tick" aria-hidden="true">✓</span><span>${u}</span></li>`)}</ul>` : c}
 
-              <button class="cta" type="button" style="background:${t.cta_color};color:${P(t.cta_color)}" @click=${() => this.handleCta()}>${t.cta_text}</button>
+              ${t.productId ? i`<slot name="buy"></slot>` : this.renderManualBuy(t)}
 
-              <div class="pay">
-                <span class="pay-label">${f("securePayment")}</span>
-                ${l.map(([s, n, p]) => s ? a`<img class="pay-logo" src="${n}" alt="${p}" loading="lazy" />` : "")}
-              </div>
+              ${t.payments.length ? i`<div class="pay">
+                    <ul aria-label="${f("securePayment")}">
+                      ${t.payments.map(([u, C]) => i`<li><img src="${Y[u]}" alt="${C}" loading="lazy" decoding="async" /></li>`)}
+                    </ul>
+                    ${t.secureLabel ? i`<span class="secure">${t.secureLabel}</span>` : c}
+                  </div>` : c}
 
-              ${t.show_trust && t.trust.length ? a`<div class="trust-card">
-                    ${t.trust.map((s) => a`<div class="trust-row">${this.renderTrustIcon(s.icon)}<span>${s.text}</span></div>`)}
-                  </div>` : ""}
+              ${t.showTrust && t.trust.length ? i`<div class="trust-card">
+                    ${t.trust.map((u) => i`<div class="trust-row"><span class="ic" aria-hidden="true">${this.icon(u.icon)}</span><span>${u.text}</span></div>`)}
+                  </div>` : c}
 
-              ${t.show_review && o ? a`
-                  <div class="review">
-                    ${o.avatar ? a`<img class="avatar-img" src="${o.avatar}" alt="${o.name}" />` : a`<span class="avatar-ic">${B()}</span>`}
-                    <div class="rbody">
-                      <div class="rtext">${o.text}</div>
-                      <div class="rname">${o.name}</div>
-                      <div class="rstars">${Z(5, t.stars_color)}</div>
+              ${t.showReview && t.review ? i`<div class="review">
+                    ${w ? i`<img class="avatar" src="${w}" alt="${t.review.name}" loading="lazy" />` : i`<span class="avatar" aria-hidden="true">${R()}</span>`}
+                    <div>
+                      <p class="rtext">${t.review.text}</p>
+                      ${t.review.name ? i`<div class="rname">${t.review.name}</div>` : c}
+                      ${S(5, t.starsColor)}
                     </div>
-                  </div>` : ""}
+                  </div>` : c}
 
-              ${t.show_faq && t.faq.length ? a`<div class="faq-list">
-                ${t.faq.map(
-      (s, n) => a`
-                    <div class="faq-item">
-                      <button class="faq-q" type="button" aria-expanded="${this.openFaq === n}" @click=${() => this.toggleFaq(n)}>
-                        <span>${s.q}</span>
-                        <span class="faq-sign" aria-hidden="true">${this.openFaq === n ? "−" : "+"}</span>
-                      </button>
-                      ${this.openFaq === n ? a`<div class="faq-a">${s.a}</div>` : ""}
-                    </div>
-                  `
-    )}
-              </div>` : ""}
+              ${this.renderTabs(t)}
             </div>
           </div>
         </div>
+
+        ${t.showLogos && t.logos.length ? i`<div class="logos">
+              <div class="container logos-inner">
+                ${t.logosTitle ? i`<span class="logos-title">${t.logosTitle}</span>` : c}
+                ${t.logos.map(
+      (u) => x(u.image) ? i`<span class="logo"><img src="${x(u.image)}" alt="${u.name || ""}" loading="lazy" /></span>` : i`<span class="logo">${u.name}</span>`
+    )}
+              </div>
+            </div>` : c}
       </section>
     `;
   }
 };
-h.properties = {
+V.properties = {
   config: { type: Object },
-  activeImage: { type: Number, state: !0 },
-  openFaq: { type: Number, state: !0 }
-}, h.styles = A`
+  activeImage: { state: !0 },
+  activeTab: { state: !0 },
+  activeTier: { state: !0 },
+  topIndex: { state: !0 },
+  product: { state: !0 }
+}, V.styles = W`
     :host { display: block; font-family: inherit; color: #1f2937; }
     * { box-sizing: border-box; }
-    .sar { font-style: normal; margin-inline-start: 2px; font-size: 0.85em; }
+    img { display: block; max-width: 100%; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+    .container { max-width: 1240px; margin-inline: auto; padding-inline: 1rem; }
 
-    .container { max-width: 1140px; margin: 0 auto; }
+    /* Top bar */
+    .top { border-bottom: 1px solid #eceef1; background: #fff; }
+    .top-bar-inner { display: block; }
+    .top-list { display: flex; justify-content: space-between; gap: 1rem; margin: 0; padding: 0.9rem 0; list-style: none; }
+    .top-item { display: flex; align-items: center; gap: 0.55rem; font-size: 0.92rem; font-weight: 600; color: #111827; }
+    .top-item .ic { width: 22px; height: 22px; flex: 0 0 auto; color: #111827; }
+    .top-item .ic svg { width: 100%; height: 100%; }
+    .top-nav { display: none; }
 
-    /* منطقة المنتج: عمودان */
-    .wrap { padding: 1.5rem 1rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
-
-    .gallery { position: sticky; top: 1rem; padding-top: 0.35rem; }
-    .main-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 14px; background: #f3f4f6; display: block; }
-    .thumbs { display: flex; gap: 0.5rem; margin-top: 0.75rem; overflow-x: auto; padding-bottom: 4px; }
-    .thumb-btn { padding: 0; border: 0; background: none; flex: 0 0 auto; cursor: pointer; border-radius: 10px; }
+    /* Product area */
+    .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4rem; padding-block: 2rem 3rem; align-items: start; }
+    .gallery { position: sticky; top: 1rem; }
+    .main-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: #f3f4f6; border-radius: 4px; }
+    .thumbs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.9rem; margin-top: 1.25rem; }
+    .thumb-btn { padding: 0; border: 2px solid transparent; background: #f3f4f6; border-radius: 6px; cursor: pointer; overflow: hidden; aspect-ratio: 1.15 / 1; }
+    .thumb-btn[aria-pressed="true"] { border-color: #111827; }
     .thumb-btn:focus-visible { outline: 2px solid #111827; outline-offset: 2px; }
-    .thumb { width: 72px; height: 72px; flex: 0 0 auto; object-fit: cover; border-radius: 10px; cursor: pointer; border: 2px solid transparent; transition: border-color .15s, opacity .15s; opacity: 0.7; }
-    .thumb:hover { opacity: 1; }
-    .thumb.active { border-color: #111827; opacity: 1; }
+    .thumb-btn img { width: 100%; height: 100%; object-fit: cover; }
 
-    .info { min-width: 0; }
-    .rating { display: flex; align-items: center; gap: 0.4rem; font-size: 0.95rem; margin-bottom: 0.75rem; }
+    .info { min-width: 0; display: flex; flex-direction: column; gap: 1.15rem; }
+    .rating { display: flex; align-items: center; flex-wrap: wrap; gap: 0.45rem; font-size: 0.92rem; color: #4b5563; }
     .stars { display: inline-flex; gap: 2px; }
     .stars svg { width: 18px; height: 18px; display: block; }
-    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
-    .rating-num { font-weight: 700; }
-    .rating-count { color: #6b7280; }
+    .rating strong { color: #111827; }
+    h1.title { margin: 0; font-size: 2.35rem; line-height: 1.25; font-weight: 700; color: #111827; letter-spacing: -0.01em; }
+    .subtitle { margin: -0.4rem 0 0; color: #4b5563; font-size: 1.02rem; line-height: 1.7; }
 
-    h1.title { font-size: 1.9rem; line-height: 1.35; font-weight: 700; margin: 0 0 0.6rem; }
-    .subtitle { font-size: 1.05rem; color: #4b5563; line-height: 1.7; margin: 0 0 1.25rem; }
+    .price-row { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem 1rem; }
+    .price { font-size: 1.45rem; font-weight: 700; color: #111827; }
+    .price .from { font-weight: 500; color: #4b5563; font-size: 1.05rem; margin-inline-end: 0.35rem; }
+    .price-before { color: #9ca3af; text-decoration: line-through; font-size: 1.05rem; }
+    .savings { background: var(--accent-soft); color: var(--accent); font-size: 0.85rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 6px; }
+    .stock { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: #4b5563; }
+    .stock .dot { width: 12px; height: 12px; border-radius: 50%; background: #f59e0b; box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18); }
+    .stock.out .dot { background: #dc2626; box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15); }
+    .sar { font-style: normal; font-size: 0.85em; margin-inline-start: 2px; }
 
-    .points { list-style: none; padding: 0; margin: 0 0 1.5rem; }
-    .points li { display: flex; align-items: center; gap: 0.6rem; padding: 0.35rem 0; font-size: 1rem; }
-    .points .pt-icon { width: 24px; height: 24px; flex: 0 0 auto; display: grid; place-items: center; background: #ecfdf5; color: #059669; border-radius: 50%; font-size: 0.8rem; }
+    .points { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+    .points li { display: flex; align-items: flex-start; gap: 0.7rem; line-height: 1.55; color: #374151; }
+    .points .tick { width: 22px; height: 22px; flex: 0 0 auto; border-radius: 50%; background: #6b7280; color: #fff; display: grid; place-items: center; font-size: 0.72rem; margin-top: 1px; }
 
-    .price-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.4rem; flex-wrap: wrap; }
-    .price-after { font-size: 2rem; font-weight: 800; color: #111827; }
-    .price-before { font-size: 1.15rem; color: #9ca3af; text-decoration: line-through; }
-    .savings { background: #dcfce7; color: #166534; font-size: 0.85rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 6px; }
+    /* Offers + button (manual mode) */
+    .label { font-weight: 700; color: #111827; margin: 0.2rem 0 -0.4rem; }
+    .tiers { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 0.65rem; }
+    .tier { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 64px; padding: 0.75rem 0.5rem; border: 2px solid #e5e7eb; border-radius: 10px; background: #f3f4f6; cursor: pointer; text-align: center; font: inherit; color: #111827; }
+    .tier[aria-checked="true"] { border-color: var(--accent); background: var(--accent-soft); }
+    .tier:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .tier strong { font-size: 0.95rem; }
+    .tier small { font-size: 0.75rem; color: #6b7280; }
+    .tier .tp { font-weight: 700; font-size: 0.9rem; display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 0 6px; align-items: baseline; white-space: nowrap; }
+    .tier s { color: #9ca3af; font-size: 0.75rem; font-weight: 500; }
+    .tier .badge { position: absolute; top: -10px; inset-inline-end: 8px; background: var(--accent); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
 
-    .stock { display: flex; align-items: center; gap: 0.45rem; color: #dc2626; font-weight: 600; font-size: 0.95rem; margin: 0 0 1.25rem; }
-    .stock .dot { width: 9px; height: 9px; border-radius: 50%; background: #059669; display: inline-block; }
-
-    .cta { width: 100%; border: none; font-size: 1.15rem; font-weight: 700; font-family: inherit; padding: 1rem; border-radius: 12px; cursor: pointer; transition: filter .15s; }
+    .buy-row { display: flex; gap: 0.75rem; }
+    .qty { flex: 0 0 96px; min-height: 54px; border: 0; border-radius: 10px; background: #f3f4f6; padding: 0 0.75rem; font: inherit; font-size: 1rem; }
+    .cta { flex: 1 1 auto; min-height: 54px; border: 0; border-radius: 10px; font: inherit; font-size: 1.15rem; font-weight: 700; cursor: pointer; transition: filter 0.15s; }
     .cta:hover { filter: brightness(0.94); }
     .cta:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
 
-    .pay { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1.1rem 0 1.5rem; }
-    .pay-label { color: #6b7280; font-size: 0.85rem; margin-inline-end: 0.25rem; }
-    .pay-logo { height: 30px; width: auto; display: block; }
+    .pay { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+    .pay ul { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
+    .pay img { height: 28px; width: auto; }
+    .pay .secure { color: #4b5563; font-size: 0.92rem; margin-inline-start: 0.5rem; }
 
-    .trust-card { background: #f4f4f5; border-radius: 16px; padding: 1.1rem 1.25rem; display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 1.5rem; }
-    .trust-row { display: flex; align-items: center; gap: 0.75rem; font-size: 0.98rem; color: #374151; }
-    .trust-row .t-ic { width: 26px; height: 26px; flex: 0 0 auto; color: #4b5563; }
-    .trust-row .t-ic svg { width: 100%; height: 100%; }
-    .trust-row .t-emoji { font-size: 1.25rem; width: 26px; text-align: center; }
+    .trust-card { background: #ececec; border-radius: 6px; padding: 1.25rem 1.4rem; display: grid; gap: 1rem; }
+    .trust-row { display: flex; align-items: center; gap: 0.8rem; color: #374151; font-size: 0.98rem; }
+    .trust-row .ic { width: 22px; height: 22px; flex: 0 0 auto; color: #6b7280; }
+    .trust-row .ic svg { width: 100%; height: 100%; }
 
-    .review { display: flex; gap: 0.9rem; align-items: center; background: #fafafa; border: 1px solid #f0f0f0; border-radius: 14px; padding: 1rem 1.25rem; }
-    .review .avatar-ic { width: 52px; height: 52px; border-radius: 50%; background: #e5e7eb; color: #9ca3af; flex: 0 0 auto; display: grid; place-items: center; overflow: hidden; }
-    .review .avatar-ic svg { width: 62%; height: 62%; }
-    .review .avatar-img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; }
-    .review .rtext { color: #374151; line-height: 1.6; margin-bottom: 0.3rem; }
-    .review .rname { font-weight: 700; margin-bottom: 0.15rem; }
-    .review .rstars svg { width: 15px; height: 15px; }
+    .review { display: flex; gap: 1.25rem; align-items: center; }
+    .review .avatar { width: 92px; height: 92px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; background: #bcb6b6; color: #fff; display: grid; place-items: center; overflow: hidden; }
+    .review .avatar svg { width: 55%; height: 55%; }
+    .review .rtext { margin: 0 0 0.5rem; color: #374151; line-height: 1.65; }
+    .review .rname { font-weight: 700; margin-bottom: 0.25rem; }
 
-    /* الأسئلة: داخل عمود المعلومات — أشرطة كاملة العرض (مطابق للريفرنس) */
-    .faq-list { margin-top: 1.5rem; }
-    .faq-item { border: 1px solid #eee; border-radius: 12px; overflow: hidden; margin-bottom: 0.6rem; }
-    .faq-q { width: 100%; background: none; border: 0; font: inherit; color: inherit; text-align: start; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; padding: 0.9rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.98rem; }
-    .faq-sign { font-size: 1.3rem; color: #059669; line-height: 1; flex: 0 0 auto; }
-    .faq-a { padding: 0 1rem 0.9rem; color: #4b5563; line-height: 1.7; font-size: 0.93rem; }
+    .tabs-head { display: flex; border-bottom: 2px solid #e5e7eb; overflow-x: auto; scrollbar-width: none; }
+    .tab { padding: 0.7rem 1.2rem; border: 0; background: none; font: inherit; font-weight: 600; color: #6b7280; cursor: pointer; white-space: nowrap; margin-bottom: -2px; border-bottom: 2px solid transparent; }
+    .tab[aria-selected="true"] { color: #111827; background: #e5e7eb; border-bottom-color: #111827; }
+    .tab:focus-visible { outline: 2px solid #111827; outline-offset: -2px; }
+    .tab-panel { padding: 1rem 0.2rem 0; color: #4b5563; line-height: 1.85; white-space: pre-line; }
+    .acc { display: none; }
+    .acc-item + .acc-item { margin-top: 0.6rem; }
+    .acc-q { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; padding: 0.8rem 1rem; background: #e5e7eb; border: 0; border-radius: 4px; font: inherit; font-weight: 600; color: #111827; text-align: start; cursor: pointer; }
+    .acc-a { padding: 0.8rem 0.25rem 0.2rem; color: #4b5563; line-height: 1.8; white-space: pre-line; }
 
+    /* Logos strip */
+    .logos { background: #f2f2f2; }
+    .logos-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem 2.5rem; flex-wrap: wrap; padding-block: 1.6rem; }
+    .logos-title { color: #4b5563; font-size: 0.92rem; }
+    .logo { color: #6b7280; font-size: 1.15rem; font-weight: 600; }
+    .logo img { max-height: 34px; width: auto; filter: grayscale(1); opacity: 0.75; }
+
+    @media (max-width: 1024px) {
+      .wrap { gap: 2.5rem; }
+      h1.title { font-size: 2rem; }
+    }
     @media (max-width: 820px) {
-      .wrap { grid-template-columns: 1fr; gap: 1.1rem; padding: 0 0 1.25rem; margin-top: 0; }
-      .gallery { margin-top: 0; padding-top: 0; }
+      .top-bar-inner { display: flex; align-items: center; justify-content: space-between; }
+      .top-list { justify-content: center; padding: 0.7rem 0; }
+      .top-list .top-item { display: none; }
+      .top-list .top-item.on { display: flex; }
+      .top-nav { display: grid; place-items: center; width: 32px; height: 32px; border: 0; background: none; cursor: pointer; color: #111827; }
+      .top-nav svg { width: 18px; height: 18px; }
+      .wrap { grid-template-columns: 1fr; gap: 1.5rem; padding-block: 1rem 2rem; }
       .gallery { position: static; }
-      .info { padding: 0 1rem; }
-      .main-img { border-radius: 0; aspect-ratio: 4 / 5; }
-      .thumbs { padding: 0 1rem 4px; }
-      h1.title { font-size: 1.5rem; }
-      .price-after { font-size: 1.7rem; }
+      .thumbs { gap: 0.55rem; }
+      h1.title { font-size: 1.7rem; }
+      .review .avatar { width: 72px; height: 72px; }
+      .tabs { display: none; }
+      .acc { display: block; }
+      .logos-inner { justify-content: center; text-align: center; }
+      .logos-title { width: 100%; }
     }
   `;
-let u = h;
-typeof u < "u" && u.registerSallaComponent("salla-hero");
+let j = V;
+typeof j < "u" && j.registerSallaComponent("salla-hero");
 export {
-  u as default
+  j as default
 };

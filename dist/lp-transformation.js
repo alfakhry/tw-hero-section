@@ -1,4 +1,4 @@
-import { css as S, LitElement as k, html as o, nothing as s } from "lit";
+import { css as S, LitElement as z, html as o, nothing as s } from "lit";
 const C = S`
   :host {
     display: block;
@@ -78,17 +78,17 @@ const C = S`
     .cta-btn { transition: none; }
   }
 `;
-function h() {
-  var n, i, r, l, c, u, x, d, b;
-  const t = window, e = ((r = (i = (n = t.salla) == null ? void 0 : n.lang) == null ? void 0 : i.getLocale) == null ? void 0 : r.call(i)) || ((u = (c = (l = t.Salla) == null ? void 0 : l.lang) == null ? void 0 : c.getLocale) == null ? void 0 : u.call(c)) || ((b = (d = (x = t.salla) == null ? void 0 : x.config) == null ? void 0 : d.get) == null ? void 0 : b.call(d, "user.language_code"));
+function f() {
+  var n, i, r, l, c, h, x, d, b;
+  const t = window, e = ((r = (i = (n = t.salla) == null ? void 0 : n.lang) == null ? void 0 : i.getLocale) == null ? void 0 : r.call(i)) || ((h = (c = (l = t.Salla) == null ? void 0 : l.lang) == null ? void 0 : c.getLocale) == null ? void 0 : h.call(c)) || ((b = (d = (x = t.salla) == null ? void 0 : x.config) == null ? void 0 : d.get) == null ? void 0 : b.call(d, "user.language_code"));
   return String(e || document.documentElement.lang || "ar").slice(0, 2).toLowerCase();
 }
-function j() {
+function A() {
   var e;
   const t = (document.documentElement.getAttribute("dir") || ((e = document.body) == null ? void 0 : e.getAttribute("dir")) || "").toLowerCase();
-  return t === "rtl" || t === "ltr" ? t : ["ar", "he", "fa", "ur"].includes(h()) ? "rtl" : "ltr";
+  return t === "rtl" || t === "ltr" ? t : ["ar", "he", "fa", "ur"].includes(f()) ? "rtl" : "ltr";
 }
-const g = {
+const u = {
   ar: {
     previous: "السابق",
     next: "التالي",
@@ -100,7 +100,19 @@ const g = {
     verified: "مشتري موثّق",
     close: "إغلاق",
     image: "عرض الصورة {n}",
-    ratedBy: "تقييم من قبل {count} عميل"
+    ratedBy: "تقييم من قبل {count} عميل",
+    yes: "متوفر",
+    no: "غير متوفر",
+    partial: "جزئياً",
+    feature: "الميزة",
+    quantity: "الكمية",
+    startingFrom: "يبدأ من",
+    secureCheckout: "دفع آمن ومضمون",
+    recommendedBy: "موصى به من:",
+    added: "تمت إضافة المنتج إلى السلة",
+    outOfStock: "نفدت الكمية",
+    choose: "اختر",
+    save: "وفّر"
   },
   en: {
     previous: "Previous",
@@ -113,11 +125,23 @@ const g = {
     verified: "Verified buyer",
     close: "Close",
     image: "Show image {n}",
-    ratedBy: "rated by {count} customers"
+    ratedBy: "rated by {count} customers",
+    yes: "Included",
+    no: "Not included",
+    partial: "Partly",
+    feature: "Feature",
+    quantity: "Quantity",
+    startingFrom: "Starting from",
+    secureCheckout: "Secure checkout",
+    recommendedBy: "As recommended by:",
+    added: "Added to cart",
+    outOfStock: "Out of stock",
+    choose: "Choose",
+    save: "Save"
   }
 };
-function A(t, e = {}) {
-  let i = (g[h()] || g.en)[t] ?? g.en[t] ?? t;
+function j(t, e = {}) {
+  let i = (u[f()] || u.en)[t] ?? u.en[t] ?? t;
   return Object.entries(e).forEach(([r, l]) => i = i.replace(`{${r}}`, String(l))), i;
 }
 function a(t) {
@@ -126,7 +150,7 @@ function a(t) {
   if (typeof t == "number") return String(t);
   if (typeof t == "object") {
     const e = t;
-    return e[h()] || e.ar || e.en || Object.values(e).find((n) => typeof n == "string" && n) || "";
+    return e[f()] || e.ar || e.en || Object.values(e).find((n) => typeof n == "string" && n) || "";
   }
   return "";
 }
@@ -140,10 +164,10 @@ function v(t, e) {
   const n = a(t).trim();
   return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(n) ? n : e;
 }
-function E(t) {
+function O(t) {
   return Array.isArray(t) ? t.filter((e) => e && typeof e == "object") : [];
 }
-function f(t, e, n) {
+function g(t, e, n) {
   if (t[n] !== void 0 && t[n] !== "") return t[n];
   const i = t[`${e}.${n}`];
   return i !== void 0 ? i : t[n];
@@ -154,27 +178,27 @@ function $(t, e) {
   const i = Number.parseInt(n, 16);
   return `rgba(${i >> 16 & 255},${i >> 8 & 255},${i & 255},${e})`;
 }
-const z = "https://cdn.salla.network/fonts/sallaicons.css?v=2.0.5";
-function I() {
+const k = "https://cdn.salla.network/fonts/sallaicons.css?v=2.0.5";
+function E() {
   if (Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some(
     (n) => n.href.includes("sallaicons")
   )) return;
   const e = document.createElement("link");
-  e.rel = "stylesheet", e.href = z, document.head.appendChild(e);
+  e.rel = "stylesheet", e.href = k, document.head.appendChild(e);
 }
-const N = [
+const I = [
   { icon: "sicon-shopping-bag", title: "اطلب بسهولة", text: "اختر الكمية المناسبة وأكمل الطلب خلال أقل من دقيقة." },
   { icon: "sicon-shipping-fast", title: "استلم بسرعة", text: "يصلك الطلب خلال يومين إلى باب بيتك مع إمكانية التتبّع." },
   { icon: "sicon-smile", title: "استمتع بالنتيجة", text: "لاحظ الفرق من أول استخدام، أو استرجع مبلغك بكل سهولة." }
-], m = class m extends k {
+], m = class m extends z {
   connectedCallback() {
-    super.connectedCallback(), I();
+    super.connectedCallback(), E();
   }
   get data() {
-    const e = this.config || {}, n = E(e.steps), i = (n.length ? n : N).map((r) => ({
-      icon: a(f(r, "steps", "icon")).trim(),
-      title: a(f(r, "steps", "title")).trim(),
-      text: a(f(r, "steps", "text")).trim()
+    const e = this.config || {}, n = O(e.steps), i = (n.length ? n : I).map((r) => ({
+      icon: a(g(r, "steps", "icon")).trim(),
+      title: a(g(r, "steps", "title")).trim(),
+      text: a(g(r, "steps", "text")).trim()
     })).filter((r) => r.title || r.text);
     return {
       bg: v(e.bg_color, "#ffffff"),
@@ -192,9 +216,9 @@ const N = [
   render() {
     const e = this.data;
     if (!e.steps.length) return s;
-    const n = j();
+    const n = A();
     return o`
-      <link rel="stylesheet" href="${z}" />
+      <link rel="stylesheet" href="${k}" />
       <section class="section" dir="${n}" style="background:${e.bg}" aria-label="${e.title || s}">
         <div class="container">
           ${e.title || e.subtitle ? o`<div class="head">
@@ -209,7 +233,7 @@ const N = [
       (i, r) => o`<li class="step">
                 <div class="icon" style="background:${$(e.accent, 0.1)};color:${e.accent}">${this.renderIcon(i.icon)}</div>
                 <div>
-                  ${e.showNumbers ? o`<div class="num" style="color:${e.accent}">${A("step", { n: r + 1 })}</div>` : s}
+                  ${e.showNumbers ? o`<div class="num" style="color:${e.accent}">${j("step", { n: r + 1 })}</div>` : s}
                   ${i.title ? o`<h3>${i.title}</h3>` : s}
                   ${i.text ? o`<p>${i.text}</p>` : s}
                 </div>

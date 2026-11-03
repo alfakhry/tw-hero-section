@@ -1,5 +1,5 @@
-import { css as A, html as n, nothing as s, LitElement as D } from "lit";
-const $ = A`
+import { css as E, html as n, nothing as s, LitElement as D } from "lit";
+const $ = E`
   :host {
     display: block;
     font-family: inherit;
@@ -87,8 +87,8 @@ const $ = A`
   tamara: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAABQCAMAAAAdiXgJAAABgFBMVEWfZpafZbWtkrX/nm6aXLmk2fXgZbjia8f+n3cdHCCvhXuiye+mzPHUZLv+oHiOdnGWW7eutPinqsT/AADSZb3TZbz/nnRELDhWUVp0dIT/AP/1eOr/qqp/P79VVaqoy+7dacDQnZn///88Qkt/f39/f/9/v795ipx/v/9///+/P7+cYsT/VVX//wABAAHt2e765LT02M/24cuvZrruyNH1x7PQ5fv417XPd7rutrLMabvT2Pax1vj5p47pqbHpt8/q4vvTl8S3dbyxyezPhbvQusvOyufcpMjHicL7tZfxzOMAAADQw9nll7e55Prkq8sXFBfYlbniiLj9nXmbXbn+ons4MjTasrujXrmdYblkVVlqWGO9gsDZqLL9noO6vNeriY9vR2NLREm5wN0uKCy4fcDol8VcWWTYZ8JSOUaUk6jlisQ5PEVsanXie73iccL9wJ2iY8Ozd5PUfsQqHCNEODpIQT6BYViQaHWtVq2IWHCYipaxlZL/f3p/cmmdpsGv/sLkAAAAgHRSTlP3Gf8YmBgV8I///1acWtL/VAf/AZ3WS////wEVAwQDzXr/Af8CAgT/BAIEDQMB///8///+//7//f7+/v/+/v7//////v/+/////P8A//3/////+/39/f/++v3////+/f3////+//////v///////b/+P//////////A////wT//zWSKQsAAAlNSURBVHja1dyJV9s4AgZwAwXK9L6P6e4ce8/hjMlF4hzGBCcbJ5NkCJmGAIE0G6CUTum2u0Ch86+vfMiWbcmWHJN2v/favvBKnF8+SZad98KpRu5dqOrMw6tXb67njfwTzZs3SStpV366jDgPYR88Y6dgpQ7zi53Xr18vwWSz2Qf3b3w5p6rf3TO5nPGPhrbJeSf5DYH80yUnSO51u+BafoPJzn8N4F+i7Bn14up6fl0Pnp6caN2kspO+ZSPoJUeyeuZ/2/96Sp2z2RfqzM31dR91MvkpB3kyyd41hp3N7s/Pz6lTkH2hPlxfX1tzqD9TNm3bJSwbNL5/Q3cD9jNEjWcn/dif4yAvkdjZfeA+1dg/qDMA7S4bZWf+39glMhu458C6xv14Aeb1WOz058Yu+bGz+w/mTp9yz9SrunrNqUbYGSd7Au40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"
 };
 function y() {
-  var i, r, o, l, a, d, h, f, H;
-  const e = window, t = ((o = (r = (i = e.salla) == null ? void 0 : i.lang) == null ? void 0 : r.getLocale) == null ? void 0 : o.call(r)) || ((d = (a = (l = e.Salla) == null ? void 0 : l.lang) == null ? void 0 : a.getLocale) == null ? void 0 : d.call(a)) || ((H = (f = (h = e.salla) == null ? void 0 : h.config) == null ? void 0 : f.get) == null ? void 0 : H.call(f, "user.language_code"));
+  var i, r, o, l, a, d, h, m, H;
+  const e = window, t = ((o = (r = (i = e.salla) == null ? void 0 : i.lang) == null ? void 0 : r.getLocale) == null ? void 0 : o.call(r)) || ((d = (a = (l = e.Salla) == null ? void 0 : l.lang) == null ? void 0 : a.getLocale) == null ? void 0 : d.call(a)) || ((H = (m = (h = e.salla) == null ? void 0 : h.config) == null ? void 0 : m.get) == null ? void 0 : H.call(m, "user.language_code"));
   return String(t || document.documentElement.lang || "ar").slice(0, 2).toLowerCase();
 }
 function z() {
@@ -108,7 +108,19 @@ const w = {
     verified: "مشتري موثّق",
     close: "إغلاق",
     image: "عرض الصورة {n}",
-    ratedBy: "تقييم من قبل {count} عميل"
+    ratedBy: "تقييم من قبل {count} عميل",
+    yes: "متوفر",
+    no: "غير متوفر",
+    partial: "جزئياً",
+    feature: "الميزة",
+    quantity: "الكمية",
+    startingFrom: "يبدأ من",
+    secureCheckout: "دفع آمن ومضمون",
+    recommendedBy: "موصى به من:",
+    added: "تمت إضافة المنتج إلى السلة",
+    outOfStock: "نفدت الكمية",
+    choose: "اختر",
+    save: "وفّر"
   },
   en: {
     previous: "Previous",
@@ -121,7 +133,19 @@ const w = {
     verified: "Verified buyer",
     close: "Close",
     image: "Show image {n}",
-    ratedBy: "rated by {count} customers"
+    ratedBy: "rated by {count} customers",
+    yes: "Included",
+    no: "Not included",
+    partial: "Partly",
+    feature: "Feature",
+    quantity: "Quantity",
+    startingFrom: "Starting from",
+    secureCheckout: "Secure checkout",
+    recommendedBy: "As recommended by:",
+    added: "Added to cart",
+    outOfStock: "Out of stock",
+    choose: "Choose",
+    save: "Save"
   }
 };
 function p(e, t = {}) {
@@ -144,7 +168,7 @@ function u(e, t) {
 function g(e, t) {
   return e == null || e === "" ? t : Array.isArray(e) ? e.length > 0 : !(e === !1 || e === 0 || e === "0" || e === "false");
 }
-function m(e, t) {
+function f(e, t) {
   const i = c(e).trim();
   return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(i) ? i : t;
 }
@@ -152,7 +176,7 @@ function k(e, t, i = -1 / 0, r = 1 / 0) {
   const o = Number.parseFloat(c(e));
   return Number.isFinite(o) ? Math.min(r, Math.max(i, o)) : t;
 }
-function T(e, t) {
+function N(e, t) {
   const i = Array.isArray(e) ? e[0] : e;
   if (i && typeof i == "object") {
     const r = i.value ?? i.key;
@@ -179,7 +203,7 @@ function M(e) {
     return "";
   }
 }
-function N(e) {
+function T(e) {
   let t = e.replace("#", "");
   t.length === 3 && (t = t.split("").map((d) => d + d).join(""));
   const i = Number.parseInt(t, 16), [r, o, l] = [i >> 16 & 255, i >> 8 & 255, i & 255].map((d) => {
@@ -196,11 +220,11 @@ function W(e) {
   const r = e.match(/tiktok\.com\/.*\/video\/(\d+)/);
   return r ? `https://www.tiktok.com/embed/v2/${r[1]}` : "";
 }
-function Y(e) {
+function S(e) {
   const t = e.match(/youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/)([\w-]{6,})/) || e.match(/youtu\.be\/([\w-]{6,})/);
   return t ? `https://i.ytimg.com/vi/${t[1]}/hqdefault.jpg` : "";
 }
-const j = "https://cdn.salla.network/images/placeholder.png", L = [
+const Y = "https://cdn.salla.network/images/placeholder.png", L = [
   ["mada", "mada"],
   ["applepay", "Apple Pay"],
   ["stcpay", "STC Pay"],
@@ -208,7 +232,7 @@ const j = "https://cdn.salla.network/images/placeholder.png", L = [
   ["tamara", "Tamara"],
   ["mastercard", "Mastercard"],
   ["googlepay", "Google Pay"]
-], S = ["mada", "applepay", "stcpay", "tabby", "mastercard"];
+], j = ["mada", "applepay", "stcpay", "tabby", "mastercard"];
 function P(e, t) {
   const i = `lp-star-${t.replace("#", "")}`;
   return n`<span class="stars" aria-hidden="true">
@@ -236,24 +260,24 @@ function G() {
   ), t = (i = window.matchMedia) == null ? void 0 : i.call(window, "(prefers-reduced-motion: reduce)").matches;
   e ? e.scrollIntoView({ behavior: t ? "auto" : "smooth", block: "start" }) : window.scrollTo({ top: 0, behavior: t ? "auto" : "smooth" });
 }
-function q(e, t) {
-  const i = m(e.cta_color, "#1a8917"), r = L.map(([o]) => o).filter((o) => g(e[`pay_${o}`], S.includes(o)));
+function O(e, t) {
+  const i = f(e.cta_color, "#1a8917"), r = L.map(([o]) => o).filter((o) => g(e[`pay_${o}`], j.includes(o)));
   return {
     enabled: g(e.show_cta, t.enabled ?? !0),
     text: u(e.cta_text, t.text),
     note: u(e.cta_note, ""),
     bg: i,
-    fg: N(i),
-    action: T(e.cta_action, "scroll"),
+    fg: T(i),
+    action: N(e.cta_action, "scroll"),
     link: M(e.cta_link),
     showRating: g(e.show_rating, !0),
     rating: k(e.rating_value, 4.8, 0, 5),
     ratingCount: u(e.rating_count, "5000"),
-    starsColor: m(e.stars_color, "#f5a623"),
+    starsColor: f(e.stars_color, "#f5a623"),
     payments: L.filter(([o]) => r.includes(o))
   };
 }
-function O(e, t = "") {
+function q(e, t = "") {
   if (!e.enabled) return s;
   const i = `background:${e.bg};color:${e.fg}`, r = e.action === "link" && e.link ? n`<a class="cta-btn" style="${i}" href="${e.link}">${e.text}</a>` : n`<button class="cta-btn" type="button" style="${i}" @click=${G}>${e.text}</button>`;
   return n`<div class="cta-block ${t}">
@@ -280,7 +304,7 @@ function V(e, t, i, r) {
 }
 const Z = n`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
   <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-</svg>`, E = n`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+</svg>`, A = n`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
   <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
 </svg>`, X = [
   { avatar: "", name: "سارة القحطاني", rating: 5, text: "من أفضل المنتجات اللي جربتها، النتيجة واضحة والتغليف فخم.", verified: !0 },
@@ -304,10 +328,10 @@ const Z = n`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
       caption: c(C(a, "videos", "caption")).trim()
     })).filter((a) => a.url), l = x(t.photos).map((a) => c(C(a, "photos", "image")).trim()).filter(Boolean);
     return {
-      bg: m(t.bg_color, "#ffffff"),
+      bg: f(t.bg_color, "#ffffff"),
       title: u(t.heading, "آراء عملائنا"),
       subtitle: u(t.subheading, "أكثر من 5000 عميل جرّبوا المنتج، وهذه بعض تجاربهم."),
-      starsColor: m(t.reviews_stars_color ?? t.stars_color, "#f5a623"),
+      starsColor: f(t.reviews_stars_color ?? t.stars_color, "#f5a623"),
       showReviews: g(t.show_reviews, !0),
       reviews: r,
       showVideos: g(t.show_videos, !0),
@@ -316,17 +340,17 @@ const Z = n`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
       showPhotos: g(t.show_photos, !0),
       photosTitle: u(t.photos_title, ""),
       photos: l,
-      cta: q(t, { text: "انضم لعملائنا السعداء" })
+      cta: O(t, { text: "انضم لعملائنا السعداء" })
     };
   }
   nav(t, i) {
     const r = this.renderRoot;
     return n`
       <button class="nav prev" type="button" aria-label="${p("previous")}" @click=${() => V(r, t, -1, i)}>
-        ${i ? E : Z}
+        ${i ? A : Z}
       </button>
       <button class="nav next" type="button" aria-label="${p("next")}" @click=${() => V(r, t, 1, i)}>
-        ${i ? Z : E}
+        ${i ? Z : A}
       </button>
     `;
   }
@@ -358,7 +382,7 @@ const Z = n`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             ></iframe>` : n`<video src="${t.url}" controls autoplay playsinline></video>`}
       </div>`;
     }
-    const r = t.cover || Y(t.url);
+    const r = t.cover || S(t.url);
     return n`<button class="video" type="button" aria-label="${t.caption || p("play")}" @click=${() => this.playing = i}>
       ${r ? n`<img src="${r}" alt="" loading="lazy" decoding="async" />` : s}
       <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z" /></svg></span>
@@ -392,12 +416,12 @@ const Z = n`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 ${t.photosTitle ? n`<h3 class="block-title">${t.photosTitle}</h3>` : s}
                 <div class="track">
                   ${t.photos.map(
-      (d) => n`<img class="photo" src="${d || j}" alt="" loading="lazy" decoding="async" />`
+      (d) => n`<img class="photo" src="${d || Y}" alt="" loading="lazy" decoding="async" />`
     )}
                 </div>
               </div>` : s}
 
-          ${O(t.cta)}
+          ${q(t.cta)}
         </div>
       </section>
     `;
@@ -408,7 +432,7 @@ b.properties = {
   playing: { state: !0 }
 }, b.styles = [
   $,
-  A`
+  E`
       .block + .block { margin-top: 2.5rem; }
       .block-title { margin: 0 0 1rem; font-size: 1.15rem; font-weight: 700; color: var(--lp-heading); }
 

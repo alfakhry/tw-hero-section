@@ -1,5 +1,5 @@
-import { css as L, html as o, nothing as a, LitElement as E } from "lit";
-const A = L`
+import { css as L, html as o, nothing as a, LitElement as A } from "lit";
+const E = L`
   :host {
     display: block;
     font-family: inherit;
@@ -87,11 +87,11 @@ const A = L`
   tamara: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAABQCAMAAAAdiXgJAAABgFBMVEWfZpafZbWtkrX/nm6aXLmk2fXgZbjia8f+n3cdHCCvhXuiye+mzPHUZLv+oHiOdnGWW7eutPinqsT/AADSZb3TZbz/nnRELDhWUVp0dIT/AP/1eOr/qqp/P79VVaqoy+7dacDQnZn///88Qkt/f39/f/9/v795ipx/v/9///+/P7+cYsT/VVX//wABAAHt2e765LT02M/24cuvZrruyNH1x7PQ5fv417XPd7rutrLMabvT2Pax1vj5p47pqbHpt8/q4vvTl8S3dbyxyezPhbvQusvOyufcpMjHicL7tZfxzOMAAADQw9nll7e55Prkq8sXFBfYlbniiLj9nXmbXbn+ons4MjTasrujXrmdYblkVVlqWGO9gsDZqLL9noO6vNeriY9vR2NLREm5wN0uKCy4fcDol8VcWWTYZ8JSOUaUk6jlisQ5PEVsanXie73iccL9wJ2iY8Ozd5PUfsQqHCNEODpIQT6BYViQaHWtVq2IWHCYipaxlZL/f3p/cmmdpsGv/sLkAAAAgHRSTlP3Gf8YmBgV8I///1acWtL/VAf/AZ3WS////wEVAwQDzXr/Af8CAgT/BAIEDQMB///8///+//7//f7+/v/+/v7//////v/+/////P8A//3/////+/39/f/++v3////+/f3////+//////v///////b/+P//////////A////wT//zWSKQsAAAlNSURBVHja1dyJV9s4AgZwAwXK9L6P6e4ce8/hjMlF4hzGBCcbJ5NkCJmGAIE0G6CUTum2u0Ch86+vfMiWbcmWHJN2v/favvBKnF8+SZad98KpRu5dqOrMw6tXb67njfwTzZs3SStpV366jDgPYR88Y6dgpQ7zi53Xr18vwWSz2Qf3b3w5p6rf3TO5nPGPhrbJeSf5DYH80yUnSO51u+BafoPJzn8N4F+i7Bn14up6fl0Pnp6caN2kspO+ZSPoJUeyeuZ/2/96Sp2z2RfqzM31dR91MvkpB3kyyd41hp3N7s/Pz6lTkH2hPlxfX1tzqD9TNm3bJSwbNL5/Q3cD9jNEjWcn/dif4yAvkdjZfeA+1dg/qDMA7S4bZWf+39glMhu458C6xv14Aeb1WOz058Yu+bGz+w/mTp9yz9SrunrNqUbYGSd7Au40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"
 };
 function v() {
-  var i, n, r, l, d, s, C, p, w;
-  const t = window, e = ((r = (n = (i = t.salla) == null ? void 0 : i.lang) == null ? void 0 : n.getLocale) == null ? void 0 : r.call(n)) || ((s = (d = (l = t.Salla) == null ? void 0 : l.lang) == null ? void 0 : d.getLocale) == null ? void 0 : s.call(d)) || ((w = (p = (C = t.salla) == null ? void 0 : C.config) == null ? void 0 : p.get) == null ? void 0 : w.call(p, "user.language_code"));
+  var r, n, i, l, d, s, C, p, w;
+  const t = window, e = ((i = (n = (r = t.salla) == null ? void 0 : r.lang) == null ? void 0 : n.getLocale) == null ? void 0 : i.call(n)) || ((s = (d = (l = t.Salla) == null ? void 0 : l.lang) == null ? void 0 : d.getLocale) == null ? void 0 : s.call(d)) || ((w = (p = (C = t.salla) == null ? void 0 : C.config) == null ? void 0 : p.get) == null ? void 0 : w.call(p, "user.language_code"));
   return String(e || document.documentElement.lang || "ar").slice(0, 2).toLowerCase();
 }
-function P() {
+function k() {
   var e;
   const t = (document.documentElement.getAttribute("dir") || ((e = document.body) == null ? void 0 : e.getAttribute("dir")) || "").toLowerCase();
   return t === "rtl" || t === "ltr" ? t : ["ar", "he", "fa", "ur"].includes(v()) ? "rtl" : "ltr";
@@ -108,7 +108,19 @@ const m = {
     verified: "مشتري موثّق",
     close: "إغلاق",
     image: "عرض الصورة {n}",
-    ratedBy: "تقييم من قبل {count} عميل"
+    ratedBy: "تقييم من قبل {count} عميل",
+    yes: "متوفر",
+    no: "غير متوفر",
+    partial: "جزئياً",
+    feature: "الميزة",
+    quantity: "الكمية",
+    startingFrom: "يبدأ من",
+    secureCheckout: "دفع آمن ومضمون",
+    recommendedBy: "موصى به من:",
+    added: "تمت إضافة المنتج إلى السلة",
+    outOfStock: "نفدت الكمية",
+    choose: "اختر",
+    save: "وفّر"
   },
   en: {
     previous: "Previous",
@@ -121,70 +133,82 @@ const m = {
     verified: "Verified buyer",
     close: "Close",
     image: "Show image {n}",
-    ratedBy: "rated by {count} customers"
+    ratedBy: "rated by {count} customers",
+    yes: "Included",
+    no: "Not included",
+    partial: "Partly",
+    feature: "Feature",
+    quantity: "Quantity",
+    startingFrom: "Starting from",
+    secureCheckout: "Secure checkout",
+    recommendedBy: "As recommended by:",
+    added: "Added to cart",
+    outOfStock: "Out of stock",
+    choose: "Choose",
+    save: "Save"
   }
 };
 function b(t, e = {}) {
   let n = (m[v()] || m.en)[t] ?? m.en[t] ?? t;
-  return Object.entries(e).forEach(([r, l]) => n = n.replace(`{${r}}`, String(l))), n;
+  return Object.entries(e).forEach(([i, l]) => n = n.replace(`{${i}}`, String(l))), n;
 }
-function u(t) {
+function f(t) {
   if (t == null) return "";
   if (typeof t == "string") return t;
   if (typeof t == "number") return String(t);
   if (typeof t == "object") {
     const e = t;
-    return e[v()] || e.ar || e.en || Object.values(e).find((i) => typeof i == "string" && i) || "";
+    return e[v()] || e.ar || e.en || Object.values(e).find((r) => typeof r == "string" && r) || "";
   }
   return "";
 }
 function c(t, e) {
-  return t == null ? e : u(t).trim();
+  return t == null ? e : f(t).trim();
 }
 function x(t, e) {
   return t == null || t === "" ? e : Array.isArray(t) ? t.length > 0 : !(t === !1 || t === 0 || t === "0" || t === "false");
 }
 function g(t, e) {
-  const i = u(t).trim();
-  return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(i) ? i : e;
+  const r = f(t).trim();
+  return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(r) ? r : e;
 }
-function V(t, e, i = -1 / 0, n = 1 / 0) {
-  const r = Number.parseFloat(u(t));
-  return Number.isFinite(r) ? Math.min(n, Math.max(i, r)) : e;
+function y(t, e, r = -1 / 0, n = 1 / 0) {
+  const i = Number.parseFloat(f(t));
+  return Number.isFinite(i) ? Math.min(n, Math.max(r, i)) : e;
 }
-function k(t, e) {
-  const i = Array.isArray(t) ? t[0] : t;
-  if (i && typeof i == "object") {
-    const n = i.value ?? i.key;
+function P(t, e) {
+  const r = Array.isArray(t) ? t[0] : t;
+  if (r && typeof r == "object") {
+    const n = r.value ?? r.key;
     return n ? String(n) : e;
   }
-  return i ? String(i) : e;
+  return r ? String(r) : e;
 }
-function y(t) {
-  const e = u(t).trim();
+function V(t) {
+  const e = f(t).trim();
   if (!e) return "";
   if (e.startsWith("#") || e.startsWith("/")) return e;
   try {
-    const i = new URL(e);
-    return i.protocol === "https:" || i.protocol === "http:" ? i.href : "";
+    const r = new URL(e);
+    return r.protocol === "https:" || r.protocol === "http:" ? r.href : "";
   } catch {
     return "";
   }
 }
 function D(t, e) {
-  let i = t.replace("#", "");
-  i.length === 3 && (i = i.split("").map((r) => r + r).join(""));
-  const n = Number.parseInt(i, 16);
+  let r = t.replace("#", "");
+  r.length === 3 && (r = r.split("").map((i) => i + i).join(""));
+  const n = Number.parseInt(r, 16);
   return `rgba(${n >> 16 & 255},${n >> 8 & 255},${n & 255},${e})`;
 }
 function Z(t) {
   let e = t.replace("#", "");
   e.length === 3 && (e = e.split("").map((s) => s + s).join(""));
-  const i = Number.parseInt(e, 16), [n, r, l] = [i >> 16 & 255, i >> 8 & 255, i & 255].map((s) => {
+  const r = Number.parseInt(e, 16), [n, i, l] = [r >> 16 & 255, r >> 8 & 255, r & 255].map((s) => {
     const C = s / 255;
     return C <= 0.03928 ? C / 12.92 : ((C + 0.055) / 1.055) ** 2.4;
   });
-  return 0.2126 * n + 0.7152 * r + 0.0722 * l > 0.45 ? "#111827" : "#ffffff";
+  return 0.2126 * n + 0.7152 * i + 0.0722 * l > 0.45 ? "#111827" : "#ffffff";
 }
 const H = [
   ["mada", "mada"],
@@ -196,19 +220,19 @@ const H = [
   ["googlepay", "Google Pay"]
 ], B = ["mada", "applepay", "stcpay", "tabby", "mastercard"];
 function N(t, e) {
-  const i = `lp-star-${e.replace("#", "")}`;
+  const r = `lp-star-${e.replace("#", "")}`;
   return o`<span class="stars" aria-hidden="true">
     ${[0, 1, 2, 3, 4].map((n) => {
-    const r = Math.round(Math.max(0, Math.min(1, t - n)) * 100);
+    const i = Math.round(Math.max(0, Math.min(1, t - n)) * 100);
     return o`<svg viewBox="0 0 20 20">
         <defs>
-          <linearGradient id="${i}-${r}">
-            <stop offset="${r}%" stop-color="${e}"></stop>
-            <stop offset="${r}%" stop-color="#d1d5db"></stop>
+          <linearGradient id="${r}-${i}">
+            <stop offset="${i}%" stop-color="${e}"></stop>
+            <stop offset="${i}%" stop-color="#d1d5db"></stop>
           </linearGradient>
         </defs>
         <path
-          fill="url(#${i}-${r})"
+          fill="url(#${r}-${i})"
           d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"
         ></path>
       </svg>`;
@@ -216,32 +240,32 @@ function N(t, e) {
   </span>`;
 }
 function z() {
-  var i;
+  var r;
   const t = Array.from(document.querySelectorAll("body *")).find(
     (n) => /^SALLA-HERO(-|$)/.test(n.tagName)
-  ), e = (i = window.matchMedia) == null ? void 0 : i.call(window, "(prefers-reduced-motion: reduce)").matches;
+  ), e = (r = window.matchMedia) == null ? void 0 : r.call(window, "(prefers-reduced-motion: reduce)").matches;
   t ? t.scrollIntoView({ behavior: e ? "auto" : "smooth", block: "start" }) : window.scrollTo({ top: 0, behavior: e ? "auto" : "smooth" });
 }
-function W(t, e) {
-  const i = g(t.cta_color, "#1a8917"), n = H.map(([r]) => r).filter((r) => x(t[`pay_${r}`], B.includes(r)));
+function S(t, e) {
+  const r = g(t.cta_color, "#1a8917"), n = H.map(([i]) => i).filter((i) => x(t[`pay_${i}`], B.includes(i)));
   return {
     enabled: x(t.show_cta, e.enabled ?? !0),
     text: c(t.cta_text, e.text),
     note: c(t.cta_note, ""),
-    bg: i,
-    fg: Z(i),
-    action: k(t.cta_action, "scroll"),
-    link: y(t.cta_link),
+    bg: r,
+    fg: Z(r),
+    action: P(t.cta_action, "scroll"),
+    link: V(t.cta_link),
     showRating: x(t.show_rating, !0),
-    rating: V(t.rating_value, 4.8, 0, 5),
+    rating: y(t.rating_value, 4.8, 0, 5),
     ratingCount: c(t.rating_count, "5000"),
     starsColor: g(t.stars_color, "#f5a623"),
-    payments: H.filter(([r]) => n.includes(r))
+    payments: H.filter(([i]) => n.includes(i))
   };
 }
-function Y(t, e = "") {
+function W(t, e = "") {
   if (!t.enabled) return a;
-  const i = `background:${t.bg};color:${t.fg}`, n = t.action === "link" && t.link ? o`<a class="cta-btn" style="${i}" href="${t.link}">${t.text}</a>` : o`<button class="cta-btn" type="button" style="${i}" @click=${z}>${t.text}</button>`;
+  const r = `background:${t.bg};color:${t.fg}`, n = t.action === "link" && t.link ? o`<a class="cta-btn" style="${r}" href="${t.link}">${t.text}</a>` : o`<button class="cta-btn" type="button" style="${r}" @click=${z}>${t.text}</button>`;
   return o`<div class="cta-block ${e}">
     ${t.showRating ? o`<div class="cta-rating">
           ${N(t.rating, t.starsColor)}
@@ -253,7 +277,7 @@ function Y(t, e = "") {
     ${t.note ? o`<p class="cta-note">${t.note}</p>` : a}
     ${t.payments.length ? o`<ul class="pay" aria-label="${b("securePayment")}">
           ${t.payments.map(
-    ([r, l]) => o`<li><img src="${M[r]}" alt="${l}" loading="lazy" decoding="async" /></li>`
+    ([i, l]) => o`<li><img src="${M[i]}" alt="${l}" loading="lazy" decoding="async" /></li>`
   )}
         </ul>` : a}
   </div>`;
@@ -264,35 +288,35 @@ o`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
 o`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
   <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
 </svg>`;
-const f = class f extends E {
+const u = class u extends A {
   get data() {
-    const e = this.config || {}, i = g(e.bg_color, "#f4f4f5"), n = y(e.bg_image);
+    const e = this.config || {}, r = g(e.bg_color, "#f4f4f5"), n = V(e.bg_image);
     return {
-      bg: i,
+      bg: r,
       image: n,
-      overlay: V(e.overlay_opacity, 55, 0, 90) / 100,
+      overlay: y(e.overlay_opacity, 55, 0, 90) / 100,
       headline: c(e.heading, "جاهز تبدأ تجربتك اليوم؟"),
       subtitle: c(e.subheading, "انضم لآلاف العملاء الراضين، والكمية المتوفرة بهذا السعر محدودة."),
-      textColor: n ? "#ffffff" : g(e.text_color, Z(i)),
-      cta: W({ ...e, show_cta: !0 }, { text: "اطلب الآن" })
+      textColor: n ? "#ffffff" : g(e.text_color, Z(r)),
+      cta: S({ ...e, show_cta: !0 }, { text: "اطلب الآن" })
     };
   }
   render() {
-    const e = this.data, i = e.textColor.toLowerCase() === "#ffffff" || e.textColor.toLowerCase() === "#fff", n = e.image ? `background-color:${e.bg};background-image:url('${e.image.replace(/['()\\]/g, encodeURIComponent)}')` : `background:${e.bg}`;
+    const e = this.data, r = e.textColor.toLowerCase() === "#ffffff" || e.textColor.toLowerCase() === "#fff", n = e.image ? `background-color:${e.bg};background-image:url('${e.image.replace(/['()\\]/g, encodeURIComponent)}')` : `background:${e.bg}`;
     return o`
-      <section class="section ${i ? "on-dark" : ""}" dir="${P()}" style="${n}" aria-label="${e.headline || a}">
+      <section class="section ${r ? "on-dark" : ""}" dir="${k()}" style="${n}" aria-label="${e.headline || a}">
         ${e.image ? o`<div class="overlay" style="background:${D("#000000", e.overlay)}"></div>` : a}
         <div class="inner" style="color:${e.textColor}">
           ${e.headline ? o`<h2>${e.headline}</h2>` : a}
           ${e.subtitle ? o`<p class="sub">${e.subtitle}</p>` : a}
-          ${Y(e.cta)}
+          ${W(e.cta)}
         </div>
       </section>
     `;
   }
 };
-f.properties = { config: { type: Object } }, f.styles = [
-  A,
+u.properties = { config: { type: Object } }, u.styles = [
+  E,
   L`
       .section { position: relative; overflow: hidden; background-size: cover; background-position: center; }
       .overlay { position: absolute; inset: 0; }
@@ -307,7 +331,7 @@ f.properties = { config: { type: Object } }, f.styles = [
       }
     `
 ];
-let h = f;
+let h = u;
 typeof h < "u" && h.registerSallaComponent("salla-lp-final-cta");
 export {
   h as default

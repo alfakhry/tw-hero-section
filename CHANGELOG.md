@@ -1,6 +1,30 @@
 # Changelog
 
-## 0.4.0 — 2026-10-22
+## 0.5.0 — 2026-11-03
+
+### Added
+- `hero` redesigned to match the landing page wireframe: top features bar (rotates on mobile), gallery with
+  up to 6 thumbnails, "starting from" price, savings badge and stock indicator, quantity offer cards,
+  quantity selector, secure-checkout line, trust card, review, tabs (accordion on mobile) and an
+  "as recommended by" strip.
+- `hero` product linking: pick a store product to use its live price, images, options and stock;
+  the button adds to cart then goes to checkout, adds and stays, or opens a link. Optional Salla quick
+  order button and Salla product offers.
+- `hero` offers source: automatic (Bundles & Product Offers app when installed, otherwise quantity
+  cards), quantity cards only, app only, or none. Host-mount hooks for the app
+  (`#bundle-pro-widget`, `window.BundlePro.mount`, `wahaj:product` event).
+- `lp-comparison`: your product against two alternatives, with yes / partly / no marks and an optional image.
+- `lp-faq`: accessible FAQ accordion beside a heading and intro, side or stacked layout, optional CTA.
+- Template `electronics-landing` (wireless headphones), and comparison + FAQ sections in all templates.
+
+### Changed
+- Hero FAQ moved to the new `lp-faq` component; hero `title`/`subtitle` fields renamed to
+  `headline`/`subheadline` (old values are still read).
+- Templates no longer include `store-features` (the hero trust card and top bar cover it); the component
+  is still available.
+- New component previews, template thumbnails and store screenshots.
+
+## 0.4.0 — 2026-10-22 (not released separately; included in 0.5.0)
 
 ### Added
 - Landing page templates: `perfume-landing` and `skincare-landing` (Arabic and English content).

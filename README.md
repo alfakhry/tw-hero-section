@@ -10,15 +10,17 @@ separate component, so merchants can show, hide and reorder sections freely.
 
 | Component | Purpose |
 |---|---|
-| `hero` | Product gallery, rating, price, buy button, payment logos, trust card, review and FAQ |
+| `hero` | Buy section linked to a store product: top features bar, gallery, rating, live price, quantity offers or the Bundles app, Salla options, add to cart / quick order, payment logos, trust card, review, tabs and an "as recommended by" strip |
 | `lp-transformation` | 2–4 steps (problem → solution journey) with icons |
 | `lp-features` | Alternating image/text rows, optional "what's in the box" panel and CTA |
 | `lp-benefits` | Alternating image/text rows describing customer benefits |
 | `lp-social-proof` | Written reviews, video reviews (YouTube / Vimeo / TikTok / mp4) and customer photos |
 | `store-features` | Shipping, payment, support and returns highlights |
+| `lp-comparison` | Comparison table (your product vs two alternatives) with an optional image |
+| `lp-faq` | FAQ accordion beside a heading and intro, optional CTA |
 | `lp-final-cta` | Closing headline with the primary call to action |
 
-Templates live in `templates/` (`perfume-landing`, `skincare-landing`) with thumbnails in `templates-thumbs/`.
+Templates live in `templates/` (`perfume-landing`, `skincare-landing`, `electronics-landing`) with thumbnails in `templates-thumbs/`.
 
 ## Conventions
 
@@ -27,9 +29,16 @@ Templates live in `templates/` (`perfume-landing`, `skincare-landing`) with thum
 - **RTL and LTR**: layouts use logical CSS properties and follow the storefront `dir`.
 - **Theme friendly**: components inherit the store font; colors are merchant settings.
 - **One primary action**: every CTA scrolls to the purchase section (`hero`) or opens a merchant link.
+- **Real products**: when a product is chosen in `hero`, price, images and options come from
+  `salla.product.getDetails`, options render with `salla-product-options`, and the button uses
+  `salla.cart.addItem`. Without a product the section works in manual (display) mode.
+- **Bundles & Product Offers app**: `hero` provides a `#bundle-pro-widget` mount, sets
+  `window.__BUNDLE_PRO_PRODUCT_ID__`, calls `window.BundlePro.mount(el, id)` when available and
+  dispatches a `wahaj:product` DOM event (`detail: { productId, element }`).
 - **Self-contained files**: code in `src/shared/` is copied into each component at build time
   (see `vite.config.js`), so each `dist/<component>.js` loads with a single request.
-- **No external scripts**: only Salla's own icon font (`sallaicons.css`) is loaded.
+- **No external scripts**: only Salla's own icon font (`sallaicons.css`) and Salla web components are used.
+- **React themes**: the bundle renders through `<salla-custom-component>`, so it works with both Twig and React (Twilight) themes.
 
 ## Development
 
