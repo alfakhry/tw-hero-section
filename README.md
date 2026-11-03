@@ -1,4 +1,4 @@
-# Wahaj (وهج) — Landing page component bundle
+# Wahaj Pages (وهج للصفحات) — Landing page component bundle
 
 A Salla Twilight component bundle for building high-converting product landing pages.
 It ships as **landing page templates** (Sales channels → Landing pages): every section is a
