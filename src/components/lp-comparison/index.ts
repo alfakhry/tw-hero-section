@@ -1,17 +1,18 @@
+import { d } from "../../shared/defaults";
 import { css, html, LitElement, nothing } from "lit";
 import { baseStyles } from "../../shared/styles";
 import { ctaBlock, readCta } from "../../shared/cta";
-import { PLACEHOLDER_IMAGE, color, direction, hexToRgba, isOn, item, list, option, t, text, textOr } from "../../shared/utils";
+import { PLACEHOLDER_IMAGE, color, direction, hexToRgba, isOn, item, list, option, safeUrl, t, text, textOr } from "../../shared/utils";
 
 type Mark = "yes" | "no" | "partial";
 type Row = { feature: string; brand: Mark; c1: Mark; c2: Mark };
 
-const DEFAULT_ROWS: Row[] = [
-  { feature: "مكوّنات طبيعية بالكامل", brand: "yes", c1: "no", c2: "partial" },
-  { feature: "ثبات يدوم أكثر من 10 ساعات", brand: "yes", c1: "partial", c2: "no" },
-  { feature: "ضمان استرجاع المبلغ", brand: "yes", c1: "partial", c2: "partial" },
-  { feature: "شحن مجاني وسريع", brand: "yes", c1: "no", c2: "no" },
-  { feature: "خدمة عملاء على مدار الساعة", brand: "yes", c1: "partial", c2: "no" },
+const DEFAULT_ROWS = (): Row[] => [
+  { feature: d("مكوّنات طبيعية بالكامل"), brand: "yes", c1: "no", c2: "partial" },
+  { feature: d("ثبات يدوم أكثر من 10 ساعات"), brand: "yes", c1: "partial", c2: "no" },
+  { feature: d("ضمان استرجاع المبلغ"), brand: "yes", c1: "partial", c2: "partial" },
+  { feature: d("شحن مجاني وسريع"), brand: "yes", c1: "no", c2: "no" },
+  { feature: d("خدمة عملاء على مدار الساعة"), brand: "yes", c1: "partial", c2: "no" },
 ];
 
 function mark(value: unknown, fallback: Mark): Mark {
@@ -63,15 +64,15 @@ export default class LpComparison extends LitElement {
     return {
       bg: color(cfg.bg_color, "#ffffff"),
       accent: color(cfg.accent_color, "#1a8917"),
-      title: textOr(cfg.heading, "لماذا نحن الخيار الأفضل؟"),
-      subtitle: textOr(cfg.subheading, "قارن بنفسك بين منتجنا والبدائل المنتشرة في السوق."),
+      title: textOr(cfg.heading, d("لماذا نحن الخيار الأفضل؟")),
+      subtitle: textOr(cfg.subheading, d("قارن بنفسك بين منتجنا والبدائل المنتشرة في السوق.")),
       showImage: isOn(cfg.show_image, true),
-      image: text(cfg.image).trim() || PLACEHOLDER_IMAGE,
-      brandName: textOr(cfg.brand_name, "منتجنا"),
-      brandLogo: text(cfg.brand_logo).trim(),
-      c1: textOr(cfg.competitor_1, "منتج آخر"),
-      c2: textOr(cfg.competitor_2, "البدائل التقليدية"),
-      rows: rows.length
+      image: safeUrl(cfg.image) || PLACEHOLDER_IMAGE,
+      brandName: textOr(cfg.brand_name, d("منتجنا")),
+      brandLogo: safeUrl(cfg.brand_logo),
+      c1: textOr(cfg.competitor_1, d("منتج آخر")),
+      c2: textOr(cfg.competitor_2, d("البدائل التقليدية")),
+      rows: cfg.rows !== undefined && cfg.rows !== null
         ? rows
             .map((r) => ({
               feature: text(item(r, "rows", "feature")).trim(),
@@ -80,8 +81,8 @@ export default class LpComparison extends LitElement {
               c2: mark(item(r, "rows", "c2"), "no"),
             }))
             .filter((r) => r.feature)
-        : DEFAULT_ROWS,
-      cta: readCta(cfg, { text: "اطلب الآن", enabled: false }),
+        : DEFAULT_ROWS(),
+      cta: readCta(cfg, { text: d("اطلب الآن"), enabled: false }),
     };
   }
 

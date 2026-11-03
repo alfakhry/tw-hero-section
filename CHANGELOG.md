@@ -8,7 +8,7 @@
   quantity selector, secure-checkout line, trust card, review, tabs (accordion on mobile) and an
   "as recommended by" strip.
 - `hero` product linking: pick a store product to use its live price, images, options and stock;
-  the button adds to cart then goes to checkout, adds and stays, or opens a link. Optional Salla quick
+  the button adds to cart then opens the cart, adds and stays, or opens a link. Optional Salla quick
   order button and Salla product offers.
 - `hero` offers source: automatic (Bundles & Product Offers app when installed, otherwise quantity
   cards), quantity cards only, app only, or none. Host-mount hooks for the app
@@ -23,6 +23,12 @@
 - Templates no longer include `store-features` (the hero trust card and top bar cover it); the component
   is still available.
 - New component previews, template thumbnails and store screenshots.
+- Collection sub-field ids follow Salla's `collection.field` convention; saved values with the old ids are still read.
+- Default texts are bilingual (Arabic / English) in the editor and in the components.
+- An emptied list (reviews, FAQ, rows, steps) stays empty instead of showing sample content.
+- Image and link URLs are sanitized everywhere; protocol-relative links are rejected.
+- Hero: keyboard arrows for offer cards and tabs, top bar pauses on hover/focus and stops when
+  the arrows are used, unique ids when a page has more than one hero, retries while the Salla SDK loads.
 
 ## 0.4.0 — 2026-10-22 (not released separately; included in 0.5.0)
 

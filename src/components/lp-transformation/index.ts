@@ -1,11 +1,12 @@
+import { d } from "../../shared/defaults";
 import { css, html, LitElement, nothing } from "lit";
 import { baseStyles } from "../../shared/styles";
 import { SALLA_ICONS_CSS, color, direction, ensureSallaIcons, hexToRgba, isOn, item, list, t, text, textOr } from "../../shared/utils";
 
-const DEFAULT_STEPS = [
-  { icon: "sicon-shopping-bag", title: "اطلب بسهولة", text: "اختر الكمية المناسبة وأكمل الطلب خلال أقل من دقيقة." },
-  { icon: "sicon-shipping-fast", title: "استلم بسرعة", text: "يصلك الطلب خلال يومين إلى باب بيتك مع إمكانية التتبّع." },
-  { icon: "sicon-smile", title: "استمتع بالنتيجة", text: "لاحظ الفرق من أول استخدام، أو استرجع مبلغك بكل سهولة." },
+const DEFAULT_STEPS = () => [
+  { icon: "sicon-shopping-bag", title: d("اطلب بسهولة"), text: d("اختر الكمية المناسبة وأكمل الطلب خلال أقل من دقيقة.") },
+  { icon: "sicon-shipping-fast", title: d("استلم بسرعة"), text: d("يصلك الطلب خلال يومين إلى باب بيتك مع إمكانية التتبّع.") },
+  { icon: "sicon-smile", title: d("استمتع بالنتيجة"), text: d("لاحظ الفرق من أول استخدام، أو استرجع مبلغك بكل سهولة.") },
 ];
 
 type Step = { icon: string; title: string; text: string };
@@ -58,7 +59,7 @@ export default class LpTransformation extends LitElement {
   private get data() {
     const cfg = this.config || {};
     const rows = list(cfg.steps);
-    const steps: Step[] = (rows.length ? rows : DEFAULT_STEPS)
+    const steps: Step[] = (cfg.steps !== undefined && cfg.steps !== null ? rows : DEFAULT_STEPS())
       .map((row) => ({
         icon: text(item(row, "steps", "icon")).trim(),
         title: text(item(row, "steps", "title")).trim(),
@@ -68,8 +69,8 @@ export default class LpTransformation extends LitElement {
     return {
       bg: color(cfg.bg_color, "#ffffff"),
       accent: color(cfg.accent_color, "#1a8917"),
-      title: textOr(cfg.heading, "كيف يغيّر المنتج يومك؟"),
-      subtitle: textOr(cfg.subheading, "ثلاث خطوات بسيطة تفصلك عن النتيجة التي تبحث عنها."),
+      title: textOr(cfg.heading, d("كيف يغيّر المنتج يومك؟")),
+      subtitle: textOr(cfg.subheading, d("ثلاث خطوات بسيطة تفصلك عن النتيجة التي تبحث عنها.")),
       showNumbers: isOn(cfg.show_numbers, true),
       showConnector: isOn(cfg.show_connector, true),
       steps,

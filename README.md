@@ -24,8 +24,10 @@ Templates live in `templates/` (`perfume-landing`, `skincare-landing`, `electron
 
 ## Conventions
 
-- **Bilingual**: every merchant text field is `multilanguage`; fixed interface strings come from
-  the small dictionary in `src/shared/utils.ts` (Arabic / English).
+- **Bilingual**: merchant text fields are `multilanguage` with Arabic and English defaults (numbers,
+  prices and colors are not); fixed interface strings come from the dictionary in `src/shared/utils.ts`,
+  and built-in fallback texts from `src/shared/defaults.ts`.
+- **Collection sub-fields** use Salla's `collection.field` ids (e.g. `tiers.price`).
 - **RTL and LTR**: layouts use logical CSS properties and follow the storefront `dir`.
 - **Theme friendly**: components inherit the store font; colors are merchant settings.
 - **One primary action**: every CTA scrolls to the purchase section (`hero`) or opens a merchant link.
@@ -38,6 +40,7 @@ Templates live in `templates/` (`perfume-landing`, `skincare-landing`, `electron
 - **Self-contained files**: code in `src/shared/` is copied into each component at build time
   (see `vite.config.js`), so each `dist/<component>.js` loads with a single request.
 - **No external scripts**: only Salla's own icon font (`sallaicons.css`) and Salla web components are used.
+  Video reviews embed the merchant's YouTube / Vimeo / TikTok link in an iframe only after the visitor presses play.
 - **React themes**: the bundle renders through `<salla-custom-component>`, so it works with both Twig and React (Twilight) themes.
 
 ## Development

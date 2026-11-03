@@ -1,19 +1,20 @@
+import { d } from "../../shared/defaults";
 import { html, LitElement, nothing } from "lit";
 import { baseStyles } from "../../shared/styles";
 import { firstImageSide, readRows, rowsStyles, rowsTemplate, type Row } from "../../shared/rows";
 import { color, direction, textOr } from "../../shared/utils";
 
-const DEFAULT_ROWS: Row[] = [
+const DEFAULT_ROWS = (): Row[] => [
   {
     image: "",
-    title: "ثقة تدوم معك طوال اليوم",
-    text: "تركيبة مدروسة تمنحك نتيجة واضحة تلاحظها من أول استخدام، وتبقى معك من الصباح حتى المساء.",
+    title: d("ثقة تدوم معك طوال اليوم"),
+    text: d("تركيبة مدروسة تمنحك نتيجة واضحة تلاحظها من أول استخدام، وتبقى معك من الصباح حتى المساء."),
     points: [],
   },
   {
     image: "",
-    title: "مكوّنات طبيعية تناسب الجميع",
-    text: "اخترنا مكوّنات لطيفة وآمنة للاستخدام اليومي، بدون إضافات تزعجك.",
+    title: d("مكوّنات طبيعية تناسب الجميع"),
+    text: d("اخترنا مكوّنات لطيفة وآمنة للاستخدام اليومي، بدون إضافات تزعجك."),
     points: [],
   },
 ];
@@ -30,10 +31,10 @@ export default class LpBenefits extends LitElement {
     return {
       bg: color(cfg.bg_color, "#f4f4f5"),
       accent: color(cfg.accent_color, "#1a8917"),
-      title: textOr(cfg.heading, "لماذا يحبّه عملاؤنا؟"),
-      subtitle: textOr(cfg.subheading, "فوائد حقيقية تلاحظها في حياتك اليومية."),
+      title: textOr(cfg.heading, d("لماذا يحبّه عملاؤنا؟")),
+      subtitle: textOr(cfg.subheading, d("فوائد حقيقية تلاحظها في حياتك اليومية.")),
       first: firstImageSide(cfg.first_image_side),
-      rows: readRows(cfg.benefits, "benefits", DEFAULT_ROWS),
+      rows: readRows(cfg.benefits, "benefits", DEFAULT_ROWS()),
     };
   }
 

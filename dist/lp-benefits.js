@@ -1,5 +1,151 @@
-import { css as w, nothing as a, html as o, LitElement as v } from "lit";
-const $ = w`
+import { css as v, nothing as o, html as n, LitElement as k } from "lit";
+function g() {
+  var r, i, a, s, l, f, y, u, b;
+  const t = window, e = ((a = (i = (r = t.salla) == null ? void 0 : r.lang) == null ? void 0 : i.getLocale) == null ? void 0 : a.call(i)) || ((f = (l = (s = t.Salla) == null ? void 0 : s.lang) == null ? void 0 : l.getLocale) == null ? void 0 : f.call(l)) || ((b = (u = (y = t.salla) == null ? void 0 : y.config) == null ? void 0 : u.get) == null ? void 0 : b.call(u, "user.language_code"));
+  return String(e || document.documentElement.lang || "ar").slice(0, 2).toLowerCase();
+}
+function $() {
+  var e;
+  const t = (document.documentElement.getAttribute("dir") || ((e = document.body) == null ? void 0 : e.getAttribute("dir")) || "").toLowerCase();
+  return t === "rtl" || t === "ltr" ? t : ["ar", "he", "fa", "ur"].includes(g()) ? "rtl" : "ltr";
+}
+function c(t) {
+  if (t == null) return "";
+  if (typeof t == "string") return t;
+  if (typeof t == "number") return String(t);
+  if (typeof t == "object") {
+    const e = t;
+    return e[g()] || e.ar || e.en || Object.values(e).find((r) => typeof r == "string" && r) || "";
+  }
+  return "";
+}
+function w(t, e) {
+  return t == null ? e : c(t).trim();
+}
+function x(t, e) {
+  const r = c(t).trim();
+  return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(r) ? r : e;
+}
+function A(t, e) {
+  const r = Array.isArray(t) ? t[0] : t;
+  if (r && typeof r == "object") {
+    const i = r.value ?? r.key;
+    return i ? String(i) : e;
+  }
+  return r ? String(r) : e;
+}
+function S(t) {
+  return Array.isArray(t) ? t.filter((e) => e && typeof e == "object") : [];
+}
+function p(t, e, r) {
+  if (t[r] !== void 0 && t[r] !== "") return t[r];
+  const i = t[`${e}.${r}`];
+  return i !== void 0 ? i : t[r];
+}
+function z(t) {
+  const e = c(t).trim();
+  if (!e) return "";
+  if (e.startsWith("#")) return e;
+  if (e.startsWith("/")) return /^\/[\/\\]/.test(e) ? "" : e;
+  try {
+    const r = new URL(e);
+    return r.protocol === "https:" || r.protocol === "http:" ? r.href : "";
+  } catch {
+    return "";
+  }
+}
+function C(t, e) {
+  let r = t.replace("#", "");
+  r.length === 3 && (r = r.split("").map((a) => a + a).join(""));
+  const i = Number.parseInt(r, 16);
+  return `rgba(${i >> 16 & 255},${i >> 8 & 255},${i & 255},${e})`;
+}
+const E = "https://cdn.salla.network/images/placeholder.png", j = {
+  "تصميم عملي يرافقك في كل مكان": "A practical design that goes everywhere with you",
+  "حجم مناسب للحقيبة وعبوة محكمة تحافظ على جودة المنتج.": "Bag-friendly size and a sealed pack that keeps the product fresh.",
+  "سهل الحمل والاستخدام": "Easy to carry and use",
+  "جودة مختبرة قبل أن تصلك": "Quality tested before it reaches you",
+  "كل دفعة تمر بفحص جودة دقيق لتحصل على نفس التجربة في كل مرة.": "Every batch is quality checked so you get the same experience every time.",
+  "مصنوع وفق أعلى المعايير": "Made to the highest standards",
+  "عبوة المنتج الأساسية\nعيّنة إضافية مجانية\nدليل الاستخدام\nتغليف هدية أنيق": `Main product pack
+Free extra sample
+User guide
+Elegant gift wrapping`,
+  "مزايا تصنع الفرق": "Features that make the difference",
+  "صُمّم بعناية ليمنحك أفضل تجربة ممكنة.": "Carefully designed to give you the best possible experience.",
+  "ماذا يوجد داخل العلبة؟": "What's in the box?",
+  "كل ما تحتاجه لتبدأ مباشرة بعد الاستلام.": "Everything you need to start right after delivery.",
+  "اطلب الآن": "Order now",
+  "عطر فاخر يدوم طويلاً — رائحة تبقى معك طوال اليوم": "A luxury fragrance that lasts — a scent that stays with you all day",
+  "الكمية محدودة": "Limited stock",
+  "اختر العرض المناسب": "Choose your offer",
+  "اشترِ الآن": "Buy now",
+  "سارة القحطاني": "Sara A.",
+  "من أفضل المنتجات اللي جربتها، النتيجة واضحة والتغليف فخم.": "One of the best products I have tried — clear results and luxurious packaging.",
+  "عبدالله الشمري": "Abdullah S.",
+  "وصلني الطلب بسرعة والجودة أعلى من توقعاتي. أكيد بكرر الطلب.": "Fast delivery and better quality than I expected. I'll definitely order again.",
+  "نورة العتيبي": "Noura O.",
+  "تجربة ممتازة وخدمة العملاء متعاونين جداً.": "Great experience and very helpful customer service.",
+  "فهد الدوسري": "Fahad D.",
+  "يستاهل كل ريال، أنصح فيه أهلي وأصحابي.": "Worth every riyal — I recommend it to family and friends.",
+  "آراء عملائنا": "What our customers say",
+  "أكثر من 5000 عميل جرّبوا المنتج، وهذه بعض تجاربهم.": "More than 5,000 customers tried it. Here are some of their stories.",
+  "انضم لعملائنا السعداء": "Join our happy customers",
+  "شحن سريع": "Fast shipping",
+  "توصيل خلال يومين لجميع مدن المملكة، مع إمكانية تتبّع الطلب.": "Delivery within two days across Saudi Arabia, with order tracking.",
+  "دفع آمن": "Secure payment",
+  "تابي ومدى و STC Pay وبطاقات بنكية، لإتمام الطلب براحة.": "Tabby, mada, STC Pay and cards for an easy checkout.",
+  "دعم متواصل": "Always-on support",
+  "فريق جاهز للرد على استفساراتك قبل الشراء وبعده.": "A team ready to answer your questions before and after you buy.",
+  "استرجاع سهل": "Easy returns",
+  "إرجاع مجاني خلال 14 يوم إذا لم يُفتح المنتج.": "Free returns within 14 days if the product is unopened.",
+  "مميزات المتجر": "Why shop with us",
+  "نلتزم بخدمة واضحة من لحظة الطلب حتى الاستلام.": "Clear, reliable service from order to delivery.",
+  "اطلب بسهولة": "Order easily",
+  "اختر الكمية المناسبة وأكمل الطلب خلال أقل من دقيقة.": "Pick your quantity and check out in under a minute.",
+  "استلم بسرعة": "Get it fast",
+  "يصلك الطلب خلال يومين إلى باب بيتك مع إمكانية التتبّع.": "Your order reaches your door within two days, with tracking.",
+  "استمتع بالنتيجة": "Enjoy the results",
+  "لاحظ الفرق من أول استخدام، أو استرجع مبلغك بكل سهولة.": "See the difference from the first use, or get your money back easily.",
+  "كيف يغيّر المنتج يومك؟": "How it changes your day",
+  "ثلاث خطوات بسيطة تفصلك عن النتيجة التي تبحث عنها.": "Three simple steps to the result you want.",
+  "كم تستغرق مدة الشحن؟": "How long does shipping take?",
+  "من يوم إلى ثلاثة أيام عمل داخل المملكة، ويصلك رابط لتتبّع الطلب.": "One to three business days within Saudi Arabia, with a tracking link.",
+  "هل يمكنني إرجاع المنتج؟": "Can I return the product?",
+  "نعم، يمكنك الإرجاع خلال 14 يوماً من الاستلام إذا كان المنتج بحالته الأصلية.": "Yes, you can return it within 14 days of delivery if it is in its original condition.",
+  "ما طرق الدفع المتاحة؟": "Which payment methods are available?",
+  "مدى، Apple Pay، البطاقات البنكية، والتقسيط عبر تابي وتمارا.": "mada, Apple Pay, cards, and instalments with Tabby and Tamara.",
+  "هل المنتج أصلي؟": "Is the product original?",
+  "جميع منتجاتنا أصلية 100% ومضمونة من المصدر.": "All our products are 100% original and guaranteed from the source.",
+  "كيف أتواصل معكم؟": "How can I reach you?",
+  "عبر واتساب أو الدردشة في المتجر، وفريقنا يرد خلال دقائق.": "Via WhatsApp or store chat — our team replies within minutes.",
+  "الأسئلة الشائعة": "Frequently asked questions",
+  "جمعنا لك إجابات أكثر الأسئلة التي تصلنا. لم تجد إجابتك؟ تواصل معنا في أي وقت.": "Answers to the questions we hear most. Can't find yours? Reach us anytime.",
+  "ثقة تدوم معك طوال اليوم": "Confidence that lasts all day",
+  "تركيبة مدروسة تمنحك نتيجة واضحة تلاحظها من أول استخدام، وتبقى معك من الصباح حتى المساء.": "A carefully designed formula with results you notice from the first use, lasting from morning to evening.",
+  "مكوّنات طبيعية تناسب الجميع": "Natural ingredients for everyone",
+  "اخترنا مكوّنات لطيفة وآمنة للاستخدام اليومي، بدون إضافات تزعجك.": "Gentle ingredients that are safe for daily use, with nothing you don't need.",
+  "لماذا يحبّه عملاؤنا؟": "Why customers love it",
+  "فوائد حقيقية تلاحظها في حياتك اليومية.": "Real benefits you notice in daily life.",
+  "مكوّنات طبيعية بالكامل": "All-natural ingredients",
+  "ثبات يدوم أكثر من 10 ساعات": "Lasts more than 10 hours",
+  "ضمان استرجاع المبلغ": "Money-back guarantee",
+  "شحن مجاني وسريع": "Fast, free shipping",
+  "خدمة عملاء على مدار الساعة": "24/7 customer service",
+  "لماذا نحن الخيار الأفضل؟": "Why we are the better choice",
+  "قارن بنفسك بين منتجنا والبدائل المنتشرة في السوق.": "Compare our product with the usual alternatives.",
+  منتجنا: "Our product",
+  "منتج آخر": "Another product",
+  "البدائل التقليدية": "Traditional alternatives",
+  "جاهز تبدأ تجربتك اليوم؟": "Ready to start today?",
+  "انضم لآلاف العملاء الراضين، والكمية المتوفرة بهذا السعر محدودة.": "Join thousands of happy customers — stock at this price is limited.",
+  "عبوة مقاومة للتسريب": "Leak-proof pack",
+  "فحص جودة لكل دفعة": "Quality check on every batch"
+};
+function d(t) {
+  return g() === "ar" ? t : j[t] ?? t;
+}
+const O = v`
   :host {
     display: block;
     font-family: inherit;
@@ -78,90 +224,39 @@ const $ = w`
     .cta-btn { transition: none; }
   }
 `;
-function y() {
-  var i, r, n, s, l, f, h, d, u;
-  const e = window, t = ((n = (r = (i = e.salla) == null ? void 0 : i.lang) == null ? void 0 : r.getLocale) == null ? void 0 : n.call(r)) || ((f = (l = (s = e.Salla) == null ? void 0 : s.lang) == null ? void 0 : l.getLocale) == null ? void 0 : f.call(l)) || ((u = (d = (h = e.salla) == null ? void 0 : h.config) == null ? void 0 : d.get) == null ? void 0 : u.call(d, "user.language_code"));
-  return String(t || document.documentElement.lang || "ar").slice(0, 2).toLowerCase();
+function W(t, e, r) {
+  return t == null ? r : S(t).map((a) => ({
+    image: z(p(a, e, "image")),
+    title: c(p(a, e, "title")).trim(),
+    text: c(p(a, e, "text")).trim(),
+    points: c(p(a, e, "points")).split(/\r?\n/).map((s) => s.trim()).filter(Boolean)
+  })).filter((a) => a.title || a.text || a.image);
 }
-function k() {
-  var t;
-  const e = (document.documentElement.getAttribute("dir") || ((t = document.body) == null ? void 0 : t.getAttribute("dir")) || "").toLowerCase();
-  return e === "rtl" || e === "ltr" ? e : ["ar", "he", "fa", "ur"].includes(y()) ? "rtl" : "ltr";
+function I(t) {
+  return A(t, "end") === "start" ? "start" : "end";
 }
-function c(e) {
-  if (e == null) return "";
-  if (typeof e == "string") return e;
-  if (typeof e == "number") return String(e);
-  if (typeof e == "object") {
-    const t = e;
-    return t[y()] || t.ar || t.en || Object.values(t).find((i) => typeof i == "string" && i) || "";
-  }
-  return "";
-}
-function x(e, t) {
-  return e == null ? t : c(e).trim();
-}
-function b(e, t) {
-  const i = c(e).trim();
-  return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(i) ? i : t;
-}
-function z(e, t) {
-  const i = Array.isArray(e) ? e[0] : e;
-  if (i && typeof i == "object") {
-    const r = i.value ?? i.key;
-    return r ? String(r) : t;
-  }
-  return i ? String(i) : t;
-}
-function S(e) {
-  return Array.isArray(e) ? e.filter((t) => t && typeof t == "object") : [];
-}
-function p(e, t, i) {
-  if (e[i] !== void 0 && e[i] !== "") return e[i];
-  const r = e[`${t}.${i}`];
-  return r !== void 0 ? r : e[i];
-}
-function j(e, t) {
-  let i = e.replace("#", "");
-  i.length === 3 && (i = i.split("").map((n) => n + n).join(""));
-  const r = Number.parseInt(i, 16);
-  return `rgba(${r >> 16 & 255},${r >> 8 & 255},${r & 255},${t})`;
-}
-const A = "https://cdn.salla.network/images/placeholder.png";
-function E(e, t, i) {
-  const r = S(e);
-  return r.length ? r.map((n) => ({
-    image: c(p(n, t, "image")).trim(),
-    title: c(p(n, t, "title")).trim(),
-    text: c(p(n, t, "text")).trim(),
-    points: c(p(n, t, "points")).split(/\r?\n/).map((s) => s.trim()).filter(Boolean)
-  })).filter((n) => n.title || n.text || n.image) : i;
-}
-function C(e) {
-  return z(e, "end") === "start" ? "start" : "end";
-}
-function L(e, t, i) {
-  return o`<div class="rows">
-    ${e.map((r, n) => {
-    const s = n % 2 === 0 == (t === "start");
-    return o`<article class="row ${s ? "img-start" : "img-end"}">
+function T(t, e, r) {
+  return n`<div class="rows">
+    ${t.map((i, a) => {
+    const s = a % 2 === 0 == (e === "start");
+    return n`<article class="row ${s ? "img-start" : "img-end"}">
         <div class="row-media">
-          <img src="${r.image || A}" alt="${r.title}" loading="lazy" decoding="async" />
+          <img src="${i.image || E}" alt="${i.title}" loading="lazy" decoding="async" />
         </div>
         <div class="row-body">
-          ${r.title ? o`<h3>${r.title}</h3>` : a}
-          ${r.text ? o`<p>${r.text}</p>` : a}
-          ${r.points.length ? o`<ul class="checks">
-                ${r.points.map(
-      (l) => o`<li><span class="tick" style="color:${i};background:${j(i, 0.12)}" aria-hidden="true">✓</span>${l}</li>`
+          ${i.title ? n`<h3>${i.title}</h3>` : o}
+          ${i.text ? n`<p>${i.text}</p>` : o}
+          ${i.points.length ? n`<ul class="checks">
+                ${i.points.map(
+      (l) => n`<li><span class="tick" style="color:${r};background:${C(r, 0.12)}" aria-hidden="true">✓</span>${l}</li>`
     )}
-              </ul>` : a}
+              </ul>` : o}
         </div>
       </article>`;
   })}
   </div>`;
 }
-const O = w`
+const F = v`
   .rows { display: flex; flex-direction: column; gap: 2.5rem; }
   .row { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
   .row.img-end .row-media { order: 2; }
@@ -181,49 +276,49 @@ const O = w`
     .row.img-end .row-media { order: 0; }
     .row-body h3 { font-size: 1.25rem; }
   }
-`, R = [
+`, L = () => [
   {
     image: "",
-    title: "ثقة تدوم معك طوال اليوم",
-    text: "تركيبة مدروسة تمنحك نتيجة واضحة تلاحظها من أول استخدام، وتبقى معك من الصباح حتى المساء.",
+    title: d("ثقة تدوم معك طوال اليوم"),
+    text: d("تركيبة مدروسة تمنحك نتيجة واضحة تلاحظها من أول استخدام، وتبقى معك من الصباح حتى المساء."),
     points: []
   },
   {
     image: "",
-    title: "مكوّنات طبيعية تناسب الجميع",
-    text: "اخترنا مكوّنات لطيفة وآمنة للاستخدام اليومي، بدون إضافات تزعجك.",
+    title: d("مكوّنات طبيعية تناسب الجميع"),
+    text: d("اخترنا مكوّنات لطيفة وآمنة للاستخدام اليومي، بدون إضافات تزعجك."),
     points: []
   }
-], g = class g extends v {
+], m = class m extends k {
   get data() {
-    const t = this.config || {};
+    const e = this.config || {};
     return {
-      bg: b(t.bg_color, "#f4f4f5"),
-      accent: b(t.accent_color, "#1a8917"),
-      title: x(t.heading, "لماذا يحبّه عملاؤنا؟"),
-      subtitle: x(t.subheading, "فوائد حقيقية تلاحظها في حياتك اليومية."),
-      first: C(t.first_image_side),
-      rows: E(t.benefits, "benefits", R)
+      bg: x(e.bg_color, "#f4f4f5"),
+      accent: x(e.accent_color, "#1a8917"),
+      title: w(e.heading, d("لماذا يحبّه عملاؤنا؟")),
+      subtitle: w(e.subheading, d("فوائد حقيقية تلاحظها في حياتك اليومية.")),
+      first: I(e.first_image_side),
+      rows: W(e.benefits, "benefits", L())
     };
   }
   render() {
-    const t = this.data;
-    return t.rows.length ? o`
-      <section class="section" dir="${k()}" style="background:${t.bg}" aria-label="${t.title || a}">
+    const e = this.data;
+    return e.rows.length ? n`
+      <section class="section" dir="${$()}" style="background:${e.bg}" aria-label="${e.title || o}">
         <div class="container">
-          ${t.title || t.subtitle ? o`<div class="head">
-                ${t.title ? o`<h2>${t.title}</h2>` : a}
-                ${t.subtitle ? o`<p>${t.subtitle}</p>` : a}
-              </div>` : a}
-          ${L(t.rows, t.first, t.accent)}
+          ${e.title || e.subtitle ? n`<div class="head">
+                ${e.title ? n`<h2>${e.title}</h2>` : o}
+                ${e.subtitle ? n`<p>${e.subtitle}</p>` : o}
+              </div>` : o}
+          ${T(e.rows, e.first, e.accent)}
         </div>
       </section>
-    ` : a;
+    ` : o;
   }
 };
-g.properties = { config: { type: Object } }, g.styles = [$, O];
-let m = g;
-typeof m < "u" && m.registerSallaComponent("salla-lp-benefits");
+m.properties = { config: { type: Object } }, m.styles = [O, F];
+let h = m;
+typeof h < "u" && h.registerSallaComponent("salla-lp-benefits");
 export {
-  m as default
+  h as default
 };

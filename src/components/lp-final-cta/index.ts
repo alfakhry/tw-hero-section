@@ -1,3 +1,4 @@
+import { d } from "../../shared/defaults";
 import { css, html, LitElement, nothing } from "lit";
 import { baseStyles } from "../../shared/styles";
 import { ctaBlock, readCta } from "../../shared/cta";
@@ -33,10 +34,10 @@ export default class LpFinalCta extends LitElement {
       bg,
       image,
       overlay: number(cfg.overlay_opacity, 55, 0, 90) / 100,
-      headline: textOr(cfg.heading, "جاهز تبدأ تجربتك اليوم؟"),
-      subtitle: textOr(cfg.subheading, "انضم لآلاف العملاء الراضين، والكمية المتوفرة بهذا السعر محدودة."),
+      headline: textOr(cfg.heading, d("جاهز تبدأ تجربتك اليوم؟")),
+      subtitle: textOr(cfg.subheading, d("انضم لآلاف العملاء الراضين، والكمية المتوفرة بهذا السعر محدودة.")),
       textColor: image ? "#ffffff" : color(cfg.text_color, contrastText(bg)),
-      cta: readCta({ ...cfg, show_cta: true }, { text: "اطلب الآن" }),
+      cta: readCta({ ...cfg, show_cta: true }, { text: d("اطلب الآن") }),
     };
   }
 
@@ -44,7 +45,7 @@ export default class LpFinalCta extends LitElement {
     const d = this.data;
     const dark = d.textColor.toLowerCase() === "#ffffff" || d.textColor.toLowerCase() === "#fff";
     const style = d.image
-      ? `background-color:${d.bg};background-image:url('${d.image.replace(/['()\\]/g, encodeURIComponent)}')`
+      ? `background-color:${d.bg};background-image:url('${d.image.replace(/['()\\\s"]/g, (ch) => "%" + ch.charCodeAt(0).toString(16).padStart(2, "0"))}')`
       : `background:${d.bg}`;
     return html`
       <section class="section ${dark ? "on-dark" : ""}" dir="${direction()}" style="${style}" aria-label="${d.headline || nothing}">

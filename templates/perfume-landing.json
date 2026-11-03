@@ -65,7 +65,7 @@
           "maxLength": 4,
           "fields": [
             {
-              "id": "icon",
+              "id": "top_bar.icon",
               "type": "items",
               "format": "dropdown-list",
               "label": "الأيقونة",
@@ -129,51 +129,54 @@
               "required": true
             },
             {
-              "id": "text",
+              "id": "top_bar.text",
               "type": "string",
               "format": "text",
               "label": "النص",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             }
           ],
           "value": [
             {
-              "icon": [
+              "top_bar.icon": [
                 {
                   "label": "شحن",
                   "value": "شحن",
                   "key": "a9ec4181-80da-586b-8331-e9e4e3e49b7d"
                 }
               ],
-              "text": {
+              "top_bar.text": {
                 "ar": "شحن مجاني لجميع المدن",
                 "en": "Free shipping nationwide"
               }
             },
             {
-              "icon": [
+              "top_bar.icon": [
                 {
                   "label": "ضمان",
                   "value": "ضمان",
                   "key": "2367e218-f734-59e1-9a96-6164ffa62cae"
                 }
               ],
-              "text": {
+              "top_bar.text": {
                 "ar": "ضمان استرجاع المبلغ",
                 "en": "Money-back guarantee"
               }
             },
             {
-              "icon": [
+              "top_bar.icon": [
                 {
                   "label": "هدية",
                   "value": "هدية",
                   "key": "f381b6d1-3f28-5399-a4a5-b6a6351c4657"
                 }
               ],
-              "text": {
+              "top_bar.text": {
                 "ar": "تغليف هدية مجاني",
                 "en": "Free gift wrapping"
               }
@@ -198,12 +201,12 @@
           "id": "gallery",
           "type": "collection",
           "format": "collection",
-          "label": "صور المنتج (اختياري عند ربط منتج)",
+          "label": "صور المنتج (عند عدم ربط منتج)",
           "minLength": 0,
-          "maxLength": 8,
+          "maxLength": 6,
           "fields": [
             {
-              "id": "image",
+              "id": "gallery.image",
               "type": "string",
               "format": "image",
               "label": "صورة",
@@ -213,25 +216,25 @@
           ],
           "value": [
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/oZDfy0ekDt1YA5k5hrc18woM1yGtJURaQa5OmawP.jpg"
+              "gallery.image": "https://cdn.portal.files.salla.network/uploads/oZDfy0ekDt1YA5k5hrc18woM1yGtJURaQa5OmawP.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/xpD5vv77AsvrDP1WndvYWruAQy4hlorNE7A8Ucn0.jpg"
+              "gallery.image": "https://cdn.portal.files.salla.network/uploads/xpD5vv77AsvrDP1WndvYWruAQy4hlorNE7A8Ucn0.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/KGhEw1YKY7MH6LIX3rL1hjK5Fb6ntqG3E0GAD8rO.jpg"
+              "gallery.image": "https://cdn.portal.files.salla.network/uploads/KGhEw1YKY7MH6LIX3rL1hjK5Fb6ntqG3E0GAD8rO.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/oUCw0kENDvruY1ENjIUFKEjreqTuHxKuencTo9x2.jpg"
+              "gallery.image": "https://cdn.portal.files.salla.network/uploads/oUCw0kENDvruY1ENjIUFKEjreqTuHxKuencTo9x2.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/b9FmtwhSrMPgMYQwI81suELohlanKBtKrwLhxsxN.jpg"
+              "gallery.image": "https://cdn.portal.files.salla.network/uploads/b9FmtwhSrMPgMYQwI81suELohlanKBtKrwLhxsxN.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/LKLybNPOeOIXXuTc9wakhPVsVlHlCpY9FfJKQAPs.jpg"
+              "gallery.image": "https://cdn.portal.files.salla.network/uploads/LKLybNPOeOIXXuTc9wakhPVsVlHlCpY9FfJKQAPs.jpg"
             }
           ],
-          "description": "عند ربط منتج وترك الصور فارغة تُعرض صور المنتج من متجرك."
+          "description": "عند ربط منتج تُعرض صوره من متجرك تلقائياً، وتُستخدم هذه الصور فقط إذا لم يكن للمنتج صور."
         },
         {
           "id": "info_heading",
@@ -341,30 +344,33 @@
           "maxLength": 5,
           "fields": [
             {
-              "id": "text",
+              "id": "points.text",
               "type": "string",
               "format": "text",
               "label": "النص",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             }
           ],
           "value": [
             {
-              "text": {
+              "points.text": {
                 "ar": "ثبات يدوم حتى 12 ساعة",
                 "en": "Lasts up to 12 hours"
               }
             },
             {
-              "text": {
+              "points.text": {
                 "ar": "مكوّنات مختارة بعناية",
                 "en": "Carefully selected ingredients"
               }
             },
             {
-              "text": {
+              "points.text": {
                 "ar": "شحن مجاني لجميع مدن المملكة",
                 "en": "Free shipping across Saudi Arabia"
               }
@@ -449,16 +455,19 @@
           "maxLength": 4,
           "fields": [
             {
-              "id": "title",
+              "id": "tiers.title",
               "type": "string",
               "format": "text",
               "label": "اسم العرض",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "qty",
+              "id": "tiers.qty",
               "type": "number",
               "format": "integer",
               "label": "الكمية المضافة للسلة",
@@ -467,104 +476,116 @@
               "maximum": 99
             },
             {
-              "id": "price",
+              "id": "tiers.price",
               "type": "string",
               "format": "text",
               "label": "السعر المعروض (اختياري)",
               "multilanguage": true,
-              "value": ""
-            },
-            {
-              "id": "compare",
-              "type": "string",
-              "format": "text",
-              "label": "السعر قبل الخصم (اختياري)",
-              "multilanguage": true,
-              "value": ""
-            },
-            {
-              "id": "subtitle",
-              "type": "string",
-              "format": "text",
-              "label": "سطر صغير (اختياري)",
-              "multilanguage": true,
-              "value": ""
-            },
-            {
-              "id": "badge",
-              "type": "string",
-              "format": "text",
-              "label": "شارة (اختياري) مثل الأكثر طلباً",
-              "multilanguage": true,
-              "value": ""
-            }
-          ],
-          "value": [
-            {
-              "title": {
-                "ar": "عطر واحد",
-                "en": "One bottle"
-              },
-              "qty": 1,
-              "price": {
-                "ar": "149 ر.س",
-                "en": "SAR 149"
-              },
-              "compare": {
-                "ar": "249 ر.س",
-                "en": "SAR 249"
-              },
-              "subtitle": {
-                "ar": "مثالي للتجربة",
-                "en": "Perfect to try"
-              },
-              "badge": {
+              "value": {
                 "ar": "",
                 "en": ""
               }
             },
             {
-              "title": {
+              "id": "tiers.compare",
+              "type": "string",
+              "format": "text",
+              "label": "السعر قبل الخصم (اختياري)",
+              "multilanguage": true,
+              "value": {
+                "ar": "",
+                "en": ""
+              }
+            },
+            {
+              "id": "tiers.subtitle",
+              "type": "string",
+              "format": "text",
+              "label": "سطر صغير (اختياري)",
+              "multilanguage": true,
+              "value": {
+                "ar": "",
+                "en": ""
+              }
+            },
+            {
+              "id": "tiers.badge",
+              "type": "string",
+              "format": "text",
+              "label": "شارة (اختياري) مثل الأكثر طلباً",
+              "multilanguage": true,
+              "value": {
+                "ar": "",
+                "en": ""
+              }
+            }
+          ],
+          "value": [
+            {
+              "tiers.title": {
+                "ar": "عطر واحد",
+                "en": "One bottle"
+              },
+              "tiers.qty": 1,
+              "tiers.price": {
+                "ar": "149 ر.س",
+                "en": "SAR 149"
+              },
+              "tiers.compare": {
+                "ar": "249 ر.س",
+                "en": "SAR 249"
+              },
+              "tiers.subtitle": {
+                "ar": "مثالي للتجربة",
+                "en": "Perfect to try"
+              },
+              "tiers.badge": {
+                "ar": "",
+                "en": ""
+              }
+            },
+            {
+              "tiers.title": {
                 "ar": "عطران",
                 "en": "Two bottles"
               },
-              "qty": 2,
-              "price": {
+              "tiers.qty": 2,
+              "tiers.price": {
                 "ar": "269 ر.س",
                 "en": "SAR 269"
               },
-              "compare": {
+              "tiers.compare": {
                 "ar": "498 ر.س",
                 "en": "SAR 498"
               },
-              "subtitle": {
+              "tiers.subtitle": {
                 "ar": "واحد لك وواحد هدية",
                 "en": "One for you, one to gift"
               },
-              "badge": {
+              "tiers.badge": {
                 "ar": "الأكثر طلباً",
                 "en": "Most popular"
               }
             },
             {
-              "title": {
+              "tiers.title": {
                 "ar": "3 عطور",
                 "en": "Three bottles"
               },
-              "qty": 3,
-              "price": {
+              "tiers.qty": 3,
+              "tiers.price": {
                 "ar": "369 ر.س",
                 "en": "SAR 369"
               },
-              "compare": {
+              "tiers.compare": {
                 "ar": "747 ر.س",
                 "en": "SAR 747"
               },
-              "subtitle": {
+              "tiers.subtitle": {
                 "ar": "أفضل قيمة — وفّر أكثر من 50%",
                 "en": "Best value — save over 50%"
               },
-              "badge": {
+              "tiers.badge": {
                 "ar": "أفضل قيمة",
                 "en": "Best value"
               }
@@ -790,7 +811,7 @@
           "maxLength": 5,
           "fields": [
             {
-              "id": "icon",
+              "id": "trust.icon",
               "type": "items",
               "format": "dropdown-list",
               "label": "الأيقونة",
@@ -854,64 +875,67 @@
               "required": true
             },
             {
-              "id": "text",
+              "id": "trust.text",
               "type": "string",
               "format": "text",
               "label": "النص",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             }
           ],
           "value": [
             {
-              "icon": [
+              "trust.icon": [
                 {
                   "label": "شحن",
                   "value": "شحن",
                   "key": "c0943246-a1c9-5f76-9b49-c4f81d5599d6"
                 }
               ],
-              "text": {
+              "trust.text": {
                 "ar": "شحن سريع خلال يومين",
                 "en": "Fast delivery within two days"
               }
             },
             {
-              "icon": [
+              "trust.icon": [
                 {
                   "label": "ضمان",
                   "value": "ضمان",
                   "key": "4a286cae-c022-55e4-9f48-419a8f99e24c"
                 }
               ],
-              "text": {
+              "trust.text": {
                 "ar": "ضمان الرضا أو استرجاع المبلغ",
                 "en": "Satisfaction or your money back"
               }
             },
             {
-              "icon": [
+              "trust.icon": [
                 {
                   "label": "دعم فني",
                   "value": "دعم",
                   "key": "01a7fbc7-7c9e-5392-92d8-082ddd312498"
                 }
               ],
-              "text": {
+              "trust.text": {
                 "ar": "دعم فني على مدار الساعة",
                 "en": "24/7 customer support"
               }
             },
             {
-              "icon": [
+              "trust.icon": [
                 {
                   "label": "استرجاع",
                   "value": "استرجاع",
                   "key": "2202ea8c-fef2-50b6-b229-27ab99f7c334"
                 }
               ],
-              "text": {
+              "trust.text": {
                 "ar": "استرجاع مجاني خلال 14 يوم",
                 "en": "Free returns within 14 days"
               }
@@ -949,7 +973,7 @@
           "maxLength": 1,
           "fields": [
             {
-              "id": "avatar",
+              "id": "reviews.avatar",
               "type": "string",
               "format": "image",
               "label": "صورة العميل (اختياري)",
@@ -957,32 +981,38 @@
               "description": "مقاس مربع 200×200"
             },
             {
-              "id": "name",
+              "id": "reviews.name",
               "type": "string",
               "format": "text",
               "label": "الاسم",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "text",
+              "id": "reviews.text",
               "type": "string",
               "format": "textarea",
               "label": "نص الرأي",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             }
           ],
           "value": [
             {
-              "avatar": "",
-              "name": {
+              "reviews.avatar": "",
+              "reviews.name": {
                 "ar": "محمد العتيبي",
                 "en": "Mohammed O."
               },
-              "text": {
+              "reviews.text": {
                 "ar": "رائحة فخمة وثباتها ممتاز، وصلني بسرعة. أنصح فيه بشدة.",
                 "en": "A luxurious scent with excellent longevity, delivered fast. Highly recommended."
               }
@@ -1020,51 +1050,57 @@
           "maxLength": 5,
           "fields": [
             {
-              "id": "title",
+              "id": "tabs.title",
               "type": "string",
               "format": "text",
               "label": "عنوان التبويب",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "content",
+              "id": "tabs.content",
               "type": "string",
               "format": "textarea",
               "label": "المحتوى",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             }
           ],
           "value": [
             {
-              "title": {
+              "tabs.title": {
                 "ar": "الوصف",
                 "en": "Description"
               },
-              "content": {
+              "tabs.content": {
                 "ar": "عطر شرقي بتركيز عالٍ يجمع العود والمسك والورد الطائفي، بثبات يصل إلى 12 ساعة وفوحان متوازن يناسب العمل والمناسبات.",
                 "en": "A high-concentration oriental fragrance of oud, musk and Taif rose, lasting up to 12 hours with balanced projection for work and occasions."
               }
             },
             {
-              "title": {
+              "tabs.title": {
                 "ar": "طريقة الاستخدام",
                 "en": "How to use"
               },
-              "content": {
+              "tabs.content": {
                 "ar": "رشّه على نقاط النبض: الرسغ وخلف الأذن وأسفل الرقبة، من مسافة 15 سم.",
                 "en": "Spray on pulse points — wrists, behind the ears and the base of the neck — from 15 cm away."
               }
             },
             {
-              "title": {
+              "tabs.title": {
                 "ar": "الشحن والاسترجاع",
                 "en": "Shipping & returns"
               },
-              "content": {
+              "tabs.content": {
                 "ar": "التوصيل خلال 1-3 أيام عمل لجميع مدن المملكة مع رابط تتبّع. يمكنك الإرجاع خلال 14 يوماً من الاستلام.",
                 "en": "Delivery in 1-3 business days across Saudi Arabia with tracking. Returns accepted within 14 days of delivery."
               }
@@ -1120,15 +1156,18 @@
           "maxLength": 6,
           "fields": [
             {
-              "id": "name",
+              "id": "logos.name",
               "type": "string",
               "format": "text",
               "label": "الاسم",
               "multilanguage": true,
-              "value": ""
+              "value": {
+                "ar": "",
+                "en": ""
+              }
             },
             {
-              "id": "image",
+              "id": "logos.image",
               "type": "string",
               "format": "image",
               "label": "الشعار (اختياري)",
@@ -1138,32 +1177,32 @@
           ],
           "value": [
             {
-              "name": {
+              "logos.name": {
                 "ar": "مجلة أناقة",
                 "en": "Anaqa Magazine"
               },
-              "image": ""
+              "logos.image": ""
             },
             {
-              "name": {
+              "logos.name": {
                 "ar": "دليل العطور",
                 "en": "Fragrance Guide"
               },
-              "image": ""
+              "logos.image": ""
             },
             {
-              "name": {
+              "logos.name": {
                 "ar": "ستايل عربي",
                 "en": "Arab Style"
               },
-              "image": ""
+              "logos.image": ""
             },
             {
-              "name": {
+              "logos.name": {
                 "ar": "نبض الموضة",
                 "en": "Fashion Pulse"
               },
-              "image": ""
+              "logos.image": ""
             }
           ],
           "conditions": [
@@ -1244,60 +1283,66 @@
           "maxLength": 4,
           "fields": [
             {
-              "id": "icon",
+              "id": "steps.icon",
               "type": "string",
               "format": "icon",
               "label": "الأيقونة",
               "value": "sicon-check"
             },
             {
-              "id": "title",
+              "id": "steps.title",
               "type": "string",
               "format": "text",
               "label": "عنوان الخطوة",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "text",
+              "id": "steps.text",
               "type": "string",
               "format": "textarea",
               "label": "وصف الخطوة",
               "multilanguage": true,
-              "value": ""
+              "value": {
+                "ar": "",
+                "en": ""
+              }
             }
           ],
           "value": [
             {
-              "icon": "sicon-star",
-              "title": {
+              "steps.icon": "sicon-star",
+              "steps.title": {
                 "ar": "انطباع أول ساحر",
                 "en": "A captivating first impression"
               },
-              "text": {
+              "steps.text": {
                 "ar": "نفحة منعشة من الحمضيات والورد تلفت الانتباه من اللحظة الأولى.",
                 "en": "A fresh burst of citrus and rose that turns heads from the very first moment."
               }
             },
             {
-              "icon": "sicon-heart",
-              "title": {
+              "steps.icon": "sicon-heart",
+              "steps.title": {
                 "ar": "قلب دافئ وجذاب",
                 "en": "A warm, inviting heart"
               },
-              "text": {
+              "steps.text": {
                 "ar": "بعد ساعة تظهر نغمات العود والعنبر لتمنحك حضوراً مميزاً.",
                 "en": "After an hour, oud and amber notes give you a distinctive presence."
               }
             },
             {
-              "icon": "sicon-moon",
-              "title": {
+              "steps.icon": "sicon-moon",
+              "steps.title": {
                 "ar": "أثر يبقى حتى المساء",
                 "en": "A trail that lasts until evening"
               },
-              "text": {
+              "steps.text": {
                 "ar": "قاعدة المسك تحافظ على رائحتك ثابتة حتى نهاية يومك.",
                 "en": "A musk base keeps your scent steady until the end of your day."
               }
@@ -1392,7 +1437,7 @@
           "maxLength": 6,
           "fields": [
             {
-              "id": "image",
+              "id": "features.image",
               "type": "string",
               "format": "image",
               "label": "الصورة",
@@ -1400,58 +1445,67 @@
               "description": "المقاس المناسب 1200×900 بكسل (نسبة 4:3)"
             },
             {
-              "id": "title",
+              "id": "features.title",
               "type": "string",
               "format": "text",
               "label": "العنوان",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "text",
+              "id": "features.text",
               "type": "string",
               "format": "textarea",
               "label": "الوصف",
               "multilanguage": true,
-              "value": ""
+              "value": {
+                "ar": "",
+                "en": ""
+              }
             },
             {
-              "id": "points",
+              "id": "features.points",
               "type": "string",
               "format": "textarea",
               "label": "نقاط مميّزة (كل نقطة في سطر — اختياري)",
               "multilanguage": true,
-              "value": ""
+              "value": {
+                "ar": "",
+                "en": ""
+              }
             }
           ],
           "value": [
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/6fhIWKtvKiThHtFE1jRCPYV5TUQxXrQ81m3cloOi.jpg",
-              "title": {
+              "features.image": "https://cdn.portal.files.salla.network/uploads/6fhIWKtvKiThHtFE1jRCPYV5TUQxXrQ81m3cloOi.jpg",
+              "features.title": {
                 "ar": "تركيز عالٍ يدوم طويلاً",
                 "en": "High concentration that lasts"
               },
-              "text": {
+              "features.text": {
                 "ar": "نسبة زيوت عطرية مرتفعة تمنحك ثباتاً يصل إلى 12 ساعة.",
                 "en": "A high perfume-oil ratio gives you up to 12 hours of longevity."
               },
-              "points": {
+              "features.points": {
                 "ar": "ثبات حتى 12 ساعة\nفوحان متوازن طوال اليوم",
                 "en": "Up to 12 hours of longevity\nBalanced projection all day"
               }
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/vBmjvqkepv5AKaDRMM4TDkxSndnHaiZkOteCWANY.jpg",
-              "title": {
+              "features.image": "https://cdn.portal.files.salla.network/uploads/vBmjvqkepv5AKaDRMM4TDkxSndnHaiZkOteCWANY.jpg",
+              "features.title": {
                 "ar": "مكوّنات منتقاة بعناية",
                 "en": "Carefully selected ingredients"
               },
-              "text": {
+              "features.text": {
                 "ar": "خلاصات طبيعية من العود والمسك والورد الطائفي.",
                 "en": "Natural extracts of oud, musk and Taif rose."
               },
-              "points": {
+              "features.points": {
                 "ar": "خلاصات طبيعية\nخالٍ من الكحول المزعج",
                 "en": "Natural extracts\nGentle on the skin"
               }
@@ -1978,7 +2032,7 @@
           "maxLength": 6,
           "fields": [
             {
-              "id": "image",
+              "id": "benefits.image",
               "type": "string",
               "format": "image",
               "label": "الصورة",
@@ -1986,58 +2040,67 @@
               "description": "المقاس المناسب 1200×900 بكسل (نسبة 4:3)"
             },
             {
-              "id": "title",
+              "id": "benefits.title",
               "type": "string",
               "format": "text",
               "label": "العنوان",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "text",
+              "id": "benefits.text",
               "type": "string",
               "format": "textarea",
               "label": "الوصف",
               "multilanguage": true,
-              "value": ""
-            },
-            {
-              "id": "points",
-              "type": "string",
-              "format": "textarea",
-              "label": "نقاط مميّزة (كل نقطة في سطر — اختياري)",
-              "multilanguage": true,
-              "value": ""
-            }
-          ],
-          "value": [
-            {
-              "image": "https://cdn.portal.files.salla.network/uploads/DcBUxV7h73qfE5CgfvGLHZBzSIiQdW1InVdWe9aZ.jpg",
-              "title": {
-                "ar": "ثقة أكبر في كل لقاء",
-                "en": "More confidence in every meeting"
-              },
-              "text": {
-                "ar": "رائحة راقية تمنحك حضوراً لافتاً في العمل والمناسبات.",
-                "en": "A refined scent that gives you a striking presence at work and events."
-              },
-              "points": {
+              "value": {
                 "ar": "",
                 "en": ""
               }
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/yXGnHb8mrtvcPwe0CXzdvWIkxv59cjm7EiYtOX2D.jpg",
-              "title": {
+              "id": "benefits.points",
+              "type": "string",
+              "format": "textarea",
+              "label": "نقاط مميّزة (كل نقطة في سطر — اختياري)",
+              "multilanguage": true,
+              "value": {
+                "ar": "",
+                "en": ""
+              }
+            }
+          ],
+          "value": [
+            {
+              "benefits.image": "https://cdn.portal.files.salla.network/uploads/DcBUxV7h73qfE5CgfvGLHZBzSIiQdW1InVdWe9aZ.jpg",
+              "benefits.title": {
+                "ar": "ثقة أكبر في كل لقاء",
+                "en": "More confidence in every meeting"
+              },
+              "benefits.text": {
+                "ar": "رائحة راقية تمنحك حضوراً لافتاً في العمل والمناسبات.",
+                "en": "A refined scent that gives you a striking presence at work and events."
+              },
+              "benefits.points": {
+                "ar": "",
+                "en": ""
+              }
+            },
+            {
+              "benefits.image": "https://cdn.portal.files.salla.network/uploads/yXGnHb8mrtvcPwe0CXzdvWIkxv59cjm7EiYtOX2D.jpg",
+              "benefits.title": {
                 "ar": "مجاملات لا تتوقف",
                 "en": "Compliments that keep coming"
               },
-              "text": {
+              "benefits.text": {
                 "ar": "عملاؤنا يخبروننا أن الجميع يسألهم عن اسم العطر.",
                 "en": "Our customers tell us everyone asks them about the scent."
               },
-              "points": {
+              "benefits.points": {
                 "ar": "",
                 "en": ""
               }
@@ -2120,7 +2183,7 @@
           "maxLength": 12,
           "fields": [
             {
-              "id": "avatar",
+              "id": "reviews.avatar",
               "type": "string",
               "format": "image",
               "label": "صورة العميل (اختياري)",
@@ -2128,16 +2191,19 @@
               "description": "مقاس مربع 200×200 بكسل"
             },
             {
-              "id": "name",
+              "id": "reviews.name",
               "type": "string",
               "format": "text",
               "label": "اسم العميل",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "rating",
+              "id": "reviews.rating",
               "type": "number",
               "format": "integer",
               "label": "التقييم (من 1 إلى 5)",
@@ -2146,16 +2212,19 @@
               "maximum": 5
             },
             {
-              "id": "text",
+              "id": "reviews.text",
               "type": "string",
               "format": "textarea",
               "label": "نص التقييم",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "verified",
+              "id": "reviews.verified",
               "type": "boolean",
               "format": "switch",
               "label": "إظهار شارة (مشتري موثّق)",
@@ -2165,56 +2234,56 @@
           ],
           "value": [
             {
-              "avatar": "",
-              "name": {
+              "reviews.avatar": "",
+              "reviews.name": {
                 "ar": "سارة القحطاني",
                 "en": "Sara A."
               },
-              "rating": 5,
-              "text": {
+              "reviews.rating": 5,
+              "reviews.text": {
                 "ar": "من أجمل العطور اللي جربتها، الثبات خيالي والتغليف فخم.",
                 "en": "One of the best perfumes I have tried. Amazing longevity and luxurious packaging."
               },
-              "verified": true
+              "reviews.verified": true
             },
             {
-              "avatar": "",
-              "name": {
+              "reviews.avatar": "",
+              "reviews.name": {
                 "ar": "عبدالله الشمري",
                 "en": "Abdullah S."
               },
-              "rating": 5,
-              "text": {
+              "reviews.rating": 5,
+              "reviews.text": {
                 "ar": "وصلني الطلب بسرعة، والرائحة أفخم من توقعاتي.",
                 "en": "Fast delivery and the scent is even better than I expected."
               },
-              "verified": true
+              "reviews.verified": true
             },
             {
-              "avatar": "",
-              "name": {
+              "reviews.avatar": "",
+              "reviews.name": {
                 "ar": "نورة العتيبي",
                 "en": "Noura O."
               },
-              "rating": 4,
-              "text": {
+              "reviews.rating": 4,
+              "reviews.text": {
                 "ar": "اشتريته هدية لزوجي وعجبه كثير.",
                 "en": "Bought it as a gift for my husband and he loved it."
               },
-              "verified": true
+              "reviews.verified": true
             },
             {
-              "avatar": "",
-              "name": {
+              "reviews.avatar": "",
+              "reviews.name": {
                 "ar": "فهد الدوسري",
                 "en": "Fahad D."
               },
-              "rating": 5,
-              "text": {
+              "reviews.rating": 5,
+              "reviews.text": {
                 "ar": "يستاهل كل ريال، بكرر الطلب أكيد.",
                 "en": "Worth every riyal, I will definitely order again."
               },
-              "verified": true
+              "reviews.verified": true
             }
           ],
           "conditions": [
@@ -2267,7 +2336,7 @@
           "maxLength": 8,
           "fields": [
             {
-              "id": "url",
+              "id": "videos.url",
               "type": "string",
               "format": "url",
               "label": "رابط الفيديو",
@@ -2275,7 +2344,7 @@
               "description": "يوتيوب أو فيميو أو تيك توك أو رابط مباشر لملف mp4"
             },
             {
-              "id": "cover",
+              "id": "videos.cover",
               "type": "string",
               "format": "image",
               "label": "صورة الغلاف",
@@ -2283,12 +2352,15 @@
               "description": "مقاس طولي 720×1280 بكسل (اختياري ليوتيوب)"
             },
             {
-              "id": "caption",
+              "id": "videos.caption",
               "type": "string",
               "format": "text",
               "label": "وصف قصير (اختياري)",
               "multilanguage": true,
-              "value": ""
+              "value": {
+                "ar": "",
+                "en": ""
+              }
             }
           ],
           "value": [],
@@ -2342,7 +2414,7 @@
           "maxLength": 12,
           "fields": [
             {
-              "id": "image",
+              "id": "photos.image",
               "type": "string",
               "format": "image",
               "label": "الصورة",
@@ -2352,22 +2424,22 @@
           ],
           "value": [
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/oZDfy0ekDt1YA5k5hrc18woM1yGtJURaQa5OmawP.jpg"
+              "photos.image": "https://cdn.portal.files.salla.network/uploads/oZDfy0ekDt1YA5k5hrc18woM1yGtJURaQa5OmawP.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/xpD5vv77AsvrDP1WndvYWruAQy4hlorNE7A8Ucn0.jpg"
+              "photos.image": "https://cdn.portal.files.salla.network/uploads/xpD5vv77AsvrDP1WndvYWruAQy4hlorNE7A8Ucn0.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/KGhEw1YKY7MH6LIX3rL1hjK5Fb6ntqG3E0GAD8rO.jpg"
+              "photos.image": "https://cdn.portal.files.salla.network/uploads/KGhEw1YKY7MH6LIX3rL1hjK5Fb6ntqG3E0GAD8rO.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/oUCw0kENDvruY1ENjIUFKEjreqTuHxKuencTo9x2.jpg"
+              "photos.image": "https://cdn.portal.files.salla.network/uploads/oUCw0kENDvruY1ENjIUFKEjreqTuHxKuencTo9x2.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/b9FmtwhSrMPgMYQwI81suELohlanKBtKrwLhxsxN.jpg"
+              "photos.image": "https://cdn.portal.files.salla.network/uploads/b9FmtwhSrMPgMYQwI81suELohlanKBtKrwLhxsxN.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/LKLybNPOeOIXXuTc9wakhPVsVlHlCpY9FfJKQAPs.jpg"
+              "photos.image": "https://cdn.portal.files.salla.network/uploads/LKLybNPOeOIXXuTc9wakhPVsVlHlCpY9FfJKQAPs.jpg"
             }
           ],
           "conditions": [
@@ -2789,16 +2861,19 @@
           "maxLength": 10,
           "fields": [
             {
-              "id": "feature",
+              "id": "rows.feature",
               "type": "string",
               "format": "text",
               "label": "الميزة",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "brand",
+              "id": "rows.brand",
               "type": "items",
               "format": "dropdown-list",
               "label": "منتجك",
@@ -2837,7 +2912,7 @@
               "required": true
             },
             {
-              "id": "c1",
+              "id": "rows.c1",
               "type": "items",
               "format": "dropdown-list",
               "label": "البديل الأول",
@@ -2876,7 +2951,7 @@
               "required": true
             },
             {
-              "id": "c2",
+              "id": "rows.c2",
               "type": "items",
               "format": "dropdown-list",
               "label": "البديل الثاني",
@@ -2917,25 +2992,25 @@
           ],
           "value": [
             {
-              "feature": {
+              "rows.feature": {
                 "ar": "ثبات يدوم أكثر من 10 ساعات",
                 "en": "Lasts more than 10 hours"
               },
-              "brand": [
+              "rows.brand": [
                 {
                   "label": "✓ متوفر",
                   "value": "yes",
                   "key": "99ce575d-d428-5e31-ad53-c47a233e6bdf"
                 }
               ],
-              "c1": [
+              "rows.c1": [
                 {
                   "label": "– جزئياً",
                   "value": "partial",
                   "key": "6238a676-675d-5786-a9a0-8c385f69a536"
                 }
               ],
-              "c2": [
+              "rows.c2": [
                 {
                   "label": "✕ غير متوفر",
                   "value": "no",
@@ -2944,25 +3019,25 @@
               ]
             },
             {
-              "feature": {
+              "rows.feature": {
                 "ar": "زيوت عطرية طبيعية بتركيز عالٍ",
                 "en": "High concentration of natural oils"
               },
-              "brand": [
+              "rows.brand": [
                 {
                   "label": "✓ متوفر",
                   "value": "yes",
                   "key": "99ce575d-d428-5e31-ad53-c47a233e6bdf"
                 }
               ],
-              "c1": [
+              "rows.c1": [
                 {
                   "label": "– جزئياً",
                   "value": "partial",
                   "key": "6238a676-675d-5786-a9a0-8c385f69a536"
                 }
               ],
-              "c2": [
+              "rows.c2": [
                 {
                   "label": "✕ غير متوفر",
                   "value": "no",
@@ -2971,25 +3046,25 @@
               ]
             },
             {
-              "feature": {
+              "rows.feature": {
                 "ar": "تغليف هدية فاخر",
                 "en": "Luxury gift packaging"
               },
-              "brand": [
+              "rows.brand": [
                 {
                   "label": "✓ متوفر",
                   "value": "yes",
                   "key": "99ce575d-d428-5e31-ad53-c47a233e6bdf"
                 }
               ],
-              "c1": [
+              "rows.c1": [
                 {
                   "label": "✓ متوفر",
                   "value": "yes",
                   "key": "ecce6146-f04a-563b-a2df-30a496d47f32"
                 }
               ],
-              "c2": [
+              "rows.c2": [
                 {
                   "label": "✕ غير متوفر",
                   "value": "no",
@@ -2998,25 +3073,25 @@
               ]
             },
             {
-              "feature": {
+              "rows.feature": {
                 "ar": "ضمان استرجاع المبلغ",
                 "en": "Money-back guarantee"
               },
-              "brand": [
+              "rows.brand": [
                 {
                   "label": "✓ متوفر",
                   "value": "yes",
                   "key": "99ce575d-d428-5e31-ad53-c47a233e6bdf"
                 }
               ],
-              "c1": [
+              "rows.c1": [
                 {
                   "label": "– جزئياً",
                   "value": "partial",
                   "key": "6238a676-675d-5786-a9a0-8c385f69a536"
                 }
               ],
-              "c2": [
+              "rows.c2": [
                 {
                   "label": "✕ غير متوفر",
                   "value": "no",
@@ -3025,25 +3100,25 @@
               ]
             },
             {
-              "feature": {
+              "rows.feature": {
                 "ar": "شحن مجاني خلال يومين",
                 "en": "Free two-day shipping"
               },
-              "brand": [
+              "rows.brand": [
                 {
                   "label": "✓ متوفر",
                   "value": "yes",
                   "key": "99ce575d-d428-5e31-ad53-c47a233e6bdf"
                 }
               ],
-              "c1": [
+              "rows.c1": [
                 {
                   "label": "✕ غير متوفر",
                   "value": "no",
                   "key": "270c4111-c88a-5058-9417-d0d440cc92e0"
                 }
               ],
-              "c2": [
+              "rows.c2": [
                 {
                   "label": "✕ غير متوفر",
                   "value": "no",
@@ -3442,71 +3517,77 @@
           "maxLength": 12,
           "fields": [
             {
-              "id": "q",
+              "id": "faq.q",
               "type": "string",
               "format": "text",
               "label": "السؤال",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "a",
+              "id": "faq.a",
               "type": "string",
               "format": "textarea",
               "label": "الإجابة",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             }
           ],
           "value": [
             {
-              "q": {
+              "faq.q": {
                 "ar": "كم يدوم ثبات العطر؟",
                 "en": "How long does the scent last?"
               },
-              "a": {
+              "faq.a": {
                 "ar": "يدوم حتى 12 ساعة حسب نوع البشرة والاستخدام.",
                 "en": "Up to 12 hours depending on skin type and use."
               }
             },
             {
-              "q": {
+              "faq.q": {
                 "ar": "كم تستغرق مدة الشحن؟",
                 "en": "How long does shipping take?"
               },
-              "a": {
+              "faq.a": {
                 "ar": "من يوم إلى يومين عمل داخل المملكة، مع رابط لتتبّع الطلب.",
                 "en": "One to two business days within Saudi Arabia, with a tracking link."
               }
             },
             {
-              "q": {
+              "faq.q": {
                 "ar": "هل يمكن الإرجاع؟",
                 "en": "Can I return it?"
               },
-              "a": {
+              "faq.a": {
                 "ar": "نعم، إرجاع مجاني خلال 14 يوماً إذا لم يُفتح المنتج.",
                 "en": "Yes, free returns within 14 days if the product is unopened."
               }
             },
             {
-              "q": {
+              "faq.q": {
                 "ar": "هل يصلح كهدية؟",
                 "en": "Does it make a good gift?"
               },
-              "a": {
+              "faq.a": {
                 "ar": "يصلك في علبة فاخرة مع بطاقة إهداء، ويمكنك كتابة رسالتك عند الطلب.",
                 "en": "It arrives in a luxury box with a greeting card, and you can add your message at checkout."
               }
             },
             {
-              "q": {
+              "faq.q": {
                 "ar": "ما طرق الدفع المتاحة؟",
                 "en": "Which payment methods are available?"
               },
-              "a": {
+              "faq.a": {
                 "ar": "مدى، Apple Pay، البطاقات البنكية، والتقسيط عبر تابي وتمارا.",
                 "en": "mada, Apple Pay, cards, and instalments with Tabby and Tamara."
               }

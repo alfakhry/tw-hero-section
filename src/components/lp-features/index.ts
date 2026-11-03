@@ -1,25 +1,26 @@
+import { d } from "../../shared/defaults";
 import { css, html, LitElement, nothing } from "lit";
 import { baseStyles } from "../../shared/styles";
 import { ctaBlock, readCta } from "../../shared/cta";
 import { firstImageSide, readRows, rowsStyles, rowsTemplate, type Row } from "../../shared/rows";
-import { PLACEHOLDER_IMAGE, color, direction, hexToRgba, isOn, text, textOr } from "../../shared/utils";
+import { PLACEHOLDER_IMAGE, color, direction, hexToRgba, isOn, safeUrl, text, textOr } from "../../shared/utils";
 
-const DEFAULT_ROWS: Row[] = [
+const DEFAULT_ROWS = (): Row[] => [
   {
     image: "",
-    title: "تصميم عملي يرافقك في كل مكان",
-    text: "حجم مناسب للحقيبة وعبوة محكمة تحافظ على جودة المنتج.",
-    points: ["عبوة مقاومة للتسريب", "سهل الحمل والاستخدام"],
+    title: d("تصميم عملي يرافقك في كل مكان"),
+    text: d("حجم مناسب للحقيبة وعبوة محكمة تحافظ على جودة المنتج."),
+    points: [d("عبوة مقاومة للتسريب"), d("سهل الحمل والاستخدام")],
   },
   {
     image: "",
-    title: "جودة مختبرة قبل أن تصلك",
-    text: "كل دفعة تمر بفحص جودة دقيق لتحصل على نفس التجربة في كل مرة.",
-    points: ["فحص جودة لكل دفعة", "مصنوع وفق أعلى المعايير"],
+    title: d("جودة مختبرة قبل أن تصلك"),
+    text: d("كل دفعة تمر بفحص جودة دقيق لتحصل على نفس التجربة في كل مرة."),
+    points: [d("فحص جودة لكل دفعة"), d("مصنوع وفق أعلى المعايير")],
   },
 ];
 
-const DEFAULT_INCLUDED = "عبوة المنتج الأساسية\nعيّنة إضافية مجانية\nدليل الاستخدام\nتغليف هدية أنيق";
+const DEFAULT_INCLUDED = () => d("عبوة المنتج الأساسية\nعيّنة إضافية مجانية\nدليل الاستخدام\nتغليف هدية أنيق");
 
 /** Features: product capabilities as alternating rows, an optional "what's included" panel and a CTA. */
 export default class LpFeatures extends LitElement {
@@ -52,23 +53,23 @@ export default class LpFeatures extends LitElement {
     return {
       bg: color(cfg.bg_color, "#ffffff"),
       accent,
-      title: textOr(cfg.heading, "مزايا تصنع الفرق"),
-      subtitle: textOr(cfg.subheading, "صُمّم بعناية ليمنحك أفضل تجربة ممكنة."),
+      title: textOr(cfg.heading, d("مزايا تصنع الفرق")),
+      subtitle: textOr(cfg.subheading, d("صُمّم بعناية ليمنحك أفضل تجربة ممكنة.")),
       first: firstImageSide(cfg.first_image_side),
-      rows: readRows(cfg.features, "features", DEFAULT_ROWS),
+      rows: readRows(cfg.features, "features", DEFAULT_ROWS()),
       included: {
         enabled: isOn(cfg.show_included, true),
         bg: color(cfg.included_bg_color, "#f4f4f5"),
-        title: textOr(cfg.included_title, "ماذا يوجد داخل العلبة؟"),
-        text: textOr(cfg.included_text, "كل ما تحتاجه لتبدأ مباشرة بعد الاستلام."),
-        items: (cfg.included_items === undefined || cfg.included_items === null ? DEFAULT_INCLUDED : text(cfg.included_items))
+        title: textOr(cfg.included_title, d("ماذا يوجد داخل العلبة؟")),
+        text: textOr(cfg.included_text, d("كل ما تحتاجه لتبدأ مباشرة بعد الاستلام.")),
+        items: (cfg.included_items === undefined || cfg.included_items === null ? DEFAULT_INCLUDED() : text(cfg.included_items))
           .split(/\r?\n/)
           .map((s) => s.trim())
           .filter(Boolean),
-        image: text(cfg.included_image).trim() || PLACEHOLDER_IMAGE,
+        image: safeUrl(cfg.included_image) || PLACEHOLDER_IMAGE,
         imageStart: firstImageSide(cfg.included_image_side) === "start",
       },
-      cta: readCta(cfg, { text: "اطلب الآن" }),
+      cta: readCta(cfg, { text: d("اطلب الآن") }),
     };
   }
 

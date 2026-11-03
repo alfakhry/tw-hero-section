@@ -1,3 +1,4 @@
+import { d } from "../../shared/defaults";
 import { css, html, LitElement } from "lit";
 import { direction, ensureSallaIcons, locale } from "../../shared/utils";
 
@@ -14,38 +15,38 @@ const KEYWORD_ICONS: Record<string, () => ReturnType<typeof html>> = {
   تقييم: () => html`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l2.6 5.6 6 .6-4.5 4 1.3 6-5.4-3.2L6.6 19l1.3-6-4.5-4 6-.6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
 };
 
-const DEFAULT_FEATURES = [
+const DEFAULT_FEATURES = () => [
   {
     is_icon: true,
     icon: "sicon-shipping-fast",
     icon_color: "#059669",
     image: "",
-    title: "شحن سريع",
-    text: "توصيل خلال يومين لجميع مدن المملكة، مع إمكانية تتبّع الطلب.",
+    title: d("شحن سريع"),
+    text: d("توصيل خلال يومين لجميع مدن المملكة، مع إمكانية تتبّع الطلب."),
   },
   {
     is_icon: true,
     icon: "sicon-shield-check",
     icon_color: "#1d4ed8",
     image: "",
-    title: "دفع آمن",
-    text: "تابي ومدى و STC Pay وبطاقات بنكية، لإتمام الطلب براحة.",
+    title: d("دفع آمن"),
+    text: d("تابي ومدى و STC Pay وبطاقات بنكية، لإتمام الطلب براحة."),
   },
   {
     is_icon: true,
     icon: "sicon-headset",
     icon_color: "#7c3aed",
     image: "",
-    title: "دعم متواصل",
-    text: "فريق جاهز للرد على استفساراتك قبل الشراء وبعده.",
+    title: d("دعم متواصل"),
+    text: d("فريق جاهز للرد على استفساراتك قبل الشراء وبعده."),
   },
   {
     is_icon: true,
     icon: "sicon-refund",
     icon_color: "#d97706",
     image: "",
-    title: "استرجاع سهل",
-    text: "إرجاع مجاني خلال 14 يوم إذا لم يُفتح المنتج.",
+    title: d("استرجاع سهل"),
+    text: d("إرجاع مجاني خلال 14 يوم إذا لم يُفتح المنتج."),
   },
 ];
 
@@ -72,14 +73,14 @@ export default class StoreFeatures extends LitElement {
 
   private get c() {
     const cfg = this.config || {};
-    const features = Array.isArray(cfg.features) && cfg.features.length ? cfg.features : DEFAULT_FEATURES;
+    const features = Array.isArray(cfg.features) ? cfg.features : DEFAULT_FEATURES();
     return {
       bg_color: this.safeColor(cfg.bg_color, "#f4f4f5"),
       // "heading" replaced "title", which clashed with the features[].title field in the editor.
-      title: (cfg.heading ?? cfg.title) == null ? "مميزات المتجر" : this.asText(cfg.heading ?? cfg.title),
+      title: (cfg.heading ?? cfg.title) == null ? d("مميزات المتجر") : this.asText(cfg.heading ?? cfg.title),
       subtitle:
         cfg.subtitle == null
-          ? "نلتزم بخدمة واضحة من لحظة الطلب حتى الاستلام."
+          ? d("نلتزم بخدمة واضحة من لحظة الطلب حتى الاستلام.")
           : this.asText(cfg.subtitle),
       features: features.map((item: Record<string, unknown>) => this.normalize(item)).filter((item: Feature) => item.title),
     };

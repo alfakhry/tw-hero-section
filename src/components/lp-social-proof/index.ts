@@ -1,3 +1,4 @@
+import { d } from "../../shared/defaults";
 import { css, html, LitElement, nothing } from "lit";
 import { baseStyles } from "../../shared/styles";
 import { chevron, chevronNext, ctaBlock, readCta, scrollTrack, stars } from "../../shared/cta";
@@ -20,11 +21,11 @@ import {
 type Review = { avatar: string; name: string; rating: number; text: string; verified: boolean };
 type Video = { url: string; cover: string; caption: string };
 
-const DEFAULT_REVIEWS: Review[] = [
-  { avatar: "", name: "سارة القحطاني", rating: 5, text: "من أفضل المنتجات اللي جربتها، النتيجة واضحة والتغليف فخم.", verified: true },
-  { avatar: "", name: "عبدالله الشمري", rating: 5, text: "وصلني الطلب بسرعة والجودة أعلى من توقعاتي. أكيد بكرر الطلب.", verified: true },
-  { avatar: "", name: "نورة العتيبي", rating: 4, text: "تجربة ممتازة وخدمة العملاء متعاونين جداً.", verified: true },
-  { avatar: "", name: "فهد الدوسري", rating: 5, text: "يستاهل كل ريال، أنصح فيه أهلي وأصحابي.", verified: true },
+const DEFAULT_REVIEWS = (): Review[] => [
+  { avatar: "", name: d("سارة القحطاني"), rating: 5, text: d("من أفضل المنتجات اللي جربتها، النتيجة واضحة والتغليف فخم."), verified: true },
+  { avatar: "", name: d("عبدالله الشمري"), rating: 5, text: d("وصلني الطلب بسرعة والجودة أعلى من توقعاتي. أكيد بكرر الطلب."), verified: true },
+  { avatar: "", name: d("نورة العتيبي"), rating: 4, text: d("تجربة ممتازة وخدمة العملاء متعاونين جداً."), verified: true },
+  { avatar: "", name: d("فهد الدوسري"), rating: 5, text: d("يستاهل كل ريال، أنصح فيه أهلي وأصحابي."), verified: true },
 ];
 
 /** Social proof: customer reviews, video reviews and a customer photo strip, each optional. */
@@ -82,31 +83,31 @@ export default class LpSocialProof extends LitElement {
   private get data() {
     const cfg = this.config || {};
     const reviewRows = list(cfg.reviews);
-    const reviews: Review[] = reviewRows.length
+    const reviews: Review[] = cfg.reviews !== undefined && cfg.reviews !== null
       ? reviewRows
           .map((r) => ({
-            avatar: text(item(r, "reviews", "avatar")).trim(),
+            avatar: safeUrl(item(r, "reviews", "avatar")),
             name: text(item(r, "reviews", "name")).trim(),
             rating: number(item(r, "reviews", "rating"), 5, 1, 5),
             text: text(item(r, "reviews", "text")).trim(),
             verified: isOn(item(r, "reviews", "verified"), true),
           }))
           .filter((r) => r.text)
-      : DEFAULT_REVIEWS;
+      : DEFAULT_REVIEWS();
     const videos: Video[] = list(cfg.videos)
       .map((v) => ({
         url: safeUrl(item(v, "videos", "url")),
-        cover: text(item(v, "videos", "cover")).trim(),
+        cover: safeUrl(item(v, "videos", "cover")),
         caption: text(item(v, "videos", "caption")).trim(),
       }))
       .filter((v) => v.url);
     const photos = list(cfg.photos)
-      .map((p) => text(item(p, "photos", "image")).trim())
+      .map((p) => safeUrl(item(p, "photos", "image")))
       .filter(Boolean);
     return {
       bg: color(cfg.bg_color, "#ffffff"),
-      title: textOr(cfg.heading, "آراء عملائنا"),
-      subtitle: textOr(cfg.subheading, "أكثر من 5000 عميل جرّبوا المنتج، وهذه بعض تجاربهم."),
+      title: textOr(cfg.heading, d("آراء عملائنا")),
+      subtitle: textOr(cfg.subheading, d("أكثر من 5000 عميل جرّبوا المنتج، وهذه بعض تجاربهم.")),
       starsColor: color(cfg.reviews_stars_color ?? cfg.stars_color, "#f5a623"),
       showReviews: isOn(cfg.show_reviews, true),
       reviews,
@@ -116,7 +117,7 @@ export default class LpSocialProof extends LitElement {
       showPhotos: isOn(cfg.show_photos, true),
       photosTitle: textOr(cfg.photos_title, ""),
       photos,
-      cta: readCta(cfg, { text: "انضم لعملائنا السعداء" }),
+      cta: readCta(cfg, { text: d("انضم لعملائنا السعداء") }),
     };
   }
 

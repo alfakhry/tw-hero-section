@@ -147,7 +147,9 @@ export function item(row: Dict, collection: string, key: string): unknown {
 export function safeUrl(value: unknown): string {
   const url = text(value).trim();
   if (!url) return "";
-  if (url.startsWith("#") || url.startsWith("/")) return url;
+  if (url.startsWith("#")) return url;
+  // Same-site paths only: "//host" and "/\\host" are treated by browsers as other sites.
+  if (url.startsWith("/")) return /^\/[\/\\]/.test(url) ? "" : url;
   try {
     const parsed = new URL(url);
     return parsed.protocol === "https:" || parsed.protocol === "http:" ? parsed.href : "";

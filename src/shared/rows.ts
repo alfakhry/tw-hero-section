@@ -1,16 +1,17 @@
 import { css, html, nothing } from "lit";
-import { PLACEHOLDER_IMAGE, hexToRgba, item, list, option, text } from "./utils";
+import { PLACEHOLDER_IMAGE, hexToRgba, item, list, option, safeUrl, text } from "./utils";
 
 type Dict = Record<string, unknown>;
 export type Row = { image: string; title: string; text: string; points: string[] };
 
 /** Reads an image + text collection, falling back to defaults when it is empty. */
 export function readRows(value: unknown, collection: string, defaults: Row[]): Row[] {
+  // Defaults only for a field that was never saved; an emptied list stays empty.
+  if (value === undefined || value === null) return defaults;
   const rows = list(value);
-  if (!rows.length) return defaults;
   return rows
     .map((row: Dict) => ({
-      image: text(item(row, collection, "image")).trim(),
+      image: safeUrl(item(row, collection, "image")),
       title: text(item(row, collection, "title")).trim(),
       text: text(item(row, collection, "text")).trim(),
       points: text(item(row, collection, "points"))

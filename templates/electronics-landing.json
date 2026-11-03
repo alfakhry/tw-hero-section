@@ -65,7 +65,7 @@
           "maxLength": 4,
           "fields": [
             {
-              "id": "icon",
+              "id": "top_bar.icon",
               "type": "items",
               "format": "dropdown-list",
               "label": "الأيقونة",
@@ -129,64 +129,67 @@
               "required": true
             },
             {
-              "id": "text",
+              "id": "top_bar.text",
               "type": "string",
               "format": "text",
               "label": "النص",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             }
           ],
           "value": [
             {
-              "icon": [
+              "top_bar.icon": [
                 {
                   "label": "شحن",
                   "value": "شحن",
                   "key": "a9ec4181-80da-586b-8331-e9e4e3e49b7d"
                 }
               ],
-              "text": {
+              "top_bar.text": {
                 "ar": "شحن مجاني اليوم",
                 "en": "Free same-day dispatch"
               }
             },
             {
-              "icon": [
+              "top_bar.icon": [
                 {
                   "label": "ضمان",
                   "value": "ضمان",
                   "key": "2367e218-f734-59e1-9a96-6164ffa62cae"
                 }
               ],
-              "text": {
+              "top_bar.text": {
                 "ar": "ضمان سنتين",
                 "en": "Two-year warranty"
               }
             },
             {
-              "icon": [
+              "top_bar.icon": [
                 {
                   "label": "استرجاع",
                   "value": "استرجاع",
                   "key": "26c0532e-dc3a-5d75-94f4-d9eae10b13a7"
                 }
               ],
-              "text": {
+              "top_bar.text": {
                 "ar": "استبدال خلال 14 يوماً",
                 "en": "14-day exchange"
               }
             },
             {
-              "icon": [
+              "top_bar.icon": [
                 {
                   "label": "دعم فني",
                   "value": "دعم",
                   "key": "dab0e2f3-6f3e-5c76-b2c5-670daaef31de"
                 }
               ],
-              "text": {
+              "top_bar.text": {
                 "ar": "دعم فني بالعربي",
                 "en": "Arabic tech support"
               }
@@ -211,12 +214,12 @@
           "id": "gallery",
           "type": "collection",
           "format": "collection",
-          "label": "صور المنتج (اختياري عند ربط منتج)",
+          "label": "صور المنتج (عند عدم ربط منتج)",
           "minLength": 0,
-          "maxLength": 8,
+          "maxLength": 6,
           "fields": [
             {
-              "id": "image",
+              "id": "gallery.image",
               "type": "string",
               "format": "image",
               "label": "صورة",
@@ -226,25 +229,25 @@
           ],
           "value": [
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/dvj6CnfX0k0eVz2iXIEviwkEUAzwA0aXrYBnFJhb.jpg"
+              "gallery.image": "https://cdn.portal.files.salla.network/uploads/dvj6CnfX0k0eVz2iXIEviwkEUAzwA0aXrYBnFJhb.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/Ud8dOXAVeWeVX6wQub866uOsKT29wsHGO6GoV07u.jpg"
+              "gallery.image": "https://cdn.portal.files.salla.network/uploads/Ud8dOXAVeWeVX6wQub866uOsKT29wsHGO6GoV07u.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/RSu3bvEa6dZx6HsMIKsVfvRgTRBJzsBuAyuVkV1m.jpg"
+              "gallery.image": "https://cdn.portal.files.salla.network/uploads/RSu3bvEa6dZx6HsMIKsVfvRgTRBJzsBuAyuVkV1m.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/wSkuPctDkZn8zFo4jx7sQc7hmctkILvo2M0vM3Gg.jpg"
+              "gallery.image": "https://cdn.portal.files.salla.network/uploads/wSkuPctDkZn8zFo4jx7sQc7hmctkILvo2M0vM3Gg.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/OQugYtuk0Q1FOMl7Iz5DZcGRd0eMxRJV0KSi4DeV.jpg"
+              "gallery.image": "https://cdn.portal.files.salla.network/uploads/OQugYtuk0Q1FOMl7Iz5DZcGRd0eMxRJV0KSi4DeV.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/iT90jROhDxwDMfMHxPTw495XWFoNgEZcZ0vr5ira.jpg"
+              "gallery.image": "https://cdn.portal.files.salla.network/uploads/iT90jROhDxwDMfMHxPTw495XWFoNgEZcZ0vr5ira.jpg"
             }
           ],
-          "description": "عند ربط منتج وترك الصور فارغة تُعرض صور المنتج من متجرك."
+          "description": "عند ربط منتج تُعرض صوره من متجرك تلقائياً، وتُستخدم هذه الصور فقط إذا لم يكن للمنتج صور."
         },
         {
           "id": "info_heading",
@@ -354,30 +357,33 @@
           "maxLength": 5,
           "fields": [
             {
-              "id": "text",
+              "id": "points.text",
               "type": "string",
               "format": "text",
               "label": "النص",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             }
           ],
           "value": [
             {
-              "text": {
+              "points.text": {
                 "ar": "بطارية حتى 40 ساعة",
                 "en": "Up to 40 hours of battery"
               }
             },
             {
-              "text": {
+              "points.text": {
                 "ar": "عزل نشط للضوضاء",
                 "en": "Active noise cancelling"
               }
             },
             {
-              "text": {
+              "points.text": {
                 "ar": "ضمان سنتين",
                 "en": "Two-year warranty"
               }
@@ -462,16 +468,19 @@
           "maxLength": 4,
           "fields": [
             {
-              "id": "title",
+              "id": "tiers.title",
               "type": "string",
               "format": "text",
               "label": "اسم العرض",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "qty",
+              "id": "tiers.qty",
               "type": "number",
               "format": "integer",
               "label": "الكمية المضافة للسلة",
@@ -480,104 +489,116 @@
               "maximum": 99
             },
             {
-              "id": "price",
+              "id": "tiers.price",
               "type": "string",
               "format": "text",
               "label": "السعر المعروض (اختياري)",
               "multilanguage": true,
-              "value": ""
-            },
-            {
-              "id": "compare",
-              "type": "string",
-              "format": "text",
-              "label": "السعر قبل الخصم (اختياري)",
-              "multilanguage": true,
-              "value": ""
-            },
-            {
-              "id": "subtitle",
-              "type": "string",
-              "format": "text",
-              "label": "سطر صغير (اختياري)",
-              "multilanguage": true,
-              "value": ""
-            },
-            {
-              "id": "badge",
-              "type": "string",
-              "format": "text",
-              "label": "شارة (اختياري) مثل الأكثر طلباً",
-              "multilanguage": true,
-              "value": ""
-            }
-          ],
-          "value": [
-            {
-              "title": {
-                "ar": "سماعة واحدة",
-                "en": "One headset"
-              },
-              "qty": 1,
-              "price": {
-                "ar": "299 ر.س",
-                "en": "SAR 299"
-              },
-              "compare": {
-                "ar": "449 ر.س",
-                "en": "SAR 449"
-              },
-              "subtitle": {
-                "ar": "مع حقيبة حمل",
-                "en": "Includes carry case"
-              },
-              "badge": {
+              "value": {
                 "ar": "",
                 "en": ""
               }
             },
             {
-              "title": {
+              "id": "tiers.compare",
+              "type": "string",
+              "format": "text",
+              "label": "السعر قبل الخصم (اختياري)",
+              "multilanguage": true,
+              "value": {
+                "ar": "",
+                "en": ""
+              }
+            },
+            {
+              "id": "tiers.subtitle",
+              "type": "string",
+              "format": "text",
+              "label": "سطر صغير (اختياري)",
+              "multilanguage": true,
+              "value": {
+                "ar": "",
+                "en": ""
+              }
+            },
+            {
+              "id": "tiers.badge",
+              "type": "string",
+              "format": "text",
+              "label": "شارة (اختياري) مثل الأكثر طلباً",
+              "multilanguage": true,
+              "value": {
+                "ar": "",
+                "en": ""
+              }
+            }
+          ],
+          "value": [
+            {
+              "tiers.title": {
+                "ar": "سماعة واحدة",
+                "en": "One headset"
+              },
+              "tiers.qty": 1,
+              "tiers.price": {
+                "ar": "299 ر.س",
+                "en": "SAR 299"
+              },
+              "tiers.compare": {
+                "ar": "449 ر.س",
+                "en": "SAR 449"
+              },
+              "tiers.subtitle": {
+                "ar": "مع حقيبة حمل",
+                "en": "Includes carry case"
+              },
+              "tiers.badge": {
+                "ar": "",
+                "en": ""
+              }
+            },
+            {
+              "tiers.title": {
                 "ar": "سماعتان",
                 "en": "Two headsets"
               },
-              "qty": 2,
-              "price": {
+              "tiers.qty": 2,
+              "tiers.price": {
                 "ar": "549 ر.س",
                 "en": "SAR 549"
               },
-              "compare": {
+              "tiers.compare": {
                 "ar": "898 ر.س",
                 "en": "SAR 898"
               },
-              "subtitle": {
+              "tiers.subtitle": {
                 "ar": "لك ولمن تحب",
                 "en": "For you and someone you love"
               },
-              "badge": {
+              "tiers.badge": {
                 "ar": "الأكثر طلباً",
                 "en": "Most popular"
               }
             },
             {
-              "title": {
+              "tiers.title": {
                 "ar": "3 سماعات",
                 "en": "Three headsets"
               },
-              "qty": 3,
-              "price": {
+              "tiers.qty": 3,
+              "tiers.price": {
                 "ar": "779 ر.س",
                 "en": "SAR 779"
               },
-              "compare": {
+              "tiers.compare": {
                 "ar": "1347 ر.س",
                 "en": "SAR 1,347"
               },
-              "subtitle": {
+              "tiers.subtitle": {
                 "ar": "أقل سعر للقطعة + شحن أولوية",
                 "en": "Lowest price per unit + priority shipping"
               },
-              "badge": {
+              "tiers.badge": {
                 "ar": "وفّر 42%",
                 "en": "Save 42%"
               }
@@ -803,7 +824,7 @@
           "maxLength": 5,
           "fields": [
             {
-              "id": "icon",
+              "id": "trust.icon",
               "type": "items",
               "format": "dropdown-list",
               "label": "الأيقونة",
@@ -867,64 +888,67 @@
               "required": true
             },
             {
-              "id": "text",
+              "id": "trust.text",
               "type": "string",
               "format": "text",
               "label": "النص",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             }
           ],
           "value": [
             {
-              "icon": [
+              "trust.icon": [
                 {
                   "label": "شحن",
                   "value": "شحن",
                   "key": "c0943246-a1c9-5f76-9b49-c4f81d5599d6"
                 }
               ],
-              "text": {
+              "trust.text": {
                 "ar": "يُشحن خلال 24 ساعة",
                 "en": "Ships within 24 hours"
               }
             },
             {
-              "icon": [
+              "trust.icon": [
                 {
                   "label": "ضمان",
                   "value": "ضمان",
                   "key": "4a286cae-c022-55e4-9f48-419a8f99e24c"
                 }
               ],
-              "text": {
+              "trust.text": {
                 "ar": "ضمان سنتين ضد عيوب التصنيع",
                 "en": "Two-year manufacturer warranty"
               }
             },
             {
-              "icon": [
+              "trust.icon": [
                 {
                   "label": "استرجاع",
                   "value": "استرجاع",
                   "key": "2202ea8c-fef2-50b6-b229-27ab99f7c334"
                 }
               ],
-              "text": {
+              "trust.text": {
                 "ar": "استبدال مجاني خلال 14 يوماً",
                 "en": "Free exchange within 14 days"
               }
             },
             {
-              "icon": [
+              "trust.icon": [
                 {
                   "label": "دفع آمن",
                   "value": "امان",
                   "key": "52c20f4f-a040-5744-8184-7d345a2a5171"
                 }
               ],
-              "text": {
+              "trust.text": {
                 "ar": "دفع آمن ومدى وتقسيط",
                 "en": "Secure pay, mada and instalments"
               }
@@ -962,7 +986,7 @@
           "maxLength": 1,
           "fields": [
             {
-              "id": "avatar",
+              "id": "reviews.avatar",
               "type": "string",
               "format": "image",
               "label": "صورة العميل (اختياري)",
@@ -970,32 +994,38 @@
               "description": "مقاس مربع 200×200"
             },
             {
-              "id": "name",
+              "id": "reviews.name",
               "type": "string",
               "format": "text",
               "label": "الاسم",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "text",
+              "id": "reviews.text",
               "type": "string",
               "format": "textarea",
               "label": "نص الرأي",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             }
           ],
           "value": [
             {
-              "avatar": "",
-              "name": {
+              "reviews.avatar": "",
+              "reviews.name": {
                 "ar": "خالد الغامدي",
                 "en": "Khalid G."
               },
-              "text": {
+              "reviews.text": {
                 "ar": "العزل ممتاز في الطيارة والمكتب، والبطارية تكفيني أسبوع كامل.",
                 "en": "Great isolation on flights and at the office, and the battery lasts me a full week."
               }
@@ -1033,51 +1063,57 @@
           "maxLength": 5,
           "fields": [
             {
-              "id": "title",
+              "id": "tabs.title",
               "type": "string",
               "format": "text",
               "label": "عنوان التبويب",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "content",
+              "id": "tabs.content",
               "type": "string",
               "format": "textarea",
               "label": "المحتوى",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             }
           ],
           "value": [
             {
-              "title": {
+              "tabs.title": {
                 "ar": "المواصفات",
                 "en": "Specs"
               },
-              "content": {
+              "tabs.content": {
                 "ar": "بلوتوث 5.3 • عزل نشط للضوضاء • بطارية 40 ساعة • شحن سريع 10 دقائق = 5 ساعات • ميكروفون مزدوج للمكالمات • وزن 250 جرام.",
                 "en": "Bluetooth 5.3 • Active noise cancelling • 40-hour battery • 10-minute fast charge = 5 hours • Dual-mic calls • 250 g."
               }
             },
             {
-              "title": {
+              "tabs.title": {
                 "ar": "محتويات العلبة",
                 "en": "In the box"
               },
-              "content": {
+              "tabs.content": {
                 "ar": "السماعة، حقيبة حمل صلبة، كابل شحن USB-C، كابل صوت 3.5 مم، دليل الاستخدام.",
                 "en": "Headphones, hard carry case, USB-C charging cable, 3.5 mm audio cable, user guide."
               }
             },
             {
-              "title": {
+              "tabs.title": {
                 "ar": "الشحن والاسترجاع",
                 "en": "Shipping & returns"
               },
-              "content": {
+              "tabs.content": {
                 "ar": "التوصيل خلال 1-3 أيام عمل لجميع مدن المملكة مع رابط تتبّع. يمكنك الإرجاع خلال 14 يوماً من الاستلام.",
                 "en": "Delivery in 1-3 business days across Saudi Arabia with tracking. Returns accepted within 14 days of delivery."
               }
@@ -1133,15 +1169,18 @@
           "maxLength": 6,
           "fields": [
             {
-              "id": "name",
+              "id": "logos.name",
               "type": "string",
               "format": "text",
               "label": "الاسم",
               "multilanguage": true,
-              "value": ""
+              "value": {
+                "ar": "",
+                "en": ""
+              }
             },
             {
-              "id": "image",
+              "id": "logos.image",
               "type": "string",
               "format": "image",
               "label": "الشعار (اختياري)",
@@ -1151,32 +1190,32 @@
           ],
           "value": [
             {
-              "name": {
+              "logos.name": {
                 "ar": "تقنية اليوم",
                 "en": "Tech Today"
               },
-              "image": ""
+              "logos.image": ""
             },
             {
-              "name": {
+              "logos.name": {
                 "ar": "عالم الأجهزة",
                 "en": "Gadget World"
               },
-              "image": ""
+              "logos.image": ""
             },
             {
-              "name": {
+              "logos.name": {
                 "ar": "مراجعات تك",
                 "en": "Tech Reviews"
               },
-              "image": ""
+              "logos.image": ""
             },
             {
-              "name": {
+              "logos.name": {
                 "ar": "صوت وصورة",
                 "en": "Audio & Video"
               },
-              "image": ""
+              "logos.image": ""
             }
           ],
           "conditions": [
@@ -1257,60 +1296,66 @@
           "maxLength": 4,
           "fields": [
             {
-              "id": "icon",
+              "id": "steps.icon",
               "type": "string",
               "format": "icon",
               "label": "الأيقونة",
               "value": "sicon-check"
             },
             {
-              "id": "title",
+              "id": "steps.title",
               "type": "string",
               "format": "text",
               "label": "عنوان الخطوة",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "text",
+              "id": "steps.text",
               "type": "string",
               "format": "textarea",
               "label": "وصف الخطوة",
               "multilanguage": true,
-              "value": ""
+              "value": {
+                "ar": "",
+                "en": ""
+              }
             }
           ],
           "value": [
             {
-              "icon": "sicon-bluetooth",
-              "title": {
+              "steps.icon": "sicon-bluetooth",
+              "steps.title": {
                 "ar": "اقتران فوري",
                 "en": "Instant pairing"
               },
-              "text": {
+              "steps.text": {
                 "ar": "افتح السماعة وستظهر على جوالك مباشرة.",
                 "en": "Open the headphones and they appear on your phone right away."
               }
             },
             {
-              "icon": "sicon-volume-mute",
-              "title": {
+              "steps.icon": "sicon-volume-mute",
+              "steps.title": {
                 "ar": "فعّل العزل",
                 "en": "Turn on ANC"
               },
-              "text": {
+              "steps.text": {
                 "ar": "ضغطة واحدة تعزل أصوات المكتب والطائرة والشارع.",
                 "en": "One press blocks out the office, the plane and the street."
               }
             },
             {
-              "icon": "sicon-battery-full",
-              "title": {
+              "steps.icon": "sicon-battery-full",
+              "steps.title": {
                 "ar": "استمع طوال الأسبوع",
                 "en": "Listen all week"
               },
-              "text": {
+              "steps.text": {
                 "ar": "بطارية 40 ساعة تكفيك أياماً بشحنة واحدة.",
                 "en": "A 40-hour battery lasts you days on one charge."
               }
@@ -1405,7 +1450,7 @@
           "maxLength": 6,
           "fields": [
             {
-              "id": "image",
+              "id": "features.image",
               "type": "string",
               "format": "image",
               "label": "الصورة",
@@ -1413,58 +1458,67 @@
               "description": "المقاس المناسب 1200×900 بكسل (نسبة 4:3)"
             },
             {
-              "id": "title",
+              "id": "features.title",
               "type": "string",
               "format": "text",
               "label": "العنوان",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "text",
+              "id": "features.text",
               "type": "string",
               "format": "textarea",
               "label": "الوصف",
               "multilanguage": true,
-              "value": ""
+              "value": {
+                "ar": "",
+                "en": ""
+              }
             },
             {
-              "id": "points",
+              "id": "features.points",
               "type": "string",
               "format": "textarea",
               "label": "نقاط مميّزة (كل نقطة في سطر — اختياري)",
               "multilanguage": true,
-              "value": ""
+              "value": {
+                "ar": "",
+                "en": ""
+              }
             }
           ],
           "value": [
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/YFa6Vi9H7gKsV4qEdK1VGb3zmLaJLD2MEShxI9CA.jpg",
-              "title": {
+              "features.image": "https://cdn.portal.files.salla.network/uploads/YFa6Vi9H7gKsV4qEdK1VGb3zmLaJLD2MEShxI9CA.jpg",
+              "features.title": {
                 "ar": "صوت غني ومتوازن",
                 "en": "Rich, balanced sound"
               },
-              "text": {
+              "features.text": {
                 "ar": "مشغّلات 40 مم بجهير عميق وأصوات واضحة في كل مستوى.",
                 "en": "40 mm drivers with deep bass and clear vocals at every volume."
               },
-              "points": {
+              "features.points": {
                 "ar": "جهير عميق بدون تشويش\nتطبيق لتخصيص الصوت",
                 "en": "Deep bass without distortion\nApp-based EQ"
               }
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/a5JUNOvr89RenC6m6zxeXpNSJqAKQk7fLGD84lPT.jpg",
-              "title": {
+              "features.image": "https://cdn.portal.files.salla.network/uploads/a5JUNOvr89RenC6m6zxeXpNSJqAKQk7fLGD84lPT.jpg",
+              "features.title": {
                 "ar": "راحة تدوم ساعات",
                 "en": "Comfort for hours"
               },
-              "text": {
+              "features.text": {
                 "ar": "وسائد ناعمة من الإسفنج الذكي ووزن 250 جرام فقط.",
                 "en": "Soft memory-foam cushions and just 250 g."
               },
-              "points": {
+              "features.points": {
                 "ar": "وسائد إسفنج ذكي\nقابلة للطي للسفر",
                 "en": "Memory-foam cushions\nFolds flat for travel"
               }
@@ -1991,7 +2045,7 @@
           "maxLength": 6,
           "fields": [
             {
-              "id": "image",
+              "id": "benefits.image",
               "type": "string",
               "format": "image",
               "label": "الصورة",
@@ -1999,58 +2053,67 @@
               "description": "المقاس المناسب 1200×900 بكسل (نسبة 4:3)"
             },
             {
-              "id": "title",
+              "id": "benefits.title",
               "type": "string",
               "format": "text",
               "label": "العنوان",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "text",
+              "id": "benefits.text",
               "type": "string",
               "format": "textarea",
               "label": "الوصف",
               "multilanguage": true,
-              "value": ""
-            },
-            {
-              "id": "points",
-              "type": "string",
-              "format": "textarea",
-              "label": "نقاط مميّزة (كل نقطة في سطر — اختياري)",
-              "multilanguage": true,
-              "value": ""
-            }
-          ],
-          "value": [
-            {
-              "image": "https://cdn.portal.files.salla.network/uploads/JYcW4Q2rc0o48oRZoZGh4iwBGulTTNQLBhOPz5vj.jpg",
-              "title": {
-                "ar": "تركيز أعلى في العمل",
-                "en": "Deeper focus at work"
-              },
-              "text": {
-                "ar": "اعزل ضجيج المكتب واجتماعات أوضح بميكروفون مزدوج.",
-                "en": "Block office noise and take clearer calls with dual mics."
-              },
-              "points": {
+              "value": {
                 "ar": "",
                 "en": ""
               }
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/wSkuPctDkZn8zFo4jx7sQc7hmctkILvo2M0vM3Gg.jpg",
-              "title": {
+              "id": "benefits.points",
+              "type": "string",
+              "format": "textarea",
+              "label": "نقاط مميّزة (كل نقطة في سطر — اختياري)",
+              "multilanguage": true,
+              "value": {
+                "ar": "",
+                "en": ""
+              }
+            }
+          ],
+          "value": [
+            {
+              "benefits.image": "https://cdn.portal.files.salla.network/uploads/JYcW4Q2rc0o48oRZoZGh4iwBGulTTNQLBhOPz5vj.jpg",
+              "benefits.title": {
+                "ar": "تركيز أعلى في العمل",
+                "en": "Deeper focus at work"
+              },
+              "benefits.text": {
+                "ar": "اعزل ضجيج المكتب واجتماعات أوضح بميكروفون مزدوج.",
+                "en": "Block office noise and take clearer calls with dual mics."
+              },
+              "benefits.points": {
+                "ar": "",
+                "en": ""
+              }
+            },
+            {
+              "benefits.image": "https://cdn.portal.files.salla.network/uploads/wSkuPctDkZn8zFo4jx7sQc7hmctkILvo2M0vM3Gg.jpg",
+              "benefits.title": {
                 "ar": "رحلات أهدأ",
                 "en": "Calmer journeys"
               },
-              "text": {
+              "benefits.text": {
                 "ar": "استمتع بأفلامك وموسيقاك في الطائرة بلا ضوضاء المحركات.",
                 "en": "Enjoy films and music on flights without engine noise."
               },
-              "points": {
+              "benefits.points": {
                 "ar": "",
                 "en": ""
               }
@@ -2133,7 +2196,7 @@
           "maxLength": 12,
           "fields": [
             {
-              "id": "avatar",
+              "id": "reviews.avatar",
               "type": "string",
               "format": "image",
               "label": "صورة العميل (اختياري)",
@@ -2141,16 +2204,19 @@
               "description": "مقاس مربع 200×200 بكسل"
             },
             {
-              "id": "name",
+              "id": "reviews.name",
               "type": "string",
               "format": "text",
               "label": "اسم العميل",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "rating",
+              "id": "reviews.rating",
               "type": "number",
               "format": "integer",
               "label": "التقييم (من 1 إلى 5)",
@@ -2159,16 +2225,19 @@
               "maximum": 5
             },
             {
-              "id": "text",
+              "id": "reviews.text",
               "type": "string",
               "format": "textarea",
               "label": "نص التقييم",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "verified",
+              "id": "reviews.verified",
               "type": "boolean",
               "format": "switch",
               "label": "إظهار شارة (مشتري موثّق)",
@@ -2178,56 +2247,56 @@
           ],
           "value": [
             {
-              "avatar": "",
-              "name": {
+              "reviews.avatar": "",
+              "reviews.name": {
                 "ar": "خالد الغامدي",
                 "en": "Khalid G."
               },
-              "rating": 5,
-              "text": {
+              "reviews.rating": 5,
+              "reviews.text": {
                 "ar": "العزل ممتاز في الطيارة، والبطارية تكفيني أسبوع.",
                 "en": "Great isolation on flights, and the battery lasts a week."
               },
-              "verified": true
+              "reviews.verified": true
             },
             {
-              "avatar": "",
-              "name": {
+              "reviews.avatar": "",
+              "reviews.name": {
                 "ar": "سلطان القرني",
                 "en": "Sultan Q."
               },
-              "rating": 5,
-              "text": {
+              "reviews.rating": 5,
+              "reviews.text": {
                 "ar": "جودة صوت تنافس ماركات بضعف السعر.",
                 "en": "Sound quality that rivals brands twice the price."
               },
-              "verified": true
+              "reviews.verified": true
             },
             {
-              "avatar": "",
-              "name": {
+              "reviews.avatar": "",
+              "reviews.name": {
                 "ar": "منيرة الشهري",
                 "en": "Munira S."
               },
-              "rating": 4,
-              "text": {
+              "reviews.rating": 4,
+              "reviews.text": {
                 "ar": "خفيفة ومريحة، ألبسها طول الدوام بدون إزعاج.",
                 "en": "Light and comfortable — I wear them all workday."
               },
-              "verified": true
+              "reviews.verified": true
             },
             {
-              "avatar": "",
-              "name": {
+              "reviews.avatar": "",
+              "reviews.name": {
                 "ar": "ياسر البقمي",
                 "en": "Yasser B."
               },
-              "rating": 5,
-              "text": {
+              "reviews.rating": 5,
+              "reviews.text": {
                 "ar": "وصلت ثاني يوم، والباقة المزدوجة وفّرت علي كثير.",
                 "en": "Arrived the next day, and the two-pack saved me a lot."
               },
-              "verified": true
+              "reviews.verified": true
             }
           ],
           "conditions": [
@@ -2280,7 +2349,7 @@
           "maxLength": 8,
           "fields": [
             {
-              "id": "url",
+              "id": "videos.url",
               "type": "string",
               "format": "url",
               "label": "رابط الفيديو",
@@ -2288,7 +2357,7 @@
               "description": "يوتيوب أو فيميو أو تيك توك أو رابط مباشر لملف mp4"
             },
             {
-              "id": "cover",
+              "id": "videos.cover",
               "type": "string",
               "format": "image",
               "label": "صورة الغلاف",
@@ -2296,12 +2365,15 @@
               "description": "مقاس طولي 720×1280 بكسل (اختياري ليوتيوب)"
             },
             {
-              "id": "caption",
+              "id": "videos.caption",
               "type": "string",
               "format": "text",
               "label": "وصف قصير (اختياري)",
               "multilanguage": true,
-              "value": ""
+              "value": {
+                "ar": "",
+                "en": ""
+              }
             }
           ],
           "value": [],
@@ -2355,7 +2427,7 @@
           "maxLength": 12,
           "fields": [
             {
-              "id": "image",
+              "id": "photos.image",
               "type": "string",
               "format": "image",
               "label": "الصورة",
@@ -2365,22 +2437,22 @@
           ],
           "value": [
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/dvj6CnfX0k0eVz2iXIEviwkEUAzwA0aXrYBnFJhb.jpg"
+              "photos.image": "https://cdn.portal.files.salla.network/uploads/dvj6CnfX0k0eVz2iXIEviwkEUAzwA0aXrYBnFJhb.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/Ud8dOXAVeWeVX6wQub866uOsKT29wsHGO6GoV07u.jpg"
+              "photos.image": "https://cdn.portal.files.salla.network/uploads/Ud8dOXAVeWeVX6wQub866uOsKT29wsHGO6GoV07u.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/RSu3bvEa6dZx6HsMIKsVfvRgTRBJzsBuAyuVkV1m.jpg"
+              "photos.image": "https://cdn.portal.files.salla.network/uploads/RSu3bvEa6dZx6HsMIKsVfvRgTRBJzsBuAyuVkV1m.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/wSkuPctDkZn8zFo4jx7sQc7hmctkILvo2M0vM3Gg.jpg"
+              "photos.image": "https://cdn.portal.files.salla.network/uploads/wSkuPctDkZn8zFo4jx7sQc7hmctkILvo2M0vM3Gg.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/OQugYtuk0Q1FOMl7Iz5DZcGRd0eMxRJV0KSi4DeV.jpg"
+              "photos.image": "https://cdn.portal.files.salla.network/uploads/OQugYtuk0Q1FOMl7Iz5DZcGRd0eMxRJV0KSi4DeV.jpg"
             },
             {
-              "image": "https://cdn.portal.files.salla.network/uploads/iT90jROhDxwDMfMHxPTw495XWFoNgEZcZ0vr5ira.jpg"
+              "photos.image": "https://cdn.portal.files.salla.network/uploads/iT90jROhDxwDMfMHxPTw495XWFoNgEZcZ0vr5ira.jpg"
             }
           ],
           "conditions": [
@@ -2802,16 +2874,19 @@
           "maxLength": 10,
           "fields": [
             {
-              "id": "feature",
+              "id": "rows.feature",
               "type": "string",
               "format": "text",
               "label": "الميزة",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "brand",
+              "id": "rows.brand",
               "type": "items",
               "format": "dropdown-list",
               "label": "منتجك",
@@ -2850,7 +2925,7 @@
               "required": true
             },
             {
-              "id": "c1",
+              "id": "rows.c1",
               "type": "items",
               "format": "dropdown-list",
               "label": "البديل الأول",
@@ -2889,7 +2964,7 @@
               "required": true
             },
             {
-              "id": "c2",
+              "id": "rows.c2",
               "type": "items",
               "format": "dropdown-list",
               "label": "البديل الثاني",
@@ -2930,25 +3005,25 @@
           ],
           "value": [
             {
-              "feature": {
+              "rows.feature": {
                 "ar": "عزل نشط للضوضاء",
                 "en": "Active noise cancelling"
               },
-              "brand": [
+              "rows.brand": [
                 {
                   "label": "✓ متوفر",
                   "value": "yes",
                   "key": "99ce575d-d428-5e31-ad53-c47a233e6bdf"
                 }
               ],
-              "c1": [
+              "rows.c1": [
                 {
                   "label": "✓ متوفر",
                   "value": "yes",
                   "key": "ecce6146-f04a-563b-a2df-30a496d47f32"
                 }
               ],
-              "c2": [
+              "rows.c2": [
                 {
                   "label": "✕ غير متوفر",
                   "value": "no",
@@ -2957,25 +3032,25 @@
               ]
             },
             {
-              "feature": {
+              "rows.feature": {
                 "ar": "بطارية 40 ساعة",
                 "en": "40-hour battery"
               },
-              "brand": [
+              "rows.brand": [
                 {
                   "label": "✓ متوفر",
                   "value": "yes",
                   "key": "99ce575d-d428-5e31-ad53-c47a233e6bdf"
                 }
               ],
-              "c1": [
+              "rows.c1": [
                 {
                   "label": "– جزئياً",
                   "value": "partial",
                   "key": "6238a676-675d-5786-a9a0-8c385f69a536"
                 }
               ],
-              "c2": [
+              "rows.c2": [
                 {
                   "label": "– جزئياً",
                   "value": "partial",
@@ -2984,25 +3059,25 @@
               ]
             },
             {
-              "feature": {
+              "rows.feature": {
                 "ar": "سعر أقل من 300 ريال",
                 "en": "Under SAR 300"
               },
-              "brand": [
+              "rows.brand": [
                 {
                   "label": "✓ متوفر",
                   "value": "yes",
                   "key": "99ce575d-d428-5e31-ad53-c47a233e6bdf"
                 }
               ],
-              "c1": [
+              "rows.c1": [
                 {
                   "label": "✕ غير متوفر",
                   "value": "no",
                   "key": "270c4111-c88a-5058-9417-d0d440cc92e0"
                 }
               ],
-              "c2": [
+              "rows.c2": [
                 {
                   "label": "✓ متوفر",
                   "value": "yes",
@@ -3011,25 +3086,25 @@
               ]
             },
             {
-              "feature": {
+              "rows.feature": {
                 "ar": "ضمان سنتين ودعم بالعربي",
                 "en": "Two-year warranty & Arabic support"
               },
-              "brand": [
+              "rows.brand": [
                 {
                   "label": "✓ متوفر",
                   "value": "yes",
                   "key": "99ce575d-d428-5e31-ad53-c47a233e6bdf"
                 }
               ],
-              "c1": [
+              "rows.c1": [
                 {
                   "label": "– جزئياً",
                   "value": "partial",
                   "key": "6238a676-675d-5786-a9a0-8c385f69a536"
                 }
               ],
-              "c2": [
+              "rows.c2": [
                 {
                   "label": "✕ غير متوفر",
                   "value": "no",
@@ -3038,25 +3113,25 @@
               ]
             },
             {
-              "feature": {
+              "rows.feature": {
                 "ar": "شحن في نفس اليوم",
                 "en": "Same-day dispatch"
               },
-              "brand": [
+              "rows.brand": [
                 {
                   "label": "✓ متوفر",
                   "value": "yes",
                   "key": "99ce575d-d428-5e31-ad53-c47a233e6bdf"
                 }
               ],
-              "c1": [
+              "rows.c1": [
                 {
                   "label": "✕ غير متوفر",
                   "value": "no",
                   "key": "270c4111-c88a-5058-9417-d0d440cc92e0"
                 }
               ],
-              "c2": [
+              "rows.c2": [
                 {
                   "label": "– جزئياً",
                   "value": "partial",
@@ -3455,71 +3530,77 @@
           "maxLength": 12,
           "fields": [
             {
-              "id": "q",
+              "id": "faq.q",
               "type": "string",
               "format": "text",
               "label": "السؤال",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             },
             {
-              "id": "a",
+              "id": "faq.a",
               "type": "string",
               "format": "textarea",
               "label": "الإجابة",
               "multilanguage": true,
-              "value": "",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
               "required": true
             }
           ],
           "value": [
             {
-              "q": {
+              "faq.q": {
                 "ar": "هل تعمل مع الآيفون والأندرويد؟",
                 "en": "Do they work with iPhone and Android?"
               },
-              "a": {
+              "faq.a": {
                 "ar": "نعم، تتصل بأي جهاز يدعم البلوتوث، ويمكن توصيلها بجهازين في نفس الوقت.",
                 "en": "Yes, they pair with any Bluetooth device and can connect to two devices at once."
               }
             },
             {
-              "q": {
+              "faq.q": {
                 "ar": "كم تدوم البطارية؟",
                 "en": "How long does the battery last?"
               },
-              "a": {
+              "faq.a": {
                 "ar": "حتى 40 ساعة مع إيقاف العزل، و30 ساعة مع تشغيله. 10 دقائق شحن تكفي 5 ساعات.",
                 "en": "Up to 40 hours with ANC off and 30 with it on. A 10-minute charge gives 5 hours."
               }
             },
             {
-              "q": {
+              "faq.q": {
                 "ar": "ماذا يشمل الضمان؟",
                 "en": "What does the warranty cover?"
               },
-              "a": {
+              "faq.a": {
                 "ar": "ضمان سنتين ضد عيوب التصنيع مع استبدال فوري عبر الدعم الفني.",
                 "en": "Two years against manufacturing defects, with quick replacement through support."
               }
             },
             {
-              "q": {
+              "faq.q": {
                 "ar": "متى يصلني الطلب؟",
                 "en": "When will my order arrive?"
               },
-              "a": {
+              "faq.a": {
                 "ar": "الطلبات قبل الساعة 3 عصراً تُشحن في نفس اليوم وتصل خلال 1-3 أيام.",
                 "en": "Orders before 3 pm ship the same day and arrive in 1-3 days."
               }
             },
             {
-              "q": {
+              "faq.q": {
                 "ar": "هل يمكنني الشراء بالتقسيط؟",
                 "en": "Can I pay in instalments?"
               },
-              "a": {
+              "faq.a": {
                 "ar": "نعم، قسّم المبلغ على 4 دفعات بدون فوائد عبر تابي أو تمارا.",
                 "en": "Yes, split it into 4 interest-free payments with Tabby or Tamara."
               }

@@ -1,3 +1,4 @@
+import { d } from "../../shared/defaults";
 import { css, html, LitElement, nothing } from "lit";
 import { baseStyles } from "../../shared/styles";
 import { ctaBlock, readCta } from "../../shared/cta";
@@ -5,12 +6,12 @@ import { color, direction, isOn, item, list, option, text, textOr } from "../../
 
 type Qa = { q: string; a: string };
 
-const DEFAULT_FAQ: Qa[] = [
-  { q: "كم تستغرق مدة الشحن؟", a: "من يوم إلى ثلاثة أيام عمل داخل المملكة، ويصلك رابط لتتبّع الطلب." },
-  { q: "هل يمكنني إرجاع المنتج؟", a: "نعم، يمكنك الإرجاع خلال 14 يوماً من الاستلام إذا كان المنتج بحالته الأصلية." },
-  { q: "ما طرق الدفع المتاحة؟", a: "مدى، Apple Pay، البطاقات البنكية، والتقسيط عبر تابي وتمارا." },
-  { q: "هل المنتج أصلي؟", a: "جميع منتجاتنا أصلية 100% ومضمونة من المصدر." },
-  { q: "كيف أتواصل معكم؟", a: "عبر واتساب أو الدردشة في المتجر، وفريقنا يرد خلال دقائق." },
+const DEFAULT_FAQ = (): Qa[] => [
+  { q: d("كم تستغرق مدة الشحن؟"), a: d("من يوم إلى ثلاثة أيام عمل داخل المملكة، ويصلك رابط لتتبّع الطلب.") },
+  { q: d("هل يمكنني إرجاع المنتج؟"), a: d("نعم، يمكنك الإرجاع خلال 14 يوماً من الاستلام إذا كان المنتج بحالته الأصلية.") },
+  { q: d("ما طرق الدفع المتاحة؟"), a: d("مدى، Apple Pay، البطاقات البنكية، والتقسيط عبر تابي وتمارا.") },
+  { q: d("هل المنتج أصلي؟"), a: d("جميع منتجاتنا أصلية 100% ومضمونة من المصدر.") },
+  { q: d("كيف أتواصل معكم؟"), a: d("عبر واتساب أو الدردشة في المتجر، وفريقنا يرد خلال دقائق.") },
 ];
 
 /** FAQ: heading and intro on one side, an accessible accordion on the other. */
@@ -68,16 +69,16 @@ export default class LpFaq extends LitElement {
     return {
       bg: color(cfg.bg_color, "#ffffff"),
       accent: color(cfg.accent_color, "#1a8917"),
-      title: textOr(cfg.heading, "الأسئلة الشائعة"),
-      subtitle: textOr(cfg.subheading, "جمعنا لك إجابات أكثر الأسئلة التي تصلنا. لم تجد إجابتك؟ تواصل معنا في أي وقت."),
+      title: textOr(cfg.heading, d("الأسئلة الشائعة")),
+      subtitle: textOr(cfg.subheading, d("جمعنا لك إجابات أكثر الأسئلة التي تصلنا. لم تجد إجابتك؟ تواصل معنا في أي وقت.")),
       stacked: option(cfg.layout) === "stacked",
       firstOpen: isOn(cfg.first_open, false),
-      items: rows.length
+      items: cfg.faq !== undefined && cfg.faq !== null
         ? rows
             .map((r) => ({ q: text(item(r, "faq", "q")).trim(), a: text(item(r, "faq", "a")).trim() }))
             .filter((r) => r.q && r.a)
-        : DEFAULT_FAQ,
-      cta: readCta(cfg, { text: "اطلب الآن", enabled: false }),
+        : DEFAULT_FAQ(),
+      cta: readCta(cfg, { text: d("اطلب الآن"), enabled: false }),
     };
   }
 

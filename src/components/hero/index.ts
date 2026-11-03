@@ -1,3 +1,4 @@
+import { d } from "../../shared/defaults";
 import { css, html, LitElement, nothing, render, type TemplateResult } from "lit";
 import { PAYMENTS } from "../../shared/payments";
 import { chevron, chevronNext, stars } from "../../shared/cta";
@@ -133,11 +134,17 @@ export default class Hero extends LitElement {
     this.product = null;
   }
 
+  /** Unique per hero, so two heroes on one page never share ids in the page DOM. */
+  private topPaused = false;
+  private topStopped = false;
+  private uid = `wahaj-${Math.random().toString(36).slice(2, 8)}`;
+
   connectedCallback() {
     super.connectedCallback();
     ensureSallaIcons();
     this.topTimer = window.setInterval(() => {
       const n = list(this.config?.top_bar).length;
+      if (this.topPaused || window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
       if (n > 1 && window.matchMedia?.("(max-width: 820px)").matches) this.topIndex = (this.topIndex + 1) % n;
     }, 4000);
   }
@@ -175,20 +182,20 @@ export default class Hero extends LitElement {
       ratingValue: number(cfg.rating_value, 4.8, 0, 5),
       ratingCount: s(cfg.rating_count, "5000"),
       starsColor: color(cfg.stars_color, "#f5a623"),
-      title: s(cfg.headline ?? cfg.title, "عطر فاخر يدوم طويلاً — رائحة تبقى معك طوال اليوم"),
+      title: s(cfg.headline ?? cfg.title, d("عطر فاخر يدوم طويلاً — رائحة تبقى معك طوال اليوم")),
       subtitle: s(cfg.subheadline ?? cfg.subtitle, ""),
       priceFrom: isOn(cfg.price_from, false),
       priceAfter: s(cfg.price_after, "149"),
       priceBefore: s(cfg.price_before, "249"),
       savings: s(cfg.savings_label, ""),
-      stock: s(cfg.stock_label, "الكمية محدودة"),
+      stock: s(cfg.stock_label, d("الكمية محدودة")),
       points: rows(cfg.points, "points", ["text"]).map((r) => r.text as string).filter(Boolean),
       offersMode: option(cfg.offers_mode, "auto"),
-      offersTitle: s(cfg.offers_title, "اختر العرض المناسب"),
+      offersTitle: s(cfg.offers_title, d("اختر العرض المناسب")),
       tiers,
       defaultTier: Math.max(0, Math.round(number(cfg.default_tier, 2, 1, 6)) - 1),
       showQty: isOn(cfg.show_qty, true),
-      ctaText: s(cfg.cta_text, "اشترِ الآن"),
+      ctaText: s(cfg.cta_text, d("اشترِ الآن")),
       ctaColor: color(cfg.cta_color, "#1a8917"),
       ctaAction: option(cfg.cta_action, "buy_now"),
       ctaLink: safeUrl(cfg.cta_link),
@@ -208,10 +215,28 @@ export default class Hero extends LitElement {
     };
   }
 
+  /** Arrow keys move between radio cards / tabs (focus follows the selection). */
+  private arrowKeys(e: KeyboardEvent, count: number, select: (i: number) => void, current: number) {
+    const keys: Record<string, number> = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+    if (!(e.key in keys) || count < 2) return;
+    e.preventDefault();
+    const step = direction() === "rtl" && e.key.startsWith("Arrow") && (e.key === "ArrowRight" || e.key === "ArrowLeft") ? -keys[e.key] : keys[e.key];
+    const next = (Math.max(current, 0) + step + count) % count;
+    select(next);
+    const group = e.currentTarget as HTMLElement;
+    requestAnimationFrame(() => (group.querySelectorAll<HTMLElement>('[role="radio"],[role="tab"]')[next])?.focus());
+  }
+
+  private sdkTries = 0;
+
   private async loadProduct(id: string) {
-    this.loadedId = id;
     const salla = (window as Dict).salla;
-    if (!salla?.product?.getDetails) return;
+    if (!salla?.product?.getDetails) {
+      // The storefront SDK may load after this component; try again for a few seconds.
+      if (this.sdkTries++ < 20) window.setTimeout(() => this.loadProduct(id), 500);
+      return;
+    }
+    this.loadedId = id;
     try {
       await salla.onReady?.();
       const res = await salla.product.getDetails(id, ["images", "options"]);
@@ -371,10 +396,10 @@ export default class Hero extends LitElement {
       >
         ${appOffers ? html`<div id="bundle-pro-widget" class="bp-widget-mount"></div>` : nothing}
         ${tiers.length
-          ? html`<p class="wahaj-label" id="wahaj-tiers-label">${c.offersTitle}</p>
-              <div class="wahaj-tiers" role="radiogroup" aria-labelledby="wahaj-tiers-label">
+          ? html`<p class="wahaj-label" id="${this.uid}-tiers">${c.offersTitle}</p>
+              <div class="wahaj-tiers" role="radiogroup" aria-labelledby="${this.uid}-tiers" @keydown=${(e: KeyboardEvent) => this.arrowKeys(e, tiers.length, (i) => (this.activeTier = i), this.tierIndex())}>
                 ${tiers.map(
-                  (tier, i) => html`<button type="button" class="wahaj-tier" role="radio" aria-checked="${i === tierIndex}" @click=${() => (this.activeTier = i)}>
+                  (tier, i) => html`<button type="button" class="wahaj-tier" role="radio" aria-checked="${i === tierIndex}" tabindex="${i === tierIndex ? 0 : -1}" @click=${() => (this.activeTier = i)}>
                     ${tier.badge ? html`<span class="wahaj-badge">${tier.badge}</span>` : nothing}
                     <strong>${tier.title}</strong>
                     ${tier.price ? html`<span class="wahaj-tier-price">${tier.price}${tier.compare ? html`<s>${tier.compare}</s>` : nothing}</span>` : nothing}
@@ -548,8 +573,16 @@ export default class Hero extends LitElement {
     if (!c.showTopBar || !c.topBar.length) return nothing;
     const n = c.topBar.length;
     const idx = this.topIndex % n;
-    const go = (d: number) => (this.topIndex = (idx + d + n) % n);
-    return html`<div class="top">
+    // Using the arrows stops the automatic rotation; hovering or focusing pauses it.
+    const go = (d: number) => {
+      this.topStopped = true;
+      this.topPaused = true;
+      this.topIndex = (idx + d + n) % n;
+    };
+    const hold = (on: boolean) => () => {
+      if (!this.topStopped) this.topPaused = on;
+    };
+    return html`<div class="top" @mouseenter=${hold(true)} @mouseleave=${hold(false)} @focusin=${hold(true)} @focusout=${hold(false)}>
       <div class="container top-bar-inner">
         <button class="top-nav" type="button" aria-label="${t("previous")}" @click=${() => go(-1)}>${rtl ? chevronNext : chevron}</button>
         <ul class="top-list">
@@ -568,9 +601,9 @@ export default class Hero extends LitElement {
     return html`
       ${tiers.length
         ? html`<p class="label" id="tiers-label">${c.offersTitle}</p>
-            <div class="tiers" role="radiogroup" aria-labelledby="tiers-label" style="--cols:${Math.min(tiers.length, 3)}">
+            <div class="tiers" role="radiogroup" aria-labelledby="tiers-label" @keydown=${(e: KeyboardEvent) => this.arrowKeys(e, tiers.length, (i) => (this.activeTier = i), tierIndex)} style="--cols:${Math.min(tiers.length, 3)}">
               ${tiers.map(
-                (tier, i) => html`<button type="button" class="tier" role="radio" aria-checked="${i === tierIndex}" @click=${() => (this.activeTier = i)}>
+                (tier, i) => html`<button type="button" class="tier" role="radio" aria-checked="${i === tierIndex}" tabindex="${i === tierIndex ? 0 : -1}" @click=${() => (this.activeTier = i)}>
                   ${tier.badge ? html`<span class="badge">${tier.badge}</span>` : nothing}
                   <strong>${tier.title}</strong>
                   ${tier.price ? html`<span class="tp">${tier.price}${tier.compare ? html`<s>${tier.compare}</s>` : nothing}</span>` : nothing}
@@ -580,9 +613,6 @@ export default class Hero extends LitElement {
             </div>`
         : nothing}
       <div class="buy-row">
-        ${c.showQty && !tiers.length
-          ? html`<select class="qty" aria-label="${t("quantity")}">${[1, 2, 3, 4, 5].map((n) => html`<option>${n}</option>`)}</select>`
-          : nothing}
         <button class="cta" type="button" style="background:${c.ctaColor};color:${contrastText(c.ctaColor)}" @click=${() => this.manualCta()}>${c.ctaText}</button>
       </div>
     `;
@@ -592,21 +622,21 @@ export default class Hero extends LitElement {
     if (!c.showTabs || !c.tabs.length) return nothing;
     const tabIndex = Math.min(Math.max(this.activeTab, 0), c.tabs.length - 1);
     return html`<div class="tabs">
-        <div class="tabs-head" role="tablist">
+        <div class="tabs-head" role="tablist" @keydown=${(e: KeyboardEvent) => this.arrowKeys(e, c.tabs.length, (i) => (this.activeTab = i), tabIndex)}>
           ${c.tabs.map(
             (tab: Dict, i: number) => html`<button
               class="tab"
               role="tab"
               type="button"
               id="tab-${i}"
-              aria-controls="panel-${i}"
+              aria-controls="${i === tabIndex ? "panel" : nothing}"
               aria-selected="${i === tabIndex}"
               tabindex="${i === tabIndex ? 0 : -1}"
               @click=${() => (this.activeTab = i)}
             >${tab.title}</button>`
           )}
         </div>
-        <div class="tab-panel" role="tabpanel" id="panel-${tabIndex}" aria-labelledby="tab-${tabIndex}">${c.tabs[tabIndex]?.content}</div>
+        <div class="tab-panel" role="tabpanel" id="panel" aria-labelledby="tab-${tabIndex}">${c.tabs[tabIndex]?.content}</div>
       </div>
       <div class="acc">
         ${c.tabs.map(
