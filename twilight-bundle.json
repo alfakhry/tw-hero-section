@@ -4,11 +4,11 @@
         "en": "Conversion Boost Elements"
     },
     "description": {
-        "ar": "تسعة عناصر جاهزة تساعدك تقنع العميل وتزيد طلبات منتجك: المنتج الرئيسي المربوط بمنتج من متجرك، خطوات التحوّل، المزايا، الفوائد، آراء العملاء، مميزات المتجر، المقارنة، الأسئلة الشائعة، والدعوة الأخيرة. كل عنصر مستقل تضيفه لأي صفحة في متجرك، بالعربي والإنجليزي.",
-        "en": "Nine ready-made elements that help you persuade customers and get more orders: Main Product linked to a store product, Transformation Steps, Features, Benefits, Social Proof, Store Highlights, Comparison, FAQ and a Final Call to Action. Every element is independent and works on any page of your store, in Arabic and English."
+        "ar": null,
+        "en": null
     },
     "author_email": "tarek.ly.77@gmail.com",
-    "support_url": "https://cart.oarood.com/",
+    "support_url": "https://alfakhry.github.io/tw-hero-section/",
     "repository": "https://github.com/alfakhry/tw-hero-section",
     "components": [
         {
