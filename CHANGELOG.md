@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.7.0 — 2026-11-09
+
+### Changed
+- Renamed to **Conversion Boost Kit / مجموعة زيادة التحويل**.
+- Landing page templates are back (Salla confirmed several templates are allowed), now five:
+  perfume, skincare, electronics, **abayas** (new) and **specialty coffee** (new).
+- Help center with the kit's page, templates gallery, element guide and support: https://help.oarood.com/conversion-boost/
+- Store screenshots still show one element each.
+
 ## 0.6.0 — 2026-11-08
 
 ### Changed

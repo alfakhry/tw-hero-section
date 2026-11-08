@@ -1,11 +1,11 @@
 {
     "name": {
-        "ar": "عناصر زيادة التحويل",
-        "en": "Conversion Boost Elements"
+        "ar": "مجموعة زيادة التحويل",
+        "en": "Conversion Boost Kit"
     },
     "description": {
-        "ar": null,
-        "en": null
+        "ar": "تسعة عناصر جاهزة وخمسة قوالب صفحات هبوط (عطور، عناية بالبشرة، إلكترونيات، عبايات، قهوة) تساعدك تقنع العميل وتزيد طلبات منتجك. كل عنصر مستقل تضيفه لأي صفحة في متجرك، بالعربي والإنجليزي.",
+        "en": "Nine ready-made elements and five landing page templates (fragrance, skincare, electronics, abayas, coffee) that help you persuade customers and get more orders. Every element is independent and works on any page of your store, in Arabic and English."
     },
     "author_email": "tarek.ly.77@gmail.com",
     "support_url": "https://alfakhry.github.io/tw-hero-section/",
@@ -4287,5 +4287,47 @@
     ],
     "features": [
         "landing-page-templates"
+    ],
+    "templates": [
+        {
+            "id": "4ac38a9b-486a-4e99-a3db-f643fd57096d",
+            "path": "templates.perfume-landing",
+            "category_id": 915304371,
+            "primary_color": "#9a6b3f",
+            "thumbnail": "templates-thumbs/perfume-landing.jpg",
+            "is_default": true
+        },
+        {
+            "id": "966859f7-14c2-5024-b813-dce930c4181d",
+            "path": "templates.skincare-landing",
+            "category_id": 665151403,
+            "primary_color": "#c2577a",
+            "thumbnail": "templates-thumbs/skincare-landing.jpg",
+            "is_default": false
+        },
+        {
+            "id": "cd40fd7d-753a-5d2f-bcd3-2ff608a09b60",
+            "path": "templates.electronics-landing",
+            "category_id": 1939592358,
+            "primary_color": "#2563eb",
+            "thumbnail": "templates-thumbs/electronics-landing.jpg",
+            "is_default": false
+        },
+        {
+            "id": "895aed82-115a-5e1e-b2d3-c04f96e35ccb",
+            "path": "templates.abaya-landing",
+            "category_id": 814202285,
+            "primary_color": "#7a5c3e",
+            "thumbnail": "templates-thumbs/abaya-landing.jpg",
+            "is_default": false
+        },
+        {
+            "id": "e66abcde-784d-56c9-af11-6e0d99b4fe70",
+            "path": "templates.coffee-landing",
+            "category_id": 1337421468,
+            "primary_color": "#8b4a1f",
+            "thumbnail": "templates-thumbs/coffee-landing.jpg",
+            "is_default": false
+        }
     ]
 }

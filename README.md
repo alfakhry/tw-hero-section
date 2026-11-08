@@ -1,8 +1,8 @@
-# Conversion Boost Elements (عناصر زيادة التحويل) — Salla component bundle
+# Conversion Boost Kit (مجموعة زيادة التحويل) — Salla component bundle
 
 A Salla Twilight component bundle with nine elements that help merchants persuade customers and get more orders.
 Every section is a separate component that merchants add to any page of their store and can show,
-hide and reorder freely. User guide: https://alfakhry.github.io/tw-hero-section/
+hide and reorder freely. User guide: https://help.oarood.com/conversion-boost/
 
 مجموعة عناصر لبناء صفحات هبوط لمنتج واحد على سلة. كل قسم مكوّن مستقل، ويقدر التاجر يظهره أو يخفيه أو يغيّر ترتيبه.
 
@@ -20,7 +20,7 @@ hide and reorder freely. User guide: https://alfakhry.github.io/tw-hero-section/
 | `lp-faq` | FAQ accordion beside a heading and intro, optional CTA |
 | `lp-final-cta` | Closing headline with the primary call to action |
 
-Landing page templates were removed at Salla's request; they are kept on the `landing-templates` branch.
+Landing page templates live in `templates/` (perfume, skincare, electronics, abaya, coffee) with thumbnails in `templates-thumbs/`.
 
 ## Conventions
 
@@ -57,7 +57,9 @@ pnpm build   # outputs dist/<component>.js
 src/
   components/<name>/index.ts   # one LitElement per component
   shared/                      # styles, CTA block, image rows, payment logos, helpers
-twilight-bundle.json           # component schemas and bundle metadata
+templates/                     # landing page templates (component values)
+templates-thumbs/              # template thumbnails (max 768px wide)
+twilight-bundle.json           # component schemas, templates and bundle metadata
 ```
 
 See `CHANGELOG.md` for release notes.
