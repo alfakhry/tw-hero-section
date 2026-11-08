@@ -1,8 +1,8 @@
-# Wahaj Pages (وهج للصفحات) — Landing page component bundle
+# Conversion Boost Elements (عناصر زيادة التحويل) — Salla component bundle
 
-A Salla Twilight component bundle for building high-converting product landing pages.
-It ships as **landing page templates** (Sales channels → Landing pages): every section is a
-separate component, so merchants can show, hide and reorder sections freely.
+A Salla Twilight component bundle with nine elements that help merchants persuade customers and get more orders.
+Every section is a separate component that merchants add to any page of their store and can show,
+hide and reorder freely. User guide: https://alfakhry.github.io/tw-hero-section/
 
 مجموعة عناصر لبناء صفحات هبوط لمنتج واحد على سلة. كل قسم مكوّن مستقل، ويقدر التاجر يظهره أو يخفيه أو يغيّر ترتيبه.
 
@@ -20,7 +20,7 @@ separate component, so merchants can show, hide and reorder sections freely.
 | `lp-faq` | FAQ accordion beside a heading and intro, optional CTA |
 | `lp-final-cta` | Closing headline with the primary call to action |
 
-Templates live in `templates/` (`perfume-landing`, `skincare-landing`, `electronics-landing`) with thumbnails in `templates-thumbs/`.
+Landing page templates were removed at Salla's request; they are kept on the `landing-templates` branch.
 
 ## Conventions
 
@@ -47,7 +47,7 @@ Templates live in `templates/` (`perfume-landing`, `skincare-landing`, `electron
 
 ```bash
 pnpm install
-pnpm dev     # Salla demo with the component editor and template switcher
+pnpm dev     # Salla demo with the component editor
 pnpm build   # outputs dist/<component>.js
 ```
 
@@ -57,9 +57,7 @@ pnpm build   # outputs dist/<component>.js
 src/
   components/<name>/index.ts   # one LitElement per component
   shared/                      # styles, CTA block, image rows, payment logos, helpers
-templates/                     # landing page templates (component values)
-templates-thumbs/              # template thumbnails (max 768px wide)
-twilight-bundle.json           # component schemas, templates and bundle features
+twilight-bundle.json           # component schemas and bundle metadata
 ```
 
 See `CHANGELOG.md` for release notes.

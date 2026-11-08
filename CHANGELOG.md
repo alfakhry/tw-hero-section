@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6.0 — 2026-11-08
+
+### Changed
+- Renamed to **Conversion Boost Elements / عناصر زيادة التحويل**.
+- Published as an additional-elements bundle: landing page templates and the `landing-page-templates`
+  feature were removed at Salla's request (kept on the `landing-templates` branch).
+- New user guide site: https://alfakhry.github.io/tw-hero-section/
+- One store screenshot per element, with element titles and descriptions.
+
 ## 0.5.0 — 2026-11-03
 
 ### Added
