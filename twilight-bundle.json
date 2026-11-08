@@ -4306,14 +4306,6 @@
             "is_default": false
         },
         {
-            "id": "cd40fd7d-753a-5d2f-bcd3-2ff608a09b60",
-            "path": "templates.electronics-landing",
-            "category_id": 1939592358,
-            "primary_color": "#2563eb",
-            "thumbnail": "templates-thumbs/electronics-landing.jpg",
-            "is_default": false
-        },
-        {
             "id": "895aed82-115a-5e1e-b2d3-c04f96e35ccb",
             "path": "templates.abaya-landing",
             "category_id": 814202285,

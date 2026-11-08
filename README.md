@@ -20,7 +20,7 @@ hide and reorder freely. User guide: https://help.oarood.com/conversion-boost/
 | `lp-faq` | FAQ accordion beside a heading and intro, optional CTA |
 | `lp-final-cta` | Closing headline with the primary call to action |
 
-Landing page templates live in `templates/` (perfume, skincare, electronics, abaya, coffee) with thumbnails in `templates-thumbs/`.
+Landing page templates live in `templates/` (perfume, skincare, abaya, coffee; electronics kept on the `landing-templates` branch) with thumbnails in `templates-thumbs/`.
 
 ## Conventions
 
