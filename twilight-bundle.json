@@ -4285,5 +4285,7 @@
             ]
         }
     ],
-    "features": []
+    "features": [
+        "landing-page-templates"
+    ]
 }
