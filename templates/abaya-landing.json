@@ -479,23 +479,19 @@
               "id": "tiers.price",
               "type": "string",
               "format": "text",
-              "label": "السعر المعروض (اختياري)",
-              "multilanguage": true,
-              "value": {
-                "ar": "",
-                "en": ""
-              }
+              "label": "سعر العرض (اختياري)",
+              "multilanguage": false,
+              "value": "",
+              "description": "أرقام فقط مثل 269 — يظهر رمز الريال تلقائياً. اتركه فارغاً مع منتج مرتبط ليُحسب: الكمية × سعر المنتج"
             },
             {
               "id": "tiers.compare",
               "type": "string",
               "format": "text",
               "label": "السعر قبل الخصم (اختياري)",
-              "multilanguage": true,
-              "value": {
-                "ar": "",
-                "en": ""
-              }
+              "multilanguage": false,
+              "value": "",
+              "description": "أرقام فقط مثل 498 — يظهر مشطوباً بجانب سعر العرض"
             },
             {
               "id": "tiers.subtitle",
@@ -527,14 +523,8 @@
                 "en": "One abaya"
               },
               "tiers.qty": 1,
-              "tiers.price": {
-                "ar": "399 ر.س",
-                "en": "SAR 399"
-              },
-              "tiers.compare": {
-                "ar": "549 ر.س",
-                "en": "SAR 549"
-              },
+              "tiers.price": "399",
+              "tiers.compare": "549",
               "tiers.subtitle": {
                 "ar": "مع طرحة مطابقة",
                 "en": "With a matching scarf"
@@ -550,14 +540,8 @@
                 "en": "Two abayas"
               },
               "tiers.qty": 2,
-              "tiers.price": {
-                "ar": "719 ر.س",
-                "en": "SAR 719"
-              },
-              "tiers.compare": {
-                "ar": "1098 ر.س",
-                "en": "SAR 1,098"
-              },
+              "tiers.price": "719",
+              "tiers.compare": "1098",
               "tiers.subtitle": {
                 "ar": "لونان مختلفان",
                 "en": "Two different colors"
@@ -573,14 +557,8 @@
                 "en": "Three abayas"
               },
               "tiers.qty": 3,
-              "tiers.price": {
-                "ar": "999 ر.س",
-                "en": "SAR 999"
-              },
-              "tiers.compare": {
-                "ar": "1647 ر.س",
-                "en": "SAR 1,647"
-              },
+              "tiers.price": "999",
+              "tiers.compare": "1647",
               "tiers.subtitle": {
                 "ar": "أفضل قيمة — لكل المناسبات",
                 "en": "Best value — for every occasion"
@@ -2341,15 +2319,15 @@
               "format": "url",
               "label": "رابط الفيديو",
               "value": "",
-              "description": "يوتيوب أو فيميو أو تيك توك أو رابط مباشر لملف mp4"
+              "description": "انسخ رابط الفيديو من يوتيوب (عادي أو Shorts) أو تيك توك أو إنستغرام ريلز أو فيميو، أو رابط ملف mp4. الصورة المصغّرة تُجلب تلقائياً، والفيديو لا يُحمَّل إلا عند الضغط عليه"
             },
             {
               "id": "videos.cover",
               "type": "string",
               "format": "image",
-              "label": "صورة الغلاف",
+              "label": "صورة الغلاف (اختياري)",
               "value": "",
-              "description": "مقاس طولي 720×1280 بكسل (اختياري ليوتيوب)"
+              "description": "تُجلب تلقائياً من يوتيوب وتيك توك وفيميو. ارفعها لإنستغرام أو ملفات mp4، أو لتغيير الصورة. مقاس طولي 720×1280"
             },
             {
               "id": "videos.caption",

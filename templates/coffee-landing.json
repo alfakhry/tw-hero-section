@@ -479,23 +479,19 @@
               "id": "tiers.price",
               "type": "string",
               "format": "text",
-              "label": "السعر المعروض (اختياري)",
-              "multilanguage": true,
-              "value": {
-                "ar": "",
-                "en": ""
-              }
+              "label": "سعر العرض (اختياري)",
+              "multilanguage": false,
+              "value": "",
+              "description": "أرقام فقط مثل 269 — يظهر رمز الريال تلقائياً. اتركه فارغاً مع منتج مرتبط ليُحسب: الكمية × سعر المنتج"
             },
             {
               "id": "tiers.compare",
               "type": "string",
               "format": "text",
               "label": "السعر قبل الخصم (اختياري)",
-              "multilanguage": true,
-              "value": {
-                "ar": "",
-                "en": ""
-              }
+              "multilanguage": false,
+              "value": "",
+              "description": "أرقام فقط مثل 498 — يظهر مشطوباً بجانب سعر العرض"
             },
             {
               "id": "tiers.subtitle",
@@ -527,14 +523,8 @@
                 "en": "One 250 g bag"
               },
               "tiers.qty": 1,
-              "tiers.price": {
-                "ar": "69 ر.س",
-                "en": "SAR 69"
-              },
-              "tiers.compare": {
-                "ar": "89 ر.س",
-                "en": "SAR 89"
-              },
+              "tiers.price": "69",
+              "tiers.compare": "89",
               "tiers.subtitle": {
                 "ar": "يكفي أسبوعين",
                 "en": "Lasts about two weeks"
@@ -550,14 +540,8 @@
                 "en": "Two bags"
               },
               "tiers.qty": 2,
-              "tiers.price": {
-                "ar": "125 ر.س",
-                "en": "SAR 125"
-              },
-              "tiers.compare": {
-                "ar": "178 ر.س",
-                "en": "SAR 178"
-              },
+              "tiers.price": "125",
+              "tiers.compare": "178",
               "tiers.subtitle": {
                 "ar": "نكهتان مختلفتان",
                 "en": "Two different origins"
@@ -573,14 +557,8 @@
                 "en": "Four bags"
               },
               "tiers.qty": 4,
-              "tiers.price": {
-                "ar": "229 ر.س",
-                "en": "SAR 229"
-              },
-              "tiers.compare": {
-                "ar": "356 ر.س",
-                "en": "SAR 356"
-              },
+              "tiers.price": "229",
+              "tiers.compare": "356",
               "tiers.subtitle": {
                 "ar": "مخزون شهرين + شحن مجاني",
                 "en": "Two months' supply + free shipping"
@@ -2341,15 +2319,15 @@
               "format": "url",
               "label": "رابط الفيديو",
               "value": "",
-              "description": "يوتيوب أو فيميو أو تيك توك أو رابط مباشر لملف mp4"
+              "description": "انسخ رابط الفيديو من يوتيوب (عادي أو Shorts) أو تيك توك أو إنستغرام ريلز أو فيميو، أو رابط ملف mp4. الصورة المصغّرة تُجلب تلقائياً، والفيديو لا يُحمَّل إلا عند الضغط عليه"
             },
             {
               "id": "videos.cover",
               "type": "string",
               "format": "image",
-              "label": "صورة الغلاف",
+              "label": "صورة الغلاف (اختياري)",
               "value": "",
-              "description": "مقاس طولي 720×1280 بكسل (اختياري ليوتيوب)"
+              "description": "تُجلب تلقائياً من يوتيوب وتيك توك وفيميو. ارفعها لإنستغرام أو ملفات mp4، أو لتغيير الصورة. مقاس طولي 720×1280"
             },
             {
               "id": "videos.caption",

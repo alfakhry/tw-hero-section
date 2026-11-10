@@ -479,23 +479,19 @@
                             "id": "tiers.price",
                             "type": "string",
                             "format": "text",
-                            "label": "السعر المعروض (اختياري)",
-                            "multilanguage": true,
-                            "value": {
-                                "ar": "",
-                                "en": ""
-                            }
+                            "label": "سعر العرض (اختياري)",
+                            "multilanguage": false,
+                            "value": "",
+                            "description": "أرقام فقط مثل 269 — يظهر رمز الريال تلقائياً. اتركه فارغاً مع منتج مرتبط ليُحسب: الكمية × سعر المنتج"
                         },
                         {
                             "id": "tiers.compare",
                             "type": "string",
                             "format": "text",
                             "label": "السعر قبل الخصم (اختياري)",
-                            "multilanguage": true,
-                            "value": {
-                                "ar": "",
-                                "en": ""
-                            }
+                            "multilanguage": false,
+                            "value": "",
+                            "description": "أرقام فقط مثل 498 — يظهر مشطوباً بجانب سعر العرض"
                         },
                         {
                             "id": "tiers.subtitle",
@@ -527,14 +523,8 @@
                                 "en": "One piece"
                             },
                             "tiers.qty": 1,
-                            "tiers.price": {
-                                "ar": "149",
-                                "en": "149"
-                            },
-                            "tiers.compare": {
-                                "ar": "",
-                                "en": ""
-                            },
+                            "tiers.price": "149",
+                            "tiers.compare": "",
                             "tiers.subtitle": {
                                 "ar": "",
                                 "en": ""
@@ -550,14 +540,8 @@
                                 "en": "Two pieces"
                             },
                             "tiers.qty": 2,
-                            "tiers.price": {
-                                "ar": "279",
-                                "en": "279"
-                            },
-                            "tiers.compare": {
-                                "ar": "298",
-                                "en": "298"
-                            },
+                            "tiers.price": "279",
+                            "tiers.compare": "298",
                             "tiers.subtitle": {
                                 "ar": "وفّر 19 ريال",
                                 "en": "Save SAR 19"
@@ -573,14 +557,8 @@
                                 "en": "3 pieces"
                             },
                             "tiers.qty": 3,
-                            "tiers.price": {
-                                "ar": "389",
-                                "en": "389"
-                            },
-                            "tiers.compare": {
-                                "ar": "447",
-                                "en": "447"
-                            },
+                            "tiers.price": "389",
+                            "tiers.compare": "447",
                             "tiers.subtitle": {
                                 "ar": "وفّر 58 ريال",
                                 "en": "Save SAR 58"
@@ -2325,15 +2303,15 @@
                             "format": "url",
                             "label": "رابط الفيديو",
                             "value": "",
-                            "description": "يوتيوب أو فيميو أو تيك توك أو رابط مباشر لملف mp4"
+                            "description": "انسخ رابط الفيديو من يوتيوب (عادي أو Shorts) أو تيك توك أو إنستغرام ريلز أو فيميو، أو رابط ملف mp4. الصورة المصغّرة تُجلب تلقائياً، والفيديو لا يُحمَّل إلا عند الضغط عليه"
                         },
                         {
                             "id": "videos.cover",
                             "type": "string",
                             "format": "image",
-                            "label": "صورة الغلاف",
+                            "label": "صورة الغلاف (اختياري)",
                             "value": "",
-                            "description": "مقاس طولي 720×1280 بكسل (اختياري ليوتيوب)"
+                            "description": "تُجلب تلقائياً من يوتيوب وتيك توك وفيميو. ارفعها لإنستغرام أو ملفات mp4، أو لتغيير الصورة. مقاس طولي 720×1280"
                         },
                         {
                             "id": "videos.caption",

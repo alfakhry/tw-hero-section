@@ -1,15 +1,15 @@
-import { html as i, LitElement as O, render as W, nothing as c, css as R } from "lit";
-function V() {
-  var e, a, o, n, s, l, p, d, h;
-  const r = window, t = ((o = (a = (e = r.salla) == null ? void 0 : e.lang) == null ? void 0 : a.getLocale) == null ? void 0 : o.call(a)) || ((l = (s = (n = r.Salla) == null ? void 0 : n.lang) == null ? void 0 : s.getLocale) == null ? void 0 : l.call(s)) || ((h = (d = (p = r.salla) == null ? void 0 : p.config) == null ? void 0 : d.get) == null ? void 0 : h.call(d, "user.language_code"));
+import { html as o, LitElement as J, render as K, nothing as p, css as t2 } from "lit";
+function B() {
+  var e, r, i, s, n, l, d, c, f;
+  const a = window, t = ((i = (r = (e = a.salla) == null ? void 0 : e.lang) == null ? void 0 : r.getLocale) == null ? void 0 : i.call(r)) || ((l = (n = (s = a.Salla) == null ? void 0 : s.lang) == null ? void 0 : n.getLocale) == null ? void 0 : l.call(n)) || ((f = (c = (d = a.salla) == null ? void 0 : d.config) == null ? void 0 : c.get) == null ? void 0 : f.call(c, "user.language_code"));
   return String(t || document.documentElement.lang || "ar").slice(0, 2).toLowerCase();
 }
-function M() {
+function P() {
   var t;
-  const r = (document.documentElement.getAttribute("dir") || ((t = document.body) == null ? void 0 : t.getAttribute("dir")) || "").toLowerCase();
-  return r === "rtl" || r === "ltr" ? r : ["ar", "he", "fa", "ur"].includes(V()) ? "rtl" : "ltr";
+  const a = (document.documentElement.getAttribute("dir") || ((t = document.body) == null ? void 0 : t.getAttribute("dir")) || "").toLowerCase();
+  return a === "rtl" || a === "ltr" ? a : ["ar", "he", "fa", "ur"].includes(B()) ? "rtl" : "ltr";
 }
-const E = {
+const I = {
   ar: {
     previous: "السابق",
     next: "التالي",
@@ -61,49 +61,49 @@ const E = {
     save: "Save"
   }
 };
-function f(r, t = {}) {
-  let a = (E[V()] || E.en)[r] ?? E.en[r] ?? r;
-  return Object.entries(t).forEach(([o, n]) => a = a.replace(`{${o}}`, String(n))), a;
+function m(a, t = {}) {
+  let r = (I[B()] || I.en)[a] ?? I.en[a] ?? a;
+  return Object.entries(t).forEach(([i, s]) => r = r.replace(`{${i}}`, String(s))), r;
 }
-function g(r) {
-  if (r == null) return "";
-  if (typeof r == "string") return r;
-  if (typeof r == "number") return String(r);
-  if (typeof r == "object") {
-    const t = r;
-    return t[V()] || t.ar || t.en || Object.values(t).find((e) => typeof e == "string" && e) || "";
+function C(a) {
+  if (a == null) return "";
+  if (typeof a == "string") return a;
+  if (typeof a == "number") return String(a);
+  if (typeof a == "object") {
+    const t = a;
+    return t[B()] || t.ar || t.en || Object.values(t).find((e) => typeof e == "string" && e) || "";
   }
   return "";
 }
-function m(r, t) {
-  return r == null || r === "" ? t : Array.isArray(r) ? r.length > 0 : !(r === !1 || r === 0 || r === "0" || r === "false");
+function y(a, t) {
+  return a == null || a === "" ? t : Array.isArray(a) ? a.length > 0 : !(a === !1 || a === 0 || a === "0" || a === "false");
 }
-function x(r, t) {
-  const e = g(r).trim();
+function j(a, t) {
+  const e = C(a).trim();
   return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(e) ? e : t;
 }
-function T(r, t, e = -1 / 0, a = 1 / 0) {
-  const o = Number.parseFloat(g(r));
-  return Number.isFinite(o) ? Math.min(a, Math.max(e, o)) : t;
+function z(a, t, e = -1 / 0, r = 1 / 0) {
+  const i = Number.parseFloat(C(a));
+  return Number.isFinite(i) ? Math.min(r, Math.max(e, i)) : t;
 }
-function k(r, t) {
-  const e = Array.isArray(r) ? r[0] : r;
+function V(a, t) {
+  const e = Array.isArray(a) ? a[0] : a;
   if (e && typeof e == "object") {
-    const a = e.value ?? e.key;
-    return a ? String(a) : t;
+    const r = e.value ?? e.key;
+    return r ? String(r) : t;
   }
   return e ? String(e) : t;
 }
-function Z(r) {
-  return Array.isArray(r) ? r.filter((t) => t && typeof t == "object") : [];
+function q(a) {
+  return Array.isArray(a) ? a.filter((t) => t && typeof t == "object") : [];
 }
-function C(r, t, e) {
-  if (r[e] !== void 0 && r[e] !== "") return r[e];
-  const a = r[`${t}.${e}`];
-  return a !== void 0 ? a : r[e];
+function v(a, t, e) {
+  if (a[e] !== void 0 && a[e] !== "") return a[e];
+  const r = a[`${t}.${e}`];
+  return r !== void 0 ? r : a[e];
 }
-function v(r) {
-  const t = g(r).trim();
+function x(a) {
+  const t = C(a).trim();
   if (!t) return "";
   if (t.startsWith("#")) return t;
   if (t.startsWith("/")) return /^\/[\/\\]/.test(t) ? "" : t;
@@ -114,30 +114,30 @@ function v(r) {
     return "";
   }
 }
-function I(r, t) {
-  let e = r.replace("#", "");
-  e.length === 3 && (e = e.split("").map((o) => o + o).join(""));
-  const a = Number.parseInt(e, 16);
-  return `rgba(${a >> 16 & 255},${a >> 8 & 255},${a & 255},${t})`;
+function R(a, t) {
+  let e = a.replace("#", "");
+  e.length === 3 && (e = e.split("").map((i) => i + i).join(""));
+  const r = Number.parseInt(e, 16);
+  return `rgba(${r >> 16 & 255},${r >> 8 & 255},${r & 255},${t})`;
 }
-function P(r) {
-  let t = r.replace("#", "");
+function Y(a) {
+  let t = a.replace("#", "");
   t.length === 3 && (t = t.split("").map((l) => l + l).join(""));
-  const e = Number.parseInt(t, 16), [a, o, n] = [e >> 16 & 255, e >> 8 & 255, e & 255].map((l) => {
-    const p = l / 255;
-    return p <= 0.03928 ? p / 12.92 : ((p + 0.055) / 1.055) ** 2.4;
+  const e = Number.parseInt(t, 16), [r, i, s] = [e >> 16 & 255, e >> 8 & 255, e & 255].map((l) => {
+    const d = l / 255;
+    return d <= 0.03928 ? d / 12.92 : ((d + 0.055) / 1.055) ** 2.4;
   });
-  return 0.2126 * a + 0.7152 * o + 0.0722 * n > 0.45 ? "#111827" : "#ffffff";
+  return 0.2126 * r + 0.7152 * i + 0.0722 * s > 0.45 ? "#111827" : "#ffffff";
 }
-const N = "https://cdn.salla.network/fonts/sallaicons.css?v=2.0.5";
-function Y() {
+const Q = "https://cdn.salla.network/fonts/sallaicons.css?v=2.0.5";
+function e2() {
   if (Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some(
     (e) => e.href.includes("sallaicons")
   )) return;
   const t = document.createElement("link");
-  t.rel = "stylesheet", t.href = N, document.head.appendChild(t);
+  t.rel = "stylesheet", t.href = Q, document.head.appendChild(t);
 }
-const G = "https://cdn.salla.network/images/placeholder.png", F = {
+const r2 = "https://cdn.salla.network/images/placeholder.png", a2 = {
   "تصميم عملي يرافقك في كل مكان": "A practical design that goes everywhere with you",
   "حجم مناسب للحقيبة وعبوة محكمة تحافظ على جودة المنتج.": "Bag-friendly size and a sealed pack that keeps the product fresh.",
   "سهل الحمل والاستخدام": "Easy to carry and use",
@@ -219,10 +219,10 @@ Elegant gift wrapping`,
   "عبوة مقاومة للتسريب": "Leak-proof pack",
   "فحص جودة لكل دفعة": "Quality check on every batch"
 };
-function L(r) {
-  return V() === "ar" ? r : F[r] ?? r;
+function H(a) {
+  return B() === "ar" ? a : a2[a] ?? a;
 }
-const _ = {
+const i2 = {
   tabby: "data:image/svg+xml,%3Csvg width=%2270%22 height=%2248%22 viewBox=%220 0 70 48%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Crect x=%220.5%22 y=%220.5%22 width=%2269%22 height=%2247%22 rx=%225.5%22 fill=%22white%22 stroke=%22%23D9D9D9%22/%3E%3Cpath d=%22M54.2996 35H15.7004C11.9815 35 9 32.0493 9 28.4395V20.5605C9 16.9193 12.0136 14 15.7004 14H54.2996C58.0185 14 61 16.9507 61 20.5605V28.4395C61 32.0493 58.0185 35 54.2996 35Z%22 fill=%22%235AFEAE%22/%3E%3Cpath d=%22M51.6387 20.7489L48.9778 30.6995V30.7309H51.0616L53.7225 20.7803H51.6387V20.7489ZM18.746 26.3991C18.4254 26.556 18.1048 26.6188 17.7521 26.6188C17.0148 26.6188 16.598 26.4933 16.5339 25.8968V25.8655C16.5339 25.8341 16.5339 25.8341 16.5339 25.8027V24.0762V23.8879V22.6637V22.1614V21.9731V20.8116L14.6744 21.0314C15.9248 20.7803 16.6301 19.8386 16.6301 18.8655V18.269H14.5462V21.0628L14.418 21.0942V26.2421C14.4821 27.6861 15.4759 28.565 17.0468 28.565C17.6239 28.565 18.233 28.4394 18.7139 28.2197L18.746 26.3991Z%22 fill=%22%23292929%22/%3E%3Cpath d=%22M19.0667 20.3722L13.2319 21.2511V22.6951L19.0667 21.8161V20.3722ZM19.0667 22.5067L13.2319 23.3856V24.7668L19.0667 23.8879C19.0667 23.8879 19.0667 22.5067 19.0667 22.5067ZM25.6068 23.1659C25.5106 21.565 24.4847 20.5919 22.8176 20.5919C21.8559 20.5919 21.0544 20.9686 20.5094 21.6592C19.9644 22.3498 19.6758 23.3543 19.6758 24.5785C19.6758 25.8027 19.9644 26.8072 20.5094 27.4977C21.0544 28.1883 21.8559 28.5336 22.8176 28.5336C24.4847 28.5336 25.5106 27.5919 25.6068 25.9596V28.3767H27.6906V20.7803L25.6068 21.0942V23.1659ZM25.735 24.5785C25.735 25.991 24.9656 26.9327 23.7794 26.9327C22.5612 26.9327 21.8238 26.0538 21.8238 24.5785C21.8238 23.1031 22.5612 22.2242 23.7794 22.2242C24.3565 22.2242 24.8694 22.4439 25.2221 22.8834C25.5427 23.2915 25.735 23.8879 25.735 24.5785ZM33.7498 20.5919C32.0827 20.5919 31.0568 21.5336 30.9607 23.1659V18.5516L28.8768 18.8655V28.3767H30.9607V25.9596C31.0568 27.5919 32.0827 28.5336 33.7498 28.5336C35.7054 28.5336 36.8916 27.0583 36.8916 24.5785C36.8916 22.0986 35.7054 20.5919 33.7498 20.5919ZM32.8201 26.9327C31.6339 26.9327 30.8645 26.0224 30.8645 24.5785C30.8645 23.8879 31.0568 23.2915 31.3774 22.8834C31.7301 22.4439 32.211 22.2242 32.8201 22.2242C34.0383 22.2242 34.7757 23.1031 34.7757 24.5785C34.7757 26.0538 34.0383 26.9327 32.8201 26.9327ZM42.534 20.5919C40.867 20.5919 39.8411 21.5336 39.7449 23.1659V18.5516L37.661 18.8655V28.3767H39.7449V25.9596C39.8411 27.5919 40.867 28.5336 42.534 28.5336C44.4896 28.5336 45.6758 27.0583 45.6758 24.5785C45.6758 22.0986 44.4896 20.5919 42.534 20.5919ZM41.6043 26.9327C40.4181 26.9327 39.6487 26.0224 39.6487 24.5785C39.6487 23.8879 39.8411 23.2915 40.1616 22.8834C40.5143 22.4439 40.9952 22.2242 41.6043 22.2242C42.8226 22.2242 43.5599 23.1031 43.5599 24.5785C43.5599 26.0538 42.8226 26.9327 41.6043 26.9327ZM45.6758 20.7489H47.8879L49.6832 28.3767H47.6956C47.6956 28.3767 45.6758 20.7489 45.6758 20.7489ZM55.4218 21.5336V20.9372H55.1653V20.8117H55.8386V20.9372H55.5821V21.5336H55.4218ZM55.8706 21.5336V20.7803H56.1271L56.2554 21.1256C56.2874 21.2197 56.3195 21.2511 56.3195 21.2825C56.3195 21.2511 56.3515 21.2197 56.3836 21.1256L56.5118 20.7803H56.7683V21.5336H56.608V20.9372L56.3836 21.5336H56.2233L56.0309 20.9372V21.5336H55.8706Z%22 fill=%22%23292929%22/%3E%3C/svg%3E",
   mada: "data:image/svg+xml,%3Csvg width=%2270%22 height=%2248%22 viewBox=%220 0 70 48%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Crect x=%220.5%22 y=%220.5%22 width=%2269%22 height=%2247%22 rx=%225.5%22 fill=%22white%22 stroke=%22%23D9D9D9%22/%3E%3Cg clip-path=%22url(%23clip0_552_209)%22%3E%3Cpath d=%22M31.1505 26.1096H10V34.9842H31.1505V26.1096Z%22 fill=%22%2384B740%22/%3E%3Cpath d=%22M31.1505 14H10V22.8825H31.1505V14Z%22 fill=%22%23259BD6%22/%3E%3Cpath d=%22M52.3007 33.1808L52.2065 33.2045C51.88 33.2836 51.7606 33.3153 51.522 33.3153C50.9694 33.3153 50.3163 32.9593 50.3163 31.2825C50.3163 30.4203 50.4293 29.2734 51.4592 29.2734H51.4655C51.6413 29.2893 51.8423 29.313 52.2191 29.4554L52.3007 29.487V33.1808ZM52.4703 24.8203L52.3007 24.8599V27.9605L52.15 27.9051L52.106 27.8893C51.9365 27.826 51.5471 27.6836 51.1703 27.6836C49.1106 27.6836 48.6772 29.6452 48.6772 31.2904C48.6772 33.5446 49.682 34.8418 51.4341 34.8418C52.1751 34.8418 52.7215 34.7469 53.2741 34.5175C53.7827 34.3119 53.9649 34.0192 53.9649 33.3944V24.496C53.475 24.6068 52.9664 24.7175 52.4703 24.8203Z%22 fill=%22%2327292D%22/%3E%3Cpath d=%22M58.4236 33.2362L58.3357 33.2678L58.0217 33.3706C57.7265 33.4656 57.4628 33.5209 57.2618 33.5209C56.7783 33.5209 56.4894 33.2204 56.4894 32.7062C56.4894 32.374 56.6087 31.8124 57.4 31.8124H58.4236V33.2362ZM57.7014 27.6441C57.0671 27.6441 56.414 27.7865 55.604 28.1028L55.0764 28.3006L55.2523 29.8034L55.7672 29.5899C56.3073 29.3684 56.9792 29.226 57.4816 29.226C57.7077 29.226 58.3985 29.226 58.3985 30.1673V30.5786H57.4377C55.6856 30.5786 54.8755 31.2825 54.8755 32.7932C54.8755 34.0825 55.6228 34.8576 56.8788 34.8576C57.2681 34.8576 57.8082 34.7627 58.2729 34.6204L58.298 34.6125L58.3231 34.6204L58.4801 34.652C58.9699 34.7627 59.4786 34.8735 59.9747 34.9921V30.0565C59.9747 28.4588 59.2086 27.6441 57.7014 27.6441Z%22 fill=%22%2327292D%22/%3E%3Cpath d=%22M46.2219 33.2362L46.134 33.2678L45.82 33.3706C45.5249 33.4656 45.2674 33.5209 45.0602 33.5209C44.5766 33.5209 44.2877 33.2204 44.2877 32.7062C44.2877 32.374 44.4071 31.8125 45.192 31.8125H46.2157L46.2219 33.2362ZM45.506 27.6441C44.8655 27.6441 44.2187 27.7865 43.4086 28.1028L42.8811 28.3006L43.0569 29.8034L43.5718 29.5899C44.1119 29.3684 44.7839 29.226 45.2862 29.226C45.5123 29.226 46.2031 29.226 46.2031 30.1673V30.5786H45.2423C43.4902 30.5786 42.6738 31.2825 42.6738 32.7932C42.6738 34.0825 43.4211 34.8576 44.6834 34.8576C45.0727 34.8576 45.6128 34.7627 46.0775 34.6204L46.1026 34.6125L46.1277 34.6204L46.2785 34.652C46.7746 34.7627 47.2769 34.8735 47.7731 35V30.0644C47.7793 28.4509 47.0132 27.6441 45.506 27.6441Z%22 fill=%22%2327292D%22/%3E%3Cpath d=%22M39.6092 27.6599C38.8117 27.6599 38.1523 27.9921 37.9074 28.1345L37.8446 28.174L37.7881 28.1187C37.449 27.8102 36.9529 27.652 36.2621 27.652C35.6529 27.652 35.0815 27.7627 34.4598 27.9921C33.926 28.1978 33.7188 28.522 33.7188 29.1311V34.7706H35.3892V29.5582L35.4708 29.5266C35.8099 29.3842 36.0109 29.3605 36.2056 29.3605C36.6891 29.3605 36.934 29.6848 36.934 30.3175V34.7785H38.5793V30.2305C38.5793 29.9616 38.5354 29.8034 38.5291 29.7718L38.4726 29.6373L38.5856 29.574C38.8368 29.4317 39.1131 29.3605 39.402 29.3605C39.7348 29.3605 40.1305 29.5266 40.1305 30.3175V34.7785H41.7695V30.1119C41.7695 28.4588 41.0661 27.6599 39.6092 27.6599Z%22 fill=%22%2327292D%22/%3E%3Cpath d=%22M57.1929 19.7898C56.948 19.7898 56.5398 19.7582 56.2195 19.6791L56.1253 19.6554V16.6102C56.1253 16.3571 56.0876 16.1989 56.0813 16.1752L56.0311 16.0486L56.1379 15.9932C56.163 15.9774 56.1881 15.9695 56.2195 15.9537L56.2383 15.9379C56.276 15.922 56.3137 15.9062 56.3514 15.8904C56.3702 15.8825 56.3828 15.8746 56.3953 15.8746C56.7659 15.748 57.105 15.7639 57.2557 15.748H57.262C58.2856 15.748 58.4049 16.8949 58.4049 17.7571C58.3986 19.4339 57.7392 19.7898 57.1929 19.7898ZM57.1866 14C57.174 14 57.1552 14 57.1426 14C56.1818 14 55.1959 14.3322 54.8442 14.9808C54.6558 15.2972 54.5491 15.6927 54.5428 16.1593V19.2995C54.5428 19.5684 54.4988 19.6712 54.4926 19.6949L54.436 19.8294H51.4029V17.6463H51.3966C51.3589 15.3446 50.2788 14.0791 48.7151 14.0791H48.533H47.1891C47.1263 14.6407 47.0761 15.0362 47.0133 15.5978H48.533C49.3305 15.5978 49.7513 16.452 49.7513 17.765V19.9639L49.6445 19.8927C49.6257 19.8848 49.4938 19.8294 49.2866 19.8294H46.6616C46.6114 20.2486 46.5486 20.7944 46.4795 21.3401H54.5491C54.8254 21.2689 55.1457 21.2057 55.422 21.1503C55.8302 21.4034 56.59 21.5379 57.1112 21.5379C58.8633 21.5379 60 20.0588 60 17.7808C59.9937 15.5266 58.8947 14.0475 57.1866 14Z%22 fill=%22%2327292D%22/%3E%3Cpath d=%22M43.038 22.2656H43.1134C44.8654 22.2656 45.6818 21.5379 45.6818 19.7424C45.6818 18.4531 44.9345 17.4249 43.6786 17.4249H42.0646C41.5811 17.4249 41.2922 17.0769 41.2922 16.4915C41.2922 16.0961 41.4115 15.6057 42.2028 15.6057H45.7321C45.8074 15.0283 45.8451 14.6644 45.9142 14.087H42.2468C40.5386 14.087 39.6783 14.9887 39.6783 16.4915C39.6783 17.9785 40.4256 18.7537 41.6816 18.7537H43.2955C43.779 18.7537 44.0679 19.2362 44.0679 19.7424C44.0679 20.0746 43.9486 20.7627 43.1636 20.7627H42.8936L37.7253 20.7469H36.7833C35.9858 20.7469 35.4269 20.1774 35.4269 18.8565V17.9469C35.4269 16.5706 35.8602 15.7164 36.7833 15.7164H38.3156C38.3847 15.1311 38.4286 14.7593 38.4914 14.2057H36.5824H36.4002C34.8366 14.2057 33.7564 15.5266 33.7188 17.8283V17.9153V18.8565C33.7564 21.1582 34.8366 22.2576 36.4002 22.2576H36.5824H37.9262L40.727 22.2656H42.3975H43.038Z%22 fill=%22%2327292D%22/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id=%22clip0_552_209%22%3E%3Crect width=%2250%22 height=%2221%22 fill=%22white%22 transform=%22translate(10 14)%22/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E",
   mastercard: "data:image/svg+xml,%3Csvg width=%2270%22 height=%2248%22 viewBox=%220 0 70 48%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Crect x=%220.5%22 y=%220.5%22 width=%2269%22 height=%2247%22 rx=%225.5%22 fill=%22white%22 stroke=%22%23D9D9D9%22/%3E%3Cpath fill-rule=%22evenodd%22 clip-rule=%22evenodd%22 d=%22M35.5 34.3139C33.1169 36.3704 30.0255 37.6119 26.6475 37.6119C19.1102 37.6119 13 31.4308 13 23.806C13 16.1811 19.1102 10 26.6475 10C30.0255 10 33.1169 11.2415 35.5 13.2981C37.8831 11.2415 40.9745 10 44.3525 10C51.8898 10 58 16.1811 58 23.806C58 31.4308 51.8898 37.6119 44.3525 37.6119C40.9745 37.6119 37.8831 36.3704 35.5 34.3139Z%22 fill=%22%23ED0006%22/%3E%3Cpath fill-rule=%22evenodd%22 clip-rule=%22evenodd%22 d=%22M35.5 34.3139C38.4344 31.7816 40.2951 28.0136 40.2951 23.806C40.2951 19.5983 38.4344 15.8303 35.5 13.2981C37.8831 11.2415 40.9745 10 44.3524 10C51.8898 10 58 16.1811 58 23.806C58 31.4308 51.8898 37.6119 44.3524 37.6119C40.9745 37.6119 37.8831 36.3704 35.5 34.3139Z%22 fill=%22%23F9A000%22/%3E%3Cpath fill-rule=%22evenodd%22 clip-rule=%22evenodd%22 d=%22M35.5 13.2981C38.4344 15.8304 40.2951 19.5984 40.2951 23.806C40.2951 28.0136 38.4344 31.7816 35.5 34.3138C32.5657 31.7816 30.705 28.0136 30.705 23.806C30.705 19.5984 32.5657 15.8304 35.5 13.2981Z%22 fill=%22%23FF5E00%22/%3E%3C/svg%3E",
@@ -231,41 +231,41 @@ const _ = {
   stcpay: "data:image/svg+xml,%3Csvg width=%2270%22 height=%2248%22 viewBox=%220 0 70 48%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Crect x=%220.5%22 y=%220.5%22 width=%2269%22 height=%2247%22 rx=%225.5%22 fill=%22white%22 stroke=%22%23D9D9D9%22/%3E%3Cg clip-path=%22url(%23clip0_552_251)%22%3E%3Cpath d=%22M14.0646 34.9923C15.4384 35.0605 16.7784 34.4021 17.8051 33.1545C18.1381 32.7075 18.4013 32.1731 18.5787 31.5834C18.7561 30.9938 18.8441 30.3612 18.8375 29.7239C18.8416 29.1295 18.7591 28.54 18.5946 27.9896C18.4303 27.4392 18.1873 26.9388 17.8799 26.5178C17.1524 25.5827 16.2342 24.9704 15.2466 24.7616L13.3988 24.2716C12.6507 24.0673 12.2019 23.5466 12.2019 22.8319C12.2019 21.8823 12.8751 21.2289 13.9524 21.2289C14.5536 21.197 15.1398 21.4906 15.5832 22.0457C15.8322 22.4161 15.9893 22.8841 16.0321 23.3833L18.6953 22.5664C18.6104 21.5308 18.2608 20.5692 17.7079 19.8505C16.692 18.5696 15.3498 17.8808 13.9674 17.931C12.679 17.8757 11.4221 18.4803 10.4438 19.6259C10.0871 20.0759 9.80308 20.6225 9.60986 21.2308C9.41665 21.8391 9.3185 22.4957 9.32168 23.1586C9.30837 23.7125 9.37778 24.2642 9.52568 24.7803C9.67358 25.2964 9.89689 25.766 10.182 26.1605C10.8832 27.0471 11.7507 27.6514 12.6881 27.9064L14.506 28.4986C15.4187 28.7845 15.8226 29.244 15.8226 30.0608C15.8226 31.0818 15.1568 31.6638 14.0571 31.6638C13.7179 31.6863 13.3789 31.6137 13.0611 31.4504C12.7433 31.2871 12.4534 31.0366 12.2093 30.7142C11.9177 30.3134 11.7469 29.7778 11.7306 29.2133L9 30.0302C9.08356 31.1264 9.44939 32.1467 10.0324 32.9095C10.5693 33.5995 11.2021 34.1357 11.8933 34.4864C12.5846 34.8371 13.3203 34.9953 14.0571 34.9515L14.0646 34.9923ZM34.2558 34.9515C35.0037 34.9799 35.7484 34.8059 36.4468 34.4396C37.1453 34.0734 37.7838 33.5221 38.3254 32.8176C39.0182 31.9187 39.5175 30.7782 39.7692 29.5197L36.9639 28.2434C36.8329 28.8941 36.5742 29.4836 36.2158 29.9485C35.6886 30.626 34.9871 30.9929 34.2632 30.9695C33.8687 30.9753 33.4772 30.8746 33.1113 30.6731C32.7454 30.4715 32.4123 30.1733 32.1312 29.7953C31.5419 28.8737 31.234 27.6787 31.2709 26.4566C31.2302 25.2189 31.5472 24.0091 32.1536 23.0872C32.7195 22.3426 33.4773 21.9318 34.2632 21.9436C34.6131 21.9287 34.9614 22.0115 35.2869 22.1871C35.6124 22.3627 35.9081 22.6273 36.1559 22.9646C36.5058 23.4507 36.7627 24.0469 36.904 24.7004L39.7543 23.3935C39.5159 22.1772 39.0552 21.0635 38.4152 20.1568C37.8561 19.4323 37.1973 18.8661 36.477 18.4911C35.7566 18.116 34.989 17.9395 34.2184 17.9718C33.4171 17.9588 32.6219 18.1623 31.8785 18.5706C31.1351 18.9789 30.4582 19.5839 29.8869 20.3508C28.7488 22.0162 28.1196 24.2118 28.128 26.4891C28.1363 28.7665 28.7815 30.9534 29.9317 32.6032C31.0909 34.1425 32.646 35.0003 34.2632 34.9923L34.2558 34.9515ZM24.5903 34.9923C25.488 35.0422 26.3724 34.683 27.104 33.9713V30.4794C26.6332 30.9196 26.0735 31.1481 25.503 31.1329C25.288 31.1869 25.0665 31.1684 24.858 31.0788C24.6494 30.9891 24.4601 30.8311 24.3066 30.6186C24.1531 30.406 24.0401 30.1455 23.9774 29.8595C23.9147 29.5737 23.9043 29.2712 23.947 28.9785V14H20.7975V18.4211H27.1189V22.5971H20.7975V30.02C20.7544 31.3292 21.0903 32.6091 21.7326 33.5834C22.1186 34.0675 22.5715 34.4416 23.0648 34.6835C23.5581 34.9255 24.0818 35.0305 24.6053 34.9923%22 fill=%22%234F008C%22/%3E%3Cpath d=%22M42.8462 29.4998V18.4243H44.2088V19.3002C44.4248 18.9399 44.6986 18.6532 45.0088 18.4628C45.3189 18.2724 45.657 18.1834 45.9964 18.2027C47.5641 18.2027 48.6923 19.9245 48.6923 22.3913C48.6923 24.8582 47.6008 26.6303 45.9964 26.6303C45.6558 26.6472 45.317 26.5551 45.0067 26.3611C44.6965 26.1671 44.4233 25.8767 44.2088 25.5126V29.5401L42.8462 29.4998ZM44.2088 21.4448V23.4586C44.3369 23.8802 44.5525 24.2407 44.8287 24.495C45.1049 24.7492 45.4295 24.8861 45.762 24.8884C46.6704 24.8884 47.2711 23.952 47.2711 22.4417C47.2711 20.9314 46.6704 20.0151 45.762 20.0151C45.429 20.0085 45.1024 20.1406 44.8252 20.394C44.548 20.6474 44.3331 21.0103 44.2088 21.4348%22 fill=%22%2303BB86%22/%3E%3Cpath d=%22M49.617 23.7541C49.596 23.1503 49.7628 22.5603 50.0813 22.1122C50.3999 21.6642 50.8444 21.3943 51.3182 21.3612L53.7618 20.9673V20.5734C53.7728 20.4796 53.7669 20.3838 53.7444 20.2934C53.7218 20.203 53.6833 20.1204 53.6318 20.052C53.5802 19.9835 53.5171 19.931 53.4471 19.8985C53.3772 19.8659 53.3023 19.8543 53.2282 19.8644H50.1351V18.2001H53.2282C54.4655 18.2001 55.1537 18.9682 55.1537 20.3469V25.9698H53.7618V24.985C53.5275 25.3779 53.2208 25.6913 52.8687 25.8974C52.5167 26.1035 52.1303 26.196 51.7436 26.1667C51.475 26.2026 51.2035 26.1662 50.9467 26.0598C50.6899 25.9533 50.4535 25.7794 50.253 25.549C50.0524 25.3187 49.8922 25.0373 49.7826 24.7229C49.6731 24.4086 49.6166 24.0685 49.617 23.7246V23.7541ZM52.0992 24.7093C52.4451 24.7187 52.7858 24.6012 53.0807 24.3707C53.3755 24.1402 53.6119 23.8065 53.7618 23.4094V22.4247L51.8982 22.7595C51.3801 22.8481 51.1249 23.1928 51.1249 23.7443C51.1249 24.2957 51.4884 24.729 52.1302 24.729%22 fill=%22%2303BB86%22/%3E%3Cpath d=%22M56.3119 27.7828H57.2241C57.3654 27.8044 57.5069 27.7429 57.62 27.6106C57.7332 27.4783 57.8098 27.2851 57.8345 27.0695L58.0021 26.3563L56.0771 18.2001H57.3783L58.5721 23.8753L59.719 18.2001H61.0002L58.8875 27.5657C58.5993 28.8578 58.2167 29.5401 57.2912 29.5401H56.3119V27.7828Z%22 fill=%22%2303BB86%22/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id=%22clip0_552_251%22%3E%3Crect width=%2252%22 height=%2221%22 fill=%22white%22 transform=%22translate(9 14)%22/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E",
   tamara: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAABQCAMAAAAdiXgJAAABgFBMVEWfZpafZbWtkrX/nm6aXLmk2fXgZbjia8f+n3cdHCCvhXuiye+mzPHUZLv+oHiOdnGWW7eutPinqsT/AADSZb3TZbz/nnRELDhWUVp0dIT/AP/1eOr/qqp/P79VVaqoy+7dacDQnZn///88Qkt/f39/f/9/v795ipx/v/9///+/P7+cYsT/VVX//wABAAHt2e765LT02M/24cuvZrruyNH1x7PQ5fv417XPd7rutrLMabvT2Pax1vj5p47pqbHpt8/q4vvTl8S3dbyxyezPhbvQusvOyufcpMjHicL7tZfxzOMAAADQw9nll7e55Prkq8sXFBfYlbniiLj9nXmbXbn+ons4MjTasrujXrmdYblkVVlqWGO9gsDZqLL9noO6vNeriY9vR2NLREm5wN0uKCy4fcDol8VcWWTYZ8JSOUaUk6jlisQ5PEVsanXie73iccL9wJ2iY8Ozd5PUfsQqHCNEODpIQT6BYViQaHWtVq2IWHCYipaxlZL/f3p/cmmdpsGv/sLkAAAAgHRSTlP3Gf8YmBgV8I///1acWtL/VAf/AZ3WS////wEVAwQDzXr/Af8CAgT/BAIEDQMB///8///+//7//f7+/v/+/v7//////v/+/////P8A//3/////+/39/f/++v3////+/f3////+//////v///////b/+P//////////A////wT//zWSKQsAAAlNSURBVHja1dyJV9s4AgZwAwXK9L6P6e4ce8/hjMlF4hzGBCcbJ5NkCJmGAIE0G6CUTum2u0Ch86+vfMiWbcmWHJN2v/favvBKnF8+SZad98KpRu5dqOrMw6tXb67njfwTzZs3SStpV366jDgPYR88Y6dgpQ7zi53Xr18vwWSz2Qf3b3w5p6rf3TO5nPGPhrbJeSf5DYH80yUnSO51u+BafoPJzn8N4F+i7Bn14up6fl0Pnp6caN2kspO+ZSPoJUeyeuZ/2/96Sp2z2RfqzM31dR91MvkpB3kyyd41hp3N7s/Pz6lTkH2hPlxfX1tzqD9TNm3bJSwbNL5/Q3cD9jNEjWcn/dif4yAvkdjZfeA+1dg/qDMA7S4bZWf+39glMhu458C6xv14Aeb1WOz058Yu+bGz+w/mTp9yz9SrunrNqUbYGSd7Au40y4rGys7O31Cfcfdm1tYgO49jZybOTo/HLgWwwTC/x8Gy18hl+7EFPYtGPgm7jrBLVnzY2fn7KgfLXiOXTWYLMIt2olbjp7bFboBYZY+0BA1yMLtPuYdYdR5VZ0hrmiDg3OPqqco22Y3WycbGSUmHt+q/cAePDnaXDgPY2f0bnD3GcewMhp30onHusPo0C/ukyWvpaerR23f6A/7sMIh9n7sJ2XkMO0NmC54skjOG2m9qFzd4MwejVn0JPuB3D5eC2HBq55nYAi6LAYmaXXxrQfmzUX1oP+IO/dkPTPZ2HsfOkAa5IIRyU+DTaYYVDYEujJD3gD8IYGcN9jaW7eZaIWnp3H72dJplaiNQvnSGPHhXomFvE8r+5r9GbjnVCZf6/OOtjx/Bn/NFgR6OtafZ2DtNW/p2F2E3lyjY21g26PoL81mGDnTCzYZjrbMosLnd9DQju9h6Z7MZ2s4C9vY2lq09N2S/d6rd7I753/6zKLC7EXqQGrNbqT+C0hbD3AZsH7XVdseBDmCHcBv0dAh2oTCAZzDHSl4JxTbXbw87QcMOCRcE1jFu7NN6+mQu1esy9XnbZLvVBQI7gWULHnYYuPF7zGUX6o0TbS6PWvYubTdol2awPWrI3oHsBIr2uDFsZrj9i6zsVuPtWQuoW6VR6exg+GhXdqux7DypbBc7EcyWhLBu1/jBqkmfDbTAJVhLS6k0Gh0eHlZKVGxP11h2gpXNAsfs+OjZhlln4y+3adgFPDuRILsheyAJodyEra5AHuOueysh2GQ1yk6EYgvjoEHAgSjUgWUHso2nomCj9hiZLYylFvSjmGh9vBXtNBoN510lH3kA26nOJEjsGIgEEswOggtCIFuXg78yW0haSHBWWZZp2QWXmsw+6oEc9Y4SFGwhArWQON/oNHm2cP+mYVuzJZAt1OAz12JudgxNEFwQ6NjCTodnD5kdz8Y5FxpRk9lNOraVUGi77AHPR8eOgxjsQgGrpmPHKNj6SsCIttiZIT8m24U22AWSmoqtmWx2jBzJCK3ZUidDqnHseNxiF8Zix6jZnhlPxxbe81Gx40g4orpYvBw2rdw41hd8ROx4nMR2oourBHbMzT6AN2Fo2TRy82DNiNhxItuJdrJrPmwJrrSdGFNoyv5gKQbnW1vfbNg3CXtIdnGR0YU8TmK7qwZB2Xr0l1LzsB/DO42x6NzumX2i7UwT1ivi+S1jg2pmZGZ5uQKDqOOecFum+lcrqzAethZFcbFF6Yh3Dvoo4K4xviHoA9BeZXmuEbxFNRKPY9naHheDRtlVG41hWyNxWopFBTfK3rK6ta5C4PmsV9xqlMvLWHeJgv0rAY1hKwqOHZuGL67HzibAzTF+DqePpU6cwLlusJeD6pZlAhtvxrAVL1vUXri1R28qsYjccDMOzxH2JecteCu8uFXW2Mvh2CSzxv6AsBUrIsoWtbqtK4XHYerGwclt9+y2DTaE49myLxuDrq1WLbaCqF1sEOmJtb4eSVIUbrgx8p/bkL1MZstE9irODNS1VYWSHevbm4TBqsQqJ1x46XdT4JEOEq6pDVZyS63DS4S7DVi1xiaoAfslZIuKH1uU0EvDwYdVeN0RLsjbYT/xhvYmJBKcdZiWg72MZctkNlENpnMgWzTZd537woXO4z1Hephs0MS+vzDkWq2dA/vDvWLZwV7GsGVGNjxJ07JFaY+fcHYaZLZDTc+uBbAVD1sUh5NVG2Wj7IqbLfuwn3NEdK0m4tgilh2rLUxS3dRntpNdcbBlPzWGbW9DsWzNiGtbUjoTZE8bZTvZlfBsdO+teNkG0WIrNluMiUeTm9imuuxQo2yZiY2ivWwo7Ft7URGN1N9rTgL9vlUsY8a47Q5iP3eynWiEPRQRtZKCP14QnZEkZXpw2fIhVwRqPLsC2f5la+z+at/IixdONHDefWXkCBnkir1qvxI9kSSx//LJ3mA4XGhGn3fvezvGzYWyL1v2LxuE61tqkBUQx7kKNmwP55Q4sDfgooiT61st10/x+9IqDP6zxaIzZfiZH5FdcZct49WQbaFhFMXFV+7+rmX6iX2GvpsSiYnFAjefPiG+AY0GBVumYb/AoF12zbHimWUdHzW54IDgmnd27suu0LPxZCtwIfN8EjUdxJYcn4fQXpgFuBE1gS37snV1m+uv+KJXciDAkLOWdZg9f3UqlQozvLF9B7MrrOxgtAkXndvPV/5kPRGxGcY4cE8HjvE2YNOg9aQcu7A/+WjthGRXx2BPB5bdbj/nuK8o1TkRuYfCH6VSflyCm1btcnvY5THYbZD4Fe46HVqr27rYGPRTweKQ7nHZm77stp7jK9w1WnUu9bIzHA5f7f3thVl1iiIh2dWw7M1NP3XXYLdvc3co0Zo7ZVJzlGaP+xOzobo9xanXc5RqZJpTo0Ozqz7nr3JIdrcLx7jKqbPM6tzPqdSlub3sIgN7c3PzXyR21y5b5e546g5EawnppmdXo2Z3kbJPub/8Y5ap65/NhHNHySaoCeyuxea+//NTTv1WvZZjRjPBmeqOkh3HsqfUP2pfSTGLuqnRId307CqJHTDGEbdLbbBvG19Joap/B+4cu/pS3NVx2JtENlR3gfoP8Otm7kA3m5oeHopdjZ59zE3pavPLhf6qzl4HsBVWdfTuy2Hr6u5x+8qUNsLtr5K6oxpwVjWtOyq27/lrk8TuduPHx8ddgAarGcpWv50F8GvXv2JVs7vp2VUsuxyG3eWu3Abo06cm938Wk18zXm8wMQAAAABJRU5ErkJggg=="
 };
-function z(r, t) {
+function G(a, t) {
   const e = `lp-star-${t.replace("#", "")}`;
-  return i`<span class="stars" aria-hidden="true">
-    ${[0, 1, 2, 3, 4].map((a) => {
-    const o = Math.round(Math.max(0, Math.min(1, r - a)) * 100);
-    return i`<svg viewBox="0 0 20 20">
+  return o`<span class="stars" aria-hidden="true">
+    ${[0, 1, 2, 3, 4].map((r) => {
+    const i = Math.round(Math.max(0, Math.min(1, a - r)) * 100);
+    return o`<svg viewBox="0 0 20 20">
         <defs>
-          <linearGradient id="${e}-${o}">
-            <stop offset="${o}%" stop-color="${t}"></stop>
-            <stop offset="${o}%" stop-color="#d1d5db"></stop>
+          <linearGradient id="${e}-${i}">
+            <stop offset="${i}%" stop-color="${t}"></stop>
+            <stop offset="${i}%" stop-color="#d1d5db"></stop>
           </linearGradient>
         </defs>
         <path
-          fill="url(#${e}-${o})"
+          fill="url(#${e}-${i})"
           d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"
         ></path>
       </svg>`;
   })}
   </span>`;
 }
-const D = i`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+const X = o`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
   <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-</svg>`, q = i`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+</svg>`, U = o`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
   <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-</svg>`, A = {
-  شحن: () => i`<svg viewBox="0 0 24 24" fill="none"><path d="M3 6h11v9H3zM14 9h4l3 3v3h-7z" stroke="currentColor" stroke-width="1.6"/><circle cx="7" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/></svg>`,
-  توصيل: () => A.شحن(),
-  استرجاع: () => i`<svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 1 2.3 5.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M4 18v-4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-  ضمان: () => i`<svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-  امان: () => i`<svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6"/></svg>`,
-  دعم: () => i`<svg viewBox="0 0 24 24" fill="none"><path d="M5 13v-1a7 7 0 0 1 14 0v1" stroke="currentColor" stroke-width="1.6"/><rect x="3.5" y="13" width="3.5" height="6" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="17" y="13" width="3.5" height="6" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>`,
-  هدية: () => i`<svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="8" width="17" height="12.5" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 12h17M12 8v12.5M12 8c-1.8-3.2-5.5-3.4-5.5-1 0 1.6 3 1 5.5 1zm0 0c1.8-3.2 5.5-3.4 5.5-1 0 1.6-3 1-5.5 1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>`,
-  وقت: () => i`<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>`,
-  تقييم: () => i`<svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.6 5.6 6 .6-4.5 4 1.3 6-5.4-3.2L6.6 19l1.3-6-4.5-4 6-.6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>`
-}, X = () => i`<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8.5" r="4"/><path d="M4 20c0-4.2 3.6-6.5 8-6.5s8 2.3 8 6.5z"/></svg>`, U = [
+</svg>`, E = {
+  شحن: () => o`<svg viewBox="0 0 24 24" fill="none"><path d="M3 6h11v9H3zM14 9h4l3 3v3h-7z" stroke="currentColor" stroke-width="1.6"/><circle cx="7" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/></svg>`,
+  توصيل: () => E.شحن(),
+  استرجاع: () => o`<svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 1 2.3 5.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M4 18v-4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  ضمان: () => o`<svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  امان: () => o`<svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6"/></svg>`,
+  دعم: () => o`<svg viewBox="0 0 24 24" fill="none"><path d="M5 13v-1a7 7 0 0 1 14 0v1" stroke="currentColor" stroke-width="1.6"/><rect x="3.5" y="13" width="3.5" height="6" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="17" y="13" width="3.5" height="6" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>`,
+  هدية: () => o`<svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="8" width="17" height="12.5" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 12h17M12 8v12.5M12 8c-1.8-3.2-5.5-3.4-5.5-1 0 1.6 3 1 5.5 1zm0 0c1.8-3.2 5.5-3.4 5.5-1 0 1.6-3 1-5.5 1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>`,
+  وقت: () => o`<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>`,
+  تقييم: () => o`<svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.6 5.6 6 .6-4.5 4 1.3 6-5.4-3.2L6.6 19l1.3-6-4.5-4 6-.6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>`
+}, o2 = () => o`<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8.5" r="4"/><path d="M4 20c0-4.2 3.6-6.5 8-6.5s8 2.3 8 6.5z"/></svg>`, n2 = [
   ["mada", "mada"],
   ["applepay", "Apple Pay"],
   ["stcpay", "STC Pay"],
@@ -273,7 +273,7 @@ const D = i`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
   ["tamara", "Tamara"],
   ["mastercard", "Mastercard"],
   ["googlepay", "Google Pay"]
-], Q = `
+], s2 = `
 .wahaj-buy .wahaj-form fieldset{border:0;margin:0;padding:0;min-width:0}
 .wahaj-buy{display:flex;flex-direction:column;gap:14px;font-family:inherit}
 .wahaj-buy .wahaj-label{font-weight:700;font-size:15px;color:#111827;margin:0}
@@ -296,35 +296,42 @@ const D = i`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
 .wahaj-buy .wahaj-cta[disabled]{opacity:.6;cursor:not-allowed}
 .wahaj-buy salla-product-options,.wahaj-buy salla-quick-order,.wahaj-buy salla-offer{display:block}
 .wahaj-buy #bundle-pro-widget:empty{display:none}
+.wahaj-buy .money{display:inline-flex;align-items:baseline;gap:.2em;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+.wahaj-buy .sar{font-style:normal;font-size:.85em}
+.wahaj-buy .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 @media (max-width:820px){.wahaj-buy .wahaj-cta{font-size:17px}}
 @media (prefers-reduced-motion:reduce){.wahaj-buy .wahaj-cta,.wahaj-buy .wahaj-tier{transition:none}}
 `;
-function J() {
+function l2() {
   if (document.getElementById("wahaj-hero-light")) return;
-  const r = document.createElement("style");
-  r.id = "wahaj-hero-light", r.textContent = Q, document.head.appendChild(r);
+  const a = document.createElement("style");
+  a.id = "wahaj-hero-light", a.textContent = s2, document.head.appendChild(a);
 }
-function B() {
-  const r = window;
-  return !!(r.__BUNDLE_PRO_LOADER_SRC__ || r.__BUNDLE_PRO__ || document.querySelector('script[src*="/widget/storefront"]'));
+function D() {
+  const a = window;
+  return !!(a.__BUNDLE_PRO_LOADER_SRC__ || a.__BUNDLE_PRO__ || document.querySelector('script[src*="/widget/storefront"]'));
 }
-function $(r) {
-  r && typeof r == "object" && (r = r.amount ?? r.value);
-  const t = Number.parseFloat(String(r ?? ""));
+function M(a) {
+  a && typeof a == "object" && (a = a.amount ?? a.value);
+  const t = Number.parseFloat(String(a ?? ""));
   return Number.isFinite(t) ? t : 0;
 }
-function K(r) {
-  return Number.isInteger(r) ? String(r) : r.toFixed(2);
+function N(a) {
+  const e = a.replace(/[\u0660-\u0669]/g, (r) => String(r.charCodeAt(0) - 1632)).replace(/[\u06F0-\u06F9]/g, (r) => String(r.charCodeAt(0) - 1776)).replace(/[,\u066C]/g, "").replace(/\u066B/g, ".").match(/\d+(?:\.\d+)?/);
+  return e ? Number(e[0]) : null;
 }
-const H = class H extends O {
+function c2(a) {
+  return Number.isInteger(a) ? String(a) : a.toFixed(2);
+}
+const Z = class Z extends J {
   constructor() {
     super(), this.loadedId = "", this.lightRoot = null, this.topTimer = 0, this.topPaused = !1, this.topStopped = !1, this.uid = `wahaj-${Math.random().toString(36).slice(2, 8)}`, this.sdkTries = 0, this.activeImage = 0, this.activeTab = 0, this.activeTier = -1, this.topIndex = 0, this.product = null;
   }
   connectedCallback() {
-    super.connectedCallback(), Y(), this.topTimer = window.setInterval(() => {
-      var e, a, o;
-      const t = Z((e = this.config) == null ? void 0 : e.top_bar).length;
-      this.topPaused || (a = window.matchMedia) != null && a.call(window, "(prefers-reduced-motion: reduce)").matches || t > 1 && ((o = window.matchMedia) != null && o.call(window, "(max-width: 820px)").matches) && (this.topIndex = (this.topIndex + 1) % t);
+    super.connectedCallback(), e2(), this.topTimer = window.setInterval(() => {
+      var e, r, i;
+      const t = q((e = this.config) == null ? void 0 : e.top_bar).length;
+      this.topPaused || (r = window.matchMedia) != null && r.call(window, "(prefers-reduced-motion: reduce)").matches || t > 1 && ((i = window.matchMedia) != null && i.call(window, "(max-width: 820px)").matches) && (this.topIndex = (this.topIndex + 1) % t);
     }, 4e3);
   }
   disconnectedCallback() {
@@ -332,96 +339,96 @@ const H = class H extends O {
   }
   /* ----------------------------------------------------------------- data */
   get c() {
-    const t = this.config || {}, e = (s, l) => s == null ? l : g(s).trim(), a = (s, l, p) => Z(s).map((d) => Object.fromEntries(p.map((h) => [h, h === "icon" ? C(d, l, h) : g(C(d, l, h))]))), o = k(t.product, "").trim(), n = Z(t.tiers).map((s) => ({
-      title: g(C(s, "tiers", "title")).trim(),
-      subtitle: g(C(s, "tiers", "subtitle")).trim(),
-      qty: Math.max(1, Math.round(T(C(s, "tiers", "qty"), 1, 1, 99))),
-      price: g(C(s, "tiers", "price")).trim(),
-      compare: g(C(s, "tiers", "compare")).trim(),
-      badge: g(C(s, "tiers", "badge")).trim()
-    })).filter((s) => s.title);
+    const t = this.config || {}, e = (n, l) => n == null ? l : C(n).trim(), r = (n, l, d) => q(n).map((c) => Object.fromEntries(d.map((f) => [f, f === "icon" ? v(c, l, f) : C(v(c, l, f))]))), i = V(t.product, "").trim(), s = q(t.tiers).map((n) => ({
+      title: C(v(n, "tiers", "title")).trim(),
+      subtitle: C(v(n, "tiers", "subtitle")).trim(),
+      qty: Math.max(1, Math.round(z(v(n, "tiers", "qty"), 1, 1, 99))),
+      price: C(v(n, "tiers", "price")).trim(),
+      compare: C(v(n, "tiers", "compare")).trim(),
+      badge: C(v(n, "tiers", "badge")).trim()
+    })).filter((n) => n.title);
     return {
-      productId: /^\d+$/.test(o) ? o : "",
-      bg: x(t.bg_color, "#ffffff"),
-      accent: x(t.accent_color, "#1a8917"),
-      showTopBar: m(t.show_top_bar, !0),
-      topBar: a(t.top_bar, "top_bar", ["icon", "text"]).filter((s) => s.text),
-      gallery: a(t.gallery, "gallery", ["image"]).map((s) => v(s.image)).filter(Boolean),
-      ratingValue: T(t.rating_value, 4.8, 0, 5),
+      productId: /^\d+$/.test(i) ? i : "",
+      bg: j(t.bg_color, "#ffffff"),
+      accent: j(t.accent_color, "#1a8917"),
+      showTopBar: y(t.show_top_bar, !0),
+      topBar: r(t.top_bar, "top_bar", ["icon", "text"]).filter((n) => n.text),
+      gallery: r(t.gallery, "gallery", ["image"]).map((n) => x(n.image)).filter(Boolean),
+      ratingValue: z(t.rating_value, 4.8, 0, 5),
       ratingCount: e(t.rating_count, "5000"),
-      starsColor: x(t.stars_color, "#f5a623"),
-      title: e(t.headline ?? t.title, L("عطر فاخر يدوم طويلاً — رائحة تبقى معك طوال اليوم")),
+      starsColor: j(t.stars_color, "#f5a623"),
+      title: e(t.headline ?? t.title, H("عطر فاخر يدوم طويلاً — رائحة تبقى معك طوال اليوم")),
       subtitle: e(t.subheadline ?? t.subtitle, ""),
-      priceFrom: m(t.price_from, !1),
+      priceFrom: y(t.price_from, !1),
       priceAfter: e(t.price_after, "149"),
       priceBefore: e(t.price_before, "249"),
       savings: e(t.savings_label, ""),
-      stock: e(t.stock_label, L("الكمية محدودة")),
-      points: a(t.points, "points", ["text"]).map((s) => s.text).filter(Boolean),
-      offersMode: k(t.offers_mode, "auto"),
-      offersTitle: e(t.offers_title, L("اختر العرض المناسب")),
-      tiers: n,
-      defaultTier: Math.max(0, Math.round(T(t.default_tier, 2, 1, 6)) - 1),
-      showQty: m(t.show_qty, !0),
-      ctaText: e(t.cta_text, L("اشترِ الآن")),
-      ctaColor: x(t.cta_color, "#1a8917"),
-      ctaAction: k(t.cta_action, "buy_now"),
-      ctaLink: v(t.cta_link),
-      showQuickOrder: m(t.show_quick_order, !0),
-      showSallaOffers: m(t.show_salla_offers, !0),
-      secureLabel: e(t.secure_label, f("secureCheckout")),
-      payments: U.filter(([s]) => m(t[`pay_${s}`], ["mada", "applepay", "stcpay", "tabby", "mastercard"].includes(s))),
-      showTrust: m(t.show_trust, !0),
-      trust: a(t.trust, "trust", ["icon", "text"]).filter((s) => s.text),
-      showReview: m(t.show_review, !0),
-      review: a(t.reviews, "reviews", ["avatar", "name", "text"]).find((s) => s.text),
-      showTabs: m(t.show_tabs, !0),
-      tabs: a(t.tabs, "tabs", ["title", "content"]).filter((s) => s.title && s.content),
-      showLogos: m(t.show_logos, !0),
-      logosTitle: e(t.logos_title, f("recommendedBy")),
-      logos: a(t.logos, "logos", ["name", "image"]).filter((s) => s.name || s.image)
+      stock: e(t.stock_label, H("الكمية محدودة")),
+      points: r(t.points, "points", ["text"]).map((n) => n.text).filter(Boolean),
+      offersMode: V(t.offers_mode, "auto"),
+      offersTitle: e(t.offers_title, H("اختر العرض المناسب")),
+      tiers: s,
+      defaultTier: Math.max(0, Math.round(z(t.default_tier, 2, 1, 6)) - 1),
+      showQty: y(t.show_qty, !0),
+      ctaText: e(t.cta_text, H("اشترِ الآن")),
+      ctaColor: j(t.cta_color, "#1a8917"),
+      ctaAction: V(t.cta_action, "buy_now"),
+      ctaLink: x(t.cta_link),
+      showQuickOrder: y(t.show_quick_order, !0),
+      showSallaOffers: y(t.show_salla_offers, !0),
+      secureLabel: e(t.secure_label, m("secureCheckout")),
+      payments: n2.filter(([n]) => y(t[`pay_${n}`], ["mada", "applepay", "stcpay", "tabby", "mastercard"].includes(n))),
+      showTrust: y(t.show_trust, !0),
+      trust: r(t.trust, "trust", ["icon", "text"]).filter((n) => n.text),
+      showReview: y(t.show_review, !0),
+      review: r(t.reviews, "reviews", ["avatar", "name", "text"]).find((n) => n.text),
+      showTabs: y(t.show_tabs, !0),
+      tabs: r(t.tabs, "tabs", ["title", "content"]).filter((n) => n.title && n.content),
+      showLogos: y(t.show_logos, !0),
+      logosTitle: e(t.logos_title, m("recommendedBy")),
+      logos: r(t.logos, "logos", ["name", "image"]).filter((n) => n.name || n.image)
     };
   }
   /** Arrow keys move between radio cards / tabs (focus follows the selection). */
-  arrowKeys(t, e, a, o) {
-    const n = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
-    if (!(t.key in n) || e < 2) return;
+  arrowKeys(t, e, r, i) {
+    const s = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+    if (!(t.key in s) || e < 2) return;
     t.preventDefault();
-    const s = M() === "rtl" && t.key.startsWith("Arrow") && (t.key === "ArrowRight" || t.key === "ArrowLeft") ? -n[t.key] : n[t.key], l = (Math.max(o, 0) + s + e) % e;
-    a(l);
-    const p = t.currentTarget;
+    const n = P() === "rtl" && t.key.startsWith("Arrow") && (t.key === "ArrowRight" || t.key === "ArrowLeft") ? -s[t.key] : s[t.key], l = (Math.max(i, 0) + n + e) % e;
+    r(l);
+    const d = t.currentTarget;
     requestAnimationFrame(() => {
-      var d;
-      return (d = p.querySelectorAll('[role="radio"],[role="tab"]')[l]) == null ? void 0 : d.focus();
+      var c;
+      return (c = d.querySelectorAll('[role="radio"],[role="tab"]')[l]) == null ? void 0 : c.focus();
     });
   }
   async loadProduct(t) {
-    var a, o, n, s, l;
+    var r, i, s, n, l;
     const e = window.salla;
-    if (!((a = e == null ? void 0 : e.product) != null && a.getDetails)) {
+    if (!((r = e == null ? void 0 : e.product) != null && r.getDetails)) {
       this.sdkTries++ < 20 && window.setTimeout(() => this.loadProduct(t), 500);
       return;
     }
     this.loadedId = t;
     try {
-      await ((o = e.onReady) == null ? void 0 : o.call(e));
-      const p = await e.product.getDetails(t, ["images", "options"]), d = (p == null ? void 0 : p.data) ?? p;
-      if (!d || this.loadedId !== t) return;
-      const h = $(d.sale_price) || $(d.price), w = $(d.regular_price) || $(d.price), u = (Array.isArray(d.images) ? d.images : []).map((y) => {
-        var S;
-        return v((y == null ? void 0 : y.url) ?? ((S = y == null ? void 0 : y.image) == null ? void 0 : S.url) ?? y);
-      }).filter(Boolean), b = v(((n = d.image) == null ? void 0 : n.url) ?? d.thumbnail);
+      await ((i = e.onReady) == null ? void 0 : i.call(e));
+      const d = await e.product.getDetails(t, ["images", "options"]), c = (d == null ? void 0 : d.data) ?? d;
+      if (!c || this.loadedId !== t) return;
+      const f = M(c.sale_price) || M(c.price), b = M(c.regular_price) || M(c.price), u = (Array.isArray(c.images) ? c.images : []).map((w) => {
+        var k;
+        return x((w == null ? void 0 : w.url) ?? ((k = w == null ? void 0 : w.image) == null ? void 0 : k.url) ?? w);
+      }).filter(Boolean), g = x(((s = c.image) == null ? void 0 : s.url) ?? c.thumbnail);
       this.product = {
         id: t,
-        name: g(d.name),
-        price: h,
-        regular: w > h ? w : 0,
-        images: u.length ? u : b ? [b] : [],
-        available: d.is_available !== !1 && d.status !== "out" && d.status !== "out-and-notify",
-        hasOptions: Array.isArray(d.options) && d.options.length > 0,
-        options: d.options,
+        name: C(c.name),
+        price: f,
+        regular: b > f ? b : 0,
+        images: u.length ? u : g ? [g] : [],
+        available: c.is_available !== !1 && c.status !== "out" && c.status !== "out-and-notify",
+        hasOptions: Array.isArray(c.options) && c.options.length > 0,
+        options: c.options,
         // Amounts come back in the visitor's selected currency.
-        currency: g(((l = (s = e.config) == null ? void 0 : s.get) == null ? void 0 : l.call(s, "user.currency_code")) || d.currency || "SAR")
+        currency: C(((l = (n = e.config) == null ? void 0 : n.get) == null ? void 0 : l.call(n, "user.currency_code")) || c.currency || "SAR")
       };
     } catch {
       this.product = null;
@@ -435,7 +442,7 @@ const H = class H extends O {
   /** Quantity tiers are skipped when the bundles app renders its own offers. */
   useTiers() {
     const t = this.c;
-    return t.offersMode === "none" || t.offersMode === "app" || t.offersMode === "auto" && t.productId && B() ? !1 : t.tiers.length > 0;
+    return t.offersMode === "none" || t.offersMode === "app" || t.offersMode === "auto" && t.productId && D() ? !1 : t.tiers.length > 0;
   }
   tierIndex() {
     const t = this.c;
@@ -444,29 +451,62 @@ const H = class H extends O {
   selectedQuantity(t) {
     const e = this.tierIndex();
     if (e >= 0) return this.c.tiers[e].qty;
-    const a = t.querySelector(".wahaj-qty");
-    return a && Number(a.value) || 1;
+    const r = t.querySelector(".wahaj-qty");
+    return r && Number(r.value) || 1;
   }
+  /**
+   * "Buy now" goes straight to Salla's checkout with the chosen quantity and options, the same
+   * request Salla's own quick-buy button sends (checkout/mini). If the store cannot do that, the
+   * product is added to the cart and the customer is taken to the cart instead.
+   */
   async submit(t) {
-    var l, p, d;
+    var d, c, f;
     t.preventDefault();
-    const e = this.c, a = window.salla, o = t.target;
-    if (!e.productId || !((l = a == null ? void 0 : a.cart) != null && l.addItem)) {
+    const e = this.c, r = window.salla, i = t.target;
+    if (!e.productId || !((d = r == null ? void 0 : r.cart) != null && d.addItem)) {
       e.ctaLink && (window.location.href = e.ctaLink);
       return;
     }
-    const n = {};
-    new FormData(o).forEach((h, w) => {
-      const u = w.match(/^options\[(\d+)\]$/);
-      u && typeof h == "string" && h && (n[u[1]] = h);
+    const s = {};
+    new FormData(i).forEach((b, u) => {
+      const g = u.match(/^options\[(\d+)\]$/);
+      g && typeof b == "string" && b && (s[g[1]] = b);
     });
-    const s = o.querySelector(".wahaj-cta");
-    s == null || s.setAttribute("disabled", "");
+    const n = this.selectedQuantity(i), l = i.querySelector(".wahaj-cta");
+    l == null || l.setAttribute("disabled", ""), l == null || l.setAttribute("aria-busy", "true");
     try {
-      await a.cart.addItem({ id: e.productId, quantity: this.selectedQuantity(o), options: n }), e.ctaAction === "buy_now" ? window.location.href = ((d = (p = a.url) == null ? void 0 : p.get) == null ? void 0 : d.call(p, "cart")) || "/cart" : e.ctaAction === "link" && e.ctaLink && (window.location.href = e.ctaLink);
+      if (e.ctaAction === "buy_now" && await this.quickCheckout(i, n)) return;
+      await r.cart.addItem({ id: e.productId, quantity: n, options: s }), e.ctaAction === "buy_now" ? window.location.href = ((f = (c = r.url) == null ? void 0 : c.get) == null ? void 0 : f.call(c, "cart")) || "/cart" : e.ctaAction === "link" && e.ctaLink && (window.location.href = e.ctaLink);
     } catch {
     } finally {
-      s == null || s.removeAttribute("disabled");
+      l == null || l.removeAttribute("disabled"), l == null || l.removeAttribute("aria-busy");
+    }
+  }
+  /** Returns true when the customer is on the way to checkout (or the login window opened). */
+  async quickCheckout(t, e) {
+    var d, c, f, b, u, g, w, k, $, O;
+    const r = window.salla, i = (d = r == null ? void 0 : r.api) == null ? void 0 : d.request;
+    if (typeof i != "function") return !1;
+    const s = t.querySelector("salla-product-options");
+    if (s && typeof s.reportValidity == "function" && !await s.reportValidity() || !t.reportValidity()) return !0;
+    const n = new FormData(t);
+    n.set("id", this.c.productId), n.set("quantity", String(e)), n.set("source", "buy_now");
+    const l = (h) => {
+      var L, W, _, A, F;
+      const S = ((L = h == null ? void 0 : h.data) == null ? void 0 : L.url) || ((W = h == null ? void 0 : h.data) == null ? void 0 : W.redirect);
+      return S ? (window.location.href = S, !0) : ((_ = h == null ? void 0 : h.data) == null ? void 0 : _.to) === "login" ? ((F = (A = r.event) == null ? void 0 : A.dispatch) == null || F.call(A, "login::open"), !0) : !1;
+    };
+    try {
+      return l(await i.call(r.api, "checkout/mini", n, "post"));
+    } catch (h) {
+      if (((b = (f = (c = h == null ? void 0 : h.response) == null ? void 0 : c.data) == null ? void 0 : f.error) == null ? void 0 : b.code) === "token_not_provided")
+        try {
+          return l(await i.call(r.api, `checkout/quick-purchase/${this.c.productId}`, n, "post"));
+        } catch {
+          return !1;
+        }
+      const L = (w = (g = (u = h == null ? void 0 : h.response) == null ? void 0 : u.data) == null ? void 0 : g.error) == null ? void 0 : w.message;
+      return L && ((k = h == null ? void 0 : h.response) == null ? void 0 : k.status) === 422 ? ((O = ($ = r.notify) == null ? void 0 : $.error) == null || O.call($, L), !0) : !1;
     }
   }
   /** Manual mode button: use the page's own purchase control, else follow the merchant link. */
@@ -476,7 +516,7 @@ const H = class H extends O {
       window.location.href = t.ctaLink;
       return;
     }
-    const e = ["salla-quick-buy button", "[data-buy-now]", "salla-add-product-button button", ".btn-add-to-cart"].map((a) => document.querySelector(a)).find(Boolean);
+    const e = ["salla-quick-buy button", "[data-buy-now]", "salla-add-product-button button", ".btn-add-to-cart"].map((r) => document.querySelector(r)).find(Boolean);
     e ? e.click() : t.ctaLink && (window.location.href = t.ctaLink);
   }
   /* ------------------------------------------------------- light DOM part */
@@ -486,7 +526,7 @@ const H = class H extends O {
       (e = this.lightRoot) == null || e.remove(), this.lightRoot = null;
       return;
     }
-    J(), this.lightRoot || (this.lightRoot = document.createElement("div"), this.lightRoot.slot = "buy", this.appendChild(this.lightRoot)), W(this.lightTemplate(), this.lightRoot), this.mountBundlesApp();
+    l2(), this.lightRoot || (this.lightRoot = document.createElement("div"), this.lightRoot.slot = "buy", this.appendChild(this.lightRoot)), K(this.lightTemplate(), this.lightRoot), this.mountBundlesApp();
   }
   /**
    * Hands the product to the bundles app ("عروض المنتجات والباقات").
@@ -494,220 +534,238 @@ const H = class H extends O {
    * already ran, it can re-mount through window.BundlePro.mount (if exposed) or the "wahaj:product" event.
    */
   mountBundlesApp() {
-    var o, n;
+    var i, s;
     const t = this.c;
-    if (!t.productId || t.offersMode === "none" || this.useTiers() || !B()) return;
-    const e = (o = this.lightRoot) == null ? void 0 : o.querySelector("#bundle-pro-widget");
+    if (!t.productId || t.offersMode === "none" || this.useTiers() || !D()) return;
+    const e = (i = this.lightRoot) == null ? void 0 : i.querySelector("#bundle-pro-widget");
     if (!e || e.dataset.wahajMounted === t.productId) return;
     e.dataset.wahajMounted = t.productId;
-    const a = window;
-    a.__BUNDLE_PRO_PRODUCT_ID__ = t.productId, typeof ((n = a.BundlePro) == null ? void 0 : n.mount) == "function" && a.BundlePro.mount(e, t.productId), document.dispatchEvent(new CustomEvent("wahaj:product", { detail: { productId: t.productId, element: e } }));
+    const r = window;
+    r.__BUNDLE_PRO_PRODUCT_ID__ = t.productId, typeof ((s = r.BundlePro) == null ? void 0 : s.mount) == "function" && r.BundlePro.mount(e, t.productId), document.dispatchEvent(new CustomEvent("wahaj:product", { detail: { productId: t.productId, element: e } }));
   }
   lightTemplate() {
     const t = this.c, e = this.product;
-    e ? e.regular && (t.savings || i`${f("save")} ${this.money(Math.round((e.regular - e.price) * 100) / 100)}`) : t.savings;
-    const a = e ? !e.available : !1, o = this.tierIndex(), n = o >= 0 ? t.tiers : [], s = t.offersMode !== "none" && !this.useTiers() && B();
-    return i`
+    e ? e.regular && (t.savings || o`${m("save")} ${this.money(Math.round((e.regular - e.price) * 100) / 100)}`) : t.savings;
+    const r = e ? !e.available : !1, i = this.tierIndex(), s = i >= 0 ? t.tiers : [], n = t.offersMode !== "none" && !this.useTiers() && D();
+    return o`
       <div
         class="wahaj-buy"
-        dir="${M()}"
-        style="--wahaj-accent:${t.accent};--wahaj-accent-soft:${I(t.accent, 0.1)};--wahaj-cols:${Math.min(Math.max(n.length, 1), 3)}"
+        dir="${P()}"
+        style="--wahaj-accent:${t.accent};--wahaj-accent-soft:${R(t.accent, 0.1)};--wahaj-cols:${Math.min(Math.max(s.length, 1), 3)}"
       >
-        ${s ? i`<div id="bundle-pro-widget" class="bp-widget-mount"></div>` : c}
-        ${n.length ? i`<p class="wahaj-label" id="${this.uid}-tiers">${t.offersTitle}</p>
-              <div class="wahaj-tiers" role="radiogroup" aria-labelledby="${this.uid}-tiers" @keydown=${(l) => this.arrowKeys(l, n.length, (p) => this.activeTier = p, this.tierIndex())}>
-                ${n.map(
-      (l, p) => i`<button type="button" class="wahaj-tier" role="radio" aria-checked="${p === o}" tabindex="${p === o ? 0 : -1}" @click=${() => this.activeTier = p}>
-                    ${l.badge ? i`<span class="wahaj-badge">${l.badge}</span>` : c}
+        ${n ? o`<div id="bundle-pro-widget" class="bp-widget-mount"></div>` : p}
+        ${s.length ? o`<p class="wahaj-label" id="${this.uid}-tiers">${t.offersTitle}</p>
+              <div class="wahaj-tiers" role="radiogroup" aria-labelledby="${this.uid}-tiers" @keydown=${(l) => this.arrowKeys(l, s.length, (d) => this.activeTier = d, this.tierIndex())}>
+                ${s.map(
+      (l, d) => o`<button type="button" class="wahaj-tier" role="radio" aria-checked="${d === i}" tabindex="${d === i ? 0 : -1}" @click=${() => this.activeTier = d}>
+                    ${l.badge ? o`<span class="wahaj-badge">${l.badge}</span>` : p}
                     <strong>${l.title}</strong>
-                    ${l.price ? i`<span class="wahaj-tier-price">${l.price}${l.compare ? i`<s>${l.compare}</s>` : c}</span>` : c}
-                    ${l.subtitle ? i`<small>${l.subtitle}</small>` : c}
+                    ${this.tierPrice(l) !== p ? o`<span class="wahaj-tier-price">${this.tierPrice(l)}</span>` : p}
+                    ${l.subtitle ? o`<small>${l.subtitle}</small>` : p}
                   </button>`
     )}
-              </div>` : c}
+              </div>` : p}
         <form class="wahaj-form product-form" @submit=${(l) => this.submit(l)}>
           <input type="hidden" name="id" .value=${t.productId} />
-          ${e != null && e.hasOptions ? i`<salla-product-options product-id="${t.productId}" options="${JSON.stringify(e.options)}"></salla-product-options>` : c}
+          ${e != null && e.hasOptions ? o`<salla-product-options product-id="${t.productId}" options="${JSON.stringify(e.options)}"></salla-product-options>` : p}
           <div class="wahaj-row">
-            ${t.showQty && !n.length ? i`<select class="wahaj-qty" name="quantity" aria-label="${f("quantity")}">
-                  ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((l) => i`<option value="${l}">${l}</option>`)}
-                </select>` : c}
-            <button class="wahaj-cta" type="submit" style="background:${t.ctaColor};color:${P(t.ctaColor)}" ?disabled=${a}>
-              ${a ? f("outOfStock") : t.ctaText}
+            ${t.showQty && !s.length ? o`<select class="wahaj-qty" name="quantity" aria-label="${m("quantity")}">
+                  ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((l) => o`<option value="${l}">${l}</option>`)}
+                </select>` : p}
+            <button class="wahaj-cta" type="submit" style="background:${t.ctaColor};color:${Y(t.ctaColor)}" ?disabled=${r}>
+              ${r ? m("outOfStock") : t.ctaText}
             </button>
           </div>
         </form>
-        ${t.showQuickOrder && !a ? i`<salla-quick-order product-id="${t.productId}"></salla-quick-order>` : c}
-        ${t.showSallaOffers ? i`<salla-offer product-id="${t.productId}"></salla-offer>` : c}
+        ${t.showQuickOrder && !r ? o`<salla-quick-order product-id="${t.productId}"></salla-quick-order>` : p}
+        ${t.showSallaOffers ? o`<salla-offer product-id="${t.productId}"></salla-offer>` : p}
       </div>
     `;
   }
   /* ------------------------------------------------------------ rendering */
   icon(t) {
-    const e = k(t, "").trim();
-    return A[e] ? A[e]() : A.ضمان();
+    const e = V(t, "").trim();
+    return E[e] ? E[e]() : E.ضمان();
   }
+  /** Price with the riyal symbol on its left (SAMA guidance), in both languages. */
   money(t) {
-    var o;
-    const e = ((o = this.product) == null ? void 0 : o.currency) || "SAR", a = typeof t == "number" ? K(t) : t;
-    return e.toUpperCase() === "SAR" ? i`${a}<i class="sar sicon-sar" aria-hidden="true"></i><span class="sr-only">SAR</span>` : i`${a} ${e}`;
+    var s;
+    const e = ((s = this.product) == null ? void 0 : s.currency) || "SAR", r = typeof t == "number" ? t : N(t), i = r !== null ? c2(r) : t;
+    return e.toUpperCase() === "SAR" ? o`<span class="money" dir="ltr"><i class="sar sicon-sar" aria-hidden="true"></i>${i}<span class="sr-only"> SAR</span></span>` : o`<span class="money" dir="ltr">${i} ${e}</span>`;
+  }
+  /**
+   * Price line of a quantity card. The merchant types plain numbers; with a linked product an
+   * empty price is worked out as quantity × the product's price, and the struck price as
+   * quantity × its price before discount.
+   */
+  tierPrice(t) {
+    const e = this.product;
+    let r = N(t.price), i = N(t.compare);
+    if (e && e.price && (r === null && (r = Math.round(e.price * t.qty * 100) / 100), i === null)) {
+      const d = Math.round((e.regular || e.price) * t.qty * 100) / 100;
+      d > r && (i = d);
+    }
+    const s = (d, c) => c !== null ? this.money(c) : d, n = s(t.price, r);
+    if (!n) return p;
+    const l = i !== null && r !== null && i <= r ? "" : s(t.compare, i);
+    return o`${n}${l ? o`<s>${l}</s>` : p}`;
   }
   renderTopBar(t, e) {
-    if (!t.showTopBar || !t.topBar.length) return c;
-    const a = t.topBar.length, o = this.topIndex % a, n = (l) => {
-      this.topStopped = !0, this.topPaused = !0, this.topIndex = (o + l + a) % a;
-    }, s = (l) => () => {
+    if (!t.showTopBar || !t.topBar.length) return p;
+    const r = t.topBar.length, i = this.topIndex % r, s = (l) => {
+      this.topStopped = !0, this.topPaused = !0, this.topIndex = (i + l + r) % r;
+    }, n = (l) => () => {
       this.topStopped || (this.topPaused = l);
     };
-    return i`<div class="top" @mouseenter=${s(!0)} @mouseleave=${s(!1)} @focusin=${s(!0)} @focusout=${s(!1)}>
+    return o`<div class="top" @mouseenter=${n(!0)} @mouseleave=${n(!1)} @focusin=${n(!0)} @focusout=${n(!1)}>
       <div class="container top-bar-inner">
-        <button class="top-nav" type="button" aria-label="${f("previous")}" @click=${() => n(-1)}>${e ? q : D}</button>
+        <button class="top-nav" type="button" aria-label="${m("previous")}" @click=${() => s(-1)}>${e ? U : X}</button>
         <ul class="top-list">
           ${t.topBar.map(
-      (l, p) => i`<li class="top-item ${p === o ? "on" : ""}"><span class="ic" aria-hidden="true">${this.icon(l.icon)}</span>${l.text}</li>`
+      (l, d) => o`<li class="top-item ${d === i ? "on" : ""}"><span class="ic" aria-hidden="true">${this.icon(l.icon)}</span>${l.text}</li>`
     )}
         </ul>
-        <button class="top-nav" type="button" aria-label="${f("next")}" @click=${() => n(1)}>${e ? D : q}</button>
+        <button class="top-nav" type="button" aria-label="${m("next")}" @click=${() => s(1)}>${e ? X : U}</button>
       </div>
     </div>`;
   }
   renderManualBuy(t) {
-    const e = this.tierIndex(), a = e >= 0 ? t.tiers : [];
-    return i`
-      ${a.length ? i`<p class="label" id="tiers-label">${t.offersTitle}</p>
-            <div class="tiers" role="radiogroup" aria-labelledby="tiers-label" @keydown=${(o) => this.arrowKeys(o, a.length, (n) => this.activeTier = n, e)} style="--cols:${Math.min(a.length, 3)}">
-              ${a.map(
-      (o, n) => i`<button type="button" class="tier" role="radio" aria-checked="${n === e}" tabindex="${n === e ? 0 : -1}" @click=${() => this.activeTier = n}>
-                  ${o.badge ? i`<span class="badge">${o.badge}</span>` : c}
-                  <strong>${o.title}</strong>
-                  ${o.price ? i`<span class="tp">${o.price}${o.compare ? i`<s>${o.compare}</s>` : c}</span>` : c}
-                  ${o.subtitle ? i`<small>${o.subtitle}</small>` : c}
+    const e = this.tierIndex(), r = e >= 0 ? t.tiers : [];
+    return o`
+      ${r.length ? o`<p class="label" id="tiers-label">${t.offersTitle}</p>
+            <div class="tiers" role="radiogroup" aria-labelledby="tiers-label" @keydown=${(i) => this.arrowKeys(i, r.length, (s) => this.activeTier = s, e)} style="--cols:${Math.min(r.length, 3)}">
+              ${r.map(
+      (i, s) => o`<button type="button" class="tier" role="radio" aria-checked="${s === e}" tabindex="${s === e ? 0 : -1}" @click=${() => this.activeTier = s}>
+                  ${i.badge ? o`<span class="badge">${i.badge}</span>` : p}
+                  <strong>${i.title}</strong>
+                  ${this.tierPrice(i) !== p ? o`<span class="tp">${this.tierPrice(i)}</span>` : p}
+                  ${i.subtitle ? o`<small>${i.subtitle}</small>` : p}
                 </button>`
     )}
-            </div>` : c}
+            </div>` : p}
       <div class="buy-row">
-        <button class="cta" type="button" style="background:${t.ctaColor};color:${P(t.ctaColor)}" @click=${() => this.manualCta()}>${t.ctaText}</button>
+        <button class="cta" type="button" style="background:${t.ctaColor};color:${Y(t.ctaColor)}" @click=${() => this.manualCta()}>${t.ctaText}</button>
       </div>
     `;
   }
   renderTabs(t) {
-    var a;
-    if (!t.showTabs || !t.tabs.length) return c;
+    var r;
+    if (!t.showTabs || !t.tabs.length) return p;
     const e = Math.min(Math.max(this.activeTab, 0), t.tabs.length - 1);
-    return i`<div class="tabs">
-        <div class="tabs-head" role="tablist" @keydown=${(o) => this.arrowKeys(o, t.tabs.length, (n) => this.activeTab = n, e)}>
+    return o`<div class="tabs">
+        <div class="tabs-head" role="tablist" @keydown=${(i) => this.arrowKeys(i, t.tabs.length, (s) => this.activeTab = s, e)}>
           ${t.tabs.map(
-      (o, n) => i`<button
+      (i, s) => o`<button
               class="tab"
               role="tab"
               type="button"
-              id="tab-${n}"
-              aria-controls="${n === e ? "panel" : c}"
-              aria-selected="${n === e}"
-              tabindex="${n === e ? 0 : -1}"
-              @click=${() => this.activeTab = n}
-            >${o.title}</button>`
+              id="tab-${s}"
+              aria-controls="${s === e ? "panel" : p}"
+              aria-selected="${s === e}"
+              tabindex="${s === e ? 0 : -1}"
+              @click=${() => this.activeTab = s}
+            >${i.title}</button>`
     )}
         </div>
-        <div class="tab-panel" role="tabpanel" id="panel" aria-labelledby="tab-${e}">${(a = t.tabs[e]) == null ? void 0 : a.content}</div>
+        <div class="tab-panel" role="tabpanel" id="panel" aria-labelledby="tab-${e}">${(r = t.tabs[e]) == null ? void 0 : r.content}</div>
       </div>
       <div class="acc">
         ${t.tabs.map(
-      (o, n) => i`<div class="acc-item">
-            <button class="acc-q" type="button" aria-expanded="${n === this.activeTab}" @click=${() => this.activeTab = this.activeTab === n ? -1 : n}>
-              <span>${o.title}</span><span aria-hidden="true">${n === this.activeTab ? "−" : "+"}</span>
+      (i, s) => o`<div class="acc-item">
+            <button class="acc-q" type="button" aria-expanded="${s === this.activeTab}" @click=${() => this.activeTab = this.activeTab === s ? -1 : s}>
+              <span>${i.title}</span><span aria-hidden="true">${s === this.activeTab ? "−" : "+"}</span>
             </button>
-            ${n === this.activeTab ? i`<div class="acc-a">${o.content}</div>` : c}
+            ${s === this.activeTab ? o`<div class="acc-a">${i.content}</div>` : p}
           </div>`
     )}
       </div>`;
   }
   render() {
-    const t = this.c, e = this.product, a = M(), o = a === "rtl", n = e != null && e.images.length ? e.images : t.gallery.length ? t.gallery : [G], s = Math.min(this.activeImage, n.length - 1), l = e && e.price ? this.money(e.price) : t.priceAfter ? this.money(t.priceAfter) : null, p = e ? e.regular ? this.money(e.regular) : null : t.priceBefore ? this.money(t.priceBefore) : null, d = e ? e.regular ? t.savings || i`${f("save")} ${this.money(Math.round((e.regular - e.price) * 100) / 100)}` : "" : t.savings, h = e ? !e.available : !1, w = t.review ? v(t.review.avatar) : "";
-    return i`
-      <link rel="stylesheet" href="${N}" />
-      <section dir="${a}" style="background:${t.bg};--accent:${t.accent};--accent-soft:${I(t.accent, 0.1)}" aria-label="${t.title}">
-        ${this.renderTopBar(t, o)}
+    const t = this.c, e = this.product, r = P(), i = r === "rtl", s = e != null && e.images.length ? e.images : t.gallery.length ? t.gallery : [r2], n = Math.min(this.activeImage, s.length - 1), l = e && e.price ? this.money(e.price) : t.priceAfter ? this.money(t.priceAfter) : null, d = e ? e.regular ? this.money(e.regular) : null : t.priceBefore ? this.money(t.priceBefore) : null, c = e ? e.regular ? t.savings || o`${m("save")} ${this.money(Math.round((e.regular - e.price) * 100) / 100)}` : "" : t.savings, f = e ? !e.available : !1, b = t.review ? x(t.review.avatar) : "";
+    return o`
+      <link rel="stylesheet" href="${Q}" />
+      <section dir="${r}" style="background:${t.bg};--accent:${t.accent};--accent-soft:${R(t.accent, 0.1)}" aria-label="${t.title}">
+        ${this.renderTopBar(t, i)}
         <div class="container">
           <div class="wrap">
             <div class="gallery">
-              <img class="main-img" src="${n[s]}" alt="${t.title}" />
-              ${n.length > 1 ? i`<div class="thumbs">
-                    ${n.slice(0, 6).map(
-      (u, b) => i`<button class="thumb-btn" type="button" aria-label="${f("image", { n: b + 1 })}" aria-pressed="${b === s}" @click=${() => this.activeImage = b}>
+              <img class="main-img" src="${s[n]}" alt="${t.title}" />
+              ${s.length > 1 ? o`<div class="thumbs">
+                    ${s.slice(0, 6).map(
+      (u, g) => o`<button class="thumb-btn" type="button" aria-label="${m("image", { n: g + 1 })}" aria-pressed="${g === n}" @click=${() => this.activeImage = g}>
                         <img src="${u}" alt="" loading="lazy" decoding="async" />
                       </button>`
     )}
-                  </div>` : c}
+                  </div>` : p}
             </div>
 
             <div class="info">
               <div class="rating">
-                ${z(t.ratingValue, t.starsColor)}
-                <span class="sr-only">${f("rating", { value: t.ratingValue })}</span>
+                ${G(t.ratingValue, t.starsColor)}
+                <span class="sr-only">${m("rating", { value: t.ratingValue })}</span>
                 <strong aria-hidden="true">${t.ratingValue}/5</strong>
-                ${t.ratingCount ? i`<span>· ${f("ratedBy", { count: t.ratingCount })}</span>` : c}
+                ${t.ratingCount ? o`<span>· ${m("ratedBy", { count: t.ratingCount })}</span>` : p}
               </div>
 
               <h1 class="title">${t.title}</h1>
-              ${t.subtitle ? i`<p class="subtitle">${t.subtitle}</p>` : c}
+              ${t.subtitle ? o`<p class="subtitle">${t.subtitle}</p>` : p}
 
               <div class="price-row">
-                ${l ? i`<span class="price">${t.priceFrom ? i`<span class="from">${f("startingFrom")}</span>` : c}${l}</span>` : c}
-                ${p ? i`<span class="price-before">${p}</span>` : c}
-                ${d ? i`<span class="savings">${d}</span>` : c}
-                ${h ? i`<span class="stock out"><span class="dot"></span>${f("outOfStock")}</span>` : t.stock ? i`<span class="stock"><span class="dot"></span>${t.stock}</span>` : c}
+                ${l ? o`<span class="price">${t.priceFrom ? o`<span class="from">${m("startingFrom")}</span>` : p}${l}</span>` : p}
+                ${d ? o`<span class="price-before">${d}</span>` : p}
+                ${c ? o`<span class="savings">${c}</span>` : p}
+                ${f ? o`<span class="stock out"><span class="dot"></span>${m("outOfStock")}</span>` : t.stock ? o`<span class="stock"><span class="dot"></span>${t.stock}</span>` : p}
               </div>
 
-              ${t.points.length ? i`<ul class="points">${t.points.map((u) => i`<li><span class="tick" aria-hidden="true">✓</span><span>${u}</span></li>`)}</ul>` : c}
+              ${t.points.length ? o`<ul class="points">${t.points.map((u) => o`<li><span class="tick" aria-hidden="true">✓</span><span>${u}</span></li>`)}</ul>` : p}
 
-              ${t.productId ? i`<slot name="buy"></slot>` : this.renderManualBuy(t)}
+              ${t.productId ? o`<slot name="buy"></slot>` : this.renderManualBuy(t)}
 
-              ${t.payments.length ? i`<div class="pay">
-                    <ul aria-label="${f("securePayment")}">
-                      ${t.payments.map(([u, b]) => i`<li><img src="${_[u]}" alt="${b}" loading="lazy" decoding="async" /></li>`)}
+              ${t.payments.length ? o`<div class="pay">
+                    <ul aria-label="${m("securePayment")}">
+                      ${t.payments.map(([u, g]) => o`<li><img src="${i2[u]}" alt="${g}" loading="lazy" decoding="async" /></li>`)}
                     </ul>
-                    ${t.secureLabel ? i`<span class="secure">${t.secureLabel}</span>` : c}
-                  </div>` : c}
+                    ${t.secureLabel ? o`<span class="secure">${t.secureLabel}</span>` : p}
+                  </div>` : p}
 
-              ${t.showTrust && t.trust.length ? i`<div class="trust-card">
-                    ${t.trust.map((u) => i`<div class="trust-row"><span class="ic" aria-hidden="true">${this.icon(u.icon)}</span><span>${u.text}</span></div>`)}
-                  </div>` : c}
+              ${t.showTrust && t.trust.length ? o`<div class="trust-card">
+                    ${t.trust.map((u) => o`<div class="trust-row"><span class="ic" aria-hidden="true">${this.icon(u.icon)}</span><span>${u.text}</span></div>`)}
+                  </div>` : p}
 
-              ${t.showReview && t.review ? i`<div class="review">
-                    ${w ? i`<img class="avatar" src="${w}" alt="${t.review.name}" loading="lazy" />` : i`<span class="avatar" aria-hidden="true">${X()}</span>`}
+              ${t.showReview && t.review ? o`<div class="review">
+                    ${b ? o`<img class="avatar" src="${b}" alt="${t.review.name}" loading="lazy" />` : o`<span class="avatar" aria-hidden="true">${o2()}</span>`}
                     <div>
                       <p class="rtext">${t.review.text}</p>
-                      ${t.review.name ? i`<div class="rname">${t.review.name}</div>` : c}
-                      ${z(5, t.starsColor)}
+                      ${t.review.name ? o`<div class="rname">${t.review.name}</div>` : p}
+                      ${G(5, t.starsColor)}
                     </div>
-                  </div>` : c}
+                  </div>` : p}
 
               ${this.renderTabs(t)}
             </div>
           </div>
         </div>
 
-        ${t.showLogos && t.logos.length ? i`<div class="logos">
+        ${t.showLogos && t.logos.length ? o`<div class="logos">
               <div class="container logos-inner">
-                ${t.logosTitle ? i`<span class="logos-title">${t.logosTitle}</span>` : c}
+                ${t.logosTitle ? o`<span class="logos-title">${t.logosTitle}</span>` : p}
                 ${t.logos.map(
-      (u) => v(u.image) ? i`<span class="logo"><img src="${v(u.image)}" alt="${u.name || ""}" loading="lazy" /></span>` : i`<span class="logo">${u.name}</span>`
+      (u) => x(u.image) ? o`<span class="logo"><img src="${x(u.image)}" alt="${u.name || ""}" loading="lazy" /></span>` : o`<span class="logo">${u.name}</span>`
     )}
               </div>
-            </div>` : c}
+            </div>` : p}
       </section>
     `;
   }
 };
-H.properties = {
+Z.properties = {
   config: { type: Object },
   activeImage: { state: !0 },
   activeTab: { state: !0 },
   activeTier: { state: !0 },
   topIndex: { state: !0 },
   product: { state: !0 }
-}, H.styles = R`
+}, Z.styles = t2`
     :host { display: block; font-family: inherit; color: #1f2937; }
     * { box-sizing: border-box; }
     img { display: block; max-width: 100%; }
@@ -749,7 +807,8 @@ H.properties = {
     .stock { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: #4b5563; }
     .stock .dot { width: 12px; height: 12px; border-radius: 50%; background: #f59e0b; box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18); }
     .stock.out .dot { background: #dc2626; box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15); }
-    .sar { font-style: normal; font-size: 0.85em; margin-inline-start: 2px; }
+    .money { display: inline-flex; align-items: baseline; gap: 0.2em; direction: ltr; unicode-bidi: isolate; white-space: nowrap; }
+    .sar { font-style: normal; font-size: 0.85em; }
 
     .points { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
     .points li { display: flex; align-items: flex-start; gap: 0.7rem; line-height: 1.55; color: #374151; }
@@ -828,8 +887,8 @@ H.properties = {
       .logos-title { width: 100%; }
     }
   `;
-let j = H;
-typeof j < "u" && j.registerSallaComponent("salla-hero");
+let T = Z;
+typeof T < "u" && T.registerSallaComponent("salla-hero");
 export {
-  j as default
+  T as default
 };
