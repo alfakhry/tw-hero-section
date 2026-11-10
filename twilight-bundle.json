@@ -4294,32 +4294,36 @@
             "path": "templates.perfume-landing",
             "category_id": 915304371,
             "primary_color": "#9a6b3f",
-            "thumbnail": "templates-thumbs/perfume-landing.jpg",
-            "is_default": true
+            "thumbnail": "https://cdn.assets.salla.network/previews/h5a3cy30v41j/assets/1cc350e40630cb033f1f0a43c682ad04fe45f7890b523abc61967b3f9757fa5e/templates-thumbs/perfume-landing.jpg",
+            "is_default": true,
+            "public_preview_url": "https://salla.design/preview/s/h5a3cy30v41j/perfume-landing"
         },
         {
             "id": "966859f7-14c2-5024-b813-dce930c4181d",
             "path": "templates.skincare-landing",
             "category_id": 665151403,
             "primary_color": "#c2577a",
-            "thumbnail": "templates-thumbs/skincare-landing.jpg",
-            "is_default": false
+            "thumbnail": "https://cdn.assets.salla.network/previews/h5a3cy30v41j/assets/42de9e4a64372c656faf735e392df9ca29a6d12070fb4eb524131071475c7ef8/templates-thumbs/skincare-landing.jpg",
+            "is_default": false,
+            "public_preview_url": "https://salla.design/preview/s/h5a3cy30v41j/skincare-landing"
         },
         {
             "id": "895aed82-115a-5e1e-b2d3-c04f96e35ccb",
             "path": "templates.abaya-landing",
             "category_id": 814202285,
             "primary_color": "#7a5c3e",
-            "thumbnail": "templates-thumbs/abaya-landing.jpg",
-            "is_default": false
+            "thumbnail": "https://cdn.assets.salla.network/previews/h5a3cy30v41j/assets/b9bfbaaa50f28fcaf92250dfd9045d37ba21f6011493f6f71be37c5c83ca985a/templates-thumbs/abaya-landing.jpg",
+            "is_default": false,
+            "public_preview_url": "https://salla.design/preview/s/h5a3cy30v41j/abaya-landing"
         },
         {
             "id": "e66abcde-784d-56c9-af11-6e0d99b4fe70",
             "path": "templates.coffee-landing",
             "category_id": 1337421468,
             "primary_color": "#8b4a1f",
-            "thumbnail": "templates-thumbs/coffee-landing.jpg",
-            "is_default": false
+            "thumbnail": "https://cdn.assets.salla.network/previews/h5a3cy30v41j/assets/91761f3f6e5b3edc72ab48c8ebfdf96c7ef04ae83dcc9ac53f7b4a9a4c3af59f/templates-thumbs/coffee-landing.jpg",
+            "is_default": false,
+            "public_preview_url": "https://salla.design/preview/s/h5a3cy30v41j/coffee-landing"
         }
     ]
 }
