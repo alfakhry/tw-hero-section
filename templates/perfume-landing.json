@@ -479,23 +479,19 @@
               "id": "tiers.price",
               "type": "string",
               "format": "text",
-              "label": "السعر المعروض (اختياري)",
-              "multilanguage": true,
-              "value": {
-                "ar": "",
-                "en": ""
-              }
+              "label": "سعر العرض (اختياري)",
+              "multilanguage": false,
+              "value": "",
+              "description": "أرقام فقط مثل 269 — يظهر رمز الريال تلقائياً. اتركه فارغاً مع منتج مرتبط ليُحسب: الكمية × سعر المنتج"
             },
             {
               "id": "tiers.compare",
               "type": "string",
               "format": "text",
               "label": "السعر قبل الخصم (اختياري)",
-              "multilanguage": true,
-              "value": {
-                "ar": "",
-                "en": ""
-              }
+              "multilanguage": false,
+              "value": "",
+              "description": "أرقام فقط مثل 498 — يظهر مشطوباً بجانب سعر العرض"
             },
             {
               "id": "tiers.subtitle",
@@ -527,14 +523,8 @@
                 "en": "One bottle"
               },
               "tiers.qty": 1,
-              "tiers.price": {
-                "ar": "149 ر.س",
-                "en": "SAR 149"
-              },
-              "tiers.compare": {
-                "ar": "249 ر.س",
-                "en": "SAR 249"
-              },
+              "tiers.price": "149",
+              "tiers.compare": "249",
               "tiers.subtitle": {
                 "ar": "مثالي للتجربة",
                 "en": "Perfect to try"
@@ -550,14 +540,8 @@
                 "en": "Two bottles"
               },
               "tiers.qty": 2,
-              "tiers.price": {
-                "ar": "269 ر.س",
-                "en": "SAR 269"
-              },
-              "tiers.compare": {
-                "ar": "498 ر.س",
-                "en": "SAR 498"
-              },
+              "tiers.price": "269",
+              "tiers.compare": "498",
               "tiers.subtitle": {
                 "ar": "واحد لك وواحد هدية",
                 "en": "One for you, one to gift"
@@ -573,14 +557,8 @@
                 "en": "Three bottles"
               },
               "tiers.qty": 3,
-              "tiers.price": {
-                "ar": "369 ر.س",
-                "en": "SAR 369"
-              },
-              "tiers.compare": {
-                "ar": "747 ر.س",
-                "en": "SAR 747"
-              },
+              "tiers.price": "369",
+              "tiers.compare": "747",
               "tiers.subtitle": {
                 "ar": "أفضل قيمة — وفّر أكثر من 50%",
                 "en": "Best value — save over 50%"
@@ -2341,15 +2319,15 @@
               "format": "url",
               "label": "رابط الفيديو",
               "value": "",
-              "description": "يوتيوب أو فيميو أو تيك توك أو رابط مباشر لملف mp4"
+              "description": "انسخ رابط الفيديو من يوتيوب (عادي أو Shorts) أو تيك توك أو إنستغرام ريلز أو فيميو، أو رابط ملف mp4. الصورة المصغّرة تُجلب تلقائياً، والفيديو لا يُحمَّل إلا عند الضغط عليه"
             },
             {
               "id": "videos.cover",
               "type": "string",
               "format": "image",
-              "label": "صورة الغلاف",
+              "label": "صورة الغلاف (اختياري)",
               "value": "",
-              "description": "مقاس طولي 720×1280 بكسل (اختياري ليوتيوب)"
+              "description": "تُجلب تلقائياً من يوتيوب وتيك توك وفيميو. ارفعها لإنستغرام أو ملفات mp4، أو لتغيير الصورة. مقاس طولي 720×1280"
             },
             {
               "id": "videos.caption",

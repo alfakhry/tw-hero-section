@@ -69,6 +69,9 @@ const LIGHT_CSS = `
 .wahaj-buy .wahaj-cta[disabled]{opacity:.6;cursor:not-allowed}
 .wahaj-buy salla-product-options,.wahaj-buy salla-quick-order,.wahaj-buy salla-offer{display:block}
 .wahaj-buy #bundle-pro-widget:empty{display:none}
+.wahaj-buy .money{display:inline-flex;align-items:baseline;gap:.2em;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+.wahaj-buy .sar{font-style:normal;font-size:.85em}
+.wahaj-buy .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 @media (max-width:820px){.wahaj-buy .wahaj-cta{font-size:17px}}
 @media (prefers-reduced-motion:reduce){.wahaj-buy .wahaj-cta,.wahaj-buy .wahaj-tier{transition:none}}
 `;
@@ -93,6 +96,13 @@ function num(v: unknown): number {
   if (v && typeof v === "object") v = (v as Dict).amount ?? (v as Dict).value;
   const n = Number.parseFloat(String(v ?? ""));
   return Number.isFinite(n) ? n : 0;
+}
+
+/** "149", "١٤٩ ر.س", "SAR 149.50" → 149 / 149 / 149.5; text without digits → null. */
+function parseAmount(v: string): number | null {
+  const ascii = v.replace(/[\u0660-\u0669]/g, (c) => String(c.charCodeAt(0) - 0x0660)).replace(/[\u06F0-\u06F9]/g, (c) => String(c.charCodeAt(0) - 0x06f0));
+  const m = ascii.replace(/[,\u066C]/g, "").replace(/\u066B/g, ".").match(/\d+(?:\.\d+)?/);
+  return m ? Number(m[0]) : null;
 }
 
 function formatAmount(n: number): string {
@@ -298,6 +308,11 @@ export default class Hero extends LitElement {
     return select ? Number(select.value) || 1 : 1;
   }
 
+  /**
+   * "Buy now" goes straight to Salla's checkout with the chosen quantity and options, the same
+   * request Salla's own quick-buy button sends (checkout/mini). If the store cannot do that, the
+   * product is added to the cart and the customer is taken to the cart instead.
+   */
   private async submit(e: Event) {
     e.preventDefault();
     const c = this.c;
@@ -312,16 +327,66 @@ export default class Hero extends LitElement {
       const m = key.match(/^options\[(\d+)\]$/);
       if (m && typeof value === "string" && value) options[m[1]] = value;
     });
+    const quantity = this.selectedQuantity(form);
     const button = form.querySelector<HTMLButtonElement>(".wahaj-cta");
     button?.setAttribute("disabled", "");
+    button?.setAttribute("aria-busy", "true");
     try {
-      await salla.cart.addItem({ id: c.productId, quantity: this.selectedQuantity(form), options });
+      if (c.ctaAction === "buy_now" && (await this.quickCheckout(form, quantity))) return;
+      await salla.cart.addItem({ id: c.productId, quantity, options });
       if (c.ctaAction === "buy_now") window.location.href = salla.url?.get?.("cart") || "/cart";
       else if (c.ctaAction === "link" && c.ctaLink) window.location.href = c.ctaLink;
     } catch {
       // Salla shows its own error message (for example when a required option is missing).
     } finally {
       button?.removeAttribute("disabled");
+      button?.removeAttribute("aria-busy");
+    }
+  }
+
+  /** Returns true when the customer is on the way to checkout (or the login window opened). */
+  private async quickCheckout(form: HTMLFormElement, quantity: number): Promise<boolean> {
+    const salla = (window as Dict).salla;
+    const request = salla?.api?.request;
+    if (typeof request !== "function") return false;
+    // Required options are checked by Salla's options component before anything is sent.
+    const optionsEl = form.querySelector<HTMLElement & { reportValidity?: () => Promise<boolean> | boolean }>("salla-product-options");
+    if (optionsEl && typeof optionsEl.reportValidity === "function" && !(await optionsEl.reportValidity())) return true;
+    if (!form.reportValidity()) return true;
+    const data = new FormData(form);
+    data.set("id", this.c.productId);
+    data.set("quantity", String(quantity));
+    data.set("source", "buy_now");
+    const go = (resp: Dict) => {
+      const to = resp?.data?.url || resp?.data?.redirect;
+      if (to) {
+        window.location.href = to;
+        return true;
+      }
+      if (resp?.data?.to === "login") {
+        salla.event?.dispatch?.("login::open");
+        return true;
+      }
+      return false;
+    };
+    try {
+      return go(await request.call(salla.api, "checkout/mini", data, "post"));
+    } catch (err) {
+      const code = (err as Dict)?.response?.data?.error?.code;
+      if (code === "token_not_provided") {
+        try {
+          return go(await request.call(salla.api, `checkout/quick-purchase/${this.c.productId}`, data, "post"));
+        } catch {
+          return false;
+        }
+      }
+      const message = (err as Dict)?.response?.data?.error?.message;
+      // A clear refusal (out of stock, missing option…) is shown, otherwise fall back to the cart.
+      if (message && (err as Dict)?.response?.status === 422) {
+        salla.notify?.error?.(message);
+        return true;
+      }
+      return false;
     }
   }
 
@@ -402,7 +467,7 @@ export default class Hero extends LitElement {
                   (tier, i) => html`<button type="button" class="wahaj-tier" role="radio" aria-checked="${i === tierIndex}" tabindex="${i === tierIndex ? 0 : -1}" @click=${() => (this.activeTier = i)}>
                     ${tier.badge ? html`<span class="wahaj-badge">${tier.badge}</span>` : nothing}
                     <strong>${tier.title}</strong>
-                    ${tier.price ? html`<span class="wahaj-tier-price">${tier.price}${tier.compare ? html`<s>${tier.compare}</s>` : nothing}</span>` : nothing}
+                    ${this.tierPrice(tier) !== nothing ? html`<span class="wahaj-tier-price">${this.tierPrice(tier)}</span>` : nothing}
                     ${tier.subtitle ? html`<small>${tier.subtitle}</small>` : nothing}
                   </button>`
                 )}
@@ -474,7 +539,8 @@ export default class Hero extends LitElement {
     .stock { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: #4b5563; }
     .stock .dot { width: 12px; height: 12px; border-radius: 50%; background: #f59e0b; box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18); }
     .stock.out .dot { background: #dc2626; box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15); }
-    .sar { font-style: normal; font-size: 0.85em; margin-inline-start: 2px; }
+    .money { display: inline-flex; align-items: baseline; gap: 0.2em; direction: ltr; unicode-bidi: isolate; white-space: nowrap; }
+    .sar { font-style: normal; font-size: 0.85em; }
 
     .points { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
     .points li { display: flex; align-items: flex-start; gap: 0.7rem; line-height: 1.55; color: #374151; }
@@ -561,12 +627,37 @@ export default class Hero extends LitElement {
     return TRUST_ICONS[k] ? TRUST_ICONS[k]() : TRUST_ICONS["ضمان"]();
   }
 
+  /** Price with the riyal symbol on its left (SAMA guidance), in both languages. */
   private money(value: string | number) {
     const currency = this.product?.currency || "SAR";
-    const amount = typeof value === "number" ? formatAmount(value) : value;
+    const n = typeof value === "number" ? value : parseAmount(value);
+    const amount = n !== null ? formatAmount(n) : value;
     return currency.toUpperCase() === "SAR"
-      ? html`${amount}<i class="sar sicon-sar" aria-hidden="true"></i><span class="sr-only">SAR</span>`
-      : html`${amount} ${currency}`;
+      ? html`<span class="money" dir="ltr"><i class="sar sicon-sar" aria-hidden="true"></i>${amount}<span class="sr-only"> SAR</span></span>`
+      : html`<span class="money" dir="ltr">${amount} ${currency}</span>`;
+  }
+
+  /**
+   * Price line of a quantity card. The merchant types plain numbers; with a linked product an
+   * empty price is worked out as quantity × the product's price, and the struck price as
+   * quantity × its price before discount.
+   */
+  private tierPrice(tier: Tier) {
+    const p = this.product;
+    let price = parseAmount(tier.price);
+    let compare = parseAmount(tier.compare);
+    if (p && p.price) {
+      if (price === null) price = Math.round(p.price * tier.qty * 100) / 100;
+      if (compare === null) {
+        const full = Math.round((p.regular || p.price) * tier.qty * 100) / 100;
+        if (full > price) compare = full;
+      }
+    }
+    const show = (raw: string, n: number | null) => (n !== null ? this.money(n) : raw);
+    const main = show(tier.price, price);
+    if (!main) return nothing;
+    const before = compare !== null && price !== null && compare <= price ? "" : show(tier.compare, compare);
+    return html`${main}${before ? html`<s>${before}</s>` : nothing}`;
   }
 
   private renderTopBar(c: Dict, rtl: boolean) {
@@ -606,7 +697,7 @@ export default class Hero extends LitElement {
                 (tier, i) => html`<button type="button" class="tier" role="radio" aria-checked="${i === tierIndex}" tabindex="${i === tierIndex ? 0 : -1}" @click=${() => (this.activeTier = i)}>
                   ${tier.badge ? html`<span class="badge">${tier.badge}</span>` : nothing}
                   <strong>${tier.title}</strong>
-                  ${tier.price ? html`<span class="tp">${tier.price}${tier.compare ? html`<s>${tier.compare}</s>` : nothing}</span>` : nothing}
+                  ${this.tierPrice(tier) !== nothing ? html`<span class="tp">${this.tierPrice(tier)}</span>` : nothing}
                   ${tier.subtitle ? html`<small>${tier.subtitle}</small>` : nothing}
                 </button>`
               )}
